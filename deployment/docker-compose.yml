@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  server:
+    build:
+      context: ../server
+    ports:
+      - "5000:5000"
+      - "1234:1234/udp"
+    volumes:
+      - ../experiments:/app/experiments
+      - ../configs:/configs
+
+  dashboard:
+    build:
+      context: ../dashboard
+    ports:
+      - "3000:3000"
+    environment:
+      - NEXT_PUBLIC_SERVER_URL=http://localhost:5000
+    depends_on:
+      - server
+
+  edge-node:
+    build:
+      context: ../edge-node
+    environment:
+      - SERVER_URL=http://server:5000
+    volumes:
+      - ../models:/models
+      - ../configs:/configs
+    # Using host networking might be required if accessing local USB webcams on linux
+    # network_mode: "host"
+    devices:
+      - "/dev/video0:/dev/video0"
+    depends_on:
+      - server

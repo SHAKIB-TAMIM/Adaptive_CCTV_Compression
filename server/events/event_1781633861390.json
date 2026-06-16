@@ -1,0 +1,29 @@
+{
+  "ts": "2026-06-16T18:17:42.169Z",
+  "eventId": "event_1781633861390",
+  "risk": 0.784,
+  "state": "critical",
+  "frameId": 4800,
+  "numRois": 2,
+  "hour": -1,
+  "rois": [
+    {
+      "bbox": [
+        346,
+        249,
+        444,
+        313
+      ],
+      "priority": "low"
+    },
+    {
+      "bbox": [
+        196,
+        15,
+        639,
+        478
+      ],
+      "priority": "high"
+    }
+  ]
+}

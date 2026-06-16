@@ -1,0 +1,24 @@
+name: privacy_mode
+edge_node:
+  resolution: "1280x720"
+  base_fps: 5
+  roi_fps: 15
+  encoder:
+    codec: "hevc_nvenc"
+    preset: "p4"
+    tune: "ll"
+    bitrate: "500k"
+    maxrate: "800k"
+    bufsize: "1600k"
+    gop_size: 60
+  detection:
+    confidence_threshold: 0.5
+    model_path: "../models/yolov8n.pt"
+  privacy:
+    blur_background: true
+    blur_kernel_size: 99
+    ethical_mode: true # Drops frames without ROI
+    mask_faces: true
+server:
+  port: 8080
+  adaptive_streaming: true

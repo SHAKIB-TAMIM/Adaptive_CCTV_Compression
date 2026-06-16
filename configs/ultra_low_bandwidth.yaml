@@ -1,0 +1,22 @@
+name: ultra_low_bandwidth
+edge_node:
+  resolution: "640x480"
+  base_fps: 5
+  roi_fps: 10
+  encoder:
+    codec: "hevc_nvenc"
+    preset: "p7"
+    tune: "ll"
+    bitrate: "200k"
+    maxrate: "300k"
+    bufsize: "600k"
+    gop_size: 30
+  detection:
+    confidence_threshold: 0.4
+    model_path: "../models/yolov8n.pt"
+  privacy:
+    blur_background: true
+    blur_kernel_size: 99
+server:
+  port: 8080
+  adaptive_streaming: true

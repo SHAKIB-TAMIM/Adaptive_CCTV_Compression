@@ -1,0 +1,21 @@
+{
+  "received_at": "2026-05-14T20:19:20.936Z",
+  "frame_id": 2415,
+  "timestamp": 1778789960.9088914,
+  "rois": [
+    {
+      "bbox": [
+        160,
+        73,
+        611,
+        479
+      ]
+    }
+  ],
+  "meta": {
+    "bg_scale": 0.4,
+    "privacy_blur": false,
+    "num_rois": 1
+  },
+  "experiment_id": "BG50_ROI90_20260514_201920"
+}

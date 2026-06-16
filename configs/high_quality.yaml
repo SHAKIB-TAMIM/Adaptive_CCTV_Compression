@@ -1,0 +1,22 @@
+name: high_quality
+edge_node:
+  resolution: "1920x1080"
+  base_fps: 24
+  roi_fps: 30
+  encoder:
+    codec: "hevc_nvenc"
+    preset: "p2"
+    tune: "hq"
+    bitrate: "2000k"
+    maxrate: "3000k"
+    bufsize: "6000k"
+    gop_size: 60
+  detection:
+    confidence_threshold: 0.6
+    model_path: "../models/yolov8n.pt"
+  privacy:
+    blur_background: false
+    blur_kernel_size: 0
+server:
+  port: 8080
+  adaptive_streaming: true
