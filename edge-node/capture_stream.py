@@ -72,19 +72,46 @@ POST_EVENT_SECONDS = 10   # seconds of frames to save after a critical event
 EVENT_DIR = os.path.join(os.path.dirname(__file__), "..", "server", "events")
 
 class CodecManager:
+    GOP_CONFIG = {
+        STATE_NORMAL:   {"gop_size": 120, "keyint_min": 60},
+        STATE_ALERT:    {"gop_size": 30,  "keyint_min": 15},
+        STATE_CRITICAL: {"gop_size": 10,  "keyint_min": 5},
+    }
+
+    RES_CONFIG = {
+        STATE_NORMAL:   (640, 480),
+        STATE_ALERT:    (854, 480),
+        STATE_CRITICAL: (1920, 1080),
+    }
+
     def __init__(self):
         self.process = None
+        self.current_w = 0
+        self.current_h = 0
+        self.current_gop = 120
+        self.current_fps = 15
+        self.current_codec = "libx265"
+        self.current_bitrate = 2000
 
-    def start(self, w, h, fps, codec, bitrate):
+    def start(self, w, h, fps, codec, bitrate, gop_size=None):
         self.stop()
-        
-        # Stub for experimental codecs
+
+        self.current_w = w
+        self.current_h = h
+        self.current_fps = fps
+        self.current_codec = codec
+        self.current_bitrate = bitrate
+
+        if gop_size is None:
+            gop_size = fps * 2
+        self.current_gop = gop_size
+
         if codec == 'vvc_test' or codec == 'neural_test':
             print(f"[CodecManager] Stubbing experimental codec: {codec}")
             return
-            
-        # Standard FFmpeg codecs
+
         preset = 'fast' if codec in ['libx265', 'libx264', 'libsvtav1'] else 'p1'
+        keyint_min = max(1, gop_size // 2)
         cmd = [
             'ffmpeg', '-y',
             '-f', 'rawvideo', '-vcodec', 'rawvideo',
@@ -95,13 +122,36 @@ class CodecManager:
             '-b:v', f"{bitrate}k",
             '-maxrate', f"{int(bitrate*1.5)}k",
             '-bufsize', f"{bitrate*2}k",
-            '-g', str(fps * 2),
+            '-g', str(gop_size),
+            '-keyint_min', str(keyint_min),
             '-f', 'mpegts',
             'udp://127.0.0.1:1234'
         ]
-        
+
         print(f"[CodecManager] Starting: {' '.join(cmd)}")
         self.process = subprocess.Popen(cmd, stdin=subprocess.PIPE, stderr=subprocess.DEVNULL)
+
+    def set_gop(self, state):
+        config = self.GOP_CONFIG.get(state)
+        if not config:
+            return
+        gop = config["gop_size"]
+        if gop == self.current_gop:
+            return
+        print(f"[CodecManager] GOP {self.current_gop} -> {gop} ({state})")
+        self.start(self.current_w, self.current_h, self.current_fps,
+                   self.current_codec, self.current_bitrate, gop_size=gop)
+
+    def set_resolution(self, state):
+        config = self.RES_CONFIG.get(state)
+        if not config:
+            return
+        w, h = config
+        if w == self.current_w and h == self.current_h:
+            return
+        print(f"[CodecManager] Resolution {self.current_w}x{self.current_h} -> {w}x{h} ({state})")
+        self.start(w, h, self.current_fps, self.current_codec, self.current_bitrate,
+                   gop_size=self.current_gop)
 
     def write(self, frame_bytes):
         if self.process and self.process.poll() is None:
@@ -453,9 +503,14 @@ def main(server_url, cam_index, target_fps, config_path=None):
 
             frame_id += 1
 
-            # ── Codec hot-swap ──
+            # ── Codec hot-swap (preserve adapted resolution & GOP) ──
             if last_codec != control['CODEC'] or last_bitrate != control['BITRATE']:
-                codec_manager.start(w, h, target_fps, control['CODEC'], control['BITRATE'])
+                codec_manager.start(
+                    codec_manager.current_w or w,
+                    codec_manager.current_h or h,
+                    target_fps, control['CODEC'], control['BITRATE'],
+                    gop_size=codec_manager.current_gop
+                )
                 last_codec  = control['CODEC']
                 last_bitrate = control['BITRATE']
 
@@ -512,6 +567,11 @@ def main(server_url, cam_index, target_fps, config_path=None):
                 else:
                     surveillance_state = STATE_NORMAL
 
+            # ── Adaptive GOP & Resolution on state transition ──
+            if surveillance_state != prev_state:
+                codec_manager.set_gop(surveillance_state)
+                codec_manager.set_resolution(surveillance_state)
+
             # Trigger actions on transition into CRITICAL
             if prev_state != STATE_CRITICAL and surveillance_state == STATE_CRITICAL:
                 event_id = f"event_{int(time.time() * 1000)}"
@@ -561,8 +621,14 @@ def main(server_url, cam_index, target_fps, config_path=None):
                 control['PRIVACY_BLUR'], control['ETHICAL_MODE'], control['MASK_FACES']
             )
 
-            # Push compressed frame to H.265 UDP stream
-            codec_manager.write(recon_frame.tobytes())
+            # Resize frame to match adapted resolution, then push to H.265 UDP stream
+            out_w = codec_manager.current_w or w
+            out_h = codec_manager.current_h or h
+            if out_w != w or out_h != h:
+                out_frame = cv2.resize(recon_frame, (out_w, out_h), interpolation=cv2.INTER_AREA)
+            else:
+                out_frame = recon_frame
+            codec_manager.write(out_frame.tobytes())
 
             # Maintain rolling pre-event buffer (original full-res frames)
             pre_event_buffer.append({
@@ -600,6 +666,9 @@ def main(server_url, cam_index, target_fps, config_path=None):
                 "rois":      [{"bbox": r["bbox"], "priority": r.get("priority")} for r in rois],
                 "risk":      round(risk, 4),
                 "state":     surveillance_state,
+                "gop_size":  codec_manager.current_gop,
+                "res_w":     codec_manager.current_w,
+                "res_h":     codec_manager.current_h,
             }
             try:
                 sio.emit('frame', msg, namespace=NAMESPACE)

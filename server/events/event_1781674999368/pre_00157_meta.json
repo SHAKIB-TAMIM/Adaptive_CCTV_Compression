@@ -1,0 +1,1 @@
+{"frame_id": 1242, "rois": [{"bbox": [256, 197, 631, 479], "priority": "high"}, {"bbox": [200, 407, 330, 479], "priority": "low"}, {"bbox": [602, 338, 639, 426], "priority": "low"}], "risk": 0.5818}

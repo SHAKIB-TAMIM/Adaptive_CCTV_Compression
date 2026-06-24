@@ -46,6 +46,9 @@ let userControl = {
   bitrate: 2000
 };
 
+// Track latest codec adaptation state (updated from edge node frame messages)
+let latestCodecState = { gop_size: 120, res_w: 640, res_h: 480 };
+
 const BANDWIDTH_MONITOR_INTERVAL_MS = 3000;
 const BANDWIDTH_THRESHOLD_KBPS = 128;
 let metricsLog = [];
@@ -58,7 +61,7 @@ const MOTION_CSV = path.join(__dirname, 'motion_log.csv');
 
 // Ensure paths exist
 if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR, { recursive: true });
-if (!fs.existsSync(METRICS_CSV)) fs.writeFileSync(METRICS_CSV, 'timestamp,total_clients,total_kbps,bitrate,psnr,ssim\n');
+if (!fs.existsSync(METRICS_CSV)) fs.writeFileSync(METRICS_CSV, 'timestamp,total_clients,total_kbps,bitrate,psnr,ssim,gop_size,res_w,res_h\n');
 if (!fs.existsSync(CONTROL_CSV)) fs.writeFileSync(CONTROL_CSV, 'timestamp,experiment_id,control_json\n');
 if (!fs.existsSync(MOTION_CSV))  fs.writeFileSync(MOTION_CSV,  'timestamp,experiment_id,frame_id,motion_percent,num_rois,rois_json\n');
 
@@ -93,6 +96,9 @@ function addMetricSnapshot(sioKbps, udpKbps, clients) {
     bitrate: userControl.bitrate,
     psnr: (30 + Math.random() * 5).toFixed(2),
     ssim: (0.85 + Math.random() * 0.1).toFixed(3),
+    gop_size: latestCodecState.gop_size,
+    res_w: latestCodecState.res_w,
+    res_h: latestCodecState.res_h,
   };
   metricsLog.push(snapshot);
   if (metricsLog.length > 300) metricsLog.shift();
@@ -100,7 +106,7 @@ function addMetricSnapshot(sioKbps, udpKbps, clients) {
   // Emit to view namespace for live dashboard
   viewNS.emit('metrics', snapshot);
 
-  const row = `${snapshot.timestamp},${snapshot.total_clients},${snapshot.total_kbps},${snapshot.sio_kbps},${snapshot.udp_kbps},${snapshot.bitrate},${snapshot.psnr},${snapshot.ssim}\n`;
+  const row = `${snapshot.timestamp},${snapshot.total_clients},${snapshot.total_kbps},${snapshot.sio_kbps},${snapshot.udp_kbps},${snapshot.bitrate},${snapshot.psnr},${snapshot.ssim},${snapshot.gop_size},${snapshot.res_w},${snapshot.res_h}\n`;
   fs.appendFile(METRICS_CSV, row, (err) => { if (err) console.error('metrics csv append err', err); });
 }
 
@@ -117,6 +123,11 @@ streamNS.on('connection', (socket) => {
 
       //  NEW: SAVE COMPRESSED FRAME TO DISK
       saveFrame(msg);
+
+      // 🔹 Track codec adaptation state for metrics / CSV logging
+      if (msg.gop_size !== undefined) latestCodecState.gop_size = msg.gop_size;
+      if (msg.res_w !== undefined) latestCodecState.res_w = msg.res_w;
+      if (msg.res_h !== undefined) latestCodecState.res_h = msg.res_h;
 
       // 🔹 Live stream to dashboard
       viewNS.emit('frame', msg);
