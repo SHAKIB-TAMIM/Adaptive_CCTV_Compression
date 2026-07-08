@@ -1,0 +1,75 @@
+{
+  "ts": "2026-07-08T17:32:54.231Z",
+  "cameraId": "camera_0",
+  "eventId": "event_1783531972089",
+  "risk": 0.8514,
+  "state": "critical",
+  "frameId": 2314,
+  "numRois": 7,
+  "hour": 23,
+  "rois": [
+    {
+      "bbox": [
+        177,
+        463,
+        263,
+        480
+      ],
+      "priority": "low"
+    },
+    {
+      "bbox": [
+        566,
+        430,
+        640,
+        480
+      ],
+      "priority": "low"
+    },
+    {
+      "bbox": [
+        28,
+        344,
+        640,
+        480
+      ],
+      "priority": "low"
+    },
+    {
+      "bbox": [
+        152,
+        140,
+        179,
+        297
+      ],
+      "priority": "low"
+    },
+    {
+      "bbox": [
+        297,
+        30,
+        360,
+        57
+      ],
+      "priority": "low"
+    },
+    {
+      "bbox": [
+        299,
+        15,
+        367,
+        36
+      ],
+      "priority": "low"
+    },
+    {
+      "bbox": [
+        0,
+        0,
+        640,
+        330
+      ],
+      "priority": "low"
+    }
+  ]
+}

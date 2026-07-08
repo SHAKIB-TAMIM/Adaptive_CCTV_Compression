@@ -531,6 +531,7 @@ def main(server_url, cam_source, target_fps, config_path=None, camera_id="camera
 
             # ── Scene-change score (frame-to-frame diff) ──
             frame_gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+            diff = None  # reset each frame; only set when prev exists
             if prev_frame_gray is not None and prev_frame_gray.shape == frame_gray.shape:
                 diff = cv2.absdiff(frame_gray, prev_frame_gray)
                 scene_change_score = float(np.mean(diff)) / 128.0
@@ -538,14 +539,53 @@ def main(server_url, cam_source, target_fps, config_path=None, camera_id="camera
                 scene_change_score = 0.0
             prev_frame_gray = frame_gray
 
+            # ── Low-light enhancement (CLAHE) ──
+            frame_mean = float(cv2.mean(cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY))[0])
+            is_low_light = frame_mean < 80
+            if is_low_light:
+                # Adaptive CLAHE: stronger clip for very dark scenes
+                clip = 4.0 if frame_mean < 40 else 3.0
+                lab = cv2.cvtColor(frame, cv2.COLOR_BGR2LAB)
+                l, a, b = cv2.split(lab)
+                clahe = cv2.createCLAHE(clipLimit=clip, tileGridSize=(8, 8))
+                l = clahe.apply(l)
+                enhanced = cv2.merge([l, a, b])
+                detect_frame = cv2.cvtColor(enhanced, cv2.COLOR_LAB2BGR)
+            else:
+                detect_frame = frame
+
             # ── YOLO Detection ──
+            # Use a lower confidence threshold in low-light so weak detections aren't dropped
+            yolo_conf = 0.20 if is_low_light else 0.30
             if frame_id % max(1, int(control['DETECT_EVERY_N'])) == 0:
-                new_rois = detector.detect(frame, conf=0.3)
+                new_rois = detector.detect(detect_frame, conf=yolo_conf)
                 temporal_rois = merge_rois(temporal_rois, new_rois, roi_ttl)
             else:
                 temporal_rois = [tr for tr in temporal_rois if tr["ttl"] > 0]
                 for tr in temporal_rois:
                     tr["ttl"] -= 1
+
+            # ── Motion fallback (night/low-light compensation) ──
+            # Guard: diff is only available after the second frame
+            if diff is not None and len(temporal_rois) == 0 and scene_change_score > 0.10:
+                _, motion_mask = cv2.threshold(diff, 25, 255, cv2.THRESH_BINARY)
+                motion_mask = cv2.erode(motion_mask, None, iterations=1)
+                motion_mask = cv2.dilate(motion_mask, None, iterations=3)
+                contours, _ = cv2.findContours(motion_mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+                motion_rois = []
+                for cnt in contours:
+                    area = cv2.contourArea(cnt)
+                    if area < 400:  # lower threshold catches smaller dark-room movement
+                        continue
+                    x, y, cw, ch = cv2.boundingRect(cnt)
+                    motion_rois.append({
+                        "bbox": [x, y, x + cw, y + ch],
+                        "priority": "low",
+                        "class": -1,
+                    })
+                if motion_rois:
+                    temporal_rois = merge_rois(temporal_rois, motion_rois, roi_ttl)
+                    print(f"[motion-fallback] {len(motion_rois)} motion ROI(s) (low-light={is_low_light}, mean={frame_mean:.0f})")
 
             rois = temporal_rois
 
@@ -677,10 +717,12 @@ def main(server_url, cam_source, target_fps, config_path=None, camera_id="camera
                 "camera_id": camera_id,
                 "frame_id":  frame_id,
                 "timestamp": time.time(),
+                "frame_mean": round(float(frame_mean), 1),
                 "orig_w":    w,
                 "orig_h":    h,
                 "vis_frame": vis_b64,
-                "rois":      [{"bbox": r["bbox"], "priority": r.get("priority")} for r in rois],
+                "rois":      [{"bbox": r["bbox"], "priority": r.get("priority"),
+                               "track_id": r.get("track_id"), "reid_conf": r.get("reid_conf")} for r in rois],
                 "risk":      round(risk, 4),
                 "state":     surveillance_state,
                 "gop_size":  codec_manager.current_gop,
@@ -691,6 +733,19 @@ def main(server_url, cam_source, target_fps, config_path=None, camera_id="camera
                 sio.emit('frame', msg, namespace=NAMESPACE)
             except:
                 pass
+
+            # Post heatmap data periodically (every 5 frames for smoother heatmap)
+            if frame_id % 5 == 0:
+                try:
+                    hm_rois = [{"bbox": r["bbox"], "priority": r.get("priority")} for r in rois[:20]] if rois else []
+                    if hm_rois or frame_id % 15 == 0:  # Always keep alive every 15 frames
+                        requests.post(server_url.rstrip('/') + "/heatmap", json={
+                            "camera_id": camera_id,
+                            "rois": hm_rois,
+                            "orig_w": w, "orig_h": h,
+                        }, timeout=1)
+                except Exception:
+                    pass
 
             # Post motion log periodically
             if len(rois) > 0 and frame_id % max(1, int(control['DETECT_EVERY_N'])) == 0:

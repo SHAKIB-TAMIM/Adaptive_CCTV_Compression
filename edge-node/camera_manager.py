@@ -30,6 +30,8 @@ import collections
 import json
 import threading
 from detector import Detector
+from reid_tracker import ReidTracker
+from ptz_controller import PtzController
 
 DEFAULT_SERVER = "http://127.0.0.1:5000"
 NAMESPACE = "/stream"
@@ -173,15 +175,20 @@ class CodecEncoder:
 
 class CameraThread(threading.Thread):
     """Manages a single camera: capture, detect, compress, stream."""
-    def __init__(self, cam_cfg, detector, server_url):
+    def __init__(self, cam_cfg, detector, server_url, reid_tracker=None):
         super().__init__(daemon=True)
         self.cam_cfg = cam_cfg
         self.camera_id = cam_cfg["id"]
         self.server_url = server_url
         self.detector = detector
+        self.reid_tracker = reid_tracker
         self.encoder = CodecEncoder(self.camera_id, cam_cfg.get("udp_port", 1234))
         self.target_fps = cam_cfg.get("fps", 15)
         self.running = True
+
+        # PTZ controller (optional)
+        ptz_config = cam_cfg.get("ptz")
+        self.ptz = PtzController(ptz_config) if ptz_config and ptz_config.get("protocol") != "none" else None
 
         self.surveillance_state = STATE_NORMAL
         self.state_hysteresis_count = 0
@@ -237,17 +244,74 @@ class CameraThread(threading.Thread):
                     scene_change_score = float(np.mean(diff)) / 128.0
                 self.prev_frame_gray = frame_gray
 
+                # ── Low-light enhancement (CLAHE) ──
+                frame_mean = float(cv2.mean(frame_gray)[0])
+                if frame_mean < 80:
+                    lab = cv2.cvtColor(frame, cv2.COLOR_BGR2LAB)
+                    l, a, b = cv2.split(lab)
+                    clahe = cv2.createCLAHE(clipLimit=3.0, tileGridSize=(8, 8))
+                    l = clahe.apply(l)
+                    enhanced = cv2.merge([l, a, b])
+                    detect_frame = cv2.cvtColor(enhanced, cv2.COLOR_LAB2BGR)
+                else:
+                    detect_frame = frame
+
                 # Detection
                 detect_n = control.get('DETECT_EVERY_N', 3)
                 if self.frame_id % max(1, int(detect_n)) == 0:
-                    new_rois = self.detector.detect(frame, conf=0.3)
+                    new_rois = self.detector.detect(detect_frame, conf=0.3)
                     self.temporal_rois = merge_rois(self.temporal_rois, new_rois, self.roi_ttl)
                 else:
                     self.temporal_rois = [tr for tr in self.temporal_rois if tr["ttl"] > 0]
                     for tr in self.temporal_rois:
                         tr["ttl"] -= 1
 
+                # ── Motion fallback (night/low-light compensation) ──
+                if len(self.temporal_rois) == 0 and scene_change_score > 0.12:
+                    _, motion_mask = cv2.threshold(diff, 30, 255, cv2.THRESH_BINARY)
+                    motion_mask = cv2.erode(motion_mask, None, iterations=1)
+                    motion_mask = cv2.dilate(motion_mask, None, iterations=2)
+                    contours, _ = cv2.findContours(motion_mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+                    motion_rois = []
+                    for cnt in contours:
+                        area = cv2.contourArea(cnt)
+                        if area < 500:
+                            continue
+                        x, y, cw, ch = cv2.boundingRect(cnt)
+                        motion_rois.append({
+                            "bbox": [x, y, x + cw, y + ch],
+                            "priority": "low",
+                            "class": -1,
+                        })
+                    if motion_rois:
+                        self.temporal_rois = merge_rois(self.temporal_rois, motion_rois, self.roi_ttl)
+
                 rois = self.temporal_rois
+
+                # ── Re-ID matching for high-priority ROIs ──
+                if self.reid_tracker and len(rois) > 0:
+                    now = time.time()
+                    for roi in rois:
+                        if roi.get("priority") == "high" or roi.get("class") == 0:
+                            x1, y1, x2, y2 = roi["bbox"]
+                            person_crop = frame[max(0, y1):min(h, y2), max(0, x1):min(w, x2)]
+                            if person_crop.size > 0:
+                                track_id, conf, is_new = self.reid_tracker.match(
+                                    self.camera_id, roi["bbox"], person_crop, now
+                                )
+                                roi["track_id"] = track_id
+                                roi["reid_conf"] = round(conf, 3)
+                    self.reid_tracker.prune_expired(now)
+
+                # ── PTZ auto-tracking (follow highest-priority person) ──
+                if self.ptz:
+                    high_rois = [r for r in rois if r.get("priority") == "high"]
+                    if high_rois:
+                        target = high_rois[0]
+                        pan, tilt = self.ptz.center_on_bbox(target["bbox"], w, h)
+                        if abs(pan) > 0.05 or abs(tilt) > 0.05:
+                            self.ptz.relative_move(pan, tilt, speed=0.3)
+
                 frame_area = max(h * w, 1)
                 roi_pixels = sum(
                     max(0, r["bbox"][2] - r["bbox"][0]) * max(0, r["bbox"][3] - r["bbox"][1])
@@ -359,10 +423,12 @@ class CameraThread(threading.Thread):
                     "camera_id": self.camera_id,
                     "frame_id": self.frame_id,
                     "timestamp": time.time(),
+                    "frame_mean": round(float(frame_mean), 1),
                     "orig_w": w,
                     "orig_h": h,
                     "vis_frame": vis_b64,
-                    "rois": [{"bbox": r["bbox"], "priority": r.get("priority")} for r in rois],
+                    "rois": [{"bbox": r["bbox"], "priority": r.get("priority"),
+                              "track_id": r.get("track_id"), "reid_conf": r.get("reid_conf")} for r in rois],
                     "risk": round(risk, 4),
                     "state": self.surveillance_state,
                     "gop_size": self.encoder.current_gop,
@@ -373,6 +439,19 @@ class CameraThread(threading.Thread):
                     sio.emit('frame', msg, namespace=NAMESPACE)
                 except Exception:
                     pass
+
+                # Post heatmap data periodically (every 5 frames)
+                if self.frame_id % 5 == 0:
+                    try:
+                        hm_rois = [{"bbox": r["bbox"], "priority": r.get("priority")} for r in rois[:20]] if rois else []
+                        if hm_rois or self.frame_id % 15 == 0:
+                            requests.post(f"{self.server_url.rstrip('/')}/heatmap", json={
+                                "camera_id": self.camera_id,
+                                "rois": hm_rois,
+                                "orig_w": w, "orig_h": h,
+                            }, timeout=1)
+                    except Exception:
+                        pass
 
                 # Adaptive FPS
                 if self.surveillance_state == STATE_NORMAL and len(rois) == 0:
@@ -567,10 +646,13 @@ def main():
     print(f"Loading YOLO detector...")
     detector = Detector(model_type='yolo', model_path='../models/yolov8n.pt')
 
+    print(f"Initializing cross-camera re-ID tracker...")
+    reid_tracker = ReidTracker(similarity_threshold=0.55)
+
     threads = []
     for cam_cfg in enabled:
         print(f"Starting camera: {cam_cfg['id']} ({cam_cfg.get('name', cam_cfg['id'])})")
-        t = CameraThread(cam_cfg, detector, args.server)
+        t = CameraThread(cam_cfg, detector, args.server, reid_tracker)
         t.start()
         threads.append(t)
 

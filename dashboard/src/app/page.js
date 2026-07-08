@@ -14,6 +14,7 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
+import HeatmapOverlay from "./components/HeatmapOverlay";
 
 const VIEW_NS = "http://localhost:5000/view";
 const METRICS_URL = "http://localhost:5000/metrics";
@@ -46,6 +47,9 @@ export default function Home() {
   const [metricsHistory, setMetricsHistory] = useState([]);
   const [activityHistory, setActivityHistory] = useState([]);
 
+  // Illuminance & low-light status
+  const [frameMean, setFrameMean] = useState(0);
+
   // Adaptive codec state (GOP & resolution from edge node)
   const [gopSize, setGopSize] = useState(120);
   const [resW, setResW] = useState(640);
@@ -67,6 +71,12 @@ export default function Home() {
   // Event list (risk transitions)
   const [eventLog, setEventLog] = useState([]);
   const [activeProfile, setActiveProfile] = useState("custom");
+
+  // Heatmap
+  const [showHeatmap, setShowHeatmap] = useState(false);
+
+  // Realtime audio event indicator
+  const [currentAudio, setCurrentAudio] = useState(null);
 
   // Local state for auto-adaptation lock
   const [autoLockSecs, setAutoLockSecs] = useState(0);
@@ -95,6 +105,7 @@ export default function Home() {
         setRisk(msg.risk || 0.0);
         setSurveillance_state(msg.state || "normal");
         setRois(msg.rois || []);
+        setFrameMean(msg.frame_mean || 0);
         setGopSize(msg.gop_size || 120);
         setResW(msg.res_w || 0);
         setResH(msg.res_h || 0);
@@ -185,6 +196,27 @@ export default function Home() {
     // Risk Event notification receiver
     socket.on("event", (evt) => {
       setEventLog((prev) => [evt, ...prev].slice(0, 100));
+    });
+
+    // Realtime audio event indicator (from audio_monitor)
+    socket.on("audio_event", (evt) => {
+      const entry = {
+        eventId: `audio_${evt.event_type}_${evt.server_ts || Date.now()}`,
+        state: "alert",
+        risk: evt.confidence || 0.5,
+        frameId: -1,
+        numRois: 0,
+        ts: new Date((evt.server_ts || Date.now())).toISOString(),
+        audioType: evt.event_type,
+        audioLabel: evt.event_label,
+        audioColor: evt.color,
+        source: "audio",
+      };
+      // Show as live indicator
+      setCurrentAudio(entry);
+      setTimeout(() => setCurrentAudio((prev) => prev?.eventId === entry.eventId ? null : prev), 3000);
+      // Also add to event log
+      setEventLog((prev) => [entry, ...prev].slice(0, 100));
     });
 
     // Fallback/Initial fetching of events & historical metrics
@@ -425,7 +457,30 @@ export default function Home() {
                 ref={canvasRef}
                 className="w-full h-full object-contain block"
               />
-              
+              <HeatmapOverlay
+                cameraId={selectedCamera}
+                width={resW || 640}
+                height={resH || 480}
+                visible={showHeatmap}
+              />
+
+              {/* Realtime Audio Indicator */}
+              {currentAudio && (
+                <div className="absolute top-4 right-4 z-20 animate-in fade-in slide-in-from-top-2 duration-300 pointer-events-none">
+                  <div className={`px-3 py-2 rounded-xl backdrop-blur-md border shadow-lg font-mono text-sm font-bold flex items-center gap-2.5 ${
+                    currentAudio.audioType === "gunshot" || currentAudio.audioType === "explosion"
+                      ? "bg-red-950/90 text-red-300 border-red-500/60 shadow-red-500/20"
+                      : currentAudio.audioType === "alarm" || currentAudio.audioType === "siren"
+                      ? "bg-purple-950/90 text-purple-300 border-purple-500/60 shadow-purple-500/20"
+                      : "bg-slate-950/90 text-cyan-300 border-cyan-500/40 shadow-cyan-500/10"
+                  }`}>
+                    <span className="w-2 h-2 rounded-full bg-current animate-ping" />
+                    <span>{currentAudio.audioLabel}</span>
+                    <span className="text-[10px] opacity-70">{(currentAudio.risk * 100).toFixed(0)}%</span>
+                  </div>
+                </div>
+              )}
+
               {/* Dynamic State Overlay Indicator */}
               <div className="absolute top-4 left-4 pointer-events-none">
                 <div className={`px-4 py-2 rounded-lg backdrop-blur-md font-mono text-sm font-bold shadow-lg border transition-all duration-300 ${
@@ -449,8 +504,20 @@ export default function Home() {
                 <div className="bg-slate-950/80 backdrop-blur-md px-3 py-1.5 rounded-lg border border-slate-800 text-[10px] font-mono text-slate-500 leading-normal">
                   CAM: <span className="text-slate-300">{selectedCamera}</span><br/>
                   SYS.REF: <span className="text-slate-300">UDP://127.0.0.1</span><br/>
-                  DEC: <span className="text-slate-300">YOLOv8N-INFERENCE</span><br/>
+                  DEC: <span className="text-slate-300">{frameMean > 0 ? `YOLOv8N + CLAHE (${Math.round(frameMean)}lux)` : 'YOLOv8N-INFERENCE'}</span><br/>
                   ENC: <span className="text-slate-300">{codec.toUpperCase()} @ {bitrate}kbps</span>
+                </div>
+                <div className="flex gap-2">
+                  <button
+                    onClick={() => setShowHeatmap(!showHeatmap)}
+                    className={`pointer-events-auto px-2 py-1 rounded text-[9px] font-mono font-bold uppercase border transition-colors ${
+                      showHeatmap
+                        ? "bg-amber-500/20 text-amber-400 border-amber-500/30"
+                        : "bg-slate-950/60 text-slate-500 border-slate-800 hover:text-slate-300"
+                    }`}
+                  >
+                    {showHeatmap ? "HIDE HEATMAP" : "SHOW HEATMAP"}
+                  </button>
                 </div>
                 
                 {surveillance_state === "critical" && (
@@ -776,10 +843,20 @@ export default function Home() {
                     </div>
 
                     <div className="grid grid-cols-2 gap-x-4 text-slate-400">
-                      <div>Event ID: <span className="text-slate-200">{evt.eventId}</span></div>
-                      <div>Risk Score: <span className="text-red-400 font-bold">{parseFloat(evt.risk).toFixed(2)}</span></div>
-                      <div>Frame ID: <span className="text-slate-300">{evt.frameId}</span></div>
-                      <div>Objects: <span className="text-slate-300">{evt.numRois} detected</span></div>
+                      {evt.source === "audio" ? (
+                        <>
+                          <div className="col-span-2"><span className="text-slate-500">Audio:</span> <span className="text-cyan-300 font-bold">{evt.audioLabel || evt.audioType}</span></div>
+                          <div>Confidence: <span className="text-slate-200">{(parseFloat(evt.risk) * 100).toFixed(0)}%</span></div>
+                          <div>Event ID: <span className="text-slate-200">{evt.eventId}</span></div>
+                        </>
+                      ) : (
+                        <>
+                          <div>Event ID: <span className="text-slate-200">{evt.eventId}</span></div>
+                          <div>Risk Score: <span className="text-red-400 font-bold">{parseFloat(evt.risk).toFixed(2)}</span></div>
+                          <div>Frame ID: <span className="text-slate-300">{evt.frameId}</span></div>
+                          <div>Objects: <span className="text-slate-300">{evt.numRois} detected</span></div>
+                        </>
+                      )}
                     </div>
                   </div>
                 ))

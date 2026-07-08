@@ -30,3 +30,18 @@ cameras:
     udp_port: 1237
     fps: 24
     enabled: false
+
+  - id: "camera_ptz"
+    name: "PTZ Dome"
+    source: "rtsp://admin:password@192.168.1.200:554/stream1"
+    profile: "high_quality"
+    udp_port: 1240
+    fps: 15
+    enabled: false
+    ptz:
+      protocol: "onvif"      # or "http"
+      host: "192.168.1.200"
+      port: 80
+      username: "admin"
+      password: "password"
+      onvif_profile: "Profile_1"

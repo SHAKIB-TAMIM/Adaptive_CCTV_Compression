@@ -9,7 +9,7 @@ const fs = require('fs');
 const dgram = require('dgram');
 
 //impoerting storage
-const { saveFrame } = require("./storage");
+const { saveFrame, purgeOldRecordings } = require("./storage");
 const yaml = require("js-yaml");
 
 
@@ -29,6 +29,15 @@ const STREAM_NS = '/stream';
 const VIEW_NS = '/view';
 const streamNS = io.of(STREAM_NS);
 const viewNS = io.of(VIEW_NS);
+
+// Default namespace: receive audio events from audio_monitor.py and forward to dashboard
+io.on('connection', (socket) => {
+  socket.on('audio_event', (data) => {
+    // Add server timestamp and forward to all dashboard clients
+    data.server_ts = Date.now();
+    viewNS.emit('audio_event', data);
+  });
+});
 
 // -------------------- Global Variables --------------------
 let socketIoBytes = 0;
@@ -64,7 +73,7 @@ function loadCamerasFromYaml() {
     ];
   }
 }
-loadCamerasFromYaml();
+// loadCamerasFromYaml() is called AFTER udpMonitor is instantiated (see below)
 
 // Per-camera UDP byte tracking
 let udpMonitors = {};   // camera_id -> { bytes, port }
@@ -120,6 +129,9 @@ class UdpMonitor {
 }
 
 const udpMonitor = new UdpMonitor();
+
+// Now safe to load cameras (udpMonitor is initialized)
+loadCamerasFromYaml();
 
 // Initialize UDP listener for default camera
 udpMonitor.addListener(1234, "camera_0");
@@ -375,6 +387,56 @@ app.get('/cameras/:id/metrics', (req, res) => {
   res.json(cameraMetrics[id] || []);
 });
 
+// ===================== ACTIVITY HEATMAP =====================
+
+// Per-camera heatmap: sparse grid of detection positions
+// resolution: normalized 0.0-1.0 coordinates, decay over time
+const heatmaps = {}; // camera_id -> [{x, y, ttl, priority}]
+const HEATMAP_DECAY_SECONDS = 300; // 5 minutes
+
+// POST /heatmap — receive ROI positions for heatmap accumulation
+app.post('/heatmap', (req, res) => {
+  try {
+    const { camera_id, rois, orig_w, orig_h } = req.body;
+    if (!camera_id || !rois) return res.json({ success: false });
+
+    if (!heatmaps[camera_id]) heatmaps[camera_id] = [];
+    const now = Date.now();
+
+    for (const roi of rois) {
+      const [x1, y1, x2, y2] = roi.bbox || roi;
+      heatmaps[camera_id].push({
+        x: ((x1 + x2) / 2) / (orig_w || 640),
+        y: ((y1 + y2) / 2) / (orig_h || 480),
+        ttl: now + HEATMAP_DECAY_SECONDS * 1000,
+        weight: roi.priority === "high" ? 3 : roi.priority === "medium" ? 2 : 1,
+      });
+    }
+
+    // Trim expired entries
+    heatmaps[camera_id] = heatmaps[camera_id].filter(h => h.ttl > now);
+    if (heatmaps[camera_id].length > 5000) {
+      heatmaps[camera_id] = heatmaps[camera_id].slice(-5000);
+    }
+
+    res.json({ success: true, points: heatmaps[camera_id].length });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// GET /heatmap/:cameraId — get heatmap data as normalized points
+app.get('/heatmap/:cameraId', (req, res) => {
+  const cameraId = req.params.cameraId;
+  const now = Date.now();
+  if (heatmaps[cameraId]) {
+    heatmaps[cameraId] = heatmaps[cameraId].filter(h => h.ttl > now);
+    res.json(heatmaps[cameraId] || []);
+  } else {
+    res.json([]);
+  }
+});
+
 // ===================== UNIFIED RECORDING API =====================
 
 // GET /recordings — list available recording dates per camera
@@ -506,22 +568,16 @@ app.post('/motion', (req, res) => {
   try {
     const p = req.body || {};
     const cameraId = p.camera_id || "camera_0";
-    const experimentId = p.experiment_id || `exp_${Date.now()}`;
+    const experimentId = p.experiment_id || '';
     const frameId = p.frame_id || '';
     const motionPercent = Number(p.motion_percent || 0);
     const rois = p.rois || [];
     const numRois = rois.length;
 
-    // append to motion CSV
+    // append to motion CSV (single file, no per-experiment dirs)
     const ts = new Date().toISOString();
     const row = `${ts},${cameraId},${experimentId},${frameId},${motionPercent},${numRois},"${JSON.stringify(rois).replace(/"/g,'""')}"\n`;
     fs.appendFile(MOTION_CSV, row, (err) => { if (err) console.error('motion csv append err', err); });
-
-    // optionally save per-experiment motion JSON for debugging
-    const expDir = path.join(DATA_DIR, experimentId);
-    if (!fs.existsSync(expDir)) fs.mkdirSync(expDir, { recursive: true });
-    const motionFile = path.join(expDir, `motion_${frameId || Date.now()}.json`);
-    fs.writeFileSync(motionFile, JSON.stringify({ ts, frameId, motionPercent, rois }, null, 2));
 
     viewNS.emit('motion', { timestamp: ts, motion_percent: motionPercent, num_rois: numRois });
 
@@ -788,6 +844,87 @@ app.get("/frame/:date/:id", (req, res) => {
   }
 });
 
+
+// ===================== RETENTION & HOUSEKEEPING =====================
+
+const RETENTION_INTERVAL_MS = 3600000; // 1 hour
+const RETENTION_DAYS = 7; // days to keep recordings/CSVs/events
+
+function rotateCsv(filePath, header) {
+  if (!fs.existsSync(filePath)) return;
+  const lines = fs.readFileSync(filePath, 'utf8').split('\n').filter(Boolean);
+  if (lines.length <= 1) return; // header only or empty
+
+  const now = Date.now();
+  const cutoff = now - 7 * 86400 * 1000;
+  const kept = [lines[0]]; // keep header
+
+  for (let i = 1; i < lines.length; i++) {
+    const line = lines[i];
+    const ts = line.split(',')[0];
+    const lineTime = new Date(ts).getTime();
+    if (!isNaN(lineTime) && lineTime >= cutoff) {
+      kept.push(line);
+    }
+  }
+
+  if (kept.length < lines.length) {
+    fs.writeFileSync(filePath, kept.join('\n') + '\n');
+    console.log(`[retention] Rotated ${path.basename(filePath)}: ${lines.length} -> ${kept.length} rows`);
+  }
+}
+
+function runHousekeeping() {
+  // Purge old recordings (7 days)
+  try { purgeOldRecordings(); } catch (e) { console.error('[retention] Recording purge error:', e.message); }
+
+  // Purge old event directories (7 days)
+  try {
+    if (fs.existsSync(EVENTS_DIR)) {
+      const now = Date.now();
+      const cutoff = now - 7 * 86400 * 1000;
+      const entries = fs.readdirSync(EVENTS_DIR);
+      for (const entry of entries) {
+        const entryPath = path.join(EVENTS_DIR, entry);
+        const stat = fs.statSync(entryPath);
+        if (stat.isDirectory() && stat.mtimeMs < cutoff) {
+          fs.rmSync(entryPath, { recursive: true, force: true });
+          console.log(`[retention] Purged old event: ${entry}`);
+        }
+      }
+    }
+  } catch (e) { console.error('[retention] Event purge error:', e.message); }
+
+  // Rotate CSVs (keep 7 days)
+  rotateCsv(METRICS_CSV, 'timestamp,camera_id,total_clients,total_kbps,sio_kbps,udp_kbps,bitrate,psnr,ssim,gop_size,res_w,res_h');
+  rotateCsv(MOTION_CSV, 'timestamp,camera_id,experiment_id,frame_id,motion_percent,num_rois,rois_json');
+  rotateCsv(EVENT_CSV, 'timestamp,camera_id,event_id,risk,state,frame_id,num_rois,hour');
+
+  // Clean up old experiments/ dirs (7 days)
+  try {
+    if (fs.existsSync(DATA_DIR)) {
+      const now = Date.now();
+      const cutoff = now - 7 * 86400 * 1000;
+      const dirs = fs.readdirSync(DATA_DIR);
+      for (const d of dirs) {
+        const dp = path.join(DATA_DIR, d);
+        if (dp.includes('.')) continue; // skip files
+        try {
+          const stat = fs.statSync(dp);
+          if (stat.isDirectory() && stat.mtimeMs < cutoff) {
+            fs.rmSync(dp, { recursive: true, force: true });
+          }
+        } catch (e) { /* race condition, skip */ }
+      }
+    }
+  } catch (e) { console.error('[retention] Experiment purge error:', e.message); }
+}
+
+// Run on startup + every hour
+runHousekeeping();
+setInterval(runHousekeeping, RETENTION_INTERVAL_MS);
+
+console.log(`[retention] Housekeeping every ${RETENTION_INTERVAL_MS/60000} minutes (${RETENTION_DAYS} day retention)`);
 
 // Start server
 const PORT = process.env.PORT || 5000;

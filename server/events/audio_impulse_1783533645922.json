@@ -1,0 +1,11 @@
+{
+  "ts": "2026-07-08T18:00:45.931Z",
+  "cameraId": "camera_0",
+  "eventId": "audio_impulse_1783533645922",
+  "risk": 0.7193,
+  "state": "alert",
+  "frameId": -1,
+  "numRois": 0,
+  "hour": -1,
+  "rois": []
+}
