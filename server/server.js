@@ -32,8 +32,97 @@ const viewNS = io.of(VIEW_NS);
 
 // -------------------- Global Variables --------------------
 let socketIoBytes = 0;
-let udpBytes = 0;
 let totalClients = 0;
+
+// Camera registry — populated from cameras.yaml, POST /cameras, or auto-registered
+let cameras = [];
+
+// Load cameras from config YAML at startup
+function loadCamerasFromYaml() {
+  const camConfigPath = path.join(__dirname, '..', 'configs', 'cameras.yaml');
+  if (fs.existsSync(camConfigPath)) {
+    try {
+      const doc = yaml.load(fs.readFileSync(camConfigPath, 'utf8'));
+      if (doc && Array.isArray(doc.cameras)) {
+        cameras = doc.cameras.filter(c => c.enabled !== false).map(c => ({
+          ...c,
+          status: 'offline',
+          last_seen: null,
+        }));
+        // Start UDP listeners for each camera
+        cameras.forEach(c => udpMonitor.addListener(c.udp_port || 1234, c.id));
+        console.log(`[cameras] Loaded ${cameras.length} camera(s) from cameras.yaml`);
+      }
+    } catch (e) {
+      console.error('[cameras] Error loading cameras.yaml:', e.message);
+    }
+  }
+  if (cameras.length === 0) {
+    // Fallback default
+    cameras = [
+      { id: "camera_0", name: "Main Entrance", source: "0", udp_port: 1234, status: "offline", profile: "balanced", fps: 15, last_seen: null },
+    ];
+  }
+}
+loadCamerasFromYaml();
+
+// Per-camera UDP byte tracking
+let udpMonitors = {};   // camera_id -> { bytes, port }
+
+// Per-camera metrics history (last 300 entries each)
+let cameraMetrics = {};  // camera_id -> [snapshot, ...]
+
+// Class to manage multiple UDP listeners (one per camera)
+class UdpMonitor {
+  constructor() {
+    this.sockets = {};   // port -> dgram socket
+    this.bytes = {};     // port -> byte count
+    this.portToCam = {}; // port -> camera_id
+  }
+
+  addListener(port, cameraId) {
+    if (this.sockets[port]) {
+      this.bytes[port] = 0;
+      return;
+    }
+    const socket = dgram.createSocket('udp4');
+    socket.on('message', (msg) => {
+      this.bytes[port] = (this.bytes[port] || 0) + msg.length;
+    });
+    socket.on('error', (err) => {
+      console.error(`[UDP] Error on port ${port} (${cameraId}):`, err.message);
+    });
+    socket.bind(port, () => {
+      console.log(`[UDP] Listening for ${cameraId} H.265 stream on port ${port}`);
+    });
+    this.sockets[port] = socket;
+    this.bytes[port] = 0;
+    this.portToCam[port] = cameraId;
+  }
+
+  removeListener(port) {
+    if (this.sockets[port]) {
+      try { this.sockets[port].close(); } catch (e) {}
+      delete this.sockets[port];
+      delete this.bytes[port];
+      delete this.portToCam[port];
+    }
+  }
+
+  getBytes(port) { return this.bytes[port] || 0; }
+  resetBytes(port) { this.bytes[port] = 0; }
+
+  getAllPorts() { return Object.keys(this.sockets).map(Number); }
+
+  stopAll() {
+    Object.keys(this.sockets).forEach(port => this.removeListener(Number(port)));
+  }
+}
+
+const udpMonitor = new UdpMonitor();
+
+// Initialize UDP listener for default camera
+udpMonitor.addListener(1234, "camera_0");
 
 // Timestamp of last user-initiated control message
 let lastUserControlTime = 0;
@@ -61,38 +150,33 @@ const MOTION_CSV = path.join(__dirname, 'motion_log.csv');
 
 // Ensure paths exist
 if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR, { recursive: true });
-if (!fs.existsSync(METRICS_CSV)) fs.writeFileSync(METRICS_CSV, 'timestamp,total_clients,total_kbps,bitrate,psnr,ssim,gop_size,res_w,res_h\n');
+if (!fs.existsSync(METRICS_CSV)) fs.writeFileSync(METRICS_CSV, 'timestamp,camera_id,total_clients,total_kbps,sio_kbps,udp_kbps,bitrate,psnr,ssim,gop_size,res_w,res_h\n');
 if (!fs.existsSync(CONTROL_CSV)) fs.writeFileSync(CONTROL_CSV, 'timestamp,experiment_id,control_json\n');
-if (!fs.existsSync(MOTION_CSV))  fs.writeFileSync(MOTION_CSV,  'timestamp,experiment_id,frame_id,motion_percent,num_rois,rois_json\n');
+if (!fs.existsSync(MOTION_CSV))  fs.writeFileSync(MOTION_CSV,  'timestamp,camera_id,experiment_id,frame_id,motion_percent,num_rois,rois_json\n');
 
 // Event log
 const EVENT_CSV = path.join(__dirname, 'event_log.csv');
 const EVENTS_DIR = path.join(__dirname, 'events');
-if (!fs.existsSync(EVENT_CSV))  fs.writeFileSync(EVENT_CSV, 'timestamp,event_id,risk,state,frame_id,num_rois,hour\n');
+if (!fs.existsSync(EVENT_CSV))  fs.writeFileSync(EVENT_CSV, 'timestamp,camera_id,event_id,risk,state,frame_id,num_rois,hour\n');
 if (!fs.existsSync(EVENTS_DIR)) fs.mkdirSync(EVENTS_DIR, { recursive: true });
 
 // In-memory event ring for dashboard queries (last 200)
 let eventLog = [];
 
 
-// -------------------- UDP Monitoring --------------------
-const udpServer = dgram.createSocket('udp4');
-udpServer.on('message', (msg, rinfo) => {
-  udpBytes += msg.length;
-});
-udpServer.bind(1234, () => {
-  console.log('[UDP] Listening for incoming H.265 stream on port 1234 to monitor bitrate');
-});
+// -------------------- UDP Monitoring (handled by udpMonitor class above) --------------------
+// Each camera gets its own UDP port — listener is created when camera is registered.
 
 // -------------------- Metrics Handling --------------------
-function addMetricSnapshot(sioKbps, udpKbps, clients) {
+function addMetricSnapshot(sioKbps, udpKbps, clients, cameraId = "camera_0") {
   const totalKbps = sioKbps + udpKbps;
   const snapshot = {
     timestamp: new Date().toISOString(),
+    camera_id: cameraId,
     total_clients: clients,
     total_kbps: Number(totalKbps).toFixed(2),
-    sio_kbps: Number(sioKbps).toFixed(2),   // raw preview stream (Socket.IO)
-    udp_kbps: Number(udpKbps).toFixed(2),   // compressed H.265 UDP stream
+    sio_kbps: Number(sioKbps).toFixed(2),
+    udp_kbps: Number(udpKbps).toFixed(2),
     bitrate: userControl.bitrate,
     psnr: (30 + Math.random() * 5).toFixed(2),
     ssim: (0.85 + Math.random() * 0.1).toFixed(3),
@@ -100,13 +184,20 @@ function addMetricSnapshot(sioKbps, udpKbps, clients) {
     res_w: latestCodecState.res_w,
     res_h: latestCodecState.res_h,
   };
+
+  // Per-camera metrics ring
+  if (!cameraMetrics[cameraId]) cameraMetrics[cameraId] = [];
+  cameraMetrics[cameraId].push(snapshot);
+  if (cameraMetrics[cameraId].length > 300) cameraMetrics[cameraId].shift();
+
+  // Also keep aggregate (legacy) metrics for backward compat
   metricsLog.push(snapshot);
   if (metricsLog.length > 300) metricsLog.shift();
 
-  // Emit to view namespace for live dashboard
+  // Emit to view namespace
   viewNS.emit('metrics', snapshot);
 
-  const row = `${snapshot.timestamp},${snapshot.total_clients},${snapshot.total_kbps},${snapshot.sio_kbps},${snapshot.udp_kbps},${snapshot.bitrate},${snapshot.psnr},${snapshot.ssim},${snapshot.gop_size},${snapshot.res_w},${snapshot.res_h}\n`;
+  const row = `${snapshot.timestamp},${cameraId},${snapshot.total_clients},${snapshot.total_kbps},${snapshot.sio_kbps},${snapshot.udp_kbps},${snapshot.bitrate},${snapshot.psnr},${snapshot.ssim},${snapshot.gop_size},${snapshot.res_w},${snapshot.res_h}\n`;
   fs.appendFile(METRICS_CSV, row, (err) => { if (err) console.error('metrics csv append err', err); });
 }
 
@@ -117,11 +208,23 @@ streamNS.on('connection', (socket) => {
 
   socket.on('frame', (msg) => {
     try {
+      const cameraId = msg.camera_id || "camera_0";
       // 🔹 Bandwidth accounting
       const sizeBytes = Buffer.byteLength(JSON.stringify(msg), 'utf8');
       socketIoBytes += sizeBytes;
 
-      //  NEW: SAVE COMPRESSED FRAME TO DISK
+      // 🔹 Auto-register unknown cameras
+      let cam = cameras.find(c => c.id === cameraId);
+      if (!cam) {
+        cam = { id: cameraId, name: cameraId, source: "socket.io", udp_port: 1234 + cameras.length, status: "online", profile: "balanced", fps: 15, last_seen: new Date().toISOString() };
+        cameras.push(cam);
+        console.log(`[cameras] Auto-registered: ${cameraId}`);
+      } else {
+        cam.status = "online";
+        cam.last_seen = new Date().toISOString();
+      }
+
+      // 🔹 SAVE COMPRESSED FRAME TO DISK (unified recording)
       saveFrame(msg);
 
       // 🔹 Track codec adaptation state for metrics / CSV logging
@@ -129,17 +232,17 @@ streamNS.on('connection', (socket) => {
       if (msg.res_w !== undefined) latestCodecState.res_w = msg.res_w;
       if (msg.res_h !== undefined) latestCodecState.res_h = msg.res_h;
 
-      // 🔹 Live stream to dashboard
+      // 🔹 Live stream to dashboard (with camera_id)
       viewNS.emit('frame', msg);
     } catch (e) {
       console.error('Frame broadcast error:', e);
     }
   });
 
-
   socket.on('disconnect', () => {
     totalClients = Math.max(0, totalClients - 1);
     console.log('[stream] disconnected', socket.id);
+    cameras.forEach(c => { c.status = "offline"; });
   });
 });
 
@@ -161,21 +264,32 @@ viewNS.on('connection', (socket) => {
   socket.on('disconnect', () => { console.log('[view] disconnected', socket.id); });
 });
 
-// -------------------- Bandwidth Monitor --------------------
+// -------------------- Bandwidth Monitor (per camera) --------------------
 setInterval(() => {
   const interval_s = BANDWIDTH_MONITOR_INTERVAL_MS / 1000;
   const sioKbps  = (socketIoBytes * 8) / interval_s / 1000;
-  const udpKbps  = (udpBytes     * 8) / interval_s / 1000;
-  const totalKbps = sioKbps + udpKbps;
-  console.log(`SIO: ${sioKbps.toFixed(1)} kbps | UDP(H.265): ${udpKbps.toFixed(1)} kbps | total: ${totalKbps.toFixed(1)} kbps | clients: ${totalClients}`);
-  addMetricSnapshot(sioKbps, udpKbps, totalClients);
+
+  // Aggregate UDP across all cameras for legacy display
+  let totalUdpKbps = 0;
+  const ports = udpMonitor.getAllPorts();
+  for (const port of ports) {
+    const camId = udpMonitor.portToCam[port] || "unknown";
+    const camUdpBytes = udpMonitor.getBytes(port);
+    const camUdpKbps = (camUdpBytes * 8) / interval_s / 1000;
+    totalUdpKbps += camUdpKbps;
+    addMetricSnapshot(0, camUdpKbps, totalClients, camId);
+    udpMonitor.resetBytes(port);
+  }
+
+  const totalKbps = sioKbps + totalUdpKbps;
+  console.log(`SIO: ${sioKbps.toFixed(1)} kbps | UDP(total): ${totalUdpKbps.toFixed(1)} kbps | total: ${totalKbps.toFixed(1)} kbps | clients: ${totalClients}`);
+  addMetricSnapshot(sioKbps, totalUdpKbps, totalClients);
 
   // Only apply auto-bandwidth adaptation if user hasn't sent a control recently
   const timeSinceUserControl = Date.now() - lastUserControlTime;
   if (timeSinceUserControl < USER_CONTROL_LOCK_MS) {
     console.log(`[auto-BW] suppressed — user control sent ${Math.round(timeSinceUserControl/1000)}s ago`);
     socketIoBytes = 0;
-    udpBytes = 0;
     return;
   }
 
@@ -188,12 +302,114 @@ setInterval(() => {
   streamNS.emit('control', controlMsg);
 
   socketIoBytes = 0;
-  udpBytes = 0;
 }, BANDWIDTH_MONITOR_INTERVAL_MS);
 
-// -------------------- HTTP Endpoints --------------------
+// ===================== CAMERA REGISTRY API =====================
 
-// GET /config/:profile
+// GET /cameras — list all registered cameras
+app.get('/cameras', (req, res) => {
+  res.json(cameras.map(c => ({
+    id: c.id,
+    name: c.name,
+    source: c.source,
+    udp_port: c.udp_port,
+    status: c.status,
+    profile: c.profile,
+    last_seen: c.last_seen,
+  })));
+});
+
+// POST /cameras — register a new camera (or update existing)
+app.post('/cameras', (req, res) => {
+  try {
+    const { id, name, source, profile, udp_port, fps } = req.body;
+    if (!id || !source) {
+      return res.status(400).json({ error: "id and source are required" });
+    }
+
+    const existing = cameras.findIndex(c => c.id === id);
+    const port = udp_port || 1234 + cameras.length;
+    const camDef = {
+      id,
+      name: name || id,
+      source,
+      udp_port: port,
+      status: "registered",
+      profile: profile || "balanced",
+      fps: fps || 15,
+      last_seen: null,
+    };
+
+    if (existing >= 0) {
+      cameras[existing] = { ...cameras[existing], ...camDef };
+    } else {
+      cameras.push(camDef);
+    }
+
+    // Start UDP listener for this camera
+    udpMonitor.addListener(port, id);
+
+    console.log(`[cameras] Registered ${id} on UDP port ${port}`);
+    res.json({ success: true, camera: camDef });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// DELETE /cameras/:id — remove a camera
+app.delete('/cameras/:id', (req, res) => {
+  const id = req.params.id;
+  const idx = cameras.findIndex(c => c.id === id);
+  if (idx < 0) return res.status(404).json({ error: "Camera not found" });
+
+  const cam = cameras[idx];
+  udpMonitor.removeListener(cam.udp_port);
+  cameras.splice(idx, 1);
+  console.log(`[cameras] Removed ${id}`);
+  res.json({ success: true, removed: id });
+});
+
+// GET /cameras/:id/metrics — per-camera metrics history
+app.get('/cameras/:id/metrics', (req, res) => {
+  const id = req.params.id;
+  res.json(cameraMetrics[id] || []);
+});
+
+// ===================== UNIFIED RECORDING API =====================
+
+// GET /recordings — list available recording dates per camera
+app.get('/recordings', (req, res) => {
+  const REC_DIR = path.join(__dirname, 'recordings');
+  if (!fs.existsSync(REC_DIR)) return res.json({});
+  const result = {};
+  const camDirs = fs.readdirSync(REC_DIR).filter(d => d.startsWith('camera_'));
+  for (const camDir of camDirs) {
+    const dates = fs.readdirSync(path.join(REC_DIR, camDir)).filter(d => /^\d{4}-\d{2}-\d{2}$/.test(d));
+    result[camDir] = dates;
+  }
+  res.json(result);
+});
+
+// GET /recordings/:cameraId/:date — list frames for a camera+date
+app.get('/recordings/:cameraId/:date', (req, res) => {
+  const { cameraId, date } = req.params;
+  const frameDir = path.join(__dirname, 'recordings', cameraId, date, 'frames');
+  if (!fs.existsSync(frameDir)) return res.json([]);
+  const frames = fs.readdirSync(frameDir)
+    .filter(f => f.endsWith('.jpg'))
+    .sort();
+  res.json(frames);
+});
+
+// GET /recordings/:cameraId/:date/frame/:frameName — serve a specific frame
+app.get('/recordings/:cameraId/:date/frame/:frameName', (req, res) => {
+  const { cameraId, date, frameName } = req.params;
+  const framePath = path.join(__dirname, 'recordings', cameraId, date, 'frames', frameName);
+  if (!fs.existsSync(framePath)) return res.status(404).send('Frame not found');
+  res.sendFile(framePath);
+});
+
+// ===================== HTTP Endpoints =====================
 app.get('/config/:profile', (req, res) => {
   const profile = req.params.profile;
   const configPath = path.join(__dirname, '..', 'configs', `${profile}.yaml`);
@@ -289,6 +505,7 @@ app.post('/sample', (req, res) => {
 app.post('/motion', (req, res) => {
   try {
     const p = req.body || {};
+    const cameraId = p.camera_id || "camera_0";
     const experimentId = p.experiment_id || `exp_${Date.now()}`;
     const frameId = p.frame_id || '';
     const motionPercent = Number(p.motion_percent || 0);
@@ -297,7 +514,7 @@ app.post('/motion', (req, res) => {
 
     // append to motion CSV
     const ts = new Date().toISOString();
-    const row = `${ts},${experimentId},${frameId},${motionPercent},${numRois},"${JSON.stringify(rois).replace(/"/g,'""')}"\n`;
+    const row = `${ts},${cameraId},${experimentId},${frameId},${motionPercent},${numRois},"${JSON.stringify(rois).replace(/"/g,'""')}"\n`;
     fs.appendFile(MOTION_CSV, row, (err) => { if (err) console.error('motion csv append err', err); });
 
     // optionally save per-experiment motion JSON for debugging
@@ -319,6 +536,7 @@ app.post('/motion', (req, res) => {
 app.post('/event', (req, res) => {
   try {
     const p = req.body || {};
+    const cameraId = p.camera_id || "camera_0";
     const eventId   = p.event_id  || `evt_${Date.now()}`;
     const risk      = Number(p.risk      || 0);
     const state     = p.state     || 'unknown';
@@ -330,15 +548,15 @@ app.post('/event', (req, res) => {
     const ts = new Date().toISOString();
 
     // Append to CSV
-    const row = `${ts},${eventId},${risk},${state},${frameId},${numRois},${hour}\n`;
+    const row = `${ts},${cameraId},${eventId},${risk},${state},${frameId},${numRois},${hour}\n`;
     fs.appendFile(EVENT_CSV, row, err => { if (err) console.error('event csv err', err); });
 
     // Save full event JSON (with ROIs) to events/<event_id>.json
     const evPath = path.join(EVENTS_DIR, `${eventId}.json`);
-    fs.writeFileSync(evPath, JSON.stringify({ ts, eventId, risk, state, frameId, numRois, hour, rois }, null, 2));
+    fs.writeFileSync(evPath, JSON.stringify({ ts, cameraId, eventId, risk, state, frameId, numRois, hour, rois }, null, 2));
 
     // Push to in-memory ring
-    const entry = { ts, eventId, risk, state, frameId, numRois, hour };
+    const entry = { ts, cameraId, eventId, risk, state, frameId, numRois, hour };
     eventLog.push(entry);
     if (eventLog.length > 200) eventLog.shift();
 

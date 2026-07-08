@@ -6,10 +6,12 @@ services:
       context: ../server
     ports:
       - "5000:5000"
-      - "1234:1234/udp"
+      - "1234-1254:1234-1254/udp"
     volumes:
       - ../experiments:/app/experiments
       - ../configs:/configs
+      - ../server/recordings:/app/recordings
+      - ../server/events:/app/events
 
   dashboard:
     build:
@@ -21,6 +23,7 @@ services:
     depends_on:
       - server
 
+  # Single edge-node (use --cam 0 for default webcam)
   edge-node:
     build:
       context: ../edge-node
@@ -29,9 +32,28 @@ services:
     volumes:
       - ../models:/models
       - ../configs:/configs
-    # Using host networking might be required if accessing local USB webcams on linux
-    # network_mode: "host"
     devices:
       - "/dev/video0:/dev/video0"
     depends_on:
       - server
+    profiles:
+      - single
+
+  # Multi-camera manager — replaces multiple edge-node instances
+  camera-manager:
+    build:
+      context: ../edge-node
+    entrypoint: ["python3", "camera_manager.py", "--server", "http://server:5000", "--config", "/configs/cameras.yaml"]
+    environment:
+      - SERVER_URL=http://server:5000
+    volumes:
+      - ../models:/models
+      - ../configs:/configs
+    devices:
+      - "/dev/video0:/dev/video0"
+      - "/dev/video1:/dev/video1"
+      - "/dev/video2:/dev/video2"
+    depends_on:
+      - server
+    profiles:
+      - multi

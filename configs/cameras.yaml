@@ -1,0 +1,32 @@
+cameras:
+  - id: "camera_0"
+    name: "Main Entrance"
+    source: "0"
+    profile: "balanced"
+    udp_port: 1234
+    fps: 15
+    enabled: true
+
+  - id: "camera_1"
+    name: "Parking Lot"
+    source: "1"
+    profile: "balanced"
+    udp_port: 1235
+    fps: 15
+    enabled: false
+
+  - id: "camera_2"
+    name: "Back Door"
+    source: "rtsp://admin:password@192.168.1.101:554/stream1"
+    profile: "ultra_low_bandwidth"
+    udp_port: 1236
+    fps: 10
+    enabled: false
+
+  - id: "camera_3"
+    name: "Server Room"
+    source: "rtsp://admin:password@192.168.1.102:554/h264"
+    profile: "high_quality"
+    udp_port: 1237
+    fps: 24
+    enabled: false

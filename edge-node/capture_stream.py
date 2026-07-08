@@ -29,6 +29,8 @@ from detector import Detector
 DEFAULT_SERVER = "http://127.0.0.1:5000"
 NAMESPACE = "/stream"
 CAM_INDEX = 0
+CAMERA_ID = "camera_0"
+UDP_PORT = 1234
 TARGET_FPS = 15
 
 # Socket.IO client with auto-reconnect
@@ -93,7 +95,7 @@ class CodecManager:
         self.current_codec = "libx265"
         self.current_bitrate = 2000
 
-    def start(self, w, h, fps, codec, bitrate, gop_size=None):
+    def start(self, w, h, fps, codec, bitrate, gop_size=None, udp_port=1234):
         self.stop()
 
         self.current_w = w
@@ -101,6 +103,7 @@ class CodecManager:
         self.current_fps = fps
         self.current_codec = codec
         self.current_bitrate = bitrate
+        self.current_udp_port = udp_port
 
         if gop_size is None:
             gop_size = fps * 2
@@ -125,7 +128,7 @@ class CodecManager:
             '-g', str(gop_size),
             '-keyint_min', str(keyint_min),
             '-f', 'mpegts',
-            'udp://127.0.0.1:1234'
+            f'udp://127.0.0.1:{udp_port}'
         ]
 
         print(f"[CodecManager] Starting: {' '.join(cmd)}")
@@ -196,6 +199,9 @@ def disconnect():
 def on_control(msg):
     global control
     try:
+        # Skip controls not meant for this camera
+        if 'camera_id' in msg and msg['camera_id'] != control.get('CAMERA_ID', CAMERA_ID):
+            return
         mapping = {
             'bg_scale': 'BG_SCALE',
             'bg_quality': 'BG_QUALITY',
@@ -242,9 +248,10 @@ def on_control(msg):
     except Exception as e:
         print("[control] parse error:", e)
 
-def post_motion(server_base, experiment_id, frame_id, motion_percent, rois):
+def post_motion(server_base, experiment_id, frame_id, motion_percent, rois, camera_id="camera_0"):
     url = server_base.rstrip('/') + "/motion"
     payload = {
+        "camera_id": camera_id,
         "experiment_id": experiment_id,
         "frame_id": frame_id,
         "motion_percent": round(float(motion_percent), 4),
@@ -260,16 +267,17 @@ def post_event_to_server(server_base, event_data):
     url = server_base.rstrip('/') + "/event"
     try:
         requests.post(url, json=event_data, timeout=3)
-        print(f"[event] posted to server: {event_data.get('event_id')} risk={event_data.get('risk'):.3f}")
+        print(f"[event] camera={event_data.get('camera_id','?')} posted: {event_data.get('event_id')} risk={event_data.get('risk'):.3f}")
     except Exception as e:
         print(f"[event] post error: {e}")
 
-def post_sample_to_server(server_base, experiment_id, frame_id, orig_img, recon_img, rois, meta):
+def post_sample_to_server(server_base, experiment_id, frame_id, orig_img, recon_img, rois, meta, camera_id="camera_0"):
     url = server_base.rstrip('/') + "/sample"
     try:
         orig_b64 = jpeg_encode_b64(orig_img, quality=95)
         recon_b64 = jpeg_encode_b64(recon_img, quality=90)
         payload = {
+            "camera_id": camera_id,
             "experiment_id": experiment_id,
             "frame_id": frame_id,
             "timestamp": time.time(),
@@ -430,7 +438,9 @@ def risk_score(rois, motion_area_frac, hour_of_day, scene_change_score=0.0):
 
     return min(score, 1.0)
 
-def main(server_url, cam_index, target_fps, config_path=None):
+def main(server_url, cam_source, target_fps, config_path=None, camera_id="camera_0", udp_port=1234):
+    control['CAMERA_ID'] = camera_id
+    control['UDP_PORT'] = udp_port
     if config_path and os.path.exists(config_path):
         with open(config_path, 'r') as f:
             cfg = yaml.safe_load(f)
@@ -461,9 +471,14 @@ def main(server_url, cam_index, target_fps, config_path=None):
         print(f"Error loading detector: {e}")
         return
 
-    cap = cv2.VideoCapture(cam_index)
+    try:
+        cam_source_int = int(cam_source)
+    except ValueError:
+        cam_source_int = None
+    cam_actual = cam_source_int if cam_source_int is not None else cam_source
+    cap = cv2.VideoCapture(cam_actual)
     if not cap.isOpened():
-        print(f"[camera] cannot open camera {cam_index}")
+        print(f"[camera] cannot open camera source: {cam_source}")
         return
 
     frame_id = 0
@@ -491,7 +506,7 @@ def main(server_url, cam_index, target_fps, config_path=None):
         return
 
     h, w = frame.shape[:2]
-    codec_manager.start(w, h, target_fps, control['CODEC'], control['BITRATE'])
+    codec_manager.start(w, h, target_fps, control['CODEC'], control['BITRATE'], udp_port=udp_port)
 
     try:
         rois = []
@@ -590,6 +605,7 @@ def main(server_url, cam_index, target_fps, config_path=None):
 
                 # Notify server
                 post_event_to_server(server_url, {
+                    "camera_id": camera_id,
                     "event_id": event_id,
                     "risk": round(risk, 4),
                     "state": STATE_CRITICAL,
@@ -658,6 +674,7 @@ def main(server_url, cam_index, target_fps, config_path=None):
             vis_b64 = jpeg_encode_b64(cv2.resize(vis_frame, (prev_w, prev_h)), quality=82)
 
             msg = {
+                "camera_id": camera_id,
                 "frame_id":  frame_id,
                 "timestamp": time.time(),
                 "orig_w":    w,
@@ -679,7 +696,7 @@ def main(server_url, cam_index, target_fps, config_path=None):
             if len(rois) > 0 and frame_id % max(1, int(control['DETECT_EVERY_N'])) == 0:
                 try:
                     post_motion(server_url, control.get('EXPERIMENT_ID', ''), frame_id,
-                                motion_area_frac * 100, [r["bbox"] for r in rois])
+                                motion_area_frac * 100, [r["bbox"] for r in rois], camera_id)
                 except:
                     pass
 
@@ -693,7 +710,7 @@ def main(server_url, cam_index, target_fps, config_path=None):
                         "state":        surveillance_state,
                     }
                     post_sample_to_server(server_url, control.get('EXPERIMENT_ID', ''), frame_id,
-                                          frame, recon_frame, [r["bbox"] for r in rois], meta)
+                                          frame, recon_frame, [r["bbox"] for r in rois], meta, camera_id)
                 finally:
                     control['SAVE_SAMPLE'] = False
 
@@ -718,8 +735,13 @@ def main(server_url, cam_index, target_fps, config_path=None):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--server", type=str, default=DEFAULT_SERVER)
-    parser.add_argument("--cam", type=int, default=CAM_INDEX)
+    parser.add_argument("--cam", type=str, default=str(CAM_INDEX),
+                        help="Camera source: integer index (0) or RTSP URL (rtsp://...)")
+    parser.add_argument("--camera-id", type=str, default=CAMERA_ID,
+                        help="Unique identifier for this camera (e.g. camera_0, gate_1)")
+    parser.add_argument("--udp-port", type=int, default=UDP_PORT,
+                        help="UDP port for H.265 stream (default: 1234)")
     parser.add_argument("--fps", type=int, default=TARGET_FPS)
     parser.add_argument("--config", type=str, default=None, help="Path to YAML config profile")
     args = parser.parse_args()
-    main(args.server, args.cam, args.fps, args.config)
+    main(args.server, args.cam, args.fps, args.config, args.camera_id, args.udp_port)

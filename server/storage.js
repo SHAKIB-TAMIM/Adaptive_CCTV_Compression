@@ -8,50 +8,45 @@ function ensureDir(dir) {
 }
 
 function saveFrame(msg) {
+  const cameraId = msg.camera_id || "camera_0";
   const date = new Date(msg.timestamp * 1000)
     .toISOString()
     .slice(0, 10);
 
-  const baseDir = path.join(__dirname, "recordings", date);
-  const bgDir = path.join(baseDir, "bg");
-  const roiDir = path.join(baseDir, "roi");
+  // Per-camera, per-date directory structure
+  const baseDir = path.join(__dirname, "recordings", cameraId, date);
+  const frameDir = path.join(baseDir, "frames");
+  ensureDir(frameDir);
 
-  ensureDir(bgDir);
-  ensureDir(roiDir);
+  const frameId = msg.frame_id.toString().padStart(8, "0");
 
-  const frameId = msg.frame_id.toString().padStart(6, "0");
-
-  // 🔹 Save background frame
-  if (msg.bg_data) {
-    const bgBuffer = Buffer.from(msg.bg_data, "base64");
+  // Save the vis_frame (compressed preview) as the recording frame
+  if (msg.vis_frame) {
+    const bgBuffer = Buffer.from(msg.vis_frame, "base64");
     fs.writeFileSync(
-      path.join(bgDir, `frame_${frameId}.jpg`),
+      path.join(frameDir, `frame_${frameId}.jpg`),
       bgBuffer
     );
   }
 
-  // 🔹 Save ROI frames
-  (msg.rois || []).forEach((r, i) => {
-    if (!r.data) return;
-    const roiBuffer = Buffer.from(r.data, "base64");
-    fs.writeFileSync(
-      path.join(roiDir, `frame_${frameId}_roi${i}.jpg`),
-      roiBuffer
-    );
-  });
-
-  // 🔹 Append metadata
+  // Append to per-camera per-date metadata
   const metaPath = path.join(baseDir, "meta.json");
   const meta = fs.existsSync(metaPath)
     ? JSON.parse(fs.readFileSync(metaPath))
     : [];
 
   meta.push({
+    camera_id: cameraId,
     frame_id: msg.frame_id,
     timestamp: msg.timestamp,
-    rois: msg.rois.map(r => r.bbox),
+    state: msg.state || "normal",
+    risk: msg.risk || 0,
+    rois: (msg.rois || []).map(r => r.bbox),
     orig_w: msg.orig_w,
-    orig_h: msg.orig_h
+    orig_h: msg.orig_h,
+    gop_size: msg.gop_size,
+    res_w: msg.res_w,
+    res_h: msg.res_h,
   });
 
   fs.writeFileSync(metaPath, JSON.stringify(meta, null, 2));
