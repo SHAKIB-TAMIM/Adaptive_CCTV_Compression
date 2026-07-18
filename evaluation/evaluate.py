@@ -219,15 +219,17 @@ def per_roi_metrics(orig, recon, rois):
     return out
 
 def make_diff_heatmap(orig, recon, out_path):
-    """Make absolute difference heatmap and save."""
+    """Make absolute difference heatmap and save (upgraded with smoothing)."""
     try:
         diff = cv2.absdiff(orig, recon)
         # convert to grayscale diff
         dgray = cv2.cvtColor(diff, cv2.COLOR_BGR2GRAY)
+        # Gaussian blur for smoother visualization
+        dblur = cv2.GaussianBlur(dgray, (5, 5), 1.5)
         # normalize
-        nm = cv2.normalize(dgray, None, 0, 255, cv2.NORM_MINMAX)
+        nm = cv2.normalize(dblur, None, 0, 255, cv2.NORM_MINMAX)
         col = cv2.applyColorMap(nm.astype('uint8'), cv2.COLORMAP_JET)
-        overlay = cv2.addWeighted(orig, 0.6, col, 0.4, 0)
+        overlay = cv2.addWeighted(orig, 0.55, col, 0.45, 0)
         cv2.imwrite(out_path, overlay)
         return True
     except Exception as e:

@@ -39,15 +39,34 @@ final[mask == 255] = roi_high[mask == 255]
 final_with_box = final.copy()
 cv2.rectangle(final_with_box, (x, y), (x+w, y+h), (0, 255, 0), 3)
 
-# ====== Artifact Heatmap (Difference Map) ======
-diff = cv2.absdiff(original, final)  
+# ====== Upgraded Artifact Heatmap ======
+diff = cv2.absdiff(original, final)
 diff_gray = cv2.cvtColor(diff, cv2.COLOR_BGR2GRAY)
 
-# Apply color heatmap (JET colormap)
-heatmap = cv2.applyColorMap(diff_gray, cv2.COLORMAP_JET)
+# Gaussian blur for smoother heatmap
+diff_blurred = cv2.GaussianBlur(diff_gray, (5, 5), 1.5)
+
+# Apply color heatmap (JET colormap) on blurred diff
+heatmap = cv2.applyColorMap(diff_blurred, cv2.COLORMAP_JET)
 
 # Blend heatmap with original frame (for visualization)
-heatmap_overlay = cv2.addWeighted(original, 0.5, heatmap, 0.5, 0)
+alpha = 0.45
+heatmap_overlay = cv2.addWeighted(original, 1 - alpha, heatmap, alpha, 0)
+
+# ====== Per-Channel Diff Analysis ======
+diff_b, diff_g, diff_r = cv2.split(diff)
+channel_max = np.max([np.max(diff_b), np.max(diff_g), np.max(diff_r)])
+
+# ====== Metrics ======
+mse = np.mean(diff_gray ** 2)
+psnr = cv2.PSNR(original, final) if mse > 0 else 100.0
+max_diff = int(np.max(diff_gray))
+mean_diff = float(np.mean(diff_gray))
+
+print(f"  MSE:       {mse:.1f}")
+print(f"  PSNR:      {psnr:.2f} dB")
+print(f"  Max diff:  {max_diff}")
+print(f"  Mean diff: {mean_diff:.2f}")
 
 # ====== Save Files ======
 cv2.imwrite("original.jpg", original)
@@ -58,13 +77,13 @@ cv2.imwrite("compressed_with_box.jpg", final_with_box)
 cv2.imwrite("artifact_heatmap.png", heatmap)
 cv2.imwrite("artifact_overlay.png", heatmap_overlay)
 
-print(" Images saved:")
+print("\n Images saved:")
 print(" - original.jpg")
 print(" - roi_high_quality.jpg")
 print(" - background_low_quality.jpg")
 print(" - compressed_final.jpg")
 print(" - compressed_with_box.jpg   (ROI bounding box)")
-print(" - artifact_heatmap.png      (heatmap only)")
-print(" - artifact_overlay.png      (heatmap blended with original)\n")
+print(" - artifact_heatmap.png      (heatmap only, Gaussian smoothed)")
+print(" - artifact_overlay.png      (heatmap blended with original)")
 
 cap.release()

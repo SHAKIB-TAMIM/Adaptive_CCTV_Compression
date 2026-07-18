@@ -36,6 +36,32 @@ io.on('connection', (socket) => {
     // Add server timestamp and forward to all dashboard clients
     data.server_ts = Date.now();
     viewNS.emit('audio_event', data);
+
+    // Integrate audio events into heatmap: high-confidence impulse/sustained sounds
+    // contribute a centered heatmap point (we don't know spatial location from audio alone)
+    const audioHeatmapTypes = ['gunshot', 'explosion', 'alarm', 'siren', 'glass_break', 'car_horn'];
+    if (data.confidence >= 0.6 && audioHeatmapTypes.includes(data.event_type)) {
+      const camId = data.camera_id || 'camera_0';
+      if (!heatmaps[camId]) heatmaps[camId] = [];
+      const now = Date.now();
+      // Inject a spread cluster at frame center to indicate audio event location
+      const audioWeight = data.confidence * 4.0; // High weight for audio events
+      const gridRes = { w: 1/320, h: 1/240 };
+      const spreadPts = spreadPoint(0.5, 0.5, audioWeight, gridRes);
+      for (const sp of spreadPts) {
+        heatmaps[camId].push({
+          x: sp.x, y: sp.y,
+          ttl: now + 120 * 1000, // 2 minute decay for audio events
+          createdAt: now,
+          weight: sp.w,
+        });
+      }
+      // Trim to capacity
+      if (heatmaps[camId].length > HEATMAP_MAX_POINTS) {
+        heatmaps[camId].sort((a, b) => a.createdAt - b.createdAt);
+        heatmaps[camId] = heatmaps[camId].slice(-HEATMAP_MAX_POINTS);
+      }
+    }
   });
 });
 
@@ -387,12 +413,39 @@ app.get('/cameras/:id/metrics', (req, res) => {
   res.json(cameraMetrics[id] || []);
 });
 
-// ===================== ACTIVITY HEATMAP =====================
+// ===================== ACTIVITY HEATMAP (UPGRADED) =====================
 
 // Per-camera heatmap: sparse grid of detection positions
 // resolution: normalized 0.0-1.0 coordinates, decay over time
-const heatmaps = {}; // camera_id -> [{x, y, ttl, priority}]
+const heatmaps = {}; // camera_id -> [{x, y, ttl, createdAt, weight, spread}]
 const HEATMAP_DECAY_SECONDS = 300; // 5 minutes
+const HEATMAP_MAX_POINTS = 10000; // increased capacity for smoother heatmaps
+
+// Gaussian kernel for spatial smoothing at POST time
+function gaussianWeight(dx, dy, sigma) {
+  return Math.exp(-(dx * dx + dy * dy) / (2 * sigma * sigma));
+}
+
+// Convert grid cell weight into spread sub-points for smooth rendering
+function spreadPoint(cx, cy, weight, gridRes) {
+  const points = [];
+  const sigma = 0.8; // spread radius in grid cells
+  const radius = Math.ceil(sigma * 2.5);
+  const cellW = gridRes.w;
+  const cellH = gridRes.h;
+
+  for (let gy = -radius; gy <= radius; gy++) {
+    for (let gx = -radius; gx <= radius; gx++) {
+      const nx = cx + gx * cellW;
+      const ny = cy + gy * cellH;
+      if (nx < 0 || nx > 1 || ny < 0 || ny > 1) continue;
+      const w = gaussianWeight(gx, gy, sigma);
+      if (w < 0.01) continue;
+      points.push({ x: nx, y: ny, w: weight * w });
+    }
+  }
+  return points;
+}
 
 // POST /heatmap — receive ROI positions for heatmap accumulation
 app.post('/heatmap', (req, res) => {
@@ -404,19 +457,43 @@ app.post('/heatmap', (req, res) => {
     const now = Date.now();
 
     for (const roi of rois) {
-      const [x1, y1, x2, y2] = roi.bbox || roi;
-      heatmaps[camera_id].push({
-        x: ((x1 + x2) / 2) / (orig_w || 640),
-        y: ((y1 + y2) / 2) / (orig_h || 480),
-        ttl: now + HEATMAP_DECAY_SECONDS * 1000,
-        weight: roi.priority === "high" ? 3 : roi.priority === "medium" ? 2 : 1,
-      });
+      const bbox = roi.bbox;
+      if (!bbox || !Array.isArray(bbox) || bbox.length < 4) continue;
+
+      const [x1, y1, x2, y2] = bbox;
+      const imgW = orig_w || 640;
+      const imgH = orig_h || 480;
+      if (imgW <= 0 || imgH <= 0) continue;
+
+      const cx = ((x1 + x2) / 2) / imgW;
+      const cy = ((y1 + y2) / 2) / imgH;
+      // Validate coordinates
+      if (typeof cx !== 'number' || typeof cy !== 'number' ||
+          !isFinite(cx) || !isFinite(cy) ||
+          cx < 0 || cx > 1 || cy < 0 || cy > 1) continue;
+
+      const baseWeight = roi.priority === "high" ? 3.0 : roi.priority === "medium" ? 2.0 : 1.0;
+
+      // Apply Gaussian spatial spread at ingest time for smoother distribution
+      const gridRes = { w: 1.0 / Math.min(imgW, 640), h: 1.0 / Math.min(imgH, 480) };
+      const spreadPoints = spreadPoint(cx, cy, baseWeight, gridRes);
+      for (const sp of spreadPoints) {
+        heatmaps[camera_id].push({
+          x: sp.x,
+          y: sp.y,
+          ttl: now + HEATMAP_DECAY_SECONDS * 1000,
+          createdAt: now,
+          weight: sp.w,
+        });
+      }
     }
 
-    // Trim expired entries
+    // Trim expired entries and keep within capacity
     heatmaps[camera_id] = heatmaps[camera_id].filter(h => h.ttl > now);
-    if (heatmaps[camera_id].length > 5000) {
-      heatmaps[camera_id] = heatmaps[camera_id].slice(-5000);
+    if (heatmaps[camera_id].length > HEATMAP_MAX_POINTS) {
+      // Remove oldest points first (stale regions)
+      heatmaps[camera_id].sort((a, b) => a.createdAt - b.createdAt);
+      heatmaps[camera_id] = heatmaps[camera_id].slice(-HEATMAP_MAX_POINTS);
     }
 
     res.json({ success: true, points: heatmaps[camera_id].length });
@@ -425,13 +502,23 @@ app.post('/heatmap', (req, res) => {
   }
 });
 
-// GET /heatmap/:cameraId — get heatmap data as normalized points
+// GET /heatmap/:cameraId — get heatmap data as normalized points with time-decay weight
 app.get('/heatmap/:cameraId', (req, res) => {
   const cameraId = req.params.cameraId;
   const now = Date.now();
   if (heatmaps[cameraId]) {
     heatmaps[cameraId] = heatmaps[cameraId].filter(h => h.ttl > now);
-    res.json(heatmaps[cameraId] || []);
+    // Apply time-decay: points age from full weight to 0 as they approach TTL
+    const ageDecayed = heatmaps[cameraId].map(h => {
+      const age = (now - h.createdAt) / 1000; // age in seconds
+      const decayFactor = Math.max(0, 1 - (age / HEATMAP_DECAY_SECONDS));
+      return {
+        x: h.x,
+        y: h.y,
+        weight: h.weight * decayFactor,
+      };
+    });
+    res.json(ageDecayed);
   } else {
     res.json([]);
   }

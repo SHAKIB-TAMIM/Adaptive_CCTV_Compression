@@ -737,7 +737,8 @@ def main(server_url, cam_source, target_fps, config_path=None, camera_id="camera
             # Post heatmap data periodically (every 5 frames for smoother heatmap)
             if frame_id % 5 == 0:
                 try:
-                    hm_rois = [{"bbox": r["bbox"], "priority": r.get("priority")} for r in rois[:20]] if rois else []
+                    # Send up to 50 ROIs for better heatmap coverage
+                    hm_rois = [{"bbox": r["bbox"], "priority": r.get("priority")} for r in rois[:50]] if rois else []
                     if hm_rois or frame_id % 15 == 0:  # Always keep alive every 15 frames
                         requests.post(server_url.rstrip('/') + "/heatmap", json={
                             "camera_id": camera_id,

@@ -8,3 +8,11 @@ scikit-image
 pandas
 matplotlib
 pyyaml
+
+# Phase 1 — simple audio impulse/sustained detection
+pyaudio
+
+# Phase 2 — YAMNet 11-class audio classifier
+tensorflow-hub
+tensorflow-cpu
+soundfile

@@ -440,10 +440,11 @@ class CameraThread(threading.Thread):
                 except Exception:
                     pass
 
-                # Post heatmap data periodically (every 5 frames)
+                # Post heatmap data periodically (every 5 frames for smoother heatmap)
                 if self.frame_id % 5 == 0:
                     try:
-                        hm_rois = [{"bbox": r["bbox"], "priority": r.get("priority")} for r in rois[:20]] if rois else []
+                        # Send up to 50 ROIs for better heatmap coverage
+                        hm_rois = [{"bbox": r["bbox"], "priority": r.get("priority")} for r in rois[:50]] if rois else []
                         if hm_rois or self.frame_id % 15 == 0:
                             requests.post(f"{self.server_url.rstrip('/')}/heatmap", json={
                                 "camera_id": self.camera_id,
