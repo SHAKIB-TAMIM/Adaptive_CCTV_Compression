@@ -69,6 +69,87 @@ io.on('connection', (socket) => {
 let socketIoBytes = 0;
 let totalClients = 0;
 
+// ── Real PSNR / SSIM cache (populated by /sample endpoint) ──
+// Structure: { camera_id -> { psnr, ssim, timestamp } }
+const realQualityCache = {};
+
+/**
+ * Compute PSNR between two raw pixel Buffer objects of equal size.
+ * Buffers must be RGBA (4 bytes per pixel) from sharp.ensureAlpha().raw().
+ */
+function computePSNR(bufA, bufB) {
+  if (!bufA || !bufB || bufA.length !== bufB.length) return null;
+  let mse = 0;
+  const len = bufA.length;
+  for (let i = 0; i < len; i++) {
+    const d = bufA[i] - bufB[i];
+    mse += d * d;
+  }
+  mse /= len;
+  if (mse === 0) return 100.0;
+  return parseFloat((10 * Math.log10((255 * 255) / mse)).toFixed(2));
+}
+
+/**
+ * Compute a simplified SSIM approximation over luminance channel.
+ * Uses a patch-based approach for speed (not full Gaussian-weighted SSIM).
+ */
+function computeSSIM(bufA, bufB, width, height) {
+  if (!bufA || !bufB || !width || !height) return null;
+  // Extract Y (luminance) from RGBA: Y = 0.299R + 0.587G + 0.114B
+  const n = width * height;
+  const yA = new Float32Array(n);
+  const yB = new Float32Array(n);
+  for (let i = 0; i < n; i++) {
+    const off = i * 4;
+    yA[i] = 0.299 * bufA[off] + 0.587 * bufA[off+1] + 0.114 * bufA[off+2];
+    yB[i] = 0.299 * bufB[off] + 0.587 * bufB[off+1] + 0.114 * bufB[off+2];
+  }
+  // Global mean, variance, covariance (simplified single-window SSIM)
+  let muA = 0, muB = 0;
+  for (let i = 0; i < n; i++) { muA += yA[i]; muB += yB[i]; }
+  muA /= n; muB /= n;
+  let varA = 0, varB = 0, cov = 0;
+  for (let i = 0; i < n; i++) {
+    const da = yA[i] - muA, db = yB[i] - muB;
+    varA += da * da; varB += db * db; cov += da * db;
+  }
+  varA /= n; varB /= n; cov /= n;
+  const C1 = (0.01 * 255) ** 2;
+  const C2 = (0.03 * 255) ** 2;
+  const ssim = ((2*muA*muB + C1) * (2*cov + C2)) /
+               ((muA*muA + muB*muB + C1) * (varA + varB + C2));
+  return parseFloat(Math.max(0, Math.min(1, ssim)).toFixed(4));
+}
+
+/**
+ * Given two base64-encoded JPEG images, compute PSNR and SSIM.
+ * Returns { psnr, ssim } or { psnr: null, ssim: null } on failure.
+ */
+async function computeQualityMetrics(origB64, reconB64) {
+  try {
+    const sharp = require('sharp');
+    const origBuf = Buffer.from(origB64, 'base64');
+    const reconBuf = Buffer.from(reconB64, 'base64');
+
+    const origMeta = await sharp(origBuf).metadata();
+    // Resize recon to match orig dimensions if needed
+    const reconResized = sharp(reconBuf).resize(origMeta.width, origMeta.height, { fit: 'fill' });
+
+    const [a, b] = await Promise.all([
+      sharp(origBuf).ensureAlpha().raw().toBuffer(),
+      reconResized.ensureAlpha().raw().toBuffer(),
+    ]);
+
+    const psnr = computePSNR(a, b);
+    const ssim = computeSSIM(a, b, origMeta.width, origMeta.height);
+    return { psnr, ssim };
+  } catch (e) {
+    console.error('[quality] compute error:', e.message);
+    return { psnr: null, ssim: null };
+  }
+}
+
 // Camera registry — populated from cameras.yaml, POST /cameras, or auto-registered
 let cameras = [];
 
@@ -208,6 +289,12 @@ let eventLog = [];
 // -------------------- Metrics Handling --------------------
 function addMetricSnapshot(sioKbps, udpKbps, clients, cameraId = "camera_0") {
   const totalKbps = sioKbps + udpKbps;
+
+  // Use real PSNR/SSIM from cache (populated by /sample). Null means not yet measured.
+  const quality = realQualityCache[cameraId] || realQualityCache['camera_0'] || {};
+  const psnrVal = quality.psnr !== undefined ? quality.psnr : null;
+  const ssimVal = quality.ssim !== undefined ? quality.ssim : null;
+
   const snapshot = {
     timestamp: new Date().toISOString(),
     camera_id: cameraId,
@@ -216,8 +303,9 @@ function addMetricSnapshot(sioKbps, udpKbps, clients, cameraId = "camera_0") {
     sio_kbps: Number(sioKbps).toFixed(2),
     udp_kbps: Number(udpKbps).toFixed(2),
     bitrate: userControl.bitrate,
-    psnr: (30 + Math.random() * 5).toFixed(2),
-    ssim: (0.85 + Math.random() * 0.1).toFixed(3),
+    psnr: psnrVal,
+    ssim: ssimVal,
+    quality_measured: psnrVal !== null,
     gop_size: latestCodecState.gop_size,
     res_w: latestCodecState.res_w,
     res_h: latestCodecState.res_h,
@@ -598,15 +686,17 @@ app.get('/metrics/live', (req, res) => {
   res.json(metricsLog[metricsLog.length-1]);
 });
 
-// POST /sample (existing) - receive base64 orig/recon images + rois + meta
-app.post('/sample', (req, res) => {
+// POST /sample — receive base64 orig/recon images + rois + meta
+// Also computes REAL PSNR/SSIM and caches them for live metrics
+app.post('/sample', async (req, res) => {
   try {
     const payload = req.body || {};
     const experimentId = payload.experiment_id || `exp_${Date.now()}`;
+    const cameraId    = payload.camera_id || 'camera_0';
     const expDir = path.join(DATA_DIR, experimentId);
     if (!fs.existsSync(expDir)) fs.mkdirSync(expDir, { recursive: true });
 
-    // === Save images and metadata (same as before) ===
+    // === Save images and metadata ===
     const metaPath = path.join(expDir, 'meta.json');
     const metaToSave = {
       received_at: new Date().toISOString(),
@@ -622,12 +712,10 @@ app.post('/sample', (req, res) => {
       const origPath = path.join(expDir, 'orig.jpg');
       fs.writeFileSync(origPath, Buffer.from(payload.orig_b64, 'base64'));
     }
-
     if (payload.recon_b64) {
       const reconPath = path.join(expDir, 'recon.jpg');
       fs.writeFileSync(reconPath, Buffer.from(payload.recon_b64, 'base64'));
     }
-
     if (payload.rois) {
       const roisPath = path.join(expDir, 'rois.json');
       fs.writeFileSync(roisPath, JSON.stringify(payload.rois, null, 2));
@@ -635,18 +723,46 @@ app.post('/sample', (req, res) => {
 
     console.log(`[sample] saved for experiment ${experimentId}`);
 
-    // === NEW: Resolve pending sample request ===
+    // === Compute REAL PSNR/SSIM asynchronously ===
+    if (payload.orig_b64 && payload.recon_b64) {
+      computeQualityMetrics(payload.orig_b64, payload.recon_b64)
+        .then(({ psnr, ssim }) => {
+          if (psnr !== null) {
+            realQualityCache[cameraId] = { psnr, ssim, timestamp: Date.now(), experiment_id: experimentId };
+            console.log(`[quality] ${cameraId}: PSNR=${psnr} dB  SSIM=${ssim}`);
+            // Broadcast updated quality to dashboard
+            viewNS.emit('quality_update', { camera_id: cameraId, psnr, ssim, experiment_id: experimentId });
+          }
+          // Save metrics sidecar next to the images
+          const qPath = path.join(expDir, 'quality_metrics.json');
+          fs.writeFileSync(qPath, JSON.stringify({ psnr, ssim, computed_at: new Date().toISOString() }, null, 2));
+        })
+        .catch(e => console.error('[quality] async error:', e.message));
+    }
+
+    // === Resolve pending sample request ===
     if (pendingSampleRequest && pendingSampleRequest.experimentId === experimentId) {
       pendingSampleRequest.respond();
       pendingSampleRequest = null;
     }
 
     res.json({ success: true, experiment_id: experimentId, saved: true });
-    
+
   } catch (err) {
     console.error('Error /sample:', err);
     res.status(500).json({ success: false, error: err.message });
   }
+});
+
+// GET /quality — return latest real PSNR/SSIM per camera
+app.get('/quality', (req, res) => {
+  res.json(realQualityCache);
+});
+
+// GET /quality/:cameraId
+app.get('/quality/:cameraId', (req, res) => {
+  const cid = req.params.cameraId;
+  res.json(realQualityCache[cid] || { psnr: null, ssim: null, quality_measured: false });
 });
 
 
@@ -717,6 +833,22 @@ app.post('/event', (req, res) => {
 // GET /events — return recent event log
 app.get('/events', (req, res) => {
   res.json(eventLog);
+});
+
+// POST /ptz_trigger — PTZ pre-positioning command from audio_monitor
+// Forwards an "audio_scan" PTZ command to the edge node(s)
+app.post('/ptz_trigger', (req, res) => {
+  try {
+    const p = req.body || {};
+    console.log(`[PTZ] Audio trigger: ${p.event_type} conf=${p.confidence} x=${p.spatial_x} y=${p.spatial_y}`);
+    // Forward to edge nodes (stream namespace)
+    streamNS.emit('ptz_audio_trigger', p);
+    // Also broadcast to dashboard for visual notification
+    viewNS.emit('ptz_audio_trigger', p);
+    res.json({ success: true });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
 });
 
 // RECONSTRUCT endpoint (FFmpeg capture + PSNR) - existing from previous upgrade

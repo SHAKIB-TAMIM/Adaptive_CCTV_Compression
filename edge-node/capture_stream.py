@@ -113,7 +113,19 @@ class CodecManager:
             print(f"[CodecManager] Stubbing experimental codec: {codec}")
             return
 
-        preset = 'fast' if codec in ['libx265', 'libx264', 'libsvtav1'] else 'p1'
+        # Codec-specific preset / quality flags
+        if codec in ['libx265', 'libx264']:
+            extra = ['-preset', 'fast']
+        elif codec in ['hevc_nvenc', 'h264_nvenc']:
+            extra = ['-preset', 'p1']
+        elif codec == 'libsvtav1':
+            # SVT-AV1: -preset 8 = fast (0=slowest/best, 12=fastest)
+            extra = ['-preset', '8', '-crf', '35']
+        elif codec == 'libvpx-vp9':
+            extra = ['-deadline', 'realtime', '-cpu-used', '8']
+        else:
+            extra = ['-preset', 'fast']
+
         keyint_min = max(1, gop_size // 2)
         cmd = [
             'ffmpeg', '-y',
@@ -121,7 +133,7 @@ class CodecManager:
             '-s', f"{w}x{h}", '-pix_fmt', 'bgr24',
             '-r', str(fps), '-i', '-',
             '-c:v', codec,
-            '-preset', preset,
+            *extra,
             '-b:v', f"{bitrate}k",
             '-maxrate', f"{int(bitrate*1.5)}k",
             '-bufsize', f"{bitrate*2}k",

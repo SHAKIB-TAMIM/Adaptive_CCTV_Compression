@@ -766,9 +766,16 @@ export default function Home() {
                   className="w-full bg-slate-900 border border-slate-800 text-slate-300 text-xs rounded-lg p-2 focus:outline-none focus:border-cyan-500"
                 >
                   <option value="libx264">H.264 (libx264)</option>
-                  <option value="libx265">H.265 (libx265)</option>
+                  <option value="libx265">H.265 / HEVC (libx265)</option>
                   <option value="hevc_nvenc">H.265 (Nvidia NVENC)</option>
+                  <option value="libsvtav1">AV1 (SVT-AV1) ✨</option>
+                  <option value="libvpx-vp9">VP9 (libvpx-vp9)</option>
                 </select>
+                {codec === "libsvtav1" && (
+                  <p className="text-[9px] text-purple-400 mt-1">
+                    ⚡ AV1 offers ~30% better compression than H.265 at equal quality. Requires SVT-AV1 in FFmpeg.
+                  </p>
+                )}
               </div>
 
               <div>

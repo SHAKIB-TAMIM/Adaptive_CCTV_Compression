@@ -619,6 +619,31 @@ def on_control(msg):
     print(f"[camera_manager] control updated: bg_scale={control['BG_SCALE']}, codec={control['CODEC']}")
 
 
+@sio.on('ptz_audio_trigger', namespace=NAMESPACE)
+def on_ptz_audio_trigger(msg):
+    """
+    Handle audio-triggered PTZ pre-positioning.
+    Receives: { camera_id, action, event_type, confidence, spatial_x, spatial_y, zoom_out }
+    Instructs the matching CameraThread to execute an audio-scan PTZ move.
+    """
+    if not isinstance(msg, dict):
+        return
+    target_cam = msg.get('camera_id')
+    spatial_x  = float(msg.get('spatial_x', 0.5))
+    spatial_y  = float(msg.get('spatial_y', 0.5))
+    event_type = msg.get('event_type', 'unknown')
+    confidence = msg.get('confidence', 0.0)
+
+    print(f"[PTZ] Audio scan trigger: {event_type} conf={confidence:.2f} "
+          f"x={spatial_x:.2f} y={spatial_y:.2f} cam={target_cam}")
+
+    # Find and notify matching camera threads (stored in global _camera_threads)
+    for t in _camera_threads:
+        if target_cam is None or t.camera_id == target_cam:
+            t.request_audio_scan(spatial_x, spatial_y)
+
+
+
 def main():
     parser = argparse.ArgumentParser(description="Multi-camera edge-node manager")
     parser.add_argument("--server", type=str, default=DEFAULT_SERVER)

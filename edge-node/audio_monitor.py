@@ -20,11 +20,28 @@ Usage:
   python audio_monitor.py --server http://localhost:5000 --camera-id camera_0
   python audio_monitor.py --server http://localhost:5000 --camera-id camera_0 --yamnet-model /tmp/yamnet_model/1.tflite --debug
 """
+import os
+import sys
 import numpy as np
 import time
 import threading
 import argparse
 import socketio
+
+# ── Suppress ALSA/JACK/PyAudio probing noise ──────────────────────────────
+# These are harmless device-probing messages that clutter output.
+# PyAudio's C extension prints them directly to stderr during init,
+# so we redirect stderr to /dev/null during the probe phase.
+def _suppress_audio_errors():
+    old_fd = os.dup(2)
+    devnull = os.open(os.devnull, os.O_WRONLY)
+    os.dup2(devnull, 2)
+    os.close(devnull)
+    return old_fd
+
+def _restore_stderr(old_fd):
+    os.dup2(old_fd, 2)
+    os.close(old_fd)
 
 try:
     import pyaudio
@@ -51,190 +68,17 @@ except ImportError:
     _HAVE_YAMNET = False
 
 
-class SimpleAudioDetector:
-    """
-    Two-class detector: impulse / sustained_loud.
-
-    Uses absolute dB thresholds relative to a calibrated noise floor.
-    No energy-ratio gates — eliminates the root cause of false positives.
-    """
-
-    # dB offset from calibrated noise floor
-    IMPULSE_DB_OFFSET = 15.0
-    SUSTAINED_DB_OFFSET = 10.0
-
-    # Duration limits (in frames ~46ms each)
-    IMPULSE_MAX_FRAMES = int(0.30 / FRAME_S)   # < 300ms → impulse
-    SUSTAINED_MIN_FRAMES = int(0.60 / FRAME_S)  # > 600ms → sustained
-
-    # Silence between events before declaring end
-    END_HOLD_FRAMES = int(0.15 / FRAME_S)  # 150ms
-
-    # Max event duration safety valve (prevents infinite segments)
-    MAX_EVENT_FRAMES = int(5.0 / FRAME_S)
-
-    # Cooldown between emissions of the same type
-    COOLDOWN = 5.0
-
-    def __init__(self, debug=False):
-        self.debug = debug
-
-        # Calibration
-        self.cal_frames = 0
-        self.CAL_TARGET = int(3.0 / FRAME_S)  # ~3 seconds
-        self.cal_rms_dbs = []
-        self.noise_floor_db = -60.0  # safe initial value
-
-        # Event state
-        self.active_frames = 0      # consecutive frames above threshold
-        self.silent_frames = 0      # consecutive frames below threshold
-        self.in_event = False
-        self.seen_impulse = False   # true within current event if already emitted
-
-        # Running calibration update
-        self.recent_rms_dbs = []
-
-        # Cooldown tracking
-        self.last_emit = {}
-
-        # Labels
-        self.LABELS = {
-            "impulse":        "Loud Impulse (gunshot/slam/knock)",
-            "sustained_loud": "Sustained Loud (alarm/horn/shout)",
-        }
-        self.COLORS = {
-            "impulse":        "red",
-            "sustained_loud": "orange",
-        }
-
-    # ---- Feature extraction ----
-
-    def extract_features(self, chunk):
-        """Compute RMS and dB from one audio chunk.
-        Normalizes int16 to [-1, 1] so dB values are physically meaningful.
-        """
-        normalized = chunk.astype(np.float32) / 32768.0
-        rms = float(np.sqrt(np.mean(normalized ** 2)))
-        rms_db = 20.0 * np.log10(max(rms, 1e-10))
-        return {"rms": rms, "rms_db": rms_db, "raw_rms": float(np.sqrt(np.mean(chunk.astype(np.float32) ** 2)))}
-
-    # ---- Calibration ----
-
-    def _calibrate(self, features):
-        """Accumulate calibration data for first 3 seconds."""
-        self.cal_frames += 1
-        self.cal_rms_dbs.append(features["rms_db"])
-        if self.cal_frames >= self.CAL_TARGET:
-            self.noise_floor_db = float(np.percentile(self.cal_rms_dbs, 90))
-            print(f"[audio] Calibration done: noise floor = {self.noise_floor_db:.1f} dB")
-
-    def is_calibrated(self):
-        return self.cal_frames >= self.CAL_TARGET
-
-    # ---- Frame classification ----
-
-    def classify_frame(self, features):
-        """
-        Process one frame. Returns (event_type, confidence) when an event
-        completes, otherwise (None, 0.0).
-        """
-        if not self.is_calibrated():
-            self._calibrate(features)
-            return None, 0.0
-
-        # Update running baseline (slowly adapt noise floor down)
-        self.recent_rms_dbs.append(features["rms_db"])
-        if len(self.recent_rms_dbs) > 200:
-            self.recent_rms_dbs.pop(0)
-        if len(self.recent_rms_dbs) >= 30:
-            p30 = float(np.percentile(self.recent_rms_dbs, 30))
-            # Only lower the floor (environment gets quieter), never raise
-            if p30 < self.noise_floor_db:
-                self.noise_floor_db = 0.99 * self.noise_floor_db + 0.01 * p30
-
-        db = features["rms_db"]
-        above_impulse = db > self.noise_floor_db + self.IMPULSE_DB_OFFSET
-        above_sustained = db > self.noise_floor_db + self.SUSTAINED_DB_OFFSET
-
-        if above_sustained:
-            # Sound active
-            self.active_frames += 1
-            self.silent_frames = 0
-            if not self.in_event:
-                if self.debug:
-                    print(f"  [event_start] db={db:.1f} floor={self.noise_floor_db:.1f} "
-                          f"> thr={self.noise_floor_db + self.SUSTAINED_DB_OFFSET:.1f}")
-                self.in_event = True
-                self.seen_impulse = False
-
-            # Check for sustained classification
-            if (above_sustained and self.active_frames >= self.SUSTAINED_MIN_FRAMES
-                    and not self.seen_impulse):
-                self.seen_impulse = True  # prevent double-emit
-                if self.debug:
-                    print(f"  >>> SUSTAINED ({self.active_frames} frames)")
-                result = ("sustained_loud",
-                          min(1.0, self.active_frames / self.SUSTAINED_MIN_FRAMES))
-                return result
-
-            # Safety valve: force-end if event exceeds max duration
-            if self.active_frames >= self.MAX_EVENT_FRAMES:
-                self.in_event = False
-                self.active_frames = 0
-                if self.debug:
-                    print(f"  [event_force_end] max duration ({self.MAX_EVENT_FRAMES} frames)")
-                return None, 0.0
-
-            return None, 0.0
-
-        # Below threshold — silence or quiet
-        if self.in_event:
-            self.silent_frames += 1
-            if self.silent_frames >= self.END_HOLD_FRAMES:
-                # Event ended — classify
-                result = self._finalize_event(features)
-                return result
-            return None, 0.0
-
-        # Not in event, still silent
-        self.silent_frames = 0
-        self.active_frames = 0
-        return None, 0.0
-
-    def _finalize_event(self, features):
-        """Called when event ends (silence detected for hold-off period)."""
-        n = self.active_frames
-        self.in_event = False
-        self.seen_impulse = False
-        self.active_frames = 0
-        self.silent_frames = 0
-
-        if n < 2:
-            return None, 0.0
-
-        # Short + energetic → impulse
-        if n <= self.IMPULSE_MAX_FRAMES:
-            conf = min(1.0, n / self.IMPULSE_MAX_FRAMES)
-            if self.debug:
-                print(f"  >>> IMPULSE ({n} frames, conf={conf:.2f})")
-            return "impulse", round(conf, 3)
-
-        # Sustained was already emitted during the event, don't re-emit
-        if n > self.SUSTAINED_MIN_FRAMES:
-            return None, 0.0
-
-        # Medium-length that didn't qualify for sustained → nothing
-        if self.debug:
-            print(f"  [event_end] n={n} — too long for impulse, too short for sustained")
-        return None, 0.0
-
+# ── PTZ trigger configuration ──────────────────────────────────────────────────
+# Audio event types that should pre-position the PTZ camera (scan wide-angle)
+PTZ_TRIGGER_EVENTS      = {'gunshot', 'explosion', 'alarm', 'siren', 'glass_break'}
+PTZ_TRIGGER_CONFIDENCE  = 0.55   # minimum confidence to trigger PTZ
+PTZ_COOLDOWN_SECONDS    = 15.0   # don't re-trigger PTZ more than once per 15s
 
 class AudioMonitor:
-    """Manages PyAudio stream and emits detection results via Socket.IO.
+    """Manages PyAudio stream and emits YAMNet audio detection results via Socket.IO."""
 
-    Detects audio events using Phase 1 (SimpleAudioDetector) always,
-    and Phase 2 (YAMNet) when a model path is provided.
-    """
+    STARTUP_DELAY = 3.0
+    COOLDOWN = 5.0
 
     def __init__(self, server_url, camera_id="camera_0", device_index=None, debug=False,
                  yamnet_model_path=None):
@@ -245,15 +89,17 @@ class AudioMonitor:
         self.stream = None
         self.audio = None
         self.debug = debug
-        self.detector = SimpleAudioDetector(debug=debug)
 
-        # YAMNet classifier (Phase 2)
+        self._start_ts = time.time()
+        self._last_emit = {}
+
+        # YAMNet classifier
         self.yamnet = None
         if yamnet_model_path and _HAVE_YAMNET and YamNetClassifier is not None:
             self.yamnet = YamNetClassifier(yamnet_model_path)
             if not self.yamnet.available:
                 self.yamnet = None
-                print("[audio] YAMNet unavailable, falling back to Phase 1 only")
+                print("[audio] YAMNet unavailable")
             else:
                 print("[audio] YAMNet classifier active (11 classes)")
         elif yamnet_model_path:
@@ -319,18 +165,22 @@ class AudioMonitor:
             return
 
         self.running = True
-        cal_secs = int(self.detector.CAL_TARGET * FRAME_S)
-        print(f"[audio] Starting — calibration: {cal_secs}s")
+        self._start_ts = time.time()
+        print(f"[audio] Starting — YAMNet delay: {int(self.STARTUP_DELAY)}s")
         if self.yamnet:
             print(f"[audio] YAMNet active: {len(CLASS_INDICES)} target classes")
         try:
-            self.audio = pyaudio.PyAudio()
-            self.stream = self.audio.open(
-                format=FORMAT, channels=CHANNELS, rate=RATE,
-                input=True, input_device_index=self.device_index,
-                frames_per_buffer=CHUNK,
-                stream_callback=self._callback,
-            )
+            old_err = _suppress_audio_errors()
+            try:
+                self.audio = pyaudio.PyAudio()
+                self.stream = self.audio.open(
+                    format=FORMAT, channels=CHANNELS, rate=RATE,
+                    input=True, input_device_index=self.device_index,
+                    frames_per_buffer=CHUNK,
+                    stream_callback=self._callback,
+                )
+            finally:
+                _restore_stderr(old_err)
             self.stream.start_stream()
             while self.running:
                 time.sleep(0.1)
@@ -354,51 +204,45 @@ class AudioMonitor:
             return (None, pyaudio.paComplete)
         try:
             chunk_raw = np.frombuffer(in_data, dtype=np.int16)
-            features = self.detector.extract_features(chunk_raw)
 
-            # Phase 1: SimpleAudioDetector (always)
-            p1_type, p1_conf = self.detector.classify_frame(features)
+            # Compute energy metadata for payload
+            normalized = chunk_raw.astype(np.float32) / 32768.0
+            rms = float(np.sqrt(np.mean(normalized ** 2)))
+            rms_db = 20.0 * np.log10(max(rms, 1e-10))
+            features = {"rms": rms, "rms_db": rms_db}
 
-            # Phase 2: YAMNet (if available)
-            # Normalize int16 -> [-1, 1] before YAMNet, model expects float range
-            p2_type, p2_conf = None, 0.0
-            if self.yamnet and self.detector.is_calibrated():
+            # YAMNet only (Phase 1 removed)
+            if self.yamnet and (time.time() - self._start_ts) >= self.STARTUP_DELAY:
                 chunk_norm = chunk_raw.astype(np.float32) / 32768.0
                 chunk_16k = self._resample_to_16k(chunk_norm)
                 if chunk_16k is not None:
                     try:
                         p2_type, p2_conf = self.yamnet.feed_chunk(chunk_16k)
+                        if p2_type and p2_conf >= self.yamnet.conf_threshold:
+                            t = threading.Thread(target=self._emit_event,
+                                                 args=(p2_type, p2_conf, features), daemon=True)
+                            t.start()
                     except Exception:
                         pass
-
-            # Emit YAMNet result (takes priority when confident)
-            if p2_type and p2_conf >= (self.yamnet.conf_threshold if self.yamnet else 0.3):
-                t = threading.Thread(target=self._emit_event,
-                                     args=(p2_type, p2_conf, features, True), daemon=True)
-                t.start()
-            elif p1_type:
-                t = threading.Thread(target=self._emit_event,
-                                     args=(p1_type, p1_conf, features, False), daemon=True)
-                t.start()
         except Exception as e:
             print(f"[audio] Process error: {e}")
         return (in_data, pyaudio.paContinue)
 
-    def _emit_event(self, event_type, confidence, features, is_yamnet=False):
-        """Send audio event via Socket.IO with HTTP fallback."""
-        now = time.time()
-        last_ts = self.detector.last_emit.get(event_type, 0)
-        if now - last_ts < self.detector.COOLDOWN:
-            return
-        self.detector.last_emit[event_type] = now
+    MIN_EMIT_CONFIDENCE = 0.45
 
-        if is_yamnet:
-            label_info = YAMNET_LABELS.get(event_type, {})
-            label = label_info.get("desc", event_type)
-            color = label_info.get("color", "white")
-        else:
-            label = self.detector.LABELS.get(event_type, event_type)
-            color = self.detector.COLORS.get(event_type, "white")
+    def _emit_event(self, event_type, confidence, features):
+        """Send YAMNet audio event via Socket.IO with HTTP fallback."""
+        if confidence < self.MIN_EMIT_CONFIDENCE:
+            return
+        now = time.time()
+        last_ts = self._last_emit.get(event_type, 0)
+        if now - last_ts < self.COOLDOWN:
+            return
+        self._last_emit[event_type] = now
+
+        label_info = YAMNET_LABELS.get(event_type, {})
+        label = label_info.get("desc", event_type)
+        color = label_info.get("color", "white")
 
         payload = {
             "camera_id": self.camera_id,
@@ -414,8 +258,12 @@ class AudioMonitor:
         if self.sio_connected and self.sio.connected:
             try:
                 self.sio.emit("audio_event", payload)
-                tag = "YAMNet" if is_yamnet else "Phase1"
-                print(f"[audio] [{tag}] >>> {label} ({confidence:.2f})")
+                print(f"[audio] [YAMNet] >>> {label} ({confidence:.2f})")
+
+                # ── PTZ pre-positioning trigger ──────────────────────────
+                if (event_type in PTZ_TRIGGER_EVENTS
+                        and confidence >= PTZ_TRIGGER_CONFIDENCE):
+                    self._trigger_ptz(event_type, confidence, now)
                 return
             except Exception:
                 pass
@@ -436,13 +284,62 @@ class AudioMonitor:
                 "source": "audio",
             }
             requests.post(f"{self.server_url}/event", json=http_payload, timeout=1)
-            tag = "YAMNet" if is_yamnet else "Phase1"
-            print(f"[audio] [{tag}] >>> {event_type} ({confidence:.2f}) via HTTP")
+            print(f"[audio] [YAMNet] >>> {event_type} ({confidence:.2f}) via HTTP")
+
+            # PTZ trigger via HTTP fallback
+            if (event_type in PTZ_TRIGGER_EVENTS
+                    and confidence >= PTZ_TRIGGER_CONFIDENCE):
+                self._trigger_ptz(event_type, confidence, time.time(), use_http=True)
         except Exception as e:
             print(f"[audio] Post error: {e}")
 
-    def stop(self):
-        self.running = False
+    def _trigger_ptz(self, event_type, confidence, now, use_http=False):
+        """
+        Emit a PTZ pre-positioning command when a dangerous audio event fires.
+
+        The PTZ command tells the camera_manager to:
+          1. Zoom out to wide-angle (to maximise scene coverage)
+          2. Re-scan to last known high-risk zone (or centre)
+
+        The spatial_hint uses the last quadrant estimate from audio localisation
+        if available, otherwise defaults to (0.5, 0.5) = frame centre.
+        """
+        last_ptz = getattr(self, '_last_ptz_ts', 0)
+        if now - last_ptz < PTZ_COOLDOWN_SECONDS:
+            return
+        self._last_ptz_ts = now
+
+        spatial_x = getattr(self, '_last_audio_x', 0.5)
+        spatial_y = getattr(self, '_last_audio_y', 0.5)
+
+        ptz_payload = {
+            "camera_id":    self.camera_id,
+            "action":       "audio_scan",      # camera_manager recognises this
+            "event_type":   event_type,
+            "confidence":   round(confidence, 3),
+            "spatial_x":    spatial_x,         # 0.0=left  1.0=right
+            "spatial_y":    spatial_y,         # 0.0=top   1.0=bottom
+            "zoom_out":     True,              # pre-position = wide first
+            "timestamp":    now,
+        }
+
+        if not use_http and self.sio_connected and self.sio.connected:
+            try:
+                self.sio.emit("ptz_audio_trigger", ptz_payload)
+                print(f"[audio] PTZ pre-position triggered: {event_type} "
+                      f"x={spatial_x:.2f} y={spatial_y:.2f}")
+                return
+            except Exception:
+                pass
+
+        # HTTP fallback
+        try:
+            import requests
+            requests.post(f"{self.server_url}/ptz_trigger", json=ptz_payload, timeout=1)
+            print(f"[audio] PTZ pre-position via HTTP: {event_type}")
+        except Exception as e:
+            print(f"[audio] PTZ trigger error: {e}")
+
 
 
 if __name__ == "__main__":
@@ -452,14 +349,13 @@ if __name__ == "__main__":
     parser.add_argument("--device", type=int, default=None)
     parser.add_argument("--yamnet-model", type=str, default="",
                         help="Path to YAMNet TFLite model (default: auto-detect)")
-    parser.add_argument("--phase1-only", action="store_true",
-                        help="Skip YAMNet even if model is available")
+
     parser.add_argument("--debug", action="store_true")
     args = parser.parse_args()
 
     # Auto-detect YAMNet model at default path
     yamnet_path = args.yamnet_model
-    if not args.phase1_only and not yamnet_path:
+    if not yamnet_path:
         import os as _os
         default_paths = [
             "/tmp/yamnet_model/1.tflite",
@@ -473,7 +369,7 @@ if __name__ == "__main__":
     if yamnet_path:
         print(f"[audio] YAMNet model: {yamnet_path}")
     else:
-        print("[audio] No YAMNet model found — Phase 1 only (impulse + sustained_loud)")
+        print("[audio] No YAMNet model found. Use --yamnet-model <path> to enable audio detection.")
 
     monitor = AudioMonitor(args.server, args.camera_id, args.device,
                            debug=args.debug, yamnet_model_path=yamnet_path)

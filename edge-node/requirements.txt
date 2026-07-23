@@ -8,6 +8,10 @@ scikit-image
 pandas
 matplotlib
 pyyaml
+requests
+
+# Deep Re-ID (OSNet-x0.25 ONNX) — falls back to colour-histogram if unavailable
+onnxruntime
 
 # Phase 1 — simple audio impulse/sustained detection
 pyaudio
