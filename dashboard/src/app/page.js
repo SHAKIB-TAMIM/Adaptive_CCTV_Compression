@@ -841,7 +841,6 @@ export default function Home() {
               </ResponsiveContainer>
             </div>
           </div>
-          </div>
 
           {/* Incident Log Terminal */}
           <div className="bg-slate-950/40 border border-slate-900 backdrop-blur-md rounded-2xl p-5 shadow-2xl flex flex-col gap-3">

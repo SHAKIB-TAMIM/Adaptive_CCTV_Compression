@@ -13,3 +13,11 @@ build/
 
 # Environment
 .env
+
+# Evaluation & Results (large generated files)
+/evaluation/
+/experiments/
+/outputs/
+
+# Paper drafts
+/paper/
