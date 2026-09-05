@@ -176,9 +176,11 @@ export default function Home() {
     socket.on("metrics", (m) => {
       const sio = parseFloat(m.sio_kbps) || 0;
       const udp = parseFloat(m.udp_kbps) || 0;
+      const raw = parseFloat(m.raw_kbps) || 0;
       setSioKbps(sio);
       setUdpKbps(udp);
-      setBandwidthSaved(sio > 0 ? Math.max(0, ((sio - udp) / sio) * 100) : 0);
+      // Use server-computed bandwidth savings (raw vs compressed)
+      setBandwidthSaved(parseFloat(m.bandwidth_saved_pct) || 0);
 
       // Add to metrics history array
       setMetricsHistory((prev) => {
@@ -186,6 +188,7 @@ export default function Home() {
           time: new Date(m.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' }),
           sio: parseFloat(sio.toFixed(1)),
           udp: parseFloat(udp.toFixed(1)),
+          raw: parseFloat((raw / 1000).toFixed(1)),  // Convert kbps to Mbps for display
           psnr: parseFloat(m.psnr) || 0,
         };
         const next = [...prev, entry];
@@ -235,6 +238,7 @@ export default function Home() {
             time: new Date(m.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' }),
             sio: parseFloat(parseFloat(m.sio_kbps || 0).toFixed(1)),
             udp: parseFloat(parseFloat(m.udp_kbps || 0).toFixed(1)),
+            raw: parseFloat(parseFloat(m.raw_kbps || 0).toFixed(1)) / 1000,
             psnr: parseFloat(m.psnr) || 0,
           }));
           setMetricsHistory(formatted);
@@ -530,18 +534,24 @@ export default function Home() {
             </div>
 
             {/* Micro Stats Bar */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 bg-slate-950/60 border border-slate-900/80 rounded-xl p-4 text-center">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-4 bg-slate-950/60 border border-slate-900/80 rounded-xl p-4 text-center">
               <div>
-                <p className="text-[10px] text-slate-500 tracking-wider uppercase font-semibold">Incoming Preview</p>
-                <p className="text-xl font-bold font-mono text-slate-200 mt-1">{sioKbps.toFixed(1)} <span className="text-xs text-slate-500 font-normal">kbps</span></p>
+                <p className="text-[10px] text-slate-500 tracking-wider uppercase font-semibold">Raw (Uncompressed)</p>
+                <p className="text-xl font-bold font-mono text-red-400 mt-1">{(resW * resH * 3 * 15 * 8 / 1000 / 1000).toFixed(1)} <span className="text-xs text-slate-500 font-normal">Mbps</span></p>
               </div>
               <div>
-                <p className="text-[10px] text-slate-500 tracking-wider uppercase font-semibold">Compressed H.265 Stream</p>
+                <p className="text-[10px] text-slate-500 tracking-wider uppercase font-semibold">Compressed Stream</p>
                 <p className="text-xl font-bold font-mono text-cyan-400 mt-1">{udpKbps.toFixed(1)} <span className="text-xs text-slate-500 font-normal">kbps</span></p>
               </div>
               <div>
-                <p className="text-[10px] text-slate-500 tracking-wider uppercase font-semibold">Net Bandwidth Saved</p>
-                <p className="text-xl font-bold font-mono text-emerald-400 mt-1">{bandwidthSaved.toFixed(0)}%</p>
+                <p className="text-[10px] text-slate-500 tracking-wider uppercase font-semibold">Preview Stream</p>
+                <p className="text-xl font-bold font-mono text-slate-200 mt-1">{sioKbps.toFixed(1)} <span className="text-xs text-slate-500 font-normal">kbps</span></p>
+              </div>
+              <div>
+                <p className="text-[10px] text-slate-500 tracking-wider uppercase font-semibold">Bandwidth Saved</p>
+                <p className={`text-xl font-bold font-mono mt-1 ${
+                  bandwidthSaved > 80 ? "text-emerald-400" : bandwidthSaved > 50 ? "text-amber-400" : "text-red-400"
+                }`}>{bandwidthSaved.toFixed(0)}%</p>
               </div>
               <div>
                 <p className="text-[10px] text-slate-500 tracking-wider uppercase font-semibold">Risk Score</p>
@@ -799,8 +809,8 @@ export default function Home() {
           {/* Analytics Line Chart */}
           <div className="bg-slate-950/40 border border-slate-900 backdrop-blur-md rounded-2xl p-5 shadow-2xl flex flex-col gap-3">
             <h3 className="text-sm font-semibold tracking-wider text-slate-400 uppercase flex items-center justify-between">
-              <span>📡 Bandwidth Performance</span>
-              <span className="text-xs text-cyan-400 font-mono">Live Metrics</span>
+              <span>Bandwidth Performance</span>
+              <span className="text-xs text-cyan-400 font-mono">Raw vs Compressed</span>
             </h3>
             
             <div className="h-[200px] w-full mt-2 min-w-0">
@@ -815,16 +825,22 @@ export default function Home() {
                       <stop offset="5%" stopColor="#c084fc" stopOpacity={0.2}/>
                       <stop offset="95%" stopColor="#c084fc" stopOpacity={0}/>
                     </linearGradient>
+                    <linearGradient id="colorRaw" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="5%" stopColor="#ef4444" stopOpacity={0.1}/>
+                      <stop offset="95%" stopColor="#ef4444" stopOpacity={0}/>
+                    </linearGradient>
                   </defs>
                   <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" opacity={0.3} />
                   <XAxis dataKey="time" hide />
                   <YAxis stroke="#475569" fontSize={10} />
                   <Tooltip contentStyle={{ backgroundColor: "#0f172a", borderColor: "#334155", color: "#f8fafc" }} />
-                  <Area type="monotone" dataKey="sio" stroke="#c084fc" strokeWidth={2} fillOpacity={1} fill="url(#colorSio)" name="Raw Preview (kbps)" isAnimationActive={false} />
-                  <Area type="monotone" dataKey="udp" stroke="#22d3ee" strokeWidth={2} fillOpacity={1} fill="url(#colorUdp)" name="Compressed Stream (kbps)" isAnimationActive={false} />
+                  <Area type="monotone" dataKey="raw" stroke="#ef4444" strokeWidth={1.5} fillOpacity={1} fill="url(#colorRaw)" name="Raw (kbps)" isAnimationActive={false} strokeDasharray="5 5" />
+                  <Area type="monotone" dataKey="sio" stroke="#c084fc" strokeWidth={2} fillOpacity={1} fill="url(#colorSio)" name="Preview (kbps)" isAnimationActive={false} />
+                  <Area type="monotone" dataKey="udp" stroke="#22d3ee" strokeWidth={2} fillOpacity={1} fill="url(#colorUdp)" name="Compressed (kbps)" isAnimationActive={false} />
                 </AreaChart>
               </ResponsiveContainer>
             </div>
+          </div>
           </div>
 
           {/* Incident Log Terminal */}

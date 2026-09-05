@@ -1,0 +1,151 @@
+{
+  "allocations": [
+    {
+      "budget": 200,
+      "state": "normal",
+      "lambda": 6.1e-05,
+      "total_kbps": 200.9,
+      "efficiency": 1.0,
+      "bg_quality": 73,
+      "bg_scale": 0.82,
+      "num_rois": 2
+    },
+    {
+      "budget": 200,
+      "state": "alert",
+      "lambda": 0.001575,
+      "total_kbps": 200.0,
+      "efficiency": 1.0,
+      "bg_quality": 56,
+      "bg_scale": 0.7,
+      "num_rois": 2
+    },
+    {
+      "budget": 200,
+      "state": "critical",
+      "lambda": 0.001908,
+      "total_kbps": 199.8,
+      "efficiency": 0.999,
+      "bg_quality": 83,
+      "bg_scale": 0.89,
+      "num_rois": 2
+    },
+    {
+      "budget": 500,
+      "state": "normal",
+      "lambda": 1e-06,
+      "total_kbps": 442.5,
+      "efficiency": 0.885,
+      "bg_quality": 60,
+      "bg_scale": 0.73,
+      "num_rois": 2
+    },
+    {
+      "budget": 500,
+      "state": "alert",
+      "lambda": 5.5e-05,
+      "total_kbps": 499.4,
+      "efficiency": 0.999,
+      "bg_quality": 57,
+      "bg_scale": 0.7,
+      "num_rois": 2
+    },
+    {
+      "budget": 500,
+      "state": "critical",
+      "lambda": 6.8e-05,
+      "total_kbps": 499.8,
+      "efficiency": 1.0,
+      "bg_quality": 87,
+      "bg_scale": 0.92,
+      "num_rois": 2
+    },
+    {
+      "budget": 1000,
+      "state": "normal",
+      "lambda": 1e-06,
+      "total_kbps": 684.4,
+      "efficiency": 0.684,
+      "bg_quality": 41,
+      "bg_scale": 0.58,
+      "num_rois": 2
+    },
+    {
+      "budget": 1000,
+      "state": "alert",
+      "lambda": 1e-06,
+      "total_kbps": 879.6,
+      "efficiency": 0.88,
+      "bg_quality": 52,
+      "bg_scale": 0.67,
+      "num_rois": 2
+    },
+    {
+      "budget": 1000,
+      "state": "critical",
+      "lambda": 1e-06,
+      "total_kbps": 879.6,
+      "efficiency": 0.88,
+      "bg_quality": 82,
+      "bg_scale": 0.89,
+      "num_rois": 2
+    },
+    {
+      "budget": 2000,
+      "state": "normal",
+      "lambda": 1e-06,
+      "total_kbps": 879.6,
+      "efficiency": 0.44,
+      "bg_quality": 29,
+      "bg_scale": 0.46,
+      "num_rois": 2
+    },
+    {
+      "budget": 2000,
+      "state": "alert",
+      "lambda": 1e-06,
+      "total_kbps": 879.6,
+      "efficiency": 0.44,
+      "bg_quality": 36,
+      "bg_scale": 0.53,
+      "num_rois": 2
+    },
+    {
+      "budget": 2000,
+      "state": "critical",
+      "lambda": 1e-06,
+      "total_kbps": 879.6,
+      "efficiency": 0.44,
+      "bg_quality": 56,
+      "bg_scale": 0.7,
+      "num_rois": 2
+    }
+  ],
+  "lambda_sweep": [
+    {
+      "lambda": 0.0001,
+      "total_kbps": 465.2
+    },
+    {
+      "lambda": 0.001,
+      "total_kbps": 257.9
+    },
+    {
+      "lambda": 0.01,
+      "total_kbps": 120
+    },
+    {
+      "lambda": 0.1,
+      "total_kbps": 120
+    },
+    {
+      "lambda": 1,
+      "total_kbps": 120
+    },
+    {
+      "lambda": 10,
+      "total_kbps": 120
+    }
+  ],
+  "num_rois": 2
+}

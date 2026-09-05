@@ -25,6 +25,63 @@ import datetime
 import collections
 import json
 from detector import Detector
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
+from evaluation.rate_allocator import RateAllocator, RegionOfInterest
+
+
+class AdaptiveRateAllocator:
+    def __init__(self, total_budget_kbps=2000, fps=15, resolution=(640, 480)):
+        self.budget = total_budget_kbps
+        self.fps = fps
+        self.resolution = resolution
+        self.allocator = RateAllocator(
+            total_budget_kbps=total_budget_kbps,
+            fps=fps,
+            resolution=resolution,
+        )
+
+    def update_budget(self, new_budget_kbps):
+        if abs(new_budget_kbps - self.budget) > 10:
+            self.budget = new_budget_kbps
+            self.allocator = RateAllocator(
+                total_budget_kbps=new_budget_kbps,
+                fps=self.fps,
+                resolution=self.resolution,
+            )
+
+    def compute_allocation(self, rois, frame, risk_state):
+        region_rois = []
+        for r in rois:
+            region_rois.append(RegionOfInterest(
+                bbox=r["bbox"],
+                priority=r.get("priority", "medium"),
+                track_id=r.get("track_id"),
+            ))
+        result = self.allocator.allocate(region_rois, frame, risk_state)
+        return {
+            "target_bitrate": result["total_kbps"],
+            "bg_scale": result["bg_scale"],
+            "bg_quality": result["bg_quality"],
+            "roi_quality": self._aggregate_roi_quality(result["rois"]),
+            "lambda": result["lambda"],
+            "efficiency": result["efficiency"],
+            "rois": result["rois"],
+        }
+
+    def _aggregate_roi_quality(self, roi_allocations):
+        if not roi_allocations:
+            return 90
+        qualities = [r["quality"] for r in roi_allocations]
+        return int(max(qualities))
+
+    def update_resolution(self, w, h):
+        self.resolution = (w, h)
+        self.allocator = RateAllocator(
+            total_budget_kbps=self.budget,
+            fps=self.fps,
+            resolution=(w, h),
+        )
+
 
 DEFAULT_SERVER = "http://127.0.0.1:5000"
 NAMESPACE = "/stream"
@@ -450,7 +507,7 @@ def risk_score(rois, motion_area_frac, hour_of_day, scene_change_score=0.0):
 
     return min(score, 1.0)
 
-def main(server_url, cam_source, target_fps, config_path=None, camera_id="camera_0", udp_port=1234):
+def main(server_url, cam_source, target_fps, config_path=None, camera_id="camera_0", udp_port=1234, use_optimizer=True):
     control['CAMERA_ID'] = camera_id
     control['UDP_PORT'] = udp_port
     if config_path and os.path.exists(config_path):
@@ -519,6 +576,12 @@ def main(server_url, cam_source, target_fps, config_path=None, camera_id="camera
 
     h, w = frame.shape[:2]
     codec_manager.start(w, h, target_fps, control['CODEC'], control['BITRATE'], udp_port=udp_port)
+
+    optimizer = AdaptiveRateAllocator(
+        total_budget_kbps=control['BITRATE'],
+        fps=target_fps,
+        resolution=(w, h),
+    )
 
     try:
         rois = []
@@ -678,10 +741,22 @@ def main(server_url, cam_source, target_fps, config_path=None, camera_id="camera
                     print(f"[RISK] Post-event buffer complete: {event_id}")
 
             # ── Risk-aware compression profile ──
-            profile = STATE_COMPRESSION[surveillance_state]
-            eff_bg_scale    = profile["BG_SCALE"]    if profile["BG_SCALE"]    is not None else control['BG_SCALE']
-            eff_bg_quality  = profile["BG_QUALITY"]  if profile["BG_QUALITY"]  is not None else control['BG_QUALITY']
-            eff_roi_quality = profile["ROI_QUALITY"] if profile["ROI_QUALITY"] is not None else control['ROI_QUALITY']
+            if use_optimizer:
+                optimizer.update_budget(control['BITRATE'])
+                opt = optimizer.compute_allocation(rois, frame, surveillance_state)
+                eff_bg_scale = opt["bg_scale"]
+                eff_bg_quality = opt["bg_quality"]
+                eff_roi_quality = opt["roi_quality"]
+                control['BITRATE'] = int(opt["target_bitrate"])
+                if frame_id % 30 == 0:
+                    print(f"[optimizer] λ={opt['lambda']:.4f} bitrate={opt['target_bitrate']:.0f}kbps "
+                          f"bg_q={eff_bg_quality} bg_s={eff_bg_scale:.2f} roi_q={eff_roi_quality} "
+                          f"eff={opt['efficiency']:.2f} state={surveillance_state}")
+            else:
+                profile = STATE_COMPRESSION[surveillance_state]
+                eff_bg_scale    = profile["BG_SCALE"]    if profile["BG_SCALE"]    is not None else control['BG_SCALE']
+                eff_bg_quality  = profile["BG_QUALITY"]  if profile["BG_QUALITY"]  is not None else control['BG_QUALITY']
+                eff_roi_quality = profile["ROI_QUALITY"] if profile["ROI_QUALITY"] is not None else control['ROI_QUALITY']
 
             # ── Compose frame with effective parameters ──
             recon_frame = reconstruct_background_with_rois(
@@ -811,5 +886,9 @@ if __name__ == "__main__":
                         help="UDP port for H.265 stream (default: 1234)")
     parser.add_argument("--fps", type=int, default=TARGET_FPS)
     parser.add_argument("--config", type=str, default=None, help="Path to YAML config profile")
+    parser.add_argument("--use-optimizer", action="store_true", default=True,
+                        help="Enable Lagrangian RD optimizer (default: enabled)")
+    parser.add_argument("--no-optimizer", dest="use_optimizer", action="store_false",
+                        help="Disable optimizer, use heuristic STATE_COMPRESSION profiles")
     args = parser.parse_args()
-    main(args.server, args.cam, args.fps, args.config, args.camera_id, args.udp_port)
+    main(args.server, args.cam, args.fps, args.config, args.camera_id, args.udp_port, args.use_optimizer)

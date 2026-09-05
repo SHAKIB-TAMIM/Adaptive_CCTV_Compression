@@ -1,0 +1,398 @@
+{
+  "metadata": {
+    "timestamp": "2026-09-02T18:46:40.771930",
+    "video": "test_video1.mp4",
+    "clip": "test5s.mp4 (5-second clip from 40.9s source)",
+    "source_resolution": "1920x1080",
+    "source_fps": 30,
+    "source_bitrate": "20 Mbps",
+    "source_codec": "H.264 High Profile"
+  },
+  "sota_comparison": [
+    {
+      "method": "AV1",
+      "target_kbps": 1000,
+      "actual_kbps": 1089.8,
+      "psnr": 41.384,
+      "ssim": 0.96623,
+      "file_size_bytes": 681156
+    },
+    {
+      "method": "AV1",
+      "target_kbps": 200,
+      "actual_kbps": 218.0,
+      "psnr": 38.394,
+      "ssim": 0.94717,
+      "file_size_bytes": 136246
+    },
+    {
+      "method": "AV1",
+      "target_kbps": 2000,
+      "actual_kbps": 2203.0,
+      "psnr": 42.264,
+      "ssim": 0.97012,
+      "file_size_bytes": 1376882
+    },
+    {
+      "method": "AV1",
+      "target_kbps": 500,
+      "actual_kbps": 547.5,
+      "psnr": 40.313,
+      "ssim": 0.96045,
+      "file_size_bytes": 342191
+    },
+    {
+      "method": "H264",
+      "target_kbps": 1000,
+      "actual_kbps": 1084.2,
+      "psnr": 34.44,
+      "ssim": 0.91057,
+      "file_size_bytes": 677604
+    },
+    {
+      "method": "H264",
+      "target_kbps": 200,
+      "actual_kbps": 197.7,
+      "psnr": 23.985,
+      "ssim": 0.82108,
+      "file_size_bytes": 123537
+    },
+    {
+      "method": "H264",
+      "target_kbps": 2000,
+      "actual_kbps": 2150.3,
+      "psnr": 37.394,
+      "ssim": 0.93426,
+      "file_size_bytes": 1343952
+    },
+    {
+      "method": "H264",
+      "target_kbps": 500,
+      "actual_kbps": 595.3,
+      "psnr": 30.361,
+      "ssim": 0.87857,
+      "file_size_bytes": 372064
+    },
+    {
+      "method": "H265",
+      "target_kbps": 1000,
+      "actual_kbps": 1083.7,
+      "psnr": 36.376,
+      "ssim": 0.93135,
+      "file_size_bytes": 677333
+    },
+    {
+      "method": "H265",
+      "target_kbps": 200,
+      "actual_kbps": 191.4,
+      "psnr": 29.382,
+      "ssim": 0.88438,
+      "file_size_bytes": 119623
+    },
+    {
+      "method": "H265",
+      "target_kbps": 2000,
+      "actual_kbps": 2190.6,
+      "psnr": 38.915,
+      "ssim": 0.94903,
+      "file_size_bytes": 1369133
+    },
+    {
+      "method": "H265",
+      "target_kbps": 500,
+      "actual_kbps": 521.9,
+      "psnr": 33.204,
+      "ssim": 0.90911,
+      "file_size_bytes": 326181
+    },
+    {
+      "method": "VP9",
+      "target_kbps": 1000,
+      "actual_kbps": 1111.9,
+      "psnr": 41.601,
+      "ssim": 0.96575,
+      "file_size_bytes": 694965
+    },
+    {
+      "method": "VP9",
+      "target_kbps": 200,
+      "actual_kbps": 230.2,
+      "psnr": 37.099,
+      "ssim": 0.93571,
+      "file_size_bytes": 143872
+    },
+    {
+      "method": "VP9",
+      "target_kbps": 2000,
+      "actual_kbps": 2083.6,
+      "psnr": 42.814,
+      "ssim": 0.9727,
+      "file_size_bytes": 1302257
+    },
+    {
+      "method": "VP9",
+      "target_kbps": 500,
+      "actual_kbps": 569.5,
+      "psnr": 40.131,
+      "ssim": 0.95613,
+      "file_size_bytes": 355949
+    }
+  ],
+  "benchmark": [
+    {
+      "config": "ultra_low_bandwidth",
+      "actual_kbps": 217.1,
+      "psnr": 33.016,
+      "ssim": 0.91301,
+      "file_size_bytes": 135697
+    },
+    {
+      "config": "balanced",
+      "actual_kbps": 892.4,
+      "psnr": 39.03,
+      "ssim": 0.95354,
+      "file_size_bytes": 557779
+    },
+    {
+      "config": "high_quality",
+      "actual_kbps": 2190.3,
+      "psnr": 38.914,
+      "ssim": 0.94902,
+      "file_size_bytes": 1368912
+    },
+    {
+      "config": "privacy_mode",
+      "actual_kbps": 558.5,
+      "psnr": 37.125,
+      "ssim": 0.94136,
+      "file_size_bytes": 349035
+    }
+  ],
+  "rate_allocator": {
+    "allocations": [
+      {
+        "budget": 200,
+        "state": "normal",
+        "lambda": 6.1e-05,
+        "total_kbps": 200.9,
+        "efficiency": 1.0,
+        "bg_quality": 73,
+        "bg_scale": 0.82,
+        "num_rois": 2
+      },
+      {
+        "budget": 200,
+        "state": "alert",
+        "lambda": 0.001575,
+        "total_kbps": 200.0,
+        "efficiency": 1.0,
+        "bg_quality": 56,
+        "bg_scale": 0.7,
+        "num_rois": 2
+      },
+      {
+        "budget": 200,
+        "state": "critical",
+        "lambda": 0.001908,
+        "total_kbps": 199.8,
+        "efficiency": 0.999,
+        "bg_quality": 83,
+        "bg_scale": 0.89,
+        "num_rois": 2
+      },
+      {
+        "budget": 500,
+        "state": "normal",
+        "lambda": 1e-06,
+        "total_kbps": 442.5,
+        "efficiency": 0.885,
+        "bg_quality": 60,
+        "bg_scale": 0.73,
+        "num_rois": 2
+      },
+      {
+        "budget": 500,
+        "state": "alert",
+        "lambda": 5.5e-05,
+        "total_kbps": 499.4,
+        "efficiency": 0.999,
+        "bg_quality": 57,
+        "bg_scale": 0.7,
+        "num_rois": 2
+      },
+      {
+        "budget": 500,
+        "state": "critical",
+        "lambda": 6.8e-05,
+        "total_kbps": 499.8,
+        "efficiency": 1.0,
+        "bg_quality": 87,
+        "bg_scale": 0.92,
+        "num_rois": 2
+      },
+      {
+        "budget": 1000,
+        "state": "normal",
+        "lambda": 1e-06,
+        "total_kbps": 684.4,
+        "efficiency": 0.684,
+        "bg_quality": 41,
+        "bg_scale": 0.58,
+        "num_rois": 2
+      },
+      {
+        "budget": 1000,
+        "state": "alert",
+        "lambda": 1e-06,
+        "total_kbps": 879.6,
+        "efficiency": 0.88,
+        "bg_quality": 52,
+        "bg_scale": 0.67,
+        "num_rois": 2
+      },
+      {
+        "budget": 1000,
+        "state": "critical",
+        "lambda": 1e-06,
+        "total_kbps": 879.6,
+        "efficiency": 0.88,
+        "bg_quality": 82,
+        "bg_scale": 0.89,
+        "num_rois": 2
+      },
+      {
+        "budget": 2000,
+        "state": "normal",
+        "lambda": 1e-06,
+        "total_kbps": 879.6,
+        "efficiency": 0.44,
+        "bg_quality": 29,
+        "bg_scale": 0.46,
+        "num_rois": 2
+      },
+      {
+        "budget": 2000,
+        "state": "alert",
+        "lambda": 1e-06,
+        "total_kbps": 879.6,
+        "efficiency": 0.44,
+        "bg_quality": 36,
+        "bg_scale": 0.53,
+        "num_rois": 2
+      },
+      {
+        "budget": 2000,
+        "state": "critical",
+        "lambda": 1e-06,
+        "total_kbps": 879.6,
+        "efficiency": 0.44,
+        "bg_quality": 56,
+        "bg_scale": 0.7,
+        "num_rois": 2
+      }
+    ],
+    "lambda_sweep": [
+      {
+        "lambda": 0.0001,
+        "total_kbps": 465.2
+      },
+      {
+        "lambda": 0.001,
+        "total_kbps": 257.9
+      },
+      {
+        "lambda": 0.01,
+        "total_kbps": 120
+      },
+      {
+        "lambda": 0.1,
+        "total_kbps": 120
+      },
+      {
+        "lambda": 1,
+        "total_kbps": 120
+      },
+      {
+        "lambda": 10,
+        "total_kbps": 120
+      }
+    ],
+    "num_rois": 2
+  },
+  "ablation": [
+    {
+      "variant": "Full System",
+      "frames": 150,
+      "avg_risk": 0.9947,
+      "critical_pct": 99.3,
+      "alert_pct": 0.0,
+      "est_kbps": 74649.6,
+      "time_s": 7.37,
+      "throughput": 20.4
+    },
+    {
+      "variant": "w/o Risk Engine",
+      "frames": 150,
+      "avg_risk": 0.3,
+      "critical_pct": 0.0,
+      "alert_pct": 100.0,
+      "est_kbps": 74649.6,
+      "time_s": 7.4,
+      "throughput": 20.3
+    },
+    {
+      "variant": "w/o CLAHE",
+      "frames": 150,
+      "avg_risk": 0.9947,
+      "critical_pct": 99.3,
+      "alert_pct": 0.0,
+      "est_kbps": 74649.6,
+      "time_s": 7.24,
+      "throughput": 20.7
+    },
+    {
+      "variant": "w/o Temporal Merge",
+      "frames": 150,
+      "avg_risk": 0.9947,
+      "critical_pct": 99.3,
+      "alert_pct": 0.0,
+      "est_kbps": 74649.6,
+      "time_s": 2.18,
+      "throughput": 68.9
+    },
+    {
+      "variant": "w/o Adaptive GOP",
+      "frames": 150,
+      "avg_risk": 0.9947,
+      "critical_pct": 99.3,
+      "alert_pct": 0.0,
+      "est_kbps": 74649.6,
+      "time_s": 7.53,
+      "throughput": 19.9
+    },
+    {
+      "variant": "w/o Adaptive Res",
+      "frames": 150,
+      "avg_risk": 0.9947,
+      "critical_pct": 99.3,
+      "alert_pct": 0.0,
+      "est_kbps": 74649.6,
+      "time_s": 7.45,
+      "throughput": 20.1
+    }
+  ],
+  "bd_rates": {
+    "H264": 78.61,
+    "VP9": -83.15,
+    "AV1": -87.95
+  },
+  "summary": {
+    "best_codec": "AV1 (SVT-AV1)",
+    "best_bd_rate": -87.95,
+    "h264_bd_rate": 78.61,
+    "vp9_bd_rate": -83.15,
+    "rate_allocator_optimal_lambda": 0.0001,
+    "ablation_full_system_fps": 20.4,
+    "ablation_without_risk_fps": 20.3
+  }
+}

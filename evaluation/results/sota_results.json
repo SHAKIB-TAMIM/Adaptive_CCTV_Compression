@@ -1,0 +1,137 @@
+{
+  "sota_comparison": [
+    {
+      "method": "AV1",
+      "target_kbps": 1000,
+      "actual_kbps": 1089.8,
+      "psnr": 41.384,
+      "ssim": 0.96623,
+      "file_size_bytes": 681156
+    },
+    {
+      "method": "AV1",
+      "target_kbps": 200,
+      "actual_kbps": 218.0,
+      "psnr": 38.394,
+      "ssim": 0.94717,
+      "file_size_bytes": 136246
+    },
+    {
+      "method": "AV1",
+      "target_kbps": 2000,
+      "actual_kbps": 2203.0,
+      "psnr": 42.264,
+      "ssim": 0.97012,
+      "file_size_bytes": 1376882
+    },
+    {
+      "method": "AV1",
+      "target_kbps": 500,
+      "actual_kbps": 547.5,
+      "psnr": 40.313,
+      "ssim": 0.96045,
+      "file_size_bytes": 342191
+    },
+    {
+      "method": "H264",
+      "target_kbps": 1000,
+      "actual_kbps": 1084.2,
+      "psnr": 34.44,
+      "ssim": 0.91057,
+      "file_size_bytes": 677604
+    },
+    {
+      "method": "H264",
+      "target_kbps": 200,
+      "actual_kbps": 197.7,
+      "psnr": 23.985,
+      "ssim": 0.82108,
+      "file_size_bytes": 123537
+    },
+    {
+      "method": "H264",
+      "target_kbps": 2000,
+      "actual_kbps": 2150.3,
+      "psnr": 37.394,
+      "ssim": 0.93426,
+      "file_size_bytes": 1343952
+    },
+    {
+      "method": "H264",
+      "target_kbps": 500,
+      "actual_kbps": 595.3,
+      "psnr": 30.361,
+      "ssim": 0.87857,
+      "file_size_bytes": 372064
+    },
+    {
+      "method": "H265",
+      "target_kbps": 1000,
+      "actual_kbps": 1083.7,
+      "psnr": 36.376,
+      "ssim": 0.93135,
+      "file_size_bytes": 677333
+    },
+    {
+      "method": "H265",
+      "target_kbps": 200,
+      "actual_kbps": 191.4,
+      "psnr": 29.382,
+      "ssim": 0.88438,
+      "file_size_bytes": 119623
+    },
+    {
+      "method": "H265",
+      "target_kbps": 2000,
+      "actual_kbps": 2190.6,
+      "psnr": 38.915,
+      "ssim": 0.94903,
+      "file_size_bytes": 1369133
+    },
+    {
+      "method": "H265",
+      "target_kbps": 500,
+      "actual_kbps": 521.9,
+      "psnr": 33.204,
+      "ssim": 0.90911,
+      "file_size_bytes": 326181
+    },
+    {
+      "method": "VP9",
+      "target_kbps": 1000,
+      "actual_kbps": 1111.9,
+      "psnr": 41.601,
+      "ssim": 0.96575,
+      "file_size_bytes": 694965
+    },
+    {
+      "method": "VP9",
+      "target_kbps": 200,
+      "actual_kbps": 230.2,
+      "psnr": 37.099,
+      "ssim": 0.93571,
+      "file_size_bytes": 143872
+    },
+    {
+      "method": "VP9",
+      "target_kbps": 2000,
+      "actual_kbps": 2083.6,
+      "psnr": 42.814,
+      "ssim": 0.9727,
+      "file_size_bytes": 1302257
+    },
+    {
+      "method": "VP9",
+      "target_kbps": 500,
+      "actual_kbps": 569.5,
+      "psnr": 40.131,
+      "ssim": 0.95613,
+      "file_size_bytes": 355949
+    }
+  ],
+  "bd_rates": {
+    "H264": 78.61,
+    "VP9": -83.15,
+    "AV1": -87.95
+  }
+}

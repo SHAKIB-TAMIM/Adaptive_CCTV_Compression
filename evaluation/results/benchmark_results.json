@@ -1,0 +1,30 @@
+[
+  {
+    "config": "ultra_low_bandwidth",
+    "actual_kbps": 217.1,
+    "psnr": 33.016,
+    "ssim": 0.91301,
+    "file_size_bytes": 135697
+  },
+  {
+    "config": "balanced",
+    "actual_kbps": 892.4,
+    "psnr": 39.03,
+    "ssim": 0.95354,
+    "file_size_bytes": 557779
+  },
+  {
+    "config": "high_quality",
+    "actual_kbps": 2190.3,
+    "psnr": 38.914,
+    "ssim": 0.94902,
+    "file_size_bytes": 1368912
+  },
+  {
+    "config": "privacy_mode",
+    "actual_kbps": 558.5,
+    "psnr": 37.125,
+    "ssim": 0.94136,
+    "file_size_bytes": 349035
+  }
+]

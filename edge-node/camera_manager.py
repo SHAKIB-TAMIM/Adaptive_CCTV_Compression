@@ -32,6 +32,62 @@ import threading
 from detector import Detector
 from reid_tracker import ReidTracker
 from ptz_controller import PtzController
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
+from evaluation.rate_allocator import RateAllocator, RegionOfInterest
+
+
+class AdaptiveRateAllocator:
+    def __init__(self, total_budget_kbps=2000, fps=15, resolution=(640, 480)):
+        self.budget = total_budget_kbps
+        self.fps = fps
+        self.resolution = resolution
+        self.allocator = RateAllocator(
+            total_budget_kbps=total_budget_kbps,
+            fps=fps,
+            resolution=resolution,
+        )
+
+    def update_budget(self, new_budget_kbps):
+        if abs(new_budget_kbps - self.budget) > 10:
+            self.budget = new_budget_kbps
+            self.allocator = RateAllocator(
+                total_budget_kbps=new_budget_kbps,
+                fps=self.fps,
+                resolution=self.resolution,
+            )
+
+    def compute_allocation(self, rois, frame, risk_state):
+        region_rois = []
+        for r in rois:
+            region_rois.append(RegionOfInterest(
+                bbox=r["bbox"],
+                priority=r.get("priority", "medium"),
+                track_id=r.get("track_id"),
+            ))
+        result = self.allocator.allocate(region_rois, frame, risk_state)
+        return {
+            "target_bitrate": result["total_kbps"],
+            "bg_scale": result["bg_scale"],
+            "bg_quality": result["bg_quality"],
+            "roi_quality": self._aggregate_roi_quality(result["rois"]),
+            "lambda": result["lambda"],
+            "efficiency": result["efficiency"],
+            "rois": result["rois"],
+        }
+
+    def _aggregate_roi_quality(self, roi_allocations):
+        if not roi_allocations:
+            return 90
+        qualities = [r["quality"] for r in roi_allocations]
+        return int(max(qualities))
+
+    def update_resolution(self, w, h):
+        self.resolution = (w, h)
+        self.allocator = RateAllocator(
+            total_budget_kbps=self.budget,
+            fps=self.fps,
+            resolution=(w, h),
+        )
 
 DEFAULT_SERVER = "http://127.0.0.1:5000"
 NAMESPACE = "/stream"
@@ -175,7 +231,7 @@ class CodecEncoder:
 
 class CameraThread(threading.Thread):
     """Manages a single camera: capture, detect, compress, stream."""
-    def __init__(self, cam_cfg, detector, server_url, reid_tracker=None):
+    def __init__(self, cam_cfg, detector, server_url, reid_tracker=None, use_optimizer=True):
         super().__init__(daemon=True)
         self.cam_cfg = cam_cfg
         self.camera_id = cam_cfg["id"]
@@ -185,6 +241,7 @@ class CameraThread(threading.Thread):
         self.encoder = CodecEncoder(self.camera_id, cam_cfg.get("udp_port", 1234))
         self.target_fps = cam_cfg.get("fps", 15)
         self.running = True
+        self.use_optimizer = use_optimizer
 
         # PTZ controller (optional)
         ptz_config = cam_cfg.get("ptz")
@@ -226,6 +283,12 @@ class CameraThread(threading.Thread):
         h, w = frame.shape[:2]
         self.encoder.start(w, h, self.target_fps, control['CODEC'], control['BITRATE'])
         print(f"[{self.camera_id}] Started: {source} -> UDP port {udp_port}")
+
+        optimizer = AdaptiveRateAllocator(
+            total_budget_kbps=control['BITRATE'],
+            fps=self.target_fps,
+            resolution=(w, h),
+        )
 
         try:
             while self.running:
@@ -379,8 +442,18 @@ class CameraThread(threading.Thread):
                     self.post_event_frames_remaining -= 1
 
                 # Compress and encode
-                profile = STATE_COMPRESSION[self.surveillance_state]
-                eff_bg_scale = profile["BG_SCALE"] if profile["BG_SCALE"] is not None else control['BG_SCALE']
+                if self.use_optimizer:
+                    optimizer.update_budget(control['BITRATE'])
+                    opt = optimizer.compute_allocation(rois, frame, self.surveillance_state)
+                    eff_bg_scale = opt["bg_scale"]
+                    control['BITRATE'] = int(opt["target_bitrate"])
+                    if self.frame_id % 30 == 0:
+                        print(f"[{self.camera_id}] optimizer λ={opt['lambda']:.4f} "
+                              f"bitrate={opt['target_bitrate']:.0f}kbps "
+                              f"bg_s={eff_bg_scale:.2f} state={self.surveillance_state}")
+                else:
+                    profile = STATE_COMPRESSION[self.surveillance_state]
+                    eff_bg_scale = profile["BG_SCALE"] if profile["BG_SCALE"] is not None else control['BG_SCALE']
                 recon_frame = reconstruct_background_with_rois(
                     frame, rois, eff_bg_scale,
                     control['PRIVACY_BLUR'], control['ETHICAL_MODE'], control['MASK_FACES']
@@ -649,6 +722,10 @@ def main():
     parser.add_argument("--server", type=str, default=DEFAULT_SERVER)
     parser.add_argument("--config", type=str, default="../configs/cameras.yaml",
                         help="Path to cameras YAML config")
+    parser.add_argument("--use-optimizer", action="store_true", default=True,
+                        help="Enable Lagrangian RD optimizer (default: enabled)")
+    parser.add_argument("--no-optimizer", dest="use_optimizer", action="store_false",
+                        help="Disable optimizer, use heuristic STATE_COMPRESSION profiles")
     args = parser.parse_args()
 
     with open(args.config) as f:
@@ -678,7 +755,7 @@ def main():
     threads = []
     for cam_cfg in enabled:
         print(f"Starting camera: {cam_cfg['id']} ({cam_cfg.get('name', cam_cfg['id'])})")
-        t = CameraThread(cam_cfg, detector, args.server, reid_tracker)
+        t = CameraThread(cam_cfg, detector, args.server, reid_tracker, args.use_optimizer)
         t.start()
         threads.append(t)
 

@@ -1,0 +1,62 @@
+[
+  {
+    "variant": "Full System",
+    "frames": 150,
+    "avg_risk": 0.9947,
+    "critical_pct": 99.3,
+    "alert_pct": 0.0,
+    "est_kbps": 74649.6,
+    "time_s": 7.37,
+    "throughput": 20.4
+  },
+  {
+    "variant": "w/o Risk Engine",
+    "frames": 150,
+    "avg_risk": 0.3,
+    "critical_pct": 0.0,
+    "alert_pct": 100.0,
+    "est_kbps": 74649.6,
+    "time_s": 7.4,
+    "throughput": 20.3
+  },
+  {
+    "variant": "w/o CLAHE",
+    "frames": 150,
+    "avg_risk": 0.9947,
+    "critical_pct": 99.3,
+    "alert_pct": 0.0,
+    "est_kbps": 74649.6,
+    "time_s": 7.24,
+    "throughput": 20.7
+  },
+  {
+    "variant": "w/o Temporal Merge",
+    "frames": 150,
+    "avg_risk": 0.9947,
+    "critical_pct": 99.3,
+    "alert_pct": 0.0,
+    "est_kbps": 74649.6,
+    "time_s": 2.18,
+    "throughput": 68.9
+  },
+  {
+    "variant": "w/o Adaptive GOP",
+    "frames": 150,
+    "avg_risk": 0.9947,
+    "critical_pct": 99.3,
+    "alert_pct": 0.0,
+    "est_kbps": 74649.6,
+    "time_s": 7.53,
+    "throughput": 19.9
+  },
+  {
+    "variant": "w/o Adaptive Res",
+    "frames": 150,
+    "avg_risk": 0.9947,
+    "critical_pct": 99.3,
+    "alert_pct": 0.0,
+    "est_kbps": 74649.6,
+    "time_s": 7.45,
+    "throughput": 20.1
+  }
+]

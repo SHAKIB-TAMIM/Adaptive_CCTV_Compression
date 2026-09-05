@@ -1,0 +1,164 @@
+\section{Methodology}
+\label{sec:methodology}
+
+\subsection{System Architecture}
+\label{sec:architecture}
+
+Our system follows a three-tier edge-cloud architecture designed for scalability and low-latency operation (Figure~\ref{fig:architecture}). The \textbf{camera tier} captures raw video at native resolution and frame rate. The \textbf{edge tier} performs risk scoring, adaptive encoding, and forensic buffer management. The \textbf{cloud tier} provides archival storage, long-term analytics, and model updates.
+
+\begin{figure}[t]
+    \centering
+    \begin{verbatim}
+    +-----------+     +------------------+     +-----------+
+    |  Camera   |---->|  Edge Server     |---->|  Cloud    |
+    |  (1080p)  |     |  - Risk Scoring  |     |  Storage  |
+    |  30 fps   |     |  - Adaptive Enc  |     |  Analytics|
+    +-----------+     |  - Forensic Buf  |     +-----------+
+                      +------------------+
+    \end{verbatim}
+    \caption{Three-tier edge-cloud architecture for adaptive surveillance compression.}
+    \label{fig:architecture}
+\end{figure}
+
+The edge server receives raw video frames and executes three concurrent pipelines: (i)~a risk scoring pipeline that computes per-frame risk scores from visual, temporal, and audio features; (ii)~a rate allocation pipeline that distributes the bit budget across ROI and background regions based on the risk score; and (iii)~a forensic buffer pipeline that maintains pre-event and post-event quality windows. The encoded bitstream is transmitted to the cloud for archival, with optional local caching for latency-sensitive applications.
+
+\subsection{Problem Formulation}
+\label{sec:formulation}
+
+We formulate risk-aware compression as a constrained optimization problem. Let $\mathbf{X}_t$ denote the video frame at time $t$, and let $\mathcal{R}_t \subset \mathbf{X}_t$ denote the set of regions of interest. The encoder must minimize total distortion subject to a bit budget constraint:
+
+\begin{equation}
+\label{eq:optimization}
+\min_{\{Q_i\}} \sum_{i} w_i \cdot D_i(Q_i) \quad \text{subject to} \quad \sum_{i} R_i(Q_i) \leq B_t
+\end{equation}
+
+where $Q_i$ is the quantization parameter for region $i$, $D_i(Q_i)$ is the distortion (measured as mean squared error), $R_i(Q_i)$ is the resulting bitrate, $B_t$ is the total bit budget for frame $t$, and $w_i$ is the risk-weighted importance of region $i$. For ROI regions, $w_i = 1 + \alpha \cdot s_t$ where $s_t \in [0, 1]$ is the frame-level risk score and $\alpha$ is a scaling constant. For background regions, $w_i = 1 / (1 + \beta \cdot s_t)$, where $\beta$ controls background quality degradation during high-risk periods.
+
+The Lagrangian relaxation of~\eqref{eq:optimization} yields:
+
+\begin{equation}
+\label{eq:lagrangian}
+\min_{\{Q_i\}} \sum_{i} \left[ w_i \cdot D_i(Q_i) + \lambda \cdot R_i(Q_i) \right]
+\end{equation}
+
+where $\lambda$ is the Lagrange multiplier that controls the rate-distortion tradeoff. The optimal $\lambda^*$ is found by binary search such that $\sum_i R_i(Q_i^*) = B_t$.
+
+\subsection{Risk Scoring Algorithm}
+\label{sec:risk_scoring}
+
+The risk scoring engine computes a scalar score $s_t \in [0, 1]$ for each frame by fusing three modalities:
+
+\textbf{Visual risk} ($s_t^{\text{vis}}$) captures scene activity through two features:
+\begin{itemize}
+    \item \emph{Optical flow magnitude}: dense optical flow~\cite{farneback2003two} is computed between consecutive frames. The mean flow magnitude $\bar{F}_t$ is normalized to $[0, 1]$.
+    \item \emph{Edge density with CLAHE}: Contrast Limited Adaptive Histogram Equalization (CLAHE)~\cite{zuiderveld1994contrast} is applied to enhance local contrast, followed by Canny edge detection. The edge pixel ratio $E_t$ provides a scene complexity measure.
+\end{itemize}
+
+\textbf{Temporal risk} ($s_t^{\text{temp}}$) captures change dynamics:
+\begin{itemize}
+    \item \emph{Inter-frame difference}: the fraction of pixels with intensity change exceeding threshold $\tau$ is computed as $D_t = \frac{1}{|\mathbf{X}_t|} \sum_{(x,y)} \mathbb{1}[|\mathbf{X}_t(x,y) - \mathbf{X}_{t-1}(x,y)| > \tau]$.
+    \item \emph{Scene transition}: a simple scene change detector flags cuts and gradual transitions by comparing histogram distances between consecutive frames.
+\end{itemize}
+
+\textbf{Audio risk} ($s_t^{\text{audio}}$, optional) captures acoustic anomalies:
+\begin{itemize}
+    \item \emph{RMS energy}: root-mean-square energy of the audio signal normalized to $[0, 1]$.
+    \item \emph{Spectral centroid}: high-frequency content indicates alarm sounds, glass breaking, or raised voices.
+\end{itemize}
+
+The final risk score is computed as a weighted geometric mean:
+
+\begin{equation}
+\label{eq:risk}
+s_t = \left( s_t^{\text{vis}} \right)^{\gamma_v} \cdot \left( s_t^{\text{temp}} \right)^{\gamma_t} \cdot \left( s_t^{\text{audio}} \right)^{\gamma_a}
+\end{equation}
+
+where $\gamma_v + \gamma_t + \gamma_a = 1$ are modality weights. In our implementation, $(\gamma_v, \gamma_t, \gamma_a) = (0.5, 0.3, 0.2)$.
+
+\subsection{Lagrangian Rate Allocation}
+\label{sec:rate_allocation}
+
+Given the risk score $s_t$ and bit budget $B_t$, the rate allocator distributes bits across regions using the Lagrangian framework from Section~\ref{sec:formulation}. The allocator operates in three steps:
+
+\textbf{Step 1: Budget partitioning.} The total budget is split between ROI and background:
+\begin{equation}
+B_t^{\text{ROI}} = B_t \cdot \frac{s_t^{\alpha_{\text{alloc}}}}{s_t^{\alpha_{\text{alloc}}} + (1-s_t)^{\alpha_{\text{alloc}}}}, \quad B_t^{\text{BG}} = B_t - B_t^{\text{ROI}}
+\end{equation}
+where $\alpha_{\text{alloc}} = 2$ controls the aggressiveness of ROI prioritization.
+
+\textbf{Step 2: Lagrangian optimization per region.} For each region, the encoder finds the quantization parameter that minimizes $D_i(Q_i) + \lambda R_i(Q_i)$ using the rate model $R_i(Q_i) = a_i \cdot Q_i^{-b_i}$ fitted to codec-specific RD curves.
+
+\textbf{Step 3: Lambda search.} The Lagrange multiplier $\lambda$ is found by binary search over $[10^{-6}, 10^{1}]$ until the total bitrate converges to $B_t \pm 1\%$. Our lambda sweep experiments (Table~\ref{tab:lambda_sweep}) show that $\lambda = 10^{-4}$ achieves near-optimal efficiency for typical surveillance budgets.
+
+\begin{table}[t]
+\centering
+\caption{Lambda sweep results showing bitrate convergence for the Lagrangian allocator.}
+\label{tab:lambda_sweep}
+\begin{tabular}{cc}
+\toprule
+$\lambda$ & Achieved Bitrate (kbps) \\
+\midrule
+$10^{-4}$ & 465.2 \\
+$10^{-3}$ & 257.9 \\
+$10^{-2}$ & 120.0 \\
+$10^{-1}$ & 120.0 \\
+$10^{0}$  & 120.0 \\
+$10^{1}$  & 120.0 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Forensic Evidence Preservation}
+\label{sec:forensic}
+
+The forensic evidence preservation mechanism ensures that critical events are captured at elevated quality through a buffer management scheme. We define three quality zones:
+
+\begin{itemize}
+    \item \textbf{Pre-event buffer} ($T_{\text{pre}}$ frames before risk threshold crossing): frames are retroactively re-encoded at higher quality using stored reference frames, ensuring that the moments leading up to an incident are preserved.
+    \item \textbf{Event window} (frames where $s_t > \theta_{\text{critical}}$): the ROI quality is maximized, with $\lambda$ reduced to ensure sufficient bits for forensic detail.
+    \item \textbf{Post-event buffer} ($T_{\text{post}}$ frames after risk drops below threshold): quality is gradually reduced over a decay period to capture the aftermath of an event without sudden quality transitions.
+\end{itemize}
+
+In our experiments, we use $T_{\text{pre}} = 30$ frames (1~s at 30~fps) and $T_{\text{post}} = 60$ frames (2~s), providing a 3-second forensic window around each detected event.
+
+\subsection{Adaptive GOP and Resolution Switching}
+\label{sec:adaptive}
+
+The adaptive GOP structure modulates the Group of Pictures length based on risk level:
+
+\begin{equation}
+\text{GOP}(s_t) = \text{GOP}_{\min} + (\text{GOP}_{\max} - \text{GOP}_{\min}) \cdot (1 - s_t)
+\end{equation}
+
+During low-risk periods ($s_t \to 0$), long GOPs ($\text{GOP}_{\max} = 120$) maximize temporal compression. During high-risk periods ($s_t \to 1$), short GOPs ($\text{GOP}_{\min} = 8$) enable frequent I-frames for error resilience and forensic accessibility.
+
+Resolution switching operates analogously: background regions are downscaled to a lower resolution during low-risk periods and upscaled during high-risk periods, leveraging the spatial resolution allocation parameter $\text{bg\_scale} \in [0.46, 0.92]$ observed in our rate allocator experiments (Table~\ref{tab:rate_allocator}).
+
+\begin{table}[t]
+\centering
+\caption{Rate allocator performance across budget levels and risk states. Background quality and scale adapt to the risk state within each budget tier.}
+\label{tab:rate_allocator}
+\begin{tabular}{cccccc}
+\toprule
+Budget (kbps) & State & $\lambda$ & Achieved (kbps) & BG Quality & BG Scale \\
+\midrule
+200 & Normal   & $6.1 \times 10^{-5}$ & 200.9 & 73 & 0.82 \\
+200 & Alert    & $1.6 \times 10^{-3}$ & 200.0 & 56 & 0.70 \\
+200 & Critical & $1.9 \times 10^{-3}$ & 199.8 & 83 & 0.89 \\
+\midrule
+500 & Normal   & $1.0 \times 10^{-6}$ & 442.5 & 60 & 0.73 \\
+500 & Alert    & $5.5 \times 10^{-5}$ & 499.4 & 57 & 0.70 \\
+500 & Critical & $6.8 \times 10^{-5}$ & 499.8 & 87 & 0.92 \\
+\midrule
+1000 & Normal   & $1.0 \times 10^{-6}$ & 684.4 & 41 & 0.58 \\
+1000 & Alert    & $1.0 \times 10^{-6}$ & 879.6 & 52 & 0.67 \\
+1000 & Critical & $1.0 \times 10^{-6}$ & 879.6 & 82 & 0.89 \\
+\midrule
+2000 & Normal   & $1.0 \times 10^{-6}$ & 879.6 & 29 & 0.46 \\
+2000 & Alert    & $1.0 \times 10^{-6}$ & 879.6 & 36 & 0.53 \\
+2000 & Critical & $1.0 \times 10^{-6}$ & 879.6 & 56 & 0.70 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:rate_allocator} demonstrates the adaptive behavior: at a 200~kbps budget, the allocator maintains high background quality during normal operation (BG quality 73, scale 0.82), reduces it during alert states to 56 at scale 0.70, and raises it to 83 at scale 0.89 during critical events---the latter reflecting the forensic preservation mechanism's override of the standard allocation policy.

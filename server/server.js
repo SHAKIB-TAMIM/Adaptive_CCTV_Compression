@@ -269,7 +269,7 @@ const MOTION_CSV = path.join(__dirname, 'motion_log.csv');
 
 // Ensure paths exist
 if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR, { recursive: true });
-if (!fs.existsSync(METRICS_CSV)) fs.writeFileSync(METRICS_CSV, 'timestamp,camera_id,total_clients,total_kbps,sio_kbps,udp_kbps,bitrate,psnr,ssim,gop_size,res_w,res_h\n');
+if (!fs.existsSync(METRICS_CSV)) fs.writeFileSync(METRICS_CSV, 'timestamp,camera_id,total_clients,total_kbps,sio_kbps,udp_kbps,raw_kbps,bandwidth_saved_pct,bitrate,psnr,ssim,gop_size,res_w,res_h\n');
 if (!fs.existsSync(CONTROL_CSV)) fs.writeFileSync(CONTROL_CSV, 'timestamp,experiment_id,control_json\n');
 if (!fs.existsSync(MOTION_CSV))  fs.writeFileSync(MOTION_CSV,  'timestamp,camera_id,experiment_id,frame_id,motion_percent,num_rois,rois_json\n');
 
@@ -287,13 +287,28 @@ let eventLog = [];
 // Each camera gets its own UDP port — listener is created when camera is registered.
 
 // -------------------- Metrics Handling --------------------
+function computeRawBitrate(cameraId) {
+  // Compute raw uncompressed bitrate from camera resolution + FPS
+  // Raw = width × height × 3 bytes/pixel × FPS × 8 bits/byte / 1000 (kbps)
+  const cam = cameras.find(c => c.id === cameraId);
+  const resW = latestCodecState.res_w || 640;
+  const resH = latestCodecState.res_h || 480;
+  const fps = (cam && cam.fps) ? cam.fps : 15;
+  const rawKbps = (resW * resH * 3 * fps * 8) / 1000;
+  return rawKbps;
+}
+
 function addMetricSnapshot(sioKbps, udpKbps, clients, cameraId = "camera_0") {
   const totalKbps = sioKbps + udpKbps;
+  const rawKbps = computeRawBitrate(cameraId);
 
   // Use real PSNR/SSIM from cache (populated by /sample). Null means not yet measured.
   const quality = realQualityCache[cameraId] || realQualityCache['camera_0'] || {};
   const psnrVal = quality.psnr !== undefined ? quality.psnr : null;
   const ssimVal = quality.ssim !== undefined ? quality.ssim : null;
+
+  // Bandwidth savings: raw uncompressed vs compressed UDP stream
+  const bandwidthSavedPct = rawKbps > 0 ? Math.max(0, ((rawKbps - udpKbps) / rawKbps) * 100) : 0;
 
   const snapshot = {
     timestamp: new Date().toISOString(),
@@ -302,6 +317,8 @@ function addMetricSnapshot(sioKbps, udpKbps, clients, cameraId = "camera_0") {
     total_kbps: Number(totalKbps).toFixed(2),
     sio_kbps: Number(sioKbps).toFixed(2),
     udp_kbps: Number(udpKbps).toFixed(2),
+    raw_kbps: Number(rawKbps).toFixed(2),
+    bandwidth_saved_pct: Number(bandwidthSavedPct).toFixed(1),
     bitrate: userControl.bitrate,
     psnr: psnrVal,
     ssim: ssimVal,
@@ -323,7 +340,7 @@ function addMetricSnapshot(sioKbps, udpKbps, clients, cameraId = "camera_0") {
   // Emit to view namespace
   viewNS.emit('metrics', snapshot);
 
-  const row = `${snapshot.timestamp},${cameraId},${snapshot.total_clients},${snapshot.total_kbps},${snapshot.sio_kbps},${snapshot.udp_kbps},${snapshot.bitrate},${snapshot.psnr},${snapshot.ssim},${snapshot.gop_size},${snapshot.res_w},${snapshot.res_h}\n`;
+  const row = `${snapshot.timestamp},${cameraId},${snapshot.total_clients},${snapshot.total_kbps},${snapshot.sio_kbps},${snapshot.udp_kbps},${snapshot.raw_kbps},${snapshot.bandwidth_saved_pct},${snapshot.bitrate},${snapshot.psnr},${snapshot.ssim},${snapshot.gop_size},${snapshot.res_w},${snapshot.res_h}\n`;
   fs.appendFile(METRICS_CSV, row, (err) => { if (err) console.error('metrics csv append err', err); });
 }
 
@@ -1115,7 +1132,7 @@ function runHousekeeping() {
   } catch (e) { console.error('[retention] Event purge error:', e.message); }
 
   // Rotate CSVs (keep 7 days)
-  rotateCsv(METRICS_CSV, 'timestamp,camera_id,total_clients,total_kbps,sio_kbps,udp_kbps,bitrate,psnr,ssim,gop_size,res_w,res_h');
+  rotateCsv(METRICS_CSV, 'timestamp,camera_id,total_clients,total_kbps,sio_kbps,udp_kbps,raw_kbps,bandwidth_saved_pct,bitrate,psnr,ssim,gop_size,res_w,res_h');
   rotateCsv(MOTION_CSV, 'timestamp,camera_id,experiment_id,frame_id,motion_percent,num_rois,rois_json');
   rotateCsv(EVENT_CSV, 'timestamp,camera_id,event_id,risk,state,frame_id,num_rois,hour');
 

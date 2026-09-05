@@ -1,0 +1,64 @@
+version: '3.8'
+
+services:
+  edge-node:
+    build:
+      context: ../edge-node
+      dockerfile: ../deployment/Dockerfile.edge-node
+    runtime: nvidia
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+      - CAMERA_SOURCE=0
+      - SERVER_URL=http://server:5000
+      - UDP_PORT=1234
+      - TARGET_FPS=15
+    volumes:
+      - ../models:/models
+      - ../configs:/configs
+      - /tmp/video-input:/video-input
+    devices:
+      - "/dev/video0:/dev/video0"
+      - "/dev/video1:/dev/video1"
+      - "/dev/video2:/dev/video2"
+    profiles:
+      - single
+      - gpu
+
+  edge-node-file:
+    build:
+      context: ../edge-node
+      dockerfile: ../deployment/Dockerfile.edge-node
+    entrypoint: ["python3", "capture_stream.py", "--source", "/video-input/input.mp4"]
+    environment:
+      - SERVER_URL=http://server:5000
+      - UDP_PORT=1234
+      - TARGET_FPS=15
+    volumes:
+      - ../models:/models
+      - ../configs:/configs
+      - /tmp/video-input:/video-input
+    profiles:
+      - file
+
+  edge-node-rtsp:
+    build:
+      context: ../edge-node
+      dockerfile: ../deployment/Dockerfile.edge-node
+    entrypoint: ["python3", "capture_stream.py", "--source", "${RTSP_URL}"]
+    environment:
+      - SERVER_URL=http://server:5000
+      - UDP_PORT=1234
+      - TARGET_FPS=15
+      - RTSP_URL=rtsp://admin:password@192.168.1.100:554/stream1
+    volumes:
+      - ../models:/models
+      - ../configs:/configs
+    profiles:
+      - rtsp

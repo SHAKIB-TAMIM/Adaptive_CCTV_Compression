@@ -1,0 +1,46 @@
+\section{Related Work}
+\label{sec:related_work}
+
+\subsection{Video Compression Standards}
+
+Modern video compression has evolved through several generations of standards, each achieving progressively better rate-distortion performance at the cost of increased computational complexity. H.264/AVC~\cite{wiegand2003h264} remains the most widely deployed codec in surveillance systems due to its broad hardware support and low encoding latency. H.265/HEVC~\cite{sullivan2012h265} roughly doubles compression efficiency through larger coding tree units (up to $64\times64$) and advanced intra prediction modes, but its licensing complexity and higher computational demands have slowed adoption in resource-constrained edge devices.
+
+The newer generation of codecs---VP9~\cite{grange2017vp9} and AV1~\cite{chen2021av1}---offer further improvements. AV1, developed by the Alliance for Open Media, achieves approximately 30\% bitrate savings over H.265 at equivalent quality~\cite{chen2021av1}, though at significantly higher encoding complexity. VP9, developed by Google, occupies an intermediate position with competitive compression efficiency and royalty-free licensing. Recent work on SVT-AV1~\cite{chen2022svtav1} has reduced AV1 encoding complexity through parallelism-friendly architectures, making it more viable for real-time applications.
+
+Our evaluation quantifies the rate-distortion tradeoffs across all four codecs under surveillance-relevant conditions (Table~\ref{tab:sota_comparison}). At a target bitrate of 500~kbps, AV1 achieves a PSNR of 40.31~dB and SSIM of 0.960, compared to H.264's 30.36~dB and 0.879 SSIM---a 9.95~dB improvement at equivalent bitrate. These baselines establish the operating envelope within which our adaptive system must outperform fixed-rate encoding.
+
+\subsection{ROI-Based Compression for Surveillance}
+
+Region-of-interest (ROI) coding has been studied extensively in the context of surveillance and video conferencing. early work by Chang et al.~\cite{chang2004roi} proposed face-priority encoding for video calls, allocating more bits to facial regions while compressing backgrounds aggressively. Chen et al.~\cite{chen2008roi} extended this to surveillance by detecting moving objects and allocating bits proportionally to object importance.
+
+More recent approaches integrate deep learning-based object detection into the encoding pipeline. Li et al.~\cite{li2021deep} used YOLO-based detectors to create ROI maps that modulate quantization parameters across the frame. Zhang et al.~\cite{zhang2022perceptual} proposed perceptual ROI coding that weights regions by both detection confidence and semantic importance (e.g., faces vs. vehicles).
+
+Our work differs from these approaches in two key ways. First, we do not rely on expensive object detection at encoding time; instead, our risk scoring engine operates on lightweight visual features (optical flow, edge density) that can run on edge hardware at real-time speeds. Second, our ROI quality allocation is driven by a formal Lagrangian optimization rather than heuristic weighting, enabling provably optimal bit distribution under a given budget constraint.
+
+\subsection{Adaptive Bitrate Streaming}
+
+Adaptive bitrate (ABR) streaming protocols, most notably MPEG-DASH~\cite{stockhammer2011dash} and WebRTC~\cite{hutton2019webrtc}, dynamically adjust video quality in response to network conditions. DASH operates at the segment level, switching between pre-encoded quality tiers based on throughput estimates. WebRTC provides lower-latency adaptation suitable for real-time applications, with encoder-level rate control responding to congestion signals.
+
+These protocols address a different problem than our work: they adapt to \emph{available bandwidth} rather than to \emph{content importance}. A DASH player might reduce quality during congestion, but it does so uniformly across the frame, potentially degrading the very regions that matter most for forensic purposes. Our system combines bandwidth awareness with content-aware risk scoring, ensuring that quality reduction preferentially affects low-importance regions.
+
+Recent work by Liu et al.~\cite{liu2023risk} explored risk-aware quality adaptation for video conferencing, where ``risk'' refers to packet loss probability. This is orthogonal to our notion of forensic risk, which captures the security-relevant importance of scene content.
+
+\subsection{Edge Computing for Video Analytics}
+
+The edge computing paradigm has enabled deployment of video analytics closer to cameras, reducing backhaul bandwidth requirements and enabling real-time response. Wang et al.~\cite{wang2024edge} surveyed edge architectures for video surveillance, identifying three tiers: camera-embedded processing, edge server processing, and cloud-based analytics. Hybrid approaches like Sun et al.~\cite{sun2023hybrid} partition computation between edge and cloud based on task complexity and latency requirements.
+
+Edge-based video encoding has received particular attention. Jiang et al.~\cite{jiang2023edge} proposed offloading H.265 encoding from cameras to edge servers with GPU acceleration. Kim et al.~\cite{kim2024lightweight} developed lightweight neural video codecs optimized for ARM-based edge devices. These works focus on encoding efficiency but do not address the content-adaptive bit allocation problem.
+
+Our architecture builds on the edge-cloud paradigm by placing risk scoring and adaptive encoding at the edge, with optional cloud offloading for archival storage and long-term analytics. Unlike prior edge encoding work, our system dynamically adjusts both the encoding parameters and the spatial quality distribution based on real-time risk assessment.
+
+\subsection{Forensic Evidence Preservation}
+
+Forensic evidence preservation in video surveillance requires that legally admissible footage maintains sufficient quality for identification, attribution, and event reconstruction~\cite{ISO2022forensic}. Standards such as ISO/IEC 29108:2022 specify minimum quality requirements for forensic video, including constraints on compression artifacts in regions of interest.
+
+Existing surveillance systems typically address this through fixed high-quality recording or post-hoc quality enhancement. ForensicVideo~\cite{mitchell2020forensic} proposed a dual-stream architecture that records a low-quality stream for browsing and a high-quality stream for forensic use. However, maintaining two streams doubles bandwidth consumption and does not adapt to scene content.
+
+Our forensic evidence preservation mechanism is integrated directly into the adaptive compression pipeline. Rather than maintaining separate streams, we dynamically expand quality windows around detected events, ensuring that pre-event context and post-event consequences are captured at forensic-grade fidelity while allowing aggressive compression during quiescent periods.
+
+\subsection{Identified Gap}
+
+Despite significant progress in each of these areas, no existing system simultaneously addresses all four challenges: (1)~content-aware compression that adapts to scene risk rather than just bandwidth, (2)~formal rate-distortion optimization with provable properties, (3)~integrated forensic evidence preservation with event-triggered quality expansion, and (4)~an edge-cloud architecture that enables scalable deployment. Our work fills this gap by unifying these capabilities into a single framework that achieves substantial bandwidth savings without compromising forensic utility.
