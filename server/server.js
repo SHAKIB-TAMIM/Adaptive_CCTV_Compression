@@ -204,6 +204,9 @@ class UdpMonitor {
     const socket = dgram.createSocket('udp4');
     socket.on('message', (msg) => {
       this.bytes[port] = (this.bytes[port] || 0) + msg.length;
+      if (this.bytes[port] <= msg.length * 3) {
+        console.log(`[UDP] Packet on port ${port} (${cameraId}): ${msg.length}B, total=${this.bytes[port]}B`);
+      }
     });
     socket.on('error', (err) => {
       console.error(`[UDP] Error on port ${port} (${cameraId}):`, err.message);
@@ -237,11 +240,9 @@ class UdpMonitor {
 
 const udpMonitor = new UdpMonitor();
 
-// Now safe to load cameras (udpMonitor is initialized)
+// Initialize UDP listeners — cameras loaded from YAML (or fallback)
+// Note: loadCamerasFromYaml() already calls udpMonitor.addListener for each camera
 loadCamerasFromYaml();
-
-// Initialize UDP listener for default camera
-udpMonitor.addListener(1234, "camera_0");
 
 // Timestamp of last user-initiated control message
 let lastUserControlTime = 0;
@@ -291,8 +292,13 @@ function computeRawBitrate(cameraId) {
   // Compute raw uncompressed bitrate from camera resolution + FPS
   // Raw = width × height × 3 bytes/pixel × FPS × 8 bits/byte / 1000 (kbps)
   const cam = cameras.find(c => c.id === cameraId);
-  const resW = latestCodecState.res_w || 640;
-  const resH = latestCodecState.res_h || 480;
+  // Use per-camera resolution if tracked, else global, else default
+  let resW = (cam && cam.res_w) ? cam.res_w : latestCodecState.res_w;
+  let resH = (cam && cam.res_h) ? cam.res_h : latestCodecState.res_h;
+  if (!resW || !resH || resW <= 10 || resH <= 10) {
+    resW = 640;
+    resH = 480;
+  }
   const fps = (cam && cam.fps) ? cam.fps : 15;
   const rawKbps = (resW * resH * 3 * fps * 8) / 1000;
   return rawKbps;
@@ -301,6 +307,7 @@ function computeRawBitrate(cameraId) {
 function addMetricSnapshot(sioKbps, udpKbps, clients, cameraId = "camera_0") {
   const totalKbps = sioKbps + udpKbps;
   const rawKbps = computeRawBitrate(cameraId);
+  const cam = cameras.find(c => c.id === cameraId);
 
   // Use real PSNR/SSIM from cache (populated by /sample). Null means not yet measured.
   const quality = realQualityCache[cameraId] || realQualityCache['camera_0'] || {};
@@ -309,6 +316,12 @@ function addMetricSnapshot(sioKbps, udpKbps, clients, cameraId = "camera_0") {
 
   // Bandwidth savings: raw uncompressed vs compressed UDP stream
   const bandwidthSavedPct = rawKbps > 0 ? Math.max(0, ((rawKbps - udpKbps) / rawKbps) * 100) : 0;
+
+  // Storage efficiency: how much storage we save per day
+  // raw_kbps is in kbps, convert to GB/day: kbps * 1000 / 8 * 86400 / 1e9
+  const storageRawGB = rawKbps > 0 ? (rawKbps * 1000 / 8 * 86400) / 1e9 : 0;   // GB/day if stored raw
+  const storageCompGB = udpKbps > 0 ? (udpKbps * 1000 / 8 * 86400) / 1e9 : 0; // GB/day compressed
+  const storageSavedGB = storageRawGB - storageCompGB;
 
   const snapshot = {
     timestamp: new Date().toISOString(),
@@ -319,13 +332,17 @@ function addMetricSnapshot(sioKbps, udpKbps, clients, cameraId = "camera_0") {
     udp_kbps: Number(udpKbps).toFixed(2),
     raw_kbps: Number(rawKbps).toFixed(2),
     bandwidth_saved_pct: Number(bandwidthSavedPct).toFixed(1),
+    storage_raw_gb_day: Number(storageRawGB).toFixed(2),
+    storage_comp_gb_day: Number(storageCompGB).toFixed(3),
+    storage_saved_gb_day: Number(storageSavedGB).toFixed(2),
     bitrate: userControl.bitrate,
     psnr: psnrVal,
     ssim: ssimVal,
     quality_measured: psnrVal !== null,
-    gop_size: latestCodecState.gop_size,
-    res_w: latestCodecState.res_w,
-    res_h: latestCodecState.res_h,
+    gop_size: (cam && cam.gop_size) ? cam.gop_size : latestCodecState.gop_size,
+    res_w: (cam && cam.res_w) ? cam.res_w : latestCodecState.res_w,
+    res_h: (cam && cam.res_h) ? cam.res_h : latestCodecState.res_h,
+    fps: (cam && cam.fps) ? cam.fps : 15,
   };
 
   // Per-camera metrics ring
@@ -374,6 +391,12 @@ streamNS.on('connection', (socket) => {
       if (msg.gop_size !== undefined) latestCodecState.gop_size = msg.gop_size;
       if (msg.res_w !== undefined) latestCodecState.res_w = msg.res_w;
       if (msg.res_h !== undefined) latestCodecState.res_h = msg.res_h;
+      // Store per-camera resolution
+      if (cam) {
+        if (msg.res_w !== undefined) cam.res_w = msg.res_w;
+        if (msg.res_h !== undefined) cam.res_h = msg.res_h;
+        if (msg.gop_size !== undefined) cam.gop_size = msg.gop_size;
+      }
 
       // 🔹 Live stream to dashboard (with camera_id)
       viewNS.emit('frame', msg);
@@ -420,6 +443,9 @@ setInterval(() => {
     const camUdpBytes = udpMonitor.getBytes(port);
     const camUdpKbps = (camUdpBytes * 8) / interval_s / 1000;
     totalUdpKbps += camUdpKbps;
+    if (camUdpKbps > 0) {
+      console.log(`[BW] ${camId} port=${port}: ${camUdpBytes} bytes → ${camUdpKbps.toFixed(1)} kbps`);
+    }
     addMetricSnapshot(0, camUdpKbps, totalClients, camId);
     udpMonitor.resetBytes(port);
   }
@@ -510,6 +536,52 @@ app.delete('/cameras/:id', (req, res) => {
   cameras.splice(idx, 1);
   console.log(`[cameras] Removed ${id}`);
   res.json({ success: true, removed: id });
+});
+
+// PUT /cameras/:id — update a camera
+app.put('/cameras/:id', (req, res) => {
+  try {
+    const id = req.params.id;
+    const idx = cameras.findIndex(c => c.id === id);
+    if (idx < 0) return res.status(404).json({ error: "Camera not found" });
+
+    const { name, source, udp_port, fps, enabled } = req.body;
+    if (name) cameras[idx].name = name;
+    if (source) cameras[idx].source = source;
+    if (udp_port) cameras[idx].udp_port = udp_port;
+    if (fps) cameras[idx].fps = fps;
+    if (enabled !== undefined) cameras[idx].enabled = enabled;
+
+    console.log(`[cameras] Updated ${id}`);
+    res.json({ success: true, camera: cameras[idx] });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// POST /cameras/save — save current cameras to YAML file
+app.post('/cameras/save', (req, res) => {
+  try {
+    const fs = require('fs');
+    const yaml = require('js-yaml');
+    const configPath = path.join(__dirname, '..', 'configs', 'cameras.yaml');
+
+    const camData = cameras.map(c => ({
+      id: c.id,
+      name: c.name,
+      source: c.source,
+      udp_port: c.udp_port,
+      fps: c.fps || 15,
+      enabled: c.enabled !== false,
+    }));
+
+    const yamlStr = yaml.dump({ cameras: camData }, { lineWidth: 120 });
+    fs.writeFileSync(configPath, yamlStr, 'utf8');
+    console.log(`[cameras] Saved ${cameras.length} cameras to ${configPath}`);
+    res.json({ success: true, saved: cameras.length, path: configPath });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
 });
 
 // GET /cameras/:id/metrics — per-camera metrics history

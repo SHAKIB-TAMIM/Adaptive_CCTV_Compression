@@ -1,0 +1,89 @@
+version: '3.8'
+
+# ═══════════════════════════════════════════════════════
+#  AI Risk-Aware CCTV Compression — Docker Deployment
+#
+#  Quick Start:
+#    docker compose up --build           (camera-manager mode)
+#    docker compose --profile single up  (single webcam mode)
+#
+#  Access dashboard: http://localhost:3000
+#  Access server:    http://localhost:5000
+# ═══════════════════════════════════════════════════════
+
+services:
+  server:
+    build:
+      context: ./server
+    container_name: cctv-server
+    ports:
+      - "5000:5000"
+      - "1234-1254:1234-1254/udp"
+    volumes:
+      - ./configs:/configs
+      - ./server/recordings:/app/recordings
+      - ./server/events:/app/events
+      - ./outputs:/app/outputs
+    restart: unless-stopped
+
+  dashboard:
+    build:
+      context: ./dashboard
+    container_name: cctv-dashboard
+    ports:
+      - "3000:3000"
+    environment:
+      - NEXT_PUBLIC_SERVER_URL=http://localhost:5000
+    depends_on:
+      - server
+    restart: unless-stopped
+
+  # Multi-camera edge-node (default — reads cameras.yaml)
+  camera-manager:
+    build:
+      context: ./edge-node
+      dockerfile: ../deployment/Dockerfile.edge-node
+    container_name: cctv-edge
+    entrypoint:
+      - python3
+      - camera_manager.py
+      - --server
+      - http://server:5000
+      - --config
+      - /configs/cameras.yaml
+      - --use-optimizer
+    environment:
+      - SERVER_URL=http://server:5000
+    volumes:
+      - ./configs:/configs
+      - ./models:/models
+    devices:
+      - "/dev/video0:/dev/video0"
+      - "/dev/video1:/dev/video1"
+    depends_on:
+      - server
+    restart: unless-stopped
+    profiles:
+      - multi
+
+  # Single webcam (default profile — use if only one camera)
+  edge-node:
+    build:
+      context: ./edge-node
+      dockerfile: ../deployment/Dockerfile.edge-node
+    container_name: cctv-edge-single
+    environment:
+      - SERVER_URL=http://server:5000
+      - CAMERA_SOURCE=0
+      - UDP_PORT=1234
+      - TARGET_FPS=15
+    volumes:
+      - ./configs:/configs
+      - ./models:/models
+    devices:
+      - "/dev/video0:/dev/video0"
+    depends_on:
+      - server
+    restart: unless-stopped
+    profiles:
+      - single

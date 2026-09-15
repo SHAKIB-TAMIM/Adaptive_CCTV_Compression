@@ -1,0 +1,30 @@
+{
+  "ts": "2026-09-14T17:28:19.049Z",
+  "cameraId": "camera_0",
+  "eventId": "event_1789406896686",
+  "risk": 0.7173,
+  "state": "critical",
+  "frameId": 200,
+  "numRois": 2,
+  "hour": 23,
+  "rois": [
+    {
+      "bbox": [
+        79,
+        204,
+        518,
+        479
+      ],
+      "priority": "high"
+    },
+    {
+      "bbox": [
+        258,
+        390,
+        360,
+        479
+      ],
+      "priority": "low"
+    }
+  ]
+}

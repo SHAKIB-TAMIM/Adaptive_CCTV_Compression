@@ -1,22 +1,23 @@
-opencv-python
-opencv-contrib-python
-numpy
-Pillow
-python-socketio==5.7.2
-ultralytics
-scikit-image
-pandas
-matplotlib
-pyyaml
-requests
+# ──────────────────────────────────────────────────────
+#  Edge-Node Python Dependencies (core)
+# ──────────────────────────────────────────────────────
+numpy>=1.24.0
+opencv-python>=4.8.0
+python-socketio[client]>=5.7.0
+requests>=2.31.0
+PyYAML>=6.0
+Pillow>=10.0.0
+ultralytics>=8.0.0
 
-# Deep Re-ID (OSNet-x0.25 ONNX) — falls back to colour-histogram if unavailable
-onnxruntime
+# ──────────────────────────────────────────────────────
+#  Optional: Person Re-ID (colour histogram fallback if not installed)
+# ──────────────────────────────────────────────────────
+# onnxruntime>=1.16.0
 
-# Phase 1 — simple audio impulse/sustained detection
-pyaudio
-
-# Phase 2 — YAMNet 11-class audio classifier
-tensorflow-hub
-tensorflow-cpu
-soundfile
+# ──────────────────────────────────────────────────────
+#  Optional: Audio monitoring
+# ──────────────────────────────────────────────────────
+# PyAudio>=0.2.14
+# tensorflow-hub>=2.16.0
+# tensorflow-cpu>=2.16.0
+# soundfile>=0.12.0

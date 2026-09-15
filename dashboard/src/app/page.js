@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import io from "socket.io-client";
 import {
   AreaChart,
@@ -43,7 +44,11 @@ export default function Home() {
   // Bandwidth metrics
   const [sioKbps, setSioKbps] = useState(0);
   const [udpKbps, setUdpKbps] = useState(0);
+  const [rawKbps, setRawKbps] = useState(0);
   const [bandwidthSaved, setBandwidthSaved] = useState(0);
+  const [storageRawGB, setStorageRawGB] = useState(0);
+  const [storageCompGB, setStorageCompGB] = useState(0);
+  const [storageSavedGB, setStorageSavedGB] = useState(0);
   const [metricsHistory, setMetricsHistory] = useState([]);
   const [activityHistory, setActivityHistory] = useState([]);
 
@@ -179,8 +184,11 @@ export default function Home() {
       const raw = parseFloat(m.raw_kbps) || 0;
       setSioKbps(sio);
       setUdpKbps(udp);
-      // Use server-computed bandwidth savings (raw vs compressed)
+      setRawKbps(raw);
       setBandwidthSaved(parseFloat(m.bandwidth_saved_pct) || 0);
+      setStorageRawGB(parseFloat(m.storage_raw_gb_day) || 0);
+      setStorageCompGB(parseFloat(m.storage_comp_gb_day) || 0);
+      setStorageSavedGB(parseFloat(m.storage_saved_gb_day) || 0);
 
       // Add to metrics history array
       setMetricsHistory((prev) => {
@@ -431,32 +439,38 @@ export default function Home() {
             >
               Playback
             </button>
+            <Link
+              href="/config"
+              className="text-xs text-cyan-400 hover:text-cyan-300 transition-colors px-3 py-1.5 bg-cyan-900/20 border border-cyan-500/30 rounded-lg"
+            >
+              Settings
+            </Link>
           </div>
         </div>
       </header>
 
       {/* Main Grid Content */}
-      <main className="relative z-10 p-6 grid grid-cols-1 xl:grid-cols-12 gap-6 max-w-[1800px] mx-auto">
+      <main className="relative z-10 p-4 grid grid-cols-1 xl:grid-cols-12 gap-4 max-w-[1800px] mx-auto">
         
         {/* Left Side: Video Panel & Preserver (7 Columns) */}
-        <section className="xl:col-span-7 flex flex-col gap-6">
+        <section className="xl:col-span-7 flex flex-col gap-4">
           
           {/* Video Feed Card */}
-          <div className="bg-slate-950/40 border border-slate-900 backdrop-blur-md rounded-2xl p-4 shadow-2xl flex flex-col gap-4">
-            <div className="flex items-center justify-between border-b border-slate-900 pb-3">
-              <h3 className="text-sm font-semibold tracking-wider text-slate-400 uppercase flex items-center gap-2">
-                <span className="w-2.5 h-2.5 bg-cyan-500 rounded-full animate-pulse"></span>
+          <div className="bg-slate-950/40 border border-slate-900 backdrop-blur-md rounded-2xl p-3 shadow-2xl flex flex-col gap-3">
+            <div className="flex items-center justify-between border-b border-slate-900 pb-2">
+              <h3 className="text-xs font-semibold tracking-wider text-slate-400 uppercase flex items-center gap-2">
+                <span className="w-2 h-2 bg-cyan-500 rounded-full animate-pulse"></span>
                 {cameras.find(c => c.id === selectedCamera)?.name || selectedCamera}
               </h3>
-              <div className="flex items-center gap-3 text-xs text-slate-500">
+              <div className="flex items-center gap-3 text-[10px] text-slate-500">
                 <span>FPS: <strong className="text-cyan-400 font-mono">{fps}</strong></span>
                 <span>Frame: <strong className="text-slate-300 font-mono">{frameId}</strong></span>
-                <span>Active ROIs: <strong className="text-amber-400 font-mono">{rois.length}</strong></span>
+                <span>ROIs: <strong className="text-amber-400 font-mono">{rois.length}</strong></span>
               </div>
             </div>
 
             {/* Video Canvas Container */}
-            <div className="relative aspect-video w-full bg-[#030407] rounded-xl overflow-hidden border border-slate-800 shadow-inner group">
+            <div className="relative aspect-video w-full max-h-[320px] bg-[#030407] rounded-xl overflow-hidden border border-slate-800 shadow-inner group">
               <canvas
                 ref={canvasRef}
                 className="w-full h-full object-contain block"
@@ -534,71 +548,77 @@ export default function Home() {
             </div>
 
             {/* Micro Stats Bar */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-4 bg-slate-950/60 border border-slate-900/80 rounded-xl p-4 text-center">
-              <div>
-                <p className="text-[10px] text-slate-500 tracking-wider uppercase font-semibold">Raw (Uncompressed)</p>
-                <p className="text-xl font-bold font-mono text-red-400 mt-1">{(resW * resH * 3 * 15 * 8 / 1000 / 1000).toFixed(1)} <span className="text-xs text-slate-500 font-normal">Mbps</span></p>
+            <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-2 bg-slate-950/60 border border-slate-900/80 rounded-xl p-2.5 text-center">
+              <div className="flex flex-col items-center">
+                <p className="text-[9px] text-slate-500 tracking-wider uppercase font-semibold">Raw (Input)</p>
+                <p className="text-base font-bold font-mono text-red-400">{rawKbps >= 1000 ? (rawKbps / 1000).toFixed(1) + " Mbps" : rawKbps.toFixed(0) + " kbps"}</p>
+                <p className="text-[8px] text-slate-600">RGB pixels captured</p>
               </div>
-              <div>
-                <p className="text-[10px] text-slate-500 tracking-wider uppercase font-semibold">Compressed Stream</p>
-                <p className="text-xl font-bold font-mono text-cyan-400 mt-1">{udpKbps.toFixed(1)} <span className="text-xs text-slate-500 font-normal">kbps</span></p>
+              <div className="flex flex-col items-center">
+                <p className="text-[9px] text-slate-500 tracking-wider uppercase font-semibold">H.265 (Output)</p>
+                <p className="text-base font-bold font-mono text-cyan-400">{udpKbps >= 1000 ? (udpKbps / 1000).toFixed(1) + " Mbps" : udpKbps.toFixed(0) + " kbps"}</p>
+                <p className="text-[8px] text-slate-600">compressed stream</p>
               </div>
-              <div>
-                <p className="text-[10px] text-slate-500 tracking-wider uppercase font-semibold">Preview Stream</p>
-                <p className="text-xl font-bold font-mono text-slate-200 mt-1">{sioKbps.toFixed(1)} <span className="text-xs text-slate-500 font-normal">kbps</span></p>
-              </div>
-              <div>
-                <p className="text-[10px] text-slate-500 tracking-wider uppercase font-semibold">Bandwidth Saved</p>
-                <p className={`text-xl font-bold font-mono mt-1 ${
+              <div className="flex flex-col items-center">
+                <p className="text-[9px] text-slate-500 tracking-wider uppercase font-semibold">Saved</p>
+                <p className={`text-base font-bold font-mono ${
                   bandwidthSaved > 80 ? "text-emerald-400" : bandwidthSaved > 50 ? "text-amber-400" : "text-red-400"
-                }`}>{bandwidthSaved.toFixed(0)}%</p>
+                }`}>{bandwidthSaved.toFixed(1)}%</p>
+                <p className="text-[8px] text-slate-600">bandwidth</p>
               </div>
-              <div>
-                <p className="text-[10px] text-slate-500 tracking-wider uppercase font-semibold">Risk Score</p>
-                <p className={`text-xl font-bold font-mono mt-1 ${
+              <div className="flex flex-col items-center">
+                <p className="text-[9px] text-slate-500 tracking-wider uppercase font-semibold">Storage</p>
+                <p className="text-base font-bold font-mono text-emerald-400">{storageSavedGB > 1000 ? (storageSavedGB / 1000).toFixed(1) + " TB" : storageSavedGB.toFixed(0) + " GB"}<span className="text-[9px] text-slate-500 font-normal">/d</span></p>
+                <p className="text-[8px] text-slate-600">saved/cam</p>
+              </div>
+              <div className="flex flex-col items-center">
+                <p className="text-[9px] text-slate-500 tracking-wider uppercase font-semibold">Risk</p>
+                <p className={`text-base font-bold font-mono ${
                   risk > 0.55 ? "text-red-400" : risk > 0.25 ? "text-amber-400" : "text-emerald-400"
                 }`}>{risk.toFixed(2)}</p>
+                <p className="text-[8px] text-slate-600">0–1</p>
               </div>
-              <div>
-                <p className="text-[10px] text-slate-500 tracking-wider uppercase font-semibold">GOP Size</p>
-                <p className={`text-xl font-bold font-mono mt-1 ${
+              <div className="flex flex-col items-center">
+                <p className="text-[9px] text-slate-500 tracking-wider uppercase font-semibold">GOP</p>
+                <p className={`text-base font-bold font-mono ${
                   gopSize <= 10 ? "text-red-400" : gopSize <= 30 ? "text-amber-400" : "text-purple-400"
-                }`}>{gopSize} <span className="text-xs text-slate-500 font-normal">frames</span></p>
+                }`}>{gopSize}</p>
+                <p className="text-[8px] text-slate-600">frames</p>
               </div>
-              <div>
-                <p className="text-[10px] text-slate-500 tracking-wider uppercase font-semibold">Resolution</p>
-                <p className="text-xl font-bold font-mono text-slate-200 mt-1">{resW}×{resH}</p>
+              <div className="flex flex-col items-center">
+                <p className="text-[9px] text-slate-500 tracking-wider uppercase font-semibold">Res</p>
+                <p className="text-base font-bold font-mono text-slate-200">{resW}×{resH}</p>
+                <p className="text-[8px] text-slate-600">adaptive</p>
               </div>
             </div>
+            <p className="text-[8px] text-slate-600 text-center mt-1">Raw RGB = 3 bytes/pixel uncompressed. H.265 = compressed stream sent over network.</p>
           </div>
-
-          {/* Forensic Preserver Info */}
-          <div className="bg-slate-950/40 border border-slate-900 backdrop-blur-md rounded-2xl p-5 shadow-xl flex flex-col gap-4">
-            <h3 className="text-sm font-semibold tracking-wider text-slate-400 uppercase border-b border-slate-900 pb-2 flex items-center gap-2">
-              📂 Incident Preserver Status
+          <div className="bg-slate-950/40 border border-slate-900 backdrop-blur-md rounded-2xl p-4 shadow-xl flex flex-col gap-3">
+            <h3 className="text-xs font-semibold tracking-wider text-slate-400 uppercase border-b border-slate-900 pb-2 flex items-center gap-2">
+              📂 Forensic Preserver
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="space-y-2">
-                <div className="flex justify-between text-xs">
-                  <span className="text-slate-400">Rolling Pre-Event Buffer:</span>
-                  <span className="font-mono text-cyan-400">15 Seconds (Active)</span>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="space-y-1.5">
+                <div className="flex justify-between text-[11px]">
+                  <span className="text-slate-400">Pre-Event Buffer:</span>
+                  <span className="font-mono text-cyan-400">15s Active</span>
                 </div>
-                <div className="w-full bg-slate-900 rounded-full h-2 overflow-hidden border border-slate-800">
+                <div className="w-full bg-slate-900 rounded-full h-1.5 overflow-hidden border border-slate-800">
                   <div className="bg-gradient-to-r from-cyan-500 to-blue-500 h-full w-[100%] rounded-full animate-pulse" />
                 </div>
-                <p className="text-[10px] text-slate-500">Automatically stores 15 seconds of raw full-resolution frames in memory. When a critical event is triggered, this buffer is instantly written to the server storage directory as evidence.</p>
+                <p className="text-[9px] text-slate-500">15s raw frames in memory. Writes to storage on critical trigger.</p>
               </div>
-              <div className="space-y-2">
-                <div className="flex justify-between text-xs">
-                  <span className="text-slate-400">Post-Event Active Recorder:</span>
-                  <span className="font-mono text-red-400">10 Seconds (Trigger On-Demand)</span>
+              <div className="space-y-1.5">
+                <div className="flex justify-between text-[11px]">
+                  <span className="text-slate-400">Post-Event Recorder:</span>
+                  <span className="font-mono text-red-400">10s On-Demand</span>
                 </div>
-                <div className="w-full bg-slate-900 rounded-full h-2 overflow-hidden border border-slate-800">
+                <div className="w-full bg-slate-900 rounded-full h-1.5 overflow-hidden border border-slate-800">
                   <div className={`h-full rounded-full transition-all duration-300 ${
                     surveillance_state === "critical" ? "bg-red-500 w-[100%] animate-pulse" : "bg-slate-800 w-[0%]"
                   }`} />
                 </div>
-                <p className="text-[10px] text-slate-500">Saves the subsequent 10 seconds of full-resolution frames after the event trigger finishes. Ideal for complete forensic reconstructions of perimeter breaches or unauthorized entry.</p>
+                <p className="text-[9px] text-slate-500">Saves 10s after trigger for forensic reconstruction.</p>
               </div>
             </div>
           </div>
@@ -606,108 +626,108 @@ export default function Home() {
         </section>
 
         {/* Middle Side: Control Center (5 Columns split in grid layout) */}
-        <section className="xl:col-span-5 flex flex-col gap-6">
+        <section className="xl:col-span-5 flex flex-col gap-4">
           
           {/* Controls Panel */}
-          <div className="bg-slate-950/40 border border-slate-900 backdrop-blur-md rounded-2xl p-5 shadow-2xl flex flex-col gap-5">
-            <h3 className="text-sm font-semibold tracking-wider text-slate-400 uppercase border-b border-slate-900 pb-2">
-              ⚙️ Surveillance Control Center
+          <div className="bg-slate-950/40 border border-slate-900 backdrop-blur-md rounded-2xl p-4 shadow-2xl flex flex-col gap-4">
+            <h3 className="text-xs font-semibold tracking-wider text-slate-400 uppercase border-b border-slate-900 pb-2">
+              ⚙️ Control Center
             </h3>
 
             {/* Presets Grid */}
             <div>
-              <p className="text-xs text-slate-500 mb-3 font-semibold uppercase tracking-wider">Operational Profiles</p>
-              <div className="grid grid-cols-2 gap-3">
+              <p className="text-[10px] text-slate-500 mb-2 font-semibold uppercase tracking-wider">Operational Profiles</p>
+              <div className="grid grid-cols-2 gap-2">
                 <button
                   onClick={() => applyProfile("ultra_low", { bg_scale: 0.2, bg_quality: 5, roi_quality: 50, detect_every_n: 6, codec: "libx265", bitrate: 600 })}
-                  className={`p-3 rounded-xl border text-left transition-all duration-200 ${
+                  className={`p-2 rounded-xl border text-left transition-all duration-200 ${
                     activeProfile === "ultra_low" 
                       ? "bg-purple-950/40 border-purple-500/50 text-white shadow-lg shadow-purple-500/10" 
                       : "bg-slate-900/40 border-slate-800/80 hover:border-slate-700 text-slate-400 hover:text-slate-200"
                   }`}
                 >
-                  <p className="text-xs font-bold font-mono">📡 ULTRA LOW BW</p>
-                  <p className="text-[9px] text-slate-500 mt-1 leading-normal">Scale 0.2, Qual 5%, Det every 6f. Designed for remote satellite nodes.</p>
+                  <p className="text-[10px] font-bold font-mono">📡 ULTRA LOW BW</p>
+                  <p className="text-[8px] text-slate-500 mt-0.5 leading-tight">Scale 0.2, Qual 5%, Det every 6f.</p>
                 </button>
 
                 <button
                   onClick={() => applyProfile("balanced", { bg_scale: 0.5, bg_quality: 20, roi_quality: 85, detect_every_n: 3, codec: "libx265", bitrate: 1500 })}
-                  className={`p-3 rounded-xl border text-left transition-all duration-200 ${
+                  className={`p-2 rounded-xl border text-left transition-all duration-200 ${
                     activeProfile === "balanced" 
                       ? "bg-cyan-950/40 border-cyan-500/50 text-white shadow-lg shadow-cyan-500/10" 
                       : "bg-slate-900/40 border-slate-800/80 hover:border-slate-700 text-slate-400 hover:text-slate-200"
                   }`}
                 >
-                  <p className="text-xs font-bold font-mono">⚖️ BALANCED MODE</p>
-                  <p className="text-[9px] text-slate-500 mt-1 leading-normal">Scale 0.5, Qual 20%, Det every 3f. Standard campus gate operation.</p>
+                  <p className="text-[10px] font-bold font-mono">⚖️ BALANCED</p>
+                  <p className="text-[8px] text-slate-500 mt-0.5 leading-tight">Scale 0.5, Qual 20%, Det every 3f.</p>
                 </button>
 
                 <button
                   onClick={() => applyProfile("high_quality", { bg_scale: 0.8, bg_quality: 45, roi_quality: 95, detect_every_n: 1, codec: "libx265", bitrate: 3500 })}
-                  className={`p-3 rounded-xl border text-left transition-all duration-200 ${
+                  className={`p-2 rounded-xl border text-left transition-all duration-200 ${
                     activeProfile === "high_quality" 
                       ? "bg-emerald-950/40 border-emerald-500/50 text-white shadow-lg shadow-emerald-500/10" 
                       : "bg-slate-900/40 border-slate-800/80 hover:border-slate-700 text-slate-400 hover:text-slate-200"
                   }`}
                 >
-                  <p className="text-xs font-bold font-mono">💎 HIGH QUALITY</p>
-                  <p className="text-[9px] text-slate-500 mt-1 leading-normal">Scale 0.8, Qual 45%, Det every 1f. Maximized forensic fidelity.</p>
+                  <p className="text-[10px] font-bold font-mono">💎 HIGH QUALITY</p>
+                  <p className="text-[8px] text-slate-500 mt-0.5 leading-tight">Scale 0.8, Qual 45%, Det every 1f.</p>
                 </button>
 
                 <button
                   onClick={() => applyProfile("privacy", { bg_scale: 0.5, bg_quality: 20, roi_quality: 90, detect_every_n: 3, privacy_blur: true, mask_faces: true, codec: "libx265", bitrate: 1500 })}
-                  className={`p-3 rounded-xl border text-left transition-all duration-200 ${
+                  className={`p-2 rounded-xl border text-left transition-all duration-200 ${
                     activeProfile === "privacy" 
                       ? "bg-rose-950/40 border-rose-500/50 text-white shadow-lg shadow-rose-500/10" 
                       : "bg-slate-900/40 border-slate-800/80 hover:border-slate-700 text-slate-400 hover:text-slate-200"
                   }`}
                 >
-                  <p className="text-xs font-bold font-mono">🔒 PRIVACY SHIELD</p>
-                  <p className="text-[9px] text-slate-500 mt-1 leading-normal">Enables blur background & mask faces automatically.</p>
+                  <p className="text-[10px] font-bold font-mono">🔒 PRIVACY SHIELD</p>
+                  <p className="text-[8px] text-slate-500 mt-0.5 leading-tight">Blur background & mask faces.</p>
                 </button>
               </div>
             </div>
 
             {/* Interactive Sliders */}
-            <div className="space-y-4">
-              <p className="text-xs text-slate-500 font-semibold uppercase tracking-wider border-t border-slate-900 pt-3">Manual Override Parameters</p>
+            <div className="space-y-3">
+              <p className="text-[10px] text-slate-500 font-semibold uppercase tracking-wider border-t border-slate-900 pt-2">Manual Override</p>
               
               {/* BG Scale */}
               <div>
-                <div className="flex justify-between text-xs mb-1">
-                  <span className="text-slate-400">Background Scale:</span>
+                <div className="flex justify-between text-[10px] mb-0.5">
+                  <span className="text-slate-400">BG Scale:</span>
                   <span className="font-mono text-cyan-400 font-bold">{bgScale.toFixed(2)}</span>
                 </div>
                 <input
                   type="range" min="0.2" max="1.0" step="0.05" value={bgScale}
                   onChange={(e) => { setBgScale(parseFloat(e.target.value)); emitControl({ bg_scale: parseFloat(e.target.value) }); setActiveProfile("custom"); }}
-                  className="w-full accent-cyan-500 bg-slate-900 rounded-lg appearance-none h-1.5 cursor-pointer"
+                  className="w-full accent-cyan-500 bg-slate-900 rounded-lg appearance-none h-1 cursor-pointer"
                 />
               </div>
 
               {/* BG Quality */}
               <div>
-                <div className="flex justify-between text-xs mb-1">
-                  <span className="text-slate-400">Background Quality (QP/CRF):</span>
+                <div className="flex justify-between text-[10px] mb-0.5">
+                  <span className="text-slate-400">BG Quality (QP):</span>
                   <span className="font-mono text-cyan-400 font-bold">{bgQuality}%</span>
                 </div>
                 <input
                   type="range" min="5" max="95" step="5" value={bgQuality}
                   onChange={(e) => { setBgQuality(parseInt(e.target.value)); emitControl({ bg_quality: parseInt(e.target.value) }); setActiveProfile("custom"); }}
-                  className="w-full accent-cyan-500 bg-slate-900 rounded-lg appearance-none h-1.5 cursor-pointer"
+                  className="w-full accent-cyan-500 bg-slate-900 rounded-lg appearance-none h-1 cursor-pointer"
                 />
               </div>
 
               {/* ROI Quality */}
               <div>
-                <div className="flex justify-between text-xs mb-1">
-                  <span className="text-slate-400">ROI Preservation Quality:</span>
+                <div className="flex justify-between text-[10px] mb-0.5">
+                  <span className="text-slate-400">ROI Quality:</span>
                   <span className="font-mono text-cyan-400 font-bold">{roiQuality}%</span>
                 </div>
                 <input
                   type="range" min="40" max="100" step="5" value={roiQuality}
                   onChange={(e) => { setRoiQuality(parseInt(e.target.value)); emitControl({ roi_quality: parseInt(e.target.value) }); setActiveProfile("custom"); }}
-                  className="w-full accent-cyan-500 bg-slate-900 rounded-lg appearance-none h-1.5 cursor-pointer"
+                  className="w-full accent-cyan-500 bg-slate-900 rounded-lg appearance-none h-1 cursor-pointer"
                 />
               </div>
 
@@ -726,42 +746,42 @@ export default function Home() {
             </div>
 
             {/* Privacy Toggles */}
-            <div className="space-y-3 border-t border-slate-900 pt-4">
-              <p className="text-xs text-slate-500 font-semibold uppercase tracking-wider">Ethical Compliance & Privacy</p>
+            <div className="space-y-2 border-t border-slate-900 pt-3">
+              <p className="text-[10px] text-slate-500 font-semibold uppercase tracking-wider">Privacy & Ethics</p>
               
-              <div className="flex items-center justify-between bg-slate-900/30 p-2.5 rounded-xl border border-slate-900">
+              <div className="flex items-center justify-between bg-slate-900/30 p-2 rounded-xl border border-slate-900">
                 <div>
-                  <p className="text-xs font-semibold text-slate-300">Ethical Mode (Empty Background)</p>
-                  <p className="text-[10px] text-slate-500">Transmits black screen unless an ROI is active</p>
+                  <p className="text-[10px] font-semibold text-slate-300">Ethical Mode</p>
+                  <p className="text-[8px] text-slate-500">Black screen unless ROI active</p>
                 </div>
                 <input
                   type="checkbox" checked={ethicalMode}
                   onChange={(e) => { setEthicalMode(e.target.checked); emitControl({ ethical_mode: e.target.checked }); }}
-                  className="w-10 h-5 bg-slate-800 rounded-full appearance-none relative checked:bg-cyan-500 cursor-pointer transition-colors duration-200 before:content-[''] before:absolute before:w-4 before:h-4 before:bg-white before:rounded-full before:top-0.5 before:left-0.5 checked:before:translate-x-5 before:transition-transform before:duration-200"
+                  className="w-8 h-4 bg-slate-800 rounded-full appearance-none relative checked:bg-cyan-500 cursor-pointer transition-colors duration-200 before:content-[''] before:absolute before:w-3 before:h-3 before:bg-white before:rounded-full before:top-0.5 before:left-0.5 checked:before:translate-x-4 before:transition-transform before:duration-200"
                 />
               </div>
 
-              <div className="flex items-center justify-between bg-slate-900/30 p-2.5 rounded-xl border border-slate-900">
+              <div className="flex items-center justify-between bg-slate-900/30 p-2 rounded-xl border border-slate-900">
                 <div>
-                  <p className="text-xs font-semibold text-slate-300">Background Privacy Blur</p>
-                  <p className="text-[10px] text-slate-500">Applies strong Gaussian blur to background pixels</p>
+                  <p className="text-[10px] font-semibold text-slate-300">Background Blur</p>
+                  <p className="text-[8px] text-slate-500">Gaussian blur on background</p>
                 </div>
                 <input
                   type="checkbox" checked={privacyBlur}
                   onChange={(e) => { setPrivacyBlur(e.target.checked); emitControl({ privacy_blur: e.target.checked }); }}
-                  className="w-10 h-5 bg-slate-800 rounded-full appearance-none relative checked:bg-cyan-500 cursor-pointer transition-colors duration-200 before:content-[''] before:absolute before:w-4 before:h-4 before:bg-white before:rounded-full before:top-0.5 before:left-0.5 checked:before:translate-x-5 before:transition-transform before:duration-200"
+                  className="w-8 h-4 bg-slate-800 rounded-full appearance-none relative checked:bg-cyan-500 cursor-pointer transition-colors duration-200 before:content-[''] before:absolute before:w-3 before:h-3 before:bg-white before:rounded-full before:top-0.5 before:left-0.5 checked:before:translate-x-4 before:transition-transform before:duration-200"
                 />
               </div>
 
-              <div className="flex items-center justify-between bg-slate-900/30 p-2.5 rounded-xl border border-slate-900">
+              <div className="flex items-center justify-between bg-slate-900/30 p-2 rounded-xl border border-slate-900">
                 <div>
-                  <p className="text-xs font-semibold text-slate-300">Mask Detected Faces/Persons</p>
-                  <p className="text-[10px] text-slate-500">Anonymizes human subjects but keeps vehicles clear</p>
+                  <p className="text-[10px] font-semibold text-slate-300">Face/Person Mask</p>
+                  <p className="text-[8px] text-slate-500">Anonymize humans, keep vehicles</p>
                 </div>
                 <input
                   type="checkbox" checked={maskFaces}
                   onChange={(e) => { setMaskFaces(e.target.checked); emitControl({ mask_faces: e.target.checked }); }}
-                  className="w-10 h-5 bg-slate-800 rounded-full appearance-none relative checked:bg-cyan-500 cursor-pointer transition-colors duration-200 before:content-[''] before:absolute before:w-4 before:h-4 before:bg-white before:rounded-full before:top-0.5 before:left-0.5 checked:before:translate-x-5 before:transition-transform before:duration-200"
+                  className="w-8 h-4 bg-slate-800 rounded-full appearance-none relative checked:bg-cyan-500 cursor-pointer transition-colors duration-200 before:content-[''] before:absolute before:w-3 before:h-3 before:bg-white before:rounded-full before:top-0.5 before:left-0.5 checked:before:translate-x-4 before:transition-transform before:duration-200"
                 />
               </div>
             </div>
@@ -807,13 +827,13 @@ export default function Home() {
           </div>
 
           {/* Analytics Line Chart */}
-          <div className="bg-slate-950/40 border border-slate-900 backdrop-blur-md rounded-2xl p-5 shadow-2xl flex flex-col gap-3">
-            <h3 className="text-sm font-semibold tracking-wider text-slate-400 uppercase flex items-center justify-between">
-              <span>Bandwidth Performance</span>
-              <span className="text-xs text-cyan-400 font-mono">Raw vs Compressed</span>
+          <div className="bg-slate-950/40 border border-slate-900 backdrop-blur-md rounded-2xl p-4 shadow-2xl flex flex-col gap-2">
+            <h3 className="text-xs font-semibold tracking-wider text-slate-400 uppercase flex items-center justify-between">
+              <span>Bandwidth</span>
+              <span className="text-[10px] text-cyan-400 font-mono">Raw vs Compressed</span>
             </h3>
             
-            <div className="h-[200px] w-full mt-2 min-w-0">
+            <div className="h-[160px] w-full min-w-0">
               <ResponsiveContainer width="100%" height="100%" minWidth={0}>
                 <AreaChart data={metricsHistory}>
                   <defs>
@@ -843,40 +863,40 @@ export default function Home() {
           </div>
 
           {/* Incident Log Terminal */}
-          <div className="bg-slate-950/40 border border-slate-900 backdrop-blur-md rounded-2xl p-5 shadow-2xl flex flex-col gap-3">
-            <h3 className="text-sm font-semibold tracking-wider text-slate-400 uppercase flex items-center justify-between border-b border-slate-900 pb-2">
-              <span>🚨 Live Incident Terminal</span>
-              <span className="text-[10px] bg-red-500/10 text-red-400 border border-red-500/20 px-2 py-0.5 rounded font-mono animate-pulse">RECORDING EVENTS</span>
+          <div className="bg-slate-950/40 border border-slate-900 backdrop-blur-md rounded-2xl p-4 shadow-2xl flex flex-col gap-2">
+            <h3 className="text-xs font-semibold tracking-wider text-slate-400 uppercase flex items-center justify-between border-b border-slate-900 pb-2">
+              <span>🚨 Incident Log</span>
+              <span className="text-[9px] bg-red-500/10 text-red-400 border border-red-500/20 px-1.5 py-0.5 rounded font-mono animate-pulse">LIVE</span>
             </h3>
 
-            <div className="h-[210px] overflow-y-auto font-mono text-[11px] space-y-2.5 pr-2 custom-scrollbar">
+            <div className="h-[180px] overflow-y-auto font-mono text-[10px] space-y-1.5 pr-1 custom-scrollbar">
               {eventLog.length === 0 ? (
-                <p className="text-slate-600 italic text-center py-8">Waiting for event triggers...</p>
+                <p className="text-slate-600 italic text-center py-6">Waiting for events...</p>
               ) : (
                 eventLog.map((evt, idx) => (
-                  <div key={evt.eventId || idx} className="bg-slate-900/40 border border-slate-900 p-2.5 rounded-lg flex flex-col gap-1.5">
+                  <div key={evt.eventId || idx} className="bg-slate-900/40 border border-slate-900 p-2 rounded-lg flex flex-col gap-1">
                     <div className="flex justify-between items-center">
-                      <span className={`px-2 py-0.5 rounded text-[9px] font-bold uppercase ${
+                      <span className={`px-1.5 py-0.5 rounded text-[8px] font-bold uppercase ${
                         evt.state === "critical" ? "bg-red-500/20 text-red-400 border border-red-500/30" : "bg-amber-500/20 text-amber-400 border border-amber-500/30"
                       }`}>
                         {evt.state}
                       </span>
-                      <span className="text-slate-500">{new Date(evt.ts || Date.now()).toLocaleTimeString()}</span>
+                      <span className="text-slate-500 text-[9px]">{new Date(evt.ts || Date.now()).toLocaleTimeString()}</span>
                     </div>
 
-                    <div className="grid grid-cols-2 gap-x-4 text-slate-400">
+                    <div className="grid grid-cols-2 gap-x-3 text-slate-400 text-[9px]">
                       {evt.source === "audio" ? (
                         <>
                           <div className="col-span-2"><span className="text-slate-500">Audio:</span> <span className="text-cyan-300 font-bold">{evt.audioLabel || evt.audioType}</span></div>
-                          <div>Confidence: <span className="text-slate-200">{(parseFloat(evt.risk) * 100).toFixed(0)}%</span></div>
-                          <div>Event ID: <span className="text-slate-200">{evt.eventId}</span></div>
+                          <div>Conf: <span className="text-slate-200">{(parseFloat(evt.risk) * 100).toFixed(0)}%</span></div>
+                          <div>ID: <span className="text-slate-200">{evt.eventId}</span></div>
                         </>
                       ) : (
                         <>
-                          <div>Event ID: <span className="text-slate-200">{evt.eventId}</span></div>
-                          <div>Risk Score: <span className="text-red-400 font-bold">{parseFloat(evt.risk).toFixed(2)}</span></div>
-                          <div>Frame ID: <span className="text-slate-300">{evt.frameId}</span></div>
-                          <div>Objects: <span className="text-slate-300">{evt.numRois} detected</span></div>
+                          <div>ID: <span className="text-slate-200">{evt.eventId}</span></div>
+                          <div>Risk: <span className="text-red-400 font-bold">{parseFloat(evt.risk).toFixed(2)}</span></div>
+                          <div>Frame: <span className="text-slate-300">{evt.frameId}</span></div>
+                          <div>Objects: <span className="text-slate-300">{evt.numRois}</span></div>
                         </>
                       )}
                     </div>
@@ -890,9 +910,9 @@ export default function Home() {
 
       </main>
 
-      <footer className="border-t border-slate-900 bg-slate-950/60 py-6 text-center text-xs text-slate-600 relative z-10">
+      <footer className="border-t border-slate-900 bg-slate-950/60 py-4 text-center text-[10px] text-slate-600 relative z-10">
         <p>© 2026 NEXUS SURVEILLANCE LABS // CSE DEPARTMENT. ALL RIGHTS RESERVED.</p>
-        <p className="mt-1 text-slate-700">Optimizing low-bandwidth nodes with risk-aware evidence preservation algorithms.</p>
+        <p className="mt-1 text-slate-700">Risk-aware adaptive surveillance compression system.</p>
       </footer>
     </div>
   );

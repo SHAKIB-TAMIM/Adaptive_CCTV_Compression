@@ -1,0 +1,29 @@
+# ──────────────────────────────────────────────────────
+#  AI Risk-Aware CCTV Compression — Python Dependencies
+# ──────────────────────────────────────────────────────
+# Core (required for edge-node and server)
+numpy>=1.24.0
+opencv-python>=4.8.0
+python-socketio[client]>=5.7.0
+requests>=2.31.0
+PyYAML>=6.0
+Pillow>=10.0.0
+
+# AI / Detection (required)
+ultralytics>=8.0.0
+
+# Audio analysis (optional — needed for microphone monitoring)
+# PyAudio>=0.2.14
+# onnxruntime>=1.16.0
+
+# PTZ camera control (optional — needed for ONVIF cameras)
+# onvif-zeep>=0.2.12
+
+# System monitoring (optional)
+# psutil>=5.9.0
+
+# ──────────────────────────────────────────────────────
+# Evaluation / Research (only needed for running benchmarks)
+# scikit-image>=0.21.0
+# matplotlib>=3.7.0
+# pandas>=2.0.0

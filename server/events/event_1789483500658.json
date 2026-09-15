@@ -1,0 +1,57 @@
+{
+  "ts": "2026-09-15T14:45:02.143Z",
+  "cameraId": "camera_0",
+  "eventId": "event_1789483500658",
+  "risk": 0.7377,
+  "state": "critical",
+  "frameId": 520,
+  "numRois": 5,
+  "hour": 20,
+  "rois": [
+    {
+      "bbox": [
+        184,
+        369,
+        240,
+        400
+      ],
+      "priority": "low"
+    },
+    {
+      "bbox": [
+        110,
+        234,
+        191,
+        362
+      ],
+      "priority": "low"
+    },
+    {
+      "bbox": [
+        0,
+        230,
+        98,
+        310
+      ],
+      "priority": "low"
+    },
+    {
+      "bbox": [
+        133,
+        188,
+        189,
+        228
+      ],
+      "priority": "low"
+    },
+    {
+      "bbox": [
+        197,
+        69,
+        639,
+        479
+      ],
+      "priority": "high"
+    }
+  ]
+}

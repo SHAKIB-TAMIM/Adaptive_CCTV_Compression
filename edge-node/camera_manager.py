@@ -32,8 +32,16 @@ import threading
 from detector import Detector
 from reid_tracker import ReidTracker
 from ptz_controller import PtzController
+
+try:
+    from audio_monitor import AudioMonitor
+    _HAVE_AUDIO = True
+except ImportError:
+    _HAVE_AUDIO = False
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 from evaluation.rate_allocator import RateAllocator, RegionOfInterest
+
+_camera_threads = []  # Global list of CameraThread instances (for Socket.IO handlers)
 
 
 class AdaptiveRateAllocator:
@@ -183,9 +191,9 @@ class CodecEncoder:
                 '-g', str(gop_size),
                 '-keyint_min', str(keyint_min),
                 '-f', 'mpegts',
-                f'udp://127.0.0.1:{udp_port}'
+                f'udp://127.0.0.1:{self.udp_port}'
             ]
-            print(f"[{camera_id}] FFmpeg start: port={udp_port}")
+            print(f"[{self.camera_id}] FFmpeg start: port={self.udp_port}")
             self.process = subprocess.Popen(cmd, stdin=subprocess.PIPE, stderr=subprocess.DEVNULL)
 
     def write(self, frame_bytes):
@@ -260,6 +268,8 @@ class CameraThread(threading.Thread):
 
         self.frame_id = 0
         self.last_send = time.time()
+        self.audio_risk = 0.0  # Updated by AudioMonitor
+        self.audio_monitor = None
 
     def run(self):
         source = self.cam_cfg["source"]
@@ -271,18 +281,45 @@ class CameraThread(threading.Thread):
 
         cap = cv2.VideoCapture(src_actual)
         if not cap.isOpened():
-            print(f"[{self.camera_id}] Cannot open source: {source}")
+            print(f"[{self.camera_id}] ✗ Cannot open camera source: {source}")
+            if src_int is not None:
+                print(f"  → Check if camera device {src_int} exists: ls /dev/video*")
+                print(f"  → Check if camera is in use by another app")
+            else:
+                print(f"  → Check if URL is reachable: curl -s {source}")
+                print(f"  → Ensure IP Webcam app is running on the phone")
             return
 
         ret, frame = cap.read()
         if not ret:
-            print(f"[{self.camera_id}] Failed to read first frame")
+            print(f"[{self.camera_id}] ✗ Camera opened but cannot read frames from: {source}")
+            print(f"  → Camera may be initializing, try again in a few seconds")
             cap.release()
             return
 
         h, w = frame.shape[:2]
         self.encoder.start(w, h, self.target_fps, control['CODEC'], control['BITRATE'])
-        print(f"[{self.camera_id}] Started: {source} -> UDP port {udp_port}")
+        print(f"[{self.camera_id}] Started: {source} -> UDP port {self.encoder.udp_port}")
+
+        # Start audio monitor (if available and not disabled)
+        if _HAVE_AUDIO and not getattr(self, '_no_audio', False):
+            try:
+                yamnet_path = None
+                for p in ["/tmp/yamnet_model/1.tflite",
+                          os.path.join(os.path.dirname(__file__), "models", "yamnet.tflite")]:
+                    if os.path.exists(p):
+                        yamnet_path = p
+                        break
+                self.audio_monitor = AudioMonitor(
+                    self.server_url, self.camera_id,
+                    yamnet_model_path=yamnet_path
+                )
+                audio_thread = threading.Thread(target=self.audio_monitor.run, daemon=True)
+                audio_thread.start()
+                print(f"[{self.camera_id}] Audio monitor started")
+            except Exception as e:
+                print(f"[{self.camera_id}] Audio monitor failed: {e}")
+                self.audio_monitor = None
 
         optimizer = AdaptiveRateAllocator(
             total_budget_kbps=control['BITRATE'],
@@ -382,7 +419,7 @@ class CameraThread(threading.Thread):
                 )
                 motion_area_frac = min(roi_pixels / frame_area, 1.0)
                 hour_now = datetime.datetime.now().hour
-                risk = risk_score(rois, motion_area_frac, hour_now, scene_change_score)
+                risk = risk_score(rois, motion_area_frac, hour_now, scene_change_score, self.audio_risk)
 
                 # State machine
                 prev_state = self.surveillance_state
@@ -638,7 +675,7 @@ def merge_rois(existing, new_detections, ttl):
     return updated
 
 
-def risk_score(rois, motion_area_frac, hour_of_day, scene_change_score=0.0):
+def risk_score(rois, motion_area_frac, hour_of_day, scene_change_score=0.0, audio_risk=0.0):
     score = 0.0
     for r in rois:
         p = r.get("priority", "low")
@@ -653,6 +690,8 @@ def risk_score(rois, motion_area_frac, hour_of_day, scene_change_score=0.0):
         score += 0.20
     score += min(float(scene_change_score), 1.0) * 0.15
     score += min(len(rois) * 0.04, 0.15)
+    # Audio risk: YAMNet detections boost overall risk
+    score += min(float(audio_risk), 1.0) * 0.30
     return min(score, 1.0)
 
 
@@ -665,6 +704,32 @@ def connect():
 @sio.event(namespace=NAMESPACE)
 def disconnect():
     print("[camera_manager] Disconnected from server")
+
+
+# ── Audio event handler ──
+_audio_risk_map = {}  # camera_id -> last audio risk value
+
+@sio.on('audio_event', namespace=NAMESPACE)
+def on_audio_event(msg):
+    """Receive audio events from AudioMonitor and update camera risk."""
+    if not isinstance(msg, dict):
+        return
+    cam_id = msg.get("camera_id", "")
+    confidence = msg.get("confidence", 0.0)
+    event_type = msg.get("event_type", "")
+    # Map confidence to risk: gunshot/explosion/alarm = high, others = medium
+    high_risk_events = {"gunshot", "explosion", "alarm", "siren", "glass_break"}
+    if event_type in high_risk_events:
+        risk = min(confidence * 1.0, 1.0)
+    else:
+        risk = min(confidence * 0.5, 0.5)
+    _audio_risk_map[cam_id] = risk
+    # Update the matching CameraThread
+    for t in _camera_threads:
+        if t.camera_id == cam_id:
+            t.audio_risk = risk
+            break
+
 
 @sio.on('control', namespace=NAMESPACE)
 def on_control(msg):
@@ -716,6 +781,45 @@ def on_ptz_audio_trigger(msg):
             t.request_audio_scan(spatial_x, spatial_y)
 
 
+def discover_ip_webcam_cameras(port=8080, timeout=0.3):
+    """Scan local subnet for IP Webcam servers running on phones (parallel for speed)."""
+    import socket
+    import concurrent.futures
+    discovered = []
+    try:
+        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        s.connect(("8.8.8.8", 80))
+        local_ip = s.getsockname()[0]
+        s.close()
+        subnet = ".".join(local_ip.split(".")[:3])
+    except Exception:
+        subnet = "192.168.1"
+
+    print(f"[discover] Scanning {subnet}.x:{port}...")
+
+    def check_ip(i):
+        ip = f"{subnet}.{i}"
+        sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        sock.settimeout(timeout)
+        try:
+            sock.connect((ip, port))
+            return {"ip": ip, "port": port, "url": f"http://{ip}:{port}/video"}
+        except Exception:
+            return None
+        finally:
+            sock.close()
+
+    with concurrent.futures.ThreadPoolExecutor(max_workers=50) as executor:
+        results = executor.map(check_ip, range(1, 255))
+        for r in results:
+            if r:
+                discovered.append(r)
+                print(f"  ✓ Found: {r['ip']}:{r['port']}")
+
+    if not discovered:
+        print(f"  No IP Webcam found on {subnet}.x:{port}")
+    return discovered
+
 
 def main():
     parser = argparse.ArgumentParser(description="Multi-camera edge-node manager")
@@ -726,6 +830,10 @@ def main():
                         help="Enable Lagrangian RD optimizer (default: enabled)")
     parser.add_argument("--no-optimizer", dest="use_optimizer", action="store_false",
                         help="Disable optimizer, use heuristic STATE_COMPRESSION profiles")
+    parser.add_argument("--discover", action="store_true",
+                        help="Auto-scan network for IP Webcam cameras and add them")
+    parser.add_argument("--no-audio", action="store_true",
+                        help="Disable audio monitoring (YAMNet + energy detection)")
     args = parser.parse_args()
 
     with open(args.config) as f:
@@ -733,8 +841,50 @@ def main():
 
     cameras_cfg = cfg.get("cameras", [])
     enabled = [c for c in cameras_cfg if c.get("enabled", True)]
+
+    # Auto-discover IP Webcam cameras on the network
+    if args.discover:
+        found = discover_ip_webcam_cameras()
+        found_urls = {c["url"] for c in found}
+        next_port = 1236 + len(cameras_cfg)
+
+        # Update existing phone cameras with new IPs if they moved
+        for cam in cameras_cfg:
+            src = cam.get("source", "")
+            if "8080/video" in src or "8080" in src:
+                # This looks like a phone camera — check if its IP was found
+                for f in found:
+                    if f["url"] != src:
+                        old_ip = src.split("//")[1].split(":")[0] if "//" in src else "?"
+                        cam["source"] = f["url"]
+                        print(f"  ✓ Updated {cam['id']}: {old_ip} -> {f['ip']}")
+                        break
+
+        # Add new cameras not already in config
+        existing_sources = {c.get("source") for c in cameras_cfg}
+        for cam in found:
+            if cam["url"] not in existing_sources:
+                new_cam = {
+                    "id": f"phone_{cam['ip'].replace('.', '_')}",
+                    "name": f"Phone ({cam['ip']})",
+                    "source": cam["url"],
+                    "udp_port": next_port,
+                    "fps": 15,
+                    "enabled": True,
+                }
+                cameras_cfg.append(new_cam)
+                enabled.append(new_cam)
+                next_port += 1
+                print(f"  ✓ Added: {new_cam['id']} -> {cam['url']}")
+
+        # Rebuild enabled list after updates
+        enabled = [c for c in cameras_cfg if c.get("enabled", True)]
+        if not found:
+            print("  No IP Webcam found. Existing cameras will still start.")
+
     if not enabled:
-        print("No enabled cameras found in config")
+        print("✗ No enabled cameras found in config!")
+        print(f"  → Edit {args.config} and set 'enabled: true' for at least one camera")
         return
 
     print(f"Connecting to server: {args.server}")
@@ -743,8 +893,9 @@ def main():
             sio.connect(args.server, namespaces=[NAMESPACE])
             break
         except Exception as e:
-            print(f"Connect error, retrying: {e}")
-            time.sleep(2)
+            print(f"  ⚠ Cannot connect to server at {args.server}: {e}")
+            print(f"  → Make sure server is running: cd server && node server.js")
+            time.sleep(3)
 
     print(f"Loading YOLO detector...")
     detector = Detector(model_type='yolo', model_path='../models/yolov8n.pt')
@@ -756,10 +907,16 @@ def main():
     for cam_cfg in enabled:
         print(f"Starting camera: {cam_cfg['id']} ({cam_cfg.get('name', cam_cfg['id'])})")
         t = CameraThread(cam_cfg, detector, args.server, reid_tracker, args.use_optimizer)
+        t._no_audio = args.no_audio
         t.start()
         threads.append(t)
 
-    print(f"\nAll {len(threads)} camera(s) running. Press Ctrl+C to stop.")
+    # Expose threads globally for Socket.IO handlers
+    global _camera_threads
+    _camera_threads = threads
+
+    audio_status = "disabled" if args.no_audio else ("active" if _HAVE_AUDIO else "pyaudio not installed")
+    print(f"\nAll {len(threads)} camera(s) running. Audio: {audio_status}. Press Ctrl+C to stop.")
     try:
         for t in threads:
             t.join()
