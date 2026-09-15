@@ -122,6 +122,7 @@ STATE_CRITICAL = "critical"
 RISK_NORMAL_THRESHOLD = 0.30
 RISK_ALERT_THRESHOLD = 0.65
 RISK_CRITICAL_EXIT_THRESHOLD = 0.50
+RISK_SMOOTHING_ALPHA = 0.3  # EMA: 0.3 = responsive, 0.1 = very smooth
 
 STATE_COMPRESSION = {
     STATE_NORMAL:   {"BG_SCALE": None,  "BG_QUALITY": None, "ROI_QUALITY": None},
@@ -265,6 +266,7 @@ class CameraThread(threading.Thread):
         self.prev_frame_gray = None
         self.temporal_rois = []
         self.roi_ttl = 30
+        self.smoothed_risk = 0.0  # EMA-smoothed risk score
 
         self.frame_id = 0
         self.last_send = time.time()
@@ -420,6 +422,10 @@ class CameraThread(threading.Thread):
                 motion_area_frac = min(roi_pixels / frame_area, 1.0)
                 hour_now = datetime.datetime.now().hour
                 risk = risk_score(rois, motion_area_frac, hour_now, scene_change_score, self.audio_risk)
+
+                # EMA smoothing on risk score (prevents jitter)
+                self.smoothed_risk = RISK_SMOOTHING_ALPHA * risk + (1 - RISK_SMOOTHING_ALPHA) * self.smoothed_risk
+                risk = self.smoothed_risk
 
                 # State machine
                 prev_state = self.surveillance_state

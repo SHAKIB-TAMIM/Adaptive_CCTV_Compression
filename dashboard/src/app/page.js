@@ -66,6 +66,11 @@ export default function Home() {
   const [roiQuality, setRoiQuality] = useState(90);
   const [detectEveryN, setDetectEveryN] = useState(3);
 
+  // Auto-adapt state
+  const [autoEnabled, setAutoEnabled] = useState(false);
+  const [autoLabel, setAutoLabel] = useState("normal");
+  const [autoSmoothedRisk, setAutoSmoothedRisk] = useState(0);
+
   // Switches
   const [privacyBlur, setPrivacyBlur] = useState(false);
   const [ethicalMode, setEthicalMode] = useState(false);
@@ -230,6 +235,21 @@ export default function Home() {
       setEventLog((prev) => [entry, ...prev].slice(0, 100));
     });
 
+    // Auto-adapt state receiver (merge partial updates, only for selected camera)
+    socket.on("auto_state", (s) => {
+      if (s.camera_id && s.camera_id !== selectedCameraRef.current) return; // ignore other cameras
+      if (s.enabled !== undefined) setAutoEnabled(s.enabled);
+      if (s.current_rule && s.current_rule !== "waiting") setAutoLabel(s.current_rule);
+      if (s.smoothed_risk !== undefined) setAutoSmoothedRisk(s.smoothed_risk);
+      // Only update sliders when we have actual param values (not null/undefined)
+      if (s.enabled && s.params && s.current_rule && s.current_rule !== "waiting") {
+        if (s.params.bg_scale !== undefined) setBgScale(s.params.bg_scale);
+        if (s.params.bg_quality !== undefined) setBgQuality(s.params.bg_quality);
+        if (s.params.roi_quality !== undefined) setRoiQuality(s.params.roi_quality);
+        if (s.params.detect_every_n !== undefined) setDetectEveryN(s.params.detect_every_n);
+      }
+    });
+
     // Fallback/Initial fetching of events & historical metrics
     fetch(EVENTS_URL)
       .then((res) => res.json())
@@ -307,6 +327,14 @@ export default function Home() {
       socketRef.current.emit("control", { camera_id: selectedCamera, ...changes });
       // Simulating control lock timer (10s)
       setAutoLockSecs(10);
+    }
+  };
+
+  const toggleAutoAdapt = () => {
+    const newState = !autoEnabled;
+    setAutoEnabled(newState);
+    if (socketRef.current?.connected) {
+      socketRef.current.emit("auto_adapt_toggle", { enabled: newState });
     }
   };
 
@@ -630,9 +658,41 @@ export default function Home() {
           
           {/* Controls Panel */}
           <div className="bg-slate-950/40 border border-slate-900 backdrop-blur-md rounded-2xl p-4 shadow-2xl flex flex-col gap-4">
-            <h3 className="text-xs font-semibold tracking-wider text-slate-400 uppercase border-b border-slate-900 pb-2">
-              ⚙️ Control Center
-            </h3>
+            <div className="flex items-center justify-between border-b border-slate-900 pb-2">
+              <h3 className="text-xs font-semibold tracking-wider text-slate-400 uppercase">
+                ⚙️ Control Center
+              </h3>
+              <div className="flex items-center gap-2">
+                {autoEnabled && (
+                  <span className="text-[9px] bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-0.5 rounded font-mono animate-pulse">
+                    AUTO: {autoLabel.toUpperCase()}
+                  </span>
+                )}
+                <button
+                  onClick={toggleAutoAdapt}
+                  className={`relative w-12 h-6 rounded-full transition-colors duration-200 ${
+                    autoEnabled ? "bg-emerald-500" : "bg-slate-700"
+                  }`}
+                >
+                  <span className={`absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full transition-transform duration-200 ${
+                    autoEnabled ? "translate-x-6" : ""
+                  }`} />
+                </button>
+                <span className="text-[10px] text-slate-500 font-semibold">{autoEnabled ? "AUTO" : "MANUAL"}</span>
+              </div>
+            </div>
+
+            {/* Auto-adapt status bar */}
+            {autoEnabled && (
+              <div className="bg-emerald-950/30 border border-emerald-500/20 rounded-lg px-3 py-2 flex items-center justify-between">
+                <span className="text-[10px] text-emerald-400 font-mono">
+                  Risk: {autoSmoothedRisk.toFixed(3)} → {autoLabel}
+                </span>
+                <span className="text-[9px] text-slate-500">
+                  Sliders auto-adjusted. Move any slider to take manual control.
+                </span>
+              </div>
+            )}
 
             {/* Presets Grid */}
             <div>
@@ -696,12 +756,13 @@ export default function Home() {
               <div>
                 <div className="flex justify-between text-[10px] mb-0.5">
                   <span className="text-slate-400">BG Scale:</span>
-                  <span className="font-mono text-cyan-400 font-bold">{bgScale.toFixed(2)}</span>
+                  <span className={`font-mono font-bold ${autoEnabled ? "text-emerald-400" : "text-cyan-400"}`}>{bgScale.toFixed(2)} {autoEnabled && "AUTO"}</span>
                 </div>
                 <input
                   type="range" min="0.2" max="1.0" step="0.05" value={bgScale}
+                  disabled={autoEnabled}
                   onChange={(e) => { setBgScale(parseFloat(e.target.value)); emitControl({ bg_scale: parseFloat(e.target.value) }); setActiveProfile("custom"); }}
-                  className="w-full accent-cyan-500 bg-slate-900 rounded-lg appearance-none h-1 cursor-pointer"
+                  className={`w-full bg-slate-900 rounded-lg appearance-none h-1 cursor-pointer ${autoEnabled ? "opacity-40 cursor-not-allowed" : "accent-cyan-500"}`}
                 />
               </div>
 
@@ -709,12 +770,13 @@ export default function Home() {
               <div>
                 <div className="flex justify-between text-[10px] mb-0.5">
                   <span className="text-slate-400">BG Quality (QP):</span>
-                  <span className="font-mono text-cyan-400 font-bold">{bgQuality}%</span>
+                  <span className={`font-mono font-bold ${autoEnabled ? "text-emerald-400" : "text-cyan-400"}`}>{bgQuality}% {autoEnabled && "AUTO"}</span>
                 </div>
                 <input
                   type="range" min="5" max="95" step="5" value={bgQuality}
+                  disabled={autoEnabled}
                   onChange={(e) => { setBgQuality(parseInt(e.target.value)); emitControl({ bg_quality: parseInt(e.target.value) }); setActiveProfile("custom"); }}
-                  className="w-full accent-cyan-500 bg-slate-900 rounded-lg appearance-none h-1 cursor-pointer"
+                  className={`w-full bg-slate-900 rounded-lg appearance-none h-1 cursor-pointer ${autoEnabled ? "opacity-40 cursor-not-allowed" : "accent-cyan-500"}`}
                 />
               </div>
 
@@ -722,25 +784,27 @@ export default function Home() {
               <div>
                 <div className="flex justify-between text-[10px] mb-0.5">
                   <span className="text-slate-400">ROI Quality:</span>
-                  <span className="font-mono text-cyan-400 font-bold">{roiQuality}%</span>
+                  <span className={`font-mono font-bold ${autoEnabled ? "text-emerald-400" : "text-cyan-400"}`}>{roiQuality}% {autoEnabled && "AUTO"}</span>
                 </div>
                 <input
                   type="range" min="40" max="100" step="5" value={roiQuality}
+                  disabled={autoEnabled}
                   onChange={(e) => { setRoiQuality(parseInt(e.target.value)); emitControl({ roi_quality: parseInt(e.target.value) }); setActiveProfile("custom"); }}
-                  className="w-full accent-cyan-500 bg-slate-900 rounded-lg appearance-none h-1 cursor-pointer"
+                  className={`w-full bg-slate-900 rounded-lg appearance-none h-1 cursor-pointer ${autoEnabled ? "opacity-40 cursor-not-allowed" : "accent-cyan-500"}`}
                 />
               </div>
 
               {/* Detect Every N */}
               <div>
-                <div className="flex justify-between text-xs mb-1">
-                  <span className="text-slate-400">Detection Interval (Every N Frames):</span>
-                  <span className="font-mono text-cyan-400 font-bold">{detectEveryN}f</span>
+                <div className="flex justify-between text-[10px] mb-0.5">
+                  <span className="text-slate-400">Detection Interval:</span>
+                  <span className={`font-mono font-bold ${autoEnabled ? "text-emerald-400" : "text-cyan-400"}`}>{detectEveryN}f {autoEnabled && "AUTO"}</span>
                 </div>
                 <input
-                  type="range" min="1" max="15" step="1" value={detectEveryN}
+                  type="range" min="1" max="15" step="1" value={detectEveryN || 3}
+                  disabled={autoEnabled}
                   onChange={(e) => { setDetectEveryN(parseInt(e.target.value)); emitControl({ detect_every_n: parseInt(e.target.value) }); setActiveProfile("custom"); }}
-                  className="w-full accent-cyan-500 bg-slate-900 rounded-lg appearance-none h-1.5 cursor-pointer"
+                  className={`w-full bg-slate-900 rounded-lg appearance-none h-1 cursor-pointer ${autoEnabled ? "opacity-40 cursor-not-allowed" : "accent-cyan-500"}`}
                 />
               </div>
             </div>

@@ -258,6 +258,9 @@ let userControl = {
 // Track latest codec adaptation state (updated from edge node frame messages)
 let latestCodecState = { gop_size: 120, res_w: 640, res_h: 480 };
 
+// Track latest risk per camera (updated from edge node frame messages)
+const cameraRisks = {};  // { camera_id: latest_risk }
+
 const BANDWIDTH_MONITOR_INTERVAL_MS = 3000;
 const BANDWIDTH_THRESHOLD_KBPS = 128;
 let metricsLog = [];
@@ -398,6 +401,12 @@ streamNS.on('connection', (socket) => {
         if (msg.gop_size !== undefined) cam.gop_size = msg.gop_size;
       }
 
+      // Track risk per camera
+      if (msg.risk !== undefined) {
+        cameraRisks[cameraId] = msg.risk;
+        if (Object.keys(cameraRisks).length <= 5) console.log(`[risk-track] ${cameraId} = ${msg.risk} (total cameras with risk: ${Object.keys(cameraRisks).length})`);
+      }
+
       // 🔹 Live stream to dashboard (with camera_id)
       viewNS.emit('frame', msg);
     } catch (e) {
@@ -427,6 +436,29 @@ viewNS.on('connection', (socket) => {
     console.log('[view] forwarded to edge:', msg);
   });
 
+  socket.on('auto_adapt_toggle', (msg) => {
+    AUTO_ADAPT.enabled = !!msg.enabled;
+    console.log(`[auto-adapt] TOGGLE received: enabled=${msg.enabled} → AUTO_ADAPT.enabled=${AUTO_ADAPT.enabled}`);
+    // Emit full state using ACTUAL risk (not stale smoothed_risk)
+    for (const cam of cameras) {
+      const actualRisk = cameraRisks[cam.id];
+      if (actualRisk === undefined) continue; // skip cameras with no data
+      if (!autoAdaptState[cam.id]) {
+        autoAdaptState[cam.id] = { smoothed_risk: actualRisk, last_adjust_time: 0, last_params: null, user_override: {} };
+      }
+      const state = autoAdaptState[cam.id];
+      const matchedRule = AUTO_ADAPT.rules.find(r => actualRisk <= r.max_risk) || AUTO_ADAPT.rules[AUTO_ADAPT.rules.length - 1];
+      viewNS.emit('auto_state', {
+        camera_id: cam.id,
+        enabled: AUTO_ADAPT.enabled,
+        smoothed_risk: actualRisk,
+        current_rule: matchedRule.label,
+        params: { bg_scale: matchedRule.bg_scale, bg_quality: matchedRule.bg_quality, roi_quality: matchedRule.roi_quality, detect_every_n: matchedRule.detect_every_n },
+        raw_risk: actualRisk,
+      });
+    }
+  });
+
   socket.on('disconnect', () => { console.log('[view] disconnected', socket.id); });
 });
 
@@ -454,10 +486,11 @@ setInterval(() => {
   console.log(`SIO: ${sioKbps.toFixed(1)} kbps | UDP(total): ${totalUdpKbps.toFixed(1)} kbps | total: ${totalKbps.toFixed(1)} kbps | clients: ${totalClients}`);
   addMetricSnapshot(sioKbps, totalUdpKbps, totalClients);
 
-  // Only apply auto-bandwidth adaptation if user hasn't sent a control recently
+  // Only apply auto-bandwidth adaptation if user hasn't sent a control recently AND auto-adapt is off
   const timeSinceUserControl = Date.now() - lastUserControlTime;
-  if (timeSinceUserControl < USER_CONTROL_LOCK_MS) {
-    console.log(`[auto-BW] suppressed — user control sent ${Math.round(timeSinceUserControl/1000)}s ago`);
+  if (timeSinceUserControl < USER_CONTROL_LOCK_MS || AUTO_ADAPT.enabled) {
+    const reason = AUTO_ADAPT.enabled ? 'auto-adapt active' : `user control sent ${Math.round(timeSinceUserControl/1000)}s ago`;
+    console.log(`[auto-BW] suppressed — ${reason}`);
     socketIoBytes = 0;
     return;
   }
@@ -472,6 +505,96 @@ setInterval(() => {
 
   socketIoBytes = 0;
 }, BANDWIDTH_MONITOR_INTERVAL_MS);
+
+// -------------------- Auto-Adapt Engine (Risk-Based) --------------------
+const AUTO_ADAPT = {
+  enabled: false,
+  interval_ms: 3000,
+  cooldown_ms: 5000,
+  change_threshold: 0.05,
+  user_lock_ms: 15000,
+  // Risk → parameter mapping
+  rules: [
+    { max_risk: 0.25, bg_scale: 0.3, bg_quality: 10, roi_quality: 60, detect_every_n: 6, label: "normal" },
+    { max_risk: 0.55, bg_scale: 0.6, bg_quality: 30, roi_quality: 85, detect_every_n: 3, label: "alert" },
+    { max_risk: 1.00, bg_scale: 1.0, bg_quality: 55, roi_quality: 95, detect_every_n: 1, label: "critical" },
+  ],
+};
+
+// Per-camera auto-adapt state
+const autoAdaptState = {};  // { camera_id: { smoothed_risk, last_adjust_time, last_params, user_override } }
+
+function getAutoAdaptParams(cameraId, risk) {
+  const now = Date.now();
+  if (!autoAdaptState[cameraId]) {
+    autoAdaptState[cameraId] = { smoothed_risk: 0, last_adjust_time: 0, last_params: null, user_override: {} };
+  }
+  const state = autoAdaptState[cameraId];
+
+  // EMA smoothing on server-side risk
+  state.smoothed_risk = 0.3 * risk + 0.7 * state.smoothed_risk;
+
+  // Check cooldown (skip only if NOT first run)
+  if (state.last_params !== null && (now - state.last_adjust_time) < AUTO_ADAPT.cooldown_ms) {
+    return null; // too soon, but only after first successful apply
+  }
+
+  // Find matching rule
+  const matchedRule = AUTO_ADAPT.rules.find(r => state.smoothed_risk <= r.max_risk) || AUTO_ADAPT.rules[AUTO_ADAPT.rules.length - 1];
+
+  state.last_adjust_time = now;
+  state.last_params = { bg_scale: matchedRule.bg_scale, bg_quality: matchedRule.bg_quality, roi_quality: matchedRule.roi_quality };
+  return {
+    bg_scale: matchedRule.bg_scale,
+    bg_quality: matchedRule.bg_quality,
+    roi_quality: matchedRule.roi_quality,
+    detect_every_n: matchedRule.detect_every_n,
+    _auto_label: matchedRule.label,
+    _smoothed_risk: state.smoothed_risk,
+  };
+}
+
+// Auto-adapt loop
+setInterval(() => {
+  if (!AUTO_ADAPT.enabled) {
+    return;
+  }
+  console.log(`[auto-adapt] loop running, cameras=${cameras.map(c=>c.id).join(',')} risk_keys=${Object.keys(cameraRisks).join(',')}`);
+
+  // Get latest risk per camera from frame tracking
+  for (const cam of cameras) {
+    const risk = cameraRisks[cam.id];
+
+    // Skip cameras with no risk data — don't emit "waiting" for inactive cameras
+    if (risk === undefined) continue;
+
+    // Ensure state exists
+    if (!autoAdaptState[cam.id]) {
+      autoAdaptState[cam.id] = { smoothed_risk: 0, last_adjust_time: 0, last_params: null, user_override: {} };
+    }
+    const state = autoAdaptState[cam.id];
+
+    const params = getAutoAdaptParams(cam.id, risk);
+    if (params) {
+      const msg = { camera_id: cam.id, ...params };
+      delete msg._auto_label;
+      delete msg._smoothed_risk;
+      streamNS.emit('control', msg);
+      console.log(`[auto-adapt] ${cam.id} risk=${risk.toFixed(3)} smoothed=${state.smoothed_risk.toFixed(3)} → ${params._auto_label} bg_s=${params.bg_scale} bg_q=${params.bg_quality} roi_q=${params.roi_quality}`);
+    }
+
+    // Always emit auto state to dashboard
+    const matchedRule = AUTO_ADAPT.rules.find(r => state.smoothed_risk <= r.max_risk) || AUTO_ADAPT.rules[0];
+    viewNS.emit('auto_state', {
+      camera_id: cam.id,
+      enabled: AUTO_ADAPT.enabled,
+      smoothed_risk: state.smoothed_risk,
+      current_rule: matchedRule.label,
+      params: state.last_params || { bg_scale: matchedRule.bg_scale, bg_quality: matchedRule.bg_quality, roi_quality: matchedRule.roi_quality, detect_every_n: matchedRule.detect_every_n },
+      raw_risk: risk,
+    });
+  }
+}, AUTO_ADAPT.interval_ms);
 
 // ===================== CAMERA REGISTRY API =====================
 

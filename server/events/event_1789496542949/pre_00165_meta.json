@@ -1,0 +1,1 @@
+{"camera_id": "camera_0", "frame_id": 923, "rois": [{"bbox": [43, 99, 369, 477], "priority": "low"}, {"bbox": [0, 0, 68, 45], "priority": "low"}, {"bbox": [0, 48, 78, 118], "priority": "high"}], "risk": 0.7942}
