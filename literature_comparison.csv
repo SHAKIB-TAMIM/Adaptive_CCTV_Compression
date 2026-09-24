@@ -1,0 +1,9 @@
+system,published_result,status
+VaBUS Wang 2023,"-25.0 to -76.9% BW, 90.7% det/keypoint","reported, not re-measured"
+Xiao 2017 sensitive-object,"-20%/-40% storage, det preserved","reported, not re-measured"
+ROI-DVC Wu 2024,-32% vs H.265 same quality,"reported, not re-measured"
+How2Compress Wu 2025,"-50.4%, up to 3.01x, accuracy held","reported, not re-measured"
+Wu 2020 FG-BG,-49.75% bpp vs H.265 @36dB,"reported, not re-measured"
+Kadukar 2026 semantic offload,"-74.63% data, +33% storage, 44.92dB","reported, not re-measured"
+Beye 2023 multi-cam,"error-min allocation, more streams","reported, not re-measured"
+Thesis this work (single clip),-87.95% AV1/-83.15% VP9 @equal PSNR; 20.4fps; >95% recall,"prototype log, single saturated clip"

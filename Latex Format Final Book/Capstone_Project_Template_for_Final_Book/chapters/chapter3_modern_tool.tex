@@ -1,0 +1,27 @@
+\section{Hardware-Based Tools}
+
+The experimental work in this thesis was conducted on CPU-only hardware. The primary evaluation machine, recorded in the experiment provenance files, uses an Intel Core i3-6006U CPU at 2.00\,GHz with 4 logical processors and approximately 7.6\,GB of memory, and no GPU was available in any evaluation run (\texttt{experiments/phase1\_public/provenance.json}, \texttt{experiments/phase4\_sota/provenance.json}). This constraint is stated explicitly because it shapes every performance claim in the thesis: no GPU acceleration is claimed, and no frames-per-second figure is asserted unless directly measured. The cameras used for live capture are commodity devices (a laptop webcam and a network phone camera, see \texttt{configs/cameras.yaml}), consistent with the low-cost deployment scenario the system targets. Thesis evaluation clips (\texttt{data/thesis\_clips/}: \texttt{day\_person.mp4}, \texttt{day\_empty.mp4}, \texttt{night.mp4}, \texttt{motion\_only.mp4} at 720p, \texttt{crowd.mp4}) were recorded or assembled locally for calibration, forensics, and baseline comparison.
+
+\section{Software-Based Tools}
+
+The software stack combines detection, encoding, transport, and visualization tools. Object detection uses YOLOv8n (\texttt{models/yolov8n.pt}) executed in Python, selected as a lightweight detector compatible with CPU-only edge operation. Video encoding and decoding use FFmpeg, with libx265 (HEVC) as the codec of the locked Phase~4 comparison, alongside libx264, SVT-AV1, and VP9 paths available in the broader evaluation harness. The edge node and experiment scripts are written in Python (torch/Ultralytics for detection, OpenCV for frame handling, scikit-image for PSNR/SSIM computation, scikit-learn-style logistic fitting for calibration). The central server is a Node.js/Express application with Socket.IO terabits for live transport, and the dashboard is a Next.js web application with live, metrics, playback, and grid views. Supporting utilities include YAML configuration profiles (balanced, high-quality, ultra-low-bandwidth, privacy-mode), UDP transport per camera, and SHA-256 hash-chaining for forensic manifests. Development used Git for version control; every experiment output directory carries a \texttt{provenance.json} file recording the command, timestamp, git commit, CPU description, and configuration, which is the basis of the evidence traceability claimed throughout this book.
+
+\begin{table}[H]
+\centering
+\caption{Technology stack of the implemented system}
+\label{tab:tech-stack}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Layer} & \textbf{Technology} \\
+\hline
+Object detection & YOLOv8n (Ultralytics), confidence $\approx$ 0.30 in evaluation \\
+Video encoding & FFmpeg (libx265 primary; libx264, SVT-AV1, VP9 available) \\
+Edge node & Python, OpenCV, torch \\
+Central server & Node.js, Express, Socket.IO, UDP ingest \\
+Dashboard & Next.js (live, metrics, playback, grid views) \\
+Configuration & YAML profiles (4 deployment presets) \\
+Integrity & SHA-256 hash chains, JSON sidecar manifests \\
+Metrics & PSNR/SSIM (scikit-image), VMAF via FFmpeg where available \\
+\hline
+\end{tabular}
+\end{table}

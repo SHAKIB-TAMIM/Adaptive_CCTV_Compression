@@ -1,1 +1,1 @@
-timestamp,experiment_id,frame_id,motion_percent,num_rois,rois_json
+timestamp,camera_id,experiment_id,frame_id,motion_percent,num_rois,rois_json

@@ -1,0 +1,1 @@
+{"camera_id": "Web_Cam", "frame_id": 281, "rois": [{"bbox": [1364, 342, 1909, 596], "priority": "low"}, {"bbox": [1092, 386, 1198, 552], "priority": "low"}, {"bbox": [1183, 369, 1400, 572], "priority": "low"}, {"bbox": [0, 359, 962, 770], "priority": "low"}, {"bbox": [985, 376, 1128, 541], "priority": "low"}], "risk": 0.361}

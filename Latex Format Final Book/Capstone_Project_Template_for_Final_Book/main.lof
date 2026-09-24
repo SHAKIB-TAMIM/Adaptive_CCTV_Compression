@@ -1,0 +1,24 @@
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Conceptual pipeline of the implemented system. Each block corresponds to verified code; parameters shown are the evaluated values.}}{13}{figure.4.1}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Risk-state machine with hysteresis. CRITICAL additionally triggers 15\,s pre-event and 10\,s post-event buffering with forensic manifests.}}{18}{figure.5.1}%
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {7.1}{\ignorespaces Phase~2 full-set apparent ROC and precision--recall curves (in-sample, descriptive only; not generalization evidence). Source: \texttt {experiments/phase2\_calibration/roc\_pr\_full\_apparent.png}.}}{26}{figure.7.1}%
+\contentsline {figure}{\numberline {7.2}{\ignorespaces Phase~2 reliability diagram for the full-set descriptive fit ($n=64$). Source: \texttt {experiments/phase2\_calibration/reliability\_full.png}.}}{26}{figure.7.2}%
+\contentsline {figure}{\numberline {7.3}{\ignorespaces Tamper-evident hash-chain structure: each manifest entry binds the file digest to the previous link from a GENESIS anchor. Any deletion, pixel edit, or sidecar modification breaks its own link and every downstream link.}}{27}{figure.7.3}%
+\contentsline {figure}{\numberline {7.4}{\ignorespaces Phase~4 global rate--distortion curves (PSNR vs.\ actual bitrate, motion\_only, libx265). Source: \texttt {experiments/phase4\_sota/rd\_psnr.png}.}}{28}{figure.7.4}%
+\contentsline {figure}{\numberline {7.5}{\ignorespaces Phase~4 ROI rate--distortion curves (ROI-PSNR vs.\ actual bitrate). Source: \texttt {experiments/phase4\_sota/rd\_roi.png}.}}{29}{figure.7.5}%
+\contentsline {figure}{\numberline {7.6}{\ignorespaces Phase~4 background rate--distortion curves (BG-PSNR vs.\ actual bitrate); note the flat foreground/background-split curve. Source: \texttt {experiments/phase4\_sota/rd\_bg.png}.}}{29}{figure.7.6}%
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {9.1}{\ignorespaces Gantt Chart of Project Timeline}}{34}{figure.9.1}%
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }

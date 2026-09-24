@@ -1,0 +1,124 @@
+\contentsline {chapter}{DECLARATION}{i}{Doc-Start}%
+\contentsline {chapter}{APPROVAL}{ii}{Doc-Start}%
+\contentsline {chapter}{ABSTRACT}{iii}{Doc-Start}%
+\contentsline {chapter}{ACKNOWLEDGMENT}{iv}{Doc-Start}%
+\contentsline {chapter}{LIST OF ABBREVIATIONS}{v}{Doc-Start}%
+\contentsline {chapter}{\numberline {1}INTRODUCTION}{1}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Introduction}{1}{section.1.1}%
+\contentsline {section}{\numberline {1.2}Problem Statement}{1}{section.1.2}%
+\contentsline {section}{\numberline {1.3}Motivation}{2}{section.1.3}%
+\contentsline {section}{\numberline {1.4}Objectives}{2}{section.1.4}%
+\contentsline {subsection}{\numberline {1.4.1}Main Objective}{2}{subsection.1.4.1}%
+\contentsline {subsection}{\numberline {1.4.2}Specific Objectives}{2}{subsection.1.4.2}%
+\contentsline {section}{\numberline {1.5}Innovation of Project/Research}{3}{section.1.5}%
+\contentsline {section}{\numberline {1.6}Significance of Project/Research}{3}{section.1.6}%
+\contentsline {section}{\numberline {1.7}Organization of Book Chapters}{4}{section.1.7}%
+\contentsline {chapter}{\numberline {2}LITERATURE REVIEW}{5}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Background of the Study}{5}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Related Work / Existing Systems}{5}{section.2.2}%
+\contentsline {subsection}{\numberline {2.2.1}Video Coding Standards and Early Surveillance Compression}{5}{subsection.2.2.1}%
+\contentsline {subsection}{\numberline {2.2.2}Classical and Heuristic ROI-Based Coding}{6}{subsection.2.2.2}%
+\contentsline {subsection}{\numberline {2.2.3}Object-Aware and Foreground/Background Compression}{6}{subsection.2.2.3}%
+\contentsline {subsection}{\numberline {2.2.4}Edge-Cloud Collaborative Video Analytics}{6}{subsection.2.2.4}%
+\contentsline {subsection}{\numberline {2.2.5}Recognition-Aware and Adaptive Allocation}{7}{subsection.2.2.5}%
+\contentsline {subsection}{\numberline {2.2.6}Learned and Recent Adaptive Surveillance Coding}{7}{subsection.2.2.6}%
+\contentsline {subsection}{\numberline {2.2.7}Forensic Integrity and Chain of Evidence}{8}{subsection.2.2.7}%
+\contentsline {subsection}{\numberline {2.2.8}Anomaly and Event-Aware Surveillance}{8}{subsection.2.2.8}%
+\contentsline {section}{\numberline {2.3}Research Gap}{8}{section.2.3}%
+\contentsline {section}{\numberline {2.4}Research Questions}{9}{section.2.4}%
+\contentsline {chapter}{\numberline {3}USE OF MODERN TOOLS AND TECHNOLOGIES}{10}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Hardware-Based Tools}{10}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Software-Based Tools}{10}{section.3.2}%
+\contentsline {chapter}{\numberline {4}METHODOLOGY/DESIGN APPROACH}{12}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Research Design}{12}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Conceptual Pipeline}{12}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Object Detection and ROI Construction}{13}{section.4.3}%
+\contentsline {section}{\numberline {4.4}Risk Scoring and State Assessment}{14}{section.4.4}%
+\contentsline {section}{\numberline {4.5}Lagrangian-Inspired Resource Allocation}{14}{section.4.5}%
+\contentsline {section}{\numberline {4.6}Event Buffering and Forensic Chain}{14}{section.4.6}%
+\contentsline {section}{\numberline {4.7}Central Server and Dashboard}{15}{section.4.7}%
+\contentsline {section}{\numberline {4.8}Evaluation Protocols}{15}{section.4.8}%
+\contentsline {subsection}{\numberline {4.8.1}Phase 1: Public-Dataset Probing}{15}{subsection.4.8.1}%
+\contentsline {subsection}{\numberline {4.8.2}Phase 2: Group-Aware Calibration}{15}{subsection.4.8.2}%
+\contentsline {subsection}{\numberline {4.8.3}Phase 3: Forensic Integrity}{16}{subsection.4.8.3}%
+\contentsline {subsection}{\numberline {4.8.4}Phase 4: Locked Baseline Comparison}{16}{subsection.4.8.4}%
+\contentsline {chapter}{\numberline {5}SYSTEM ARCHITECTURE DESIGN}{17}{chapter.5}%
+\contentsline {section}{\numberline {5.1}System Overview}{17}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Edge Node Architecture}{17}{section.5.2}%
+\contentsline {section}{\numberline {5.3}Risk-State Machine}{18}{section.5.3}%
+\contentsline {section}{\numberline {5.4}Central Server Architecture}{18}{section.5.4}%
+\contentsline {section}{\numberline {5.5}Dashboard Architecture}{18}{section.5.5}%
+\contentsline {section}{\numberline {5.6}Configuration Profiles}{19}{section.5.6}%
+\contentsline {chapter}{\numberline {6}SYSTEM IMPLEMENTATION}{20}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Edge Node Implementation}{20}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Compression and Allocation Implementation}{20}{section.6.2}%
+\contentsline {section}{\numberline {6.3}Event Buffering and Forensic Implementation}{21}{section.6.3}%
+\contentsline {section}{\numberline {6.4}Server and Dashboard Implementation}{21}{section.6.4}%
+\contentsline {section}{\numberline {6.5}Algorithm Summary}{21}{section.6.5}%
+\contentsline {chapter}{\numberline {7}RESULT \& DISCUSSION}{23}{chapter.7}%
+\contentsline {section}{\numberline {7.1}Overview of Experiments}{23}{section.7.1}%
+\contentsline {section}{\numberline {7.2}Phase 1: Public-Dataset Observations}{23}{section.7.2}%
+\contentsline {subsection}{\numberline {7.2.1}CDnet-2014}{23}{subsection.7.2.1}%
+\contentsline {subsection}{\numberline {7.2.2}UCF-Crime}{24}{subsection.7.2.2}%
+\contentsline {section}{\numberline {7.3}Phase 2: Calibration Analysis}{24}{section.7.3}%
+\contentsline {subsection}{\numberline {7.3.1}Label Basis}{24}{subsection.7.3.1}%
+\contentsline {subsection}{\numberline {7.3.2}Leave-One-Video-Out Behaviour}{25}{subsection.7.3.2}%
+\contentsline {subsection}{\numberline {7.3.3}Full-Set Descriptive Metrics}{25}{subsection.7.3.3}%
+\contentsline {section}{\numberline {7.4}Phase 3: Forensic Integrity}{27}{section.7.4}%
+\contentsline {section}{\numberline {7.5}Phase 4: Controlled Baseline Comparison}{28}{section.7.5}%
+\contentsline {subsection}{\numberline {7.5.1}Rate--Distortion Behaviour}{28}{subsection.7.5.1}%
+\contentsline {subsection}{\numberline {7.5.2}Matched-Bitrate Comparison (Primary Result)}{30}{subsection.7.5.2}%
+\contentsline {subsection}{\numberline {7.5.3}BD-Rate, Consistency, and Control Clip}{30}{subsection.7.5.3}%
+\contentsline {section}{\numberline {7.6}Comparison with Literature}{30}{section.7.6}%
+\contentsline {section}{\numberline {7.7}Limitations of the Evaluation}{31}{section.7.7}%
+\contentsline {chapter}{\numberline {8}WEB APPLICATION}{32}{chapter.8}%
+\contentsline {section}{\numberline {8.1}Overview}{32}{section.8.1}%
+\contentsline {section}{\numberline {8.2}Central Server Services}{32}{section.8.2}%
+\contentsline {section}{\numberline {8.3}Dashboard Views}{32}{section.8.3}%
+\contentsline {chapter}{\numberline {9}PROJECT and TIME MANAGEMENT}{34}{chapter.9}%
+\contentsline {section}{\numberline {9.1}Project and Timeline Management}{34}{section.9.1}%
+\contentsline {subsection}{\numberline {9.1.1}Completion Timeline}{34}{subsection.9.1.1}%
+\contentsline {subsection}{\numberline {9.1.2}Gantt Chart}{34}{subsection.9.1.2}%
+\contentsline {subsection}{\numberline {9.1.3}Financial Statement}{34}{subsection.9.1.3}%
+\contentsline {subsubsection}{Budget Justification}{35}{subsection.9.1.3}%
+\contentsline {chapter}{\numberline {10}ETHICAL CONSIDERATION}{36}{chapter.10}%
+\contentsline {section}{\numberline {10.1}Key Ethical Considerations}{36}{section.10.1}%
+\contentsline {subsection}{\numberline {10.1.1}Informed Consent}{36}{subsection.10.1.1}%
+\contentsline {subsection}{\numberline {10.1.2}Data Security}{36}{subsection.10.1.2}%
+\contentsline {subsection}{\numberline {10.1.3}Fairness and Bias Mitigation}{36}{subsection.10.1.3}%
+\contentsline {subsection}{\numberline {10.1.4}Transparency}{36}{subsection.10.1.4}%
+\contentsline {subsection}{\numberline {10.1.5}Accountability}{37}{subsection.10.1.5}%
+\contentsline {section}{\numberline {10.2}Demonstration of Ethical Awareness}{37}{section.10.2}%
+\contentsline {section}{\numberline {10.3}Commitment to Responsible Research Practices}{37}{section.10.3}%
+\contentsline {chapter}{\numberline {11}SYSTEM PERFORMANCE, SUSTAINABILITY AND SOCIETAL IMPACT}{38}{chapter.11}%
+\contentsline {section}{\numberline {11.1}Societal, Health, Safety, Legal and Cultural Aspects}{38}{section.11.1}%
+\contentsline {subsection}{\numberline {11.1.1}Impact on Society}{38}{subsection.11.1.1}%
+\contentsline {subsection}{\numberline {11.1.2}Health and Safety Implications}{38}{subsection.11.1.2}%
+\contentsline {subsection}{\numberline {11.1.3}Legal Considerations}{38}{subsection.11.1.3}%
+\contentsline {subsection}{\numberline {11.1.4}Cultural Sensitivity}{38}{subsection.11.1.4}%
+\contentsline {section}{\numberline {11.2}System Performance, Sustainability and Societal Impact}{39}{section.11.2}%
+\contentsline {subsection}{\numberline {11.2.1}Model Performance Evaluation}{39}{subsection.11.2.1}%
+\contentsline {subsection}{\numberline {11.2.2}Sustainability}{39}{subsection.11.2.2}%
+\contentsline {subsection}{\numberline {11.2.3}Broader Societal Impact (Positive and Negative)}{39}{subsection.11.2.3}%
+\contentsline {chapter}{\numberline {12}SOCIETAL, HEALTH, SAFETY, LEGAL AND CULTURAL ASPECTS}{40}{chapter.12}%
+\contentsline {section}{\numberline {12.1}Societal Aspects}{40}{section.12.1}%
+\contentsline {section}{\numberline {12.2}Health Aspects}{40}{section.12.2}%
+\contentsline {section}{\numberline {12.3}Safety Aspects}{40}{section.12.3}%
+\contentsline {section}{\numberline {12.4}Legal Aspects}{40}{section.12.4}%
+\contentsline {section}{\numberline {12.5}Cultural Aspects}{41}{section.12.5}%
+\contentsline {chapter}{\numberline {13}LIFELONG LEARNING AND SELF-DEVELOPMENT}{42}{chapter.13}%
+\contentsline {section}{\numberline {13.1}Skills Developed}{42}{section.13.1}%
+\contentsline {section}{\numberline {13.2}Challenges Faced and Overcome}{42}{section.13.2}%
+\contentsline {section}{\numberline {13.3}Applications of Learning}{42}{section.13.3}%
+\contentsline {section}{\numberline {13.4}Future Goals}{42}{section.13.4}%
+\contentsline {chapter}{\numberline {14}CONCLUSION}{43}{chapter.14}%
+\contentsline {section}{\numberline {14.1}Conclusion}{43}{section.14.1}%
+\contentsline {section}{\numberline {14.2}Limitations}{43}{section.14.2}%
+\contentsline {section}{\numberline {14.3}Future Work}{44}{section.14.3}%
+\contentsline {chapter}{REFERENCE}{45}{section.14.3}%
+\contentsline {chapter}{\numberline {A}APPENDIX A: SUPPLEMENTARY EVIDENCE}{49}{appendix.A}%
+\contentsline {section}{\numberline {A.1}Parameter Reference}{49}{section.A.1}%
+\contentsline {section}{\numberline {A.2}Evidence Matrix (Claim $\rightarrow $ Experiment $\rightarrow $ Evidence File)}{49}{section.A.2}%
+\contentsline {section}{\numberline {A.3}Reference--Citation Matrix (Reference $\rightarrow $ Section $\rightarrow $ Claim Supported)}{49}{section.A.3}%
+\contentsline {section}{\numberline {A.4}Visual Insertion Checklist}{50}{section.A.4}%
+\contentsline {section}{\numberline {A.5}Claim Audit (Residual Items Requiring Manual Verification)}{50}{section.A.5}%

@@ -283,6 +283,94 @@ class UCFCrimeLoader:
         return None, []
 
 
+# ── CDnet 2014 Loader (Phase-1: sampled public evaluation) ──────────────────
+
+class CDnetLoader:
+    """
+    Minimal reader for CDnet-2014 sequences as extracted on disk.
+
+    Handles the real on-disk layouts without moving anything, e.g.:
+        <root>/baseline/highway/highway/{input,groundtruth,temporalROI.txt,ROI.bmp}
+        <root>/baseline/streetCornerAtNight/streetCornerAtNight/{...}
+
+    A scene is any directory containing an ``input/`` folder of frame JPGs.
+    Ground truth (``groundtruth/`` PNGs, CDnet labels 0/50/85/170/255),
+    ``temporalROI.txt`` (two 1-based frame numbers, scoring range) and
+    ``ROI.bmp`` are picked up when present and reported, never required.
+    Directories and files are only read, never written.
+    """
+
+    def __init__(self, dataset_path: str):
+        self.dataset_path = Path(dataset_path)
+
+    def _scene_dirs(self) -> List[Path]:
+        """All dirs containing an input/ frame folder, sorted by relative path."""
+        found = sorted(
+            {p.parent for p in self.dataset_path.rglob("input") if p.is_dir()},
+            key=lambda p: p.relative_to(self.dataset_path).as_posix(),
+        )
+        return [d for d in found if any(d.joinpath("input").glob("*.jpg"))]
+
+    def list_scenes(self) -> List[Dict]:
+        scenes = []
+        for d in self._scene_dirs():
+            frame_files = sorted(d.joinpath("input").glob("*.jpg"))
+            gt_files = sorted(d.joinpath("groundtruth").glob("*.png"))
+            roi_range = self._read_temporal_roi(d)
+            scenes.append({
+                "id": d.relative_to(self.dataset_path).as_posix(),
+                "video_path": str(d.joinpath("input")),
+                "total_frames": len(frame_files),
+                "gt_frames": len(gt_files),
+                "temporal_roi": list(roi_range) if roi_range else [],
+                "has_roi_mask": (d / "ROI.bmp").exists(),
+            })
+        return scenes
+
+    def load_scene(self, scene_id: str) -> Tuple[Optional[Dict], List[EventAnnotation]]:
+        """CDnet has no event annotations; returns info + [] (masks are read frame-wise)."""
+        d = self.dataset_path / scene_id
+        if not (d / "input").is_dir():
+            return None, []
+        frame_files = sorted(d.joinpath("input").glob("*.jpg"))
+        if not frame_files:
+            return None, []
+        probe = cv2.imread(str(frame_files[0]))
+        h, w = probe.shape[:2] if probe is not None else (0, 0)
+        info = {
+            "scene_id": scene_id,
+            "video_path": str(d.joinpath("input")),
+            "width": w,
+            "height": h,
+            "total_frames": len(frame_files),
+            "gt_frames": len(sorted(d.joinpath("groundtruth").glob("*.png"))),
+            "temporal_roi": list(self._read_temporal_roi(d) or []),
+        }
+        return info, []
+
+    def get_paths(self, scene_id: str) -> Dict:
+        """Concrete input/GT paths for a scene (read-only use)."""
+        d = self.dataset_path / scene_id
+        return {
+            "input_dir": d / "input",
+            "gt_dir": d / "groundtruth",
+            "temporal_roi_file": d / "temporalROI.txt",
+            "roi_mask": d / "ROI.bmp",
+        }
+
+    @staticmethod
+    def _read_temporal_roi(scene_dir: Path) -> Optional[Tuple[int, int]]:
+        """Parse temporalROI.txt (two 1-based frame numbers) or return None."""
+        fp = scene_dir / "temporalROI.txt"
+        try:
+            parts = fp.read_text().split()
+            if len(parts) >= 2:
+                return (int(parts[0]), int(parts[1]))
+        except Exception:
+            pass
+        return None
+
+
 # ── Custom CCTV Loader ────────────────────────────────────────────────────
 
 class CustomCCTVLoader:
@@ -413,6 +501,7 @@ class DatasetLoader:
         "virat": VIRATLoader,
         "ucf_crime": UCFCrimeLoader,
         "custom": CustomCCTVLoader,
+        "cdnet": CDnetLoader,
     }
 
     def __init__(self, dataset_path: str, dataset_type: str = "auto"):
@@ -431,10 +520,14 @@ class DatasetLoader:
     def _detect_type(self) -> str:
         """Auto-detect dataset type from directory structure."""
         path = Path(self.dataset_path)
+        if not path.exists():
+            return "custom"  # fallback (preserves prior behavior)
         if (path / "scenes").exists() and (path / "annotations").exists():
             return "virat"
         elif (path / "Normal").exists() or (path / "Abnormal").exists():
             return "ucf_crime"
+        elif any(path.rglob("temporalROI.txt")):
+            return "cdnet"
         elif any(path.glob("camera_*")):
             return "custom"
         else:

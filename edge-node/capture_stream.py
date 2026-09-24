@@ -739,6 +739,14 @@ def main(server_url, cam_source, target_fps, config_path=None, camera_id="camera
                 post_event_frames_remaining -= 1
                 if post_event_frames_remaining == 0:
                     print(f"[RISK] Post-event buffer complete: {event_id}")
+                    # U6: tamper-evident manifest (not lossless/admissibility proof)
+                    try:
+                        sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "evaluation"))
+                        from forensic_chain import write_manifest
+                        m = write_manifest(ev_dir)
+                        print(f"[forensic-chain] manifest: {m['files']} files tip={m['tip'][:12]}...")
+                    except Exception as e:
+                        print(f"[forensic-chain] manifest failed: {e}")
 
             # ── Risk-aware compression profile ──
             if use_optimizer:

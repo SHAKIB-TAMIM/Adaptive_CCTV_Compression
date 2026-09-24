@@ -267,6 +267,19 @@ def evaluate_event(event_dir, model=None):
         except Exception:
             pass
 
+    # ── 5. Integrity check (U6: tamper-evident only, cf. Ma 2016 / Kanwal 2020)
+    integrity_ok, integrity_detail = "", ""
+    try:
+        import sys as _sys
+        _sys.path.insert(0, os.path.dirname(__file__))
+        from forensic_chain import verify_event
+        ok, rep = verify_event(event_dir)
+        integrity_ok = bool(ok)
+        integrity_detail = rep.get("tip", rep.get("error", ""))[:32]
+    except Exception as e:
+        integrity_ok = ""
+        integrity_detail = f"unverified: {e}"[:64]
+
     return {
         "event_id":                event_id,
         "timestamp":               datetime.utcnow().isoformat(),
@@ -280,6 +293,8 @@ def evaluate_event(event_dir, model=None):
         "detection_recall":        round(detection_recall, 4) if detection_recall is not None else "",
         "ref_det_count":           ref_det_count,
         "peak_risk":               peak_risk if peak_risk else "",
+        "integrity_ok":            integrity_ok,
+        "integrity_detail":        integrity_detail,
         "usability_score":         round(usability_score, 2) if usability_score is not None else "",
         "psnr_threshold_db":       MIN_PSNR_THRESHOLD,
     }
@@ -355,7 +370,8 @@ def main():
         "event_id", "timestamp", "pre_frames", "post_frames",
         "pre_context_psnr", "event_frame_retention", "retained_above_threshold",
         "mean_post_psnr", "mean_post_ssim", "detection_recall",
-        "ref_det_count", "peak_risk", "usability_score", "psnr_threshold_db",
+        "ref_det_count", "peak_risk", "integrity_ok", "integrity_detail",
+        "usability_score", "psnr_threshold_db",
     ]
 
     results = []

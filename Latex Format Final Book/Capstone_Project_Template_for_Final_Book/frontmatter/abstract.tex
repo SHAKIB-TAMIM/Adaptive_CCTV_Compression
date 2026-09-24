@@ -1,0 +1,15 @@
+\clearpage
+\thispagestyle{plain}
+
+\addcontentsline{toc}{chapter}{ABSTRACT}
+
+\begin{center}
+    \textbf{\Large ABSTRACT}
+\end{center}
+
+\vspace{0.5cm}
+
+Closed-circuit television (CCTV) surveillance generates continuous video streams whose storage and transmission costs grow with camera count, resolution, and retention time. Uniform video encoding spends an equal share of the available bitrate on every pixel, including static background regions that carry little actionable information, while regions containing people or vehicles---the regions most relevant to security operators---receive no preferential protection. This thesis presents an adaptive CCTV compression system that uses dynamic Region of Interest (ROI) control to allocate encoding resources according to scene content. An edge node performs real-time object detection with YOLOv8n, converts detections into prioritized ROI maps (person: HIGH; vehicle: MEDIUM; other/background: LOW), assesses scene risk through a heuristic risk score with NORMAL/ALERT/CRITICAL states, and applies Lagrangian-inspired adaptive compression together with 15-second pre-event and 10-second post-event buffering. A central server and a Next.js dashboard provide monitoring, metrics, heatmaps, and privacy modes. The system was evaluated in four phases on CPU-only hardware: (i) public-dataset probing on CDnet-2014 and UCF-Crime (514 sampled inferences); (ii) group-aware calibration analysis over 64 labelled seconds; (iii) controlled tamper-evident forensic integrity tests over 470 frames; and (iv) a locked same-codec baseline comparison of uniform encoding, ROI-QP, foreground/background split, and the proposed adaptive ROI method on a 235-frame 720p clip with libx265. The controlled comparison is reported as a negative result: at a matched bitrate of approximately 710--840 kbps the proposed ROI construction achieved an ROI-PSNR of approximately 31.5 dB compared with approximately 34.7 dB for uniform encoding, and BD-rate was withheld because the protocol conditions for valid interpolation were not met. The forensic tests demonstrated exact-byte tamper-evident integrity behaviour with 5/5 direct tamper events detected and zero false alarms in clean cases, which is an integrity-verification result rather than a legal admissibility claim. The thesis contributes a deployable YOLOv8n/FFmpeg edge-cloud CCTV prototype with heuristic risk scoring, Lagrangian-inspired ROI allocation, and tamper-evident event buffering, evaluated through public-dataset probing, group-aware calibration analysis, controlled forensic tests, and a locked same-codec baseline comparison, together with an honest account of the current ROI construction's limitations and the future work required to address them.
+
+\vspace{0.5cm}
+\noindent\textbf{Keywords:} CCTV surveillance, video compression, region of interest, YOLOv8n, edge computing, adaptive bitrate allocation, forensic integrity, HEVC.

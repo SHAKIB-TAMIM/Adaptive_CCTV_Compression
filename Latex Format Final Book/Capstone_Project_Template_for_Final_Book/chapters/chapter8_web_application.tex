@@ -1,0 +1,15 @@
+\section{Overview}
+
+The web application tier comprises the Central Server (Node.js/Express with Socket.IO) and the Next.js dashboard. It provides live multi-camera viewing, metric visualization, forensic playback with manifest status, heatmap overlays, recording management, and privacy-mode controls. This chapter describes the implemented functionality as built; systematic performance evaluation of the server/dashboard tier (latency, throughput, concurrent users) was not performed and is stated as not available in the current evidence.
+
+\section{Central Server Services}
+
+The server ingests one UDP stream per camera (ports configured in \texttt{configs/cameras.yaml}), relays live video over Socket.IO, computes stream metrics on a 3-second cadence with threshold-triggered automatic bandwidth adaptation, and maintains heatmaps with 300-second decay capped at 10000 points weighted HIGH=3/MEDIUM=2/LOW=1. Its endpoint set covers events, motion, heatmaps, cameras, recordings, playback, reconstruction, and 15-second sample requests with real PSNR/SSIM computation. Recordings rotate on a 7-day hourly schedule. Adaptive streaming rules (risk-tiered quality/scale/floor with EMA factor 0.3, 5-second cooldown, 10--15\,s user-override locking) are implemented but disabled by default.
+
+\section{Dashboard Views}
+
+The Next.js dashboard implements four views: \texttt{live/} for real-time streams with ROI overlays and state readouts; \texttt{metrics/} for bitrate, PSNR/SSIM, risk, and state time series; \texttt{playback/} for event-centered forensic review with integrity-manifest status; and \texttt{grid/} for multi-camera walls. Privacy controls expose background blur, face masking, and ethical frame-dropping per the active YAML profile.
+
+[FIGURE PLACEHOLDER --- Figure~8.1: Dashboard live-view screenshot. What to show: live stream with ROI overlays, risk/state readout, and metric panel. Purpose: to document the operator-facing interface. Placement: after Section~8.3. Suggested size: 85--95\% of text width. Source: running dashboard. Status: NEW SCREENSHOT REQUIRED --- CAPTURE BEFORE FINAL PRINTING.]
+
+[FIGURE PLACEHOLDER --- Figure~8.2: Dashboard metrics/playback screenshot. What to show: metric time series and one forensic playback panel with manifest status. Purpose: to document monitoring and forensic-review interfaces. Placement: after Figure~8.1. Suggested size: 85--95\% of text width. Source: running dashboard. Status: NEW SCREENSHOT REQUIRED --- CAPTURE BEFORE FINAL PRINTING.]

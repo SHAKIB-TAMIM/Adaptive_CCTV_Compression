@@ -1,13 +1,19 @@
 cameras:
-  - id: camera_0
-    name: Laptop Webcam
-    source: '0'
-    udp_port: 1234
-    fps: 15
-    enabled: true
-  - id: camera_1
-    name: Phone Camera
-    source: http://192.168.50.167:8080/video
-    udp_port: 1235
-    fps: 15
-    enabled: true
+- id: camera_0
+  name: Laptop Webcam
+  source: '1'
+  udp_port: 1234
+  fps: 15
+  enabled: true
+- id: camera_1
+  name: Phone Camera
+  source: http://192.168.50.167:8080/video
+  udp_port: 1235
+  fps: 15
+  enabled: false
+- id: Web_Cam
+  name: Web_Cam
+  source: http://172.16.40.197:8080/video
+  udp_port: 1236
+  fps: 15
+  enabled: true

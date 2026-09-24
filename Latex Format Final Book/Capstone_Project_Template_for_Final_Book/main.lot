@@ -1,0 +1,24 @@
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {3.1}{\ignorespaces Technology stack of the implemented system}}{11}{table.3.1}%
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {5.1}{\ignorespaces Deployment configuration profiles (\texttt {configs/*.yaml})}}{19}{table.5.1}%
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {6.1}{\ignorespaces Key implementation parameters (evaluated values)}}{21}{table.6.1}%
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {7.1}{\ignorespaces Phase~1 CDnet-2014 results (confidence 0.30, every 30th frame, hour fixed to 14)}}{23}{table.7.1}%
+\contentsline {table}{\numberline {7.2}{\ignorespaces Phase~1 UCF-Crime results (clip-level labels; Fighting002 training-split, annotation pack absent)}}{24}{table.7.2}%
+\contentsline {table}{\numberline {7.3}{\ignorespaces Phase~2 Leave-One-Video-Out folds (AUC undefined for single-class tests by construction)}}{25}{table.7.3}%
+\contentsline {table}{\numberline {7.4}{\ignorespaces Phase~3 forensic cases (470 frames; source \texttt {data/thesis\_clips/motion\_only.mp4})}}{27}{table.7.4}%
+\contentsline {table}{\numberline {7.5}{\ignorespaces Phase~4 matched-bitrate comparison ($\approx $ 710--840 kbps operating region)}}{30}{table.7.5}%
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {11.1}{\ignorespaces Summary of measured performance (all values traceable to Chapters~4 and 7 evidence)}}{39}{table.11.1}%
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }

@@ -1,0 +1,47 @@
+\section{Societal, Health, Safety, Legal and Cultural Aspects}
+
+\subsection{Impact on Society}
+
+Content-adaptive CCTV can lower the cost of public safety infrastructure and improve the usability of retained footage by protecting task-relevant regions \cite{Xiao2017Sensitive,Shao2018Smart}. Conversely, the same machinery could intensify pervasive monitoring if deployed without governance. This thesis takes no position on deployment policy beyond noting that efficiency gains do not by themselves justify expanded surveillance.
+
+\subsection{Health and Safety Implications}
+
+No physical intervention, human trial, or safety-critical control loop is involved. The system is a passive monitoring and compression pipeline; operator fatigue effects of adaptive quality (e.g.\ background degradation during review) were not studied and are noted as future human-factors work.
+
+\subsection{Legal Considerations}
+
+The forensic chain demonstrates exact-byte tamper evidence only. It does not establish legal admissibility, evidentiary sufficiency, certification, or standards compliance, and must not be represented as such to any court or authority. Chain-of-custody validity in the legal sense requires procedural controls far beyond file hashing \cite{Kanwal2020Chain}.
+
+\subsection{Cultural Sensitivity}
+
+Camera placement, retention, and privacy-mode configuration must respect local norms and regulations. The privacy profile (blur, masking, ethical dropping) exists to support such adaptation but does not guarantee cultural appropriateness in any specific deployment.
+
+\section{System Performance, Sustainability and Societal Impact}
+
+\subsection{Model Performance Evaluation}
+
+\begin{table}[H]
+\centering
+\label{tab:performance_metrics}
+\begin{tabular}{|l|c|l|}
+\hline
+\textbf{Metric} & \textbf{Value} & \textbf{Interpretation} \\
+\hline
+Phase~2 full descriptive AUC & 0.9962 & In-sample separability only, not generalization \\
+Phase~2 full descriptive F1 & 0.919 & Apparent (all positives from one video) \\
+Phase~3 localization recall / precision & 1.0 / 1.0 & 5/5 direct tampers; exact-byte scope \\
+Phase~4 matched ROI-PSNR (proposed) & $\approx$ 31.5 dB & Below uniform $\approx$ 34.7 dB: negative result \\
+Phase~4 BD-rate & Withheld & Preconditions not met; not reported \\
+Detector consistency (Phase~4) & 1.0 & Internal consistency, not accuracy \\
+\hline
+\end{tabular}
+\caption{Summary of measured performance (all values traceable to Chapters~4 and 7 evidence)}
+\end{table}
+
+\subsection{Sustainability}
+
+CPU-only operation, open-source tooling, and reduced bitrate operation all favour lower energy and hardware cost relative to GPU-dependent learned codecs \cite{Wu2024ROIDVC,Zhao2025ASVC}. No energy measurement is claimed: power figures would require RAPL/instrumented metering that was not performed, and wall-clock runtime ($\approx$ 3.5 hours for Phase~4) is reported as runtime, not as energy or FPS.
+
+\subsection{Broader Societal Impact (Positive and Negative)}
+
+Positive: a reproducible, low-cost prototype with honest evaluation that other student and practitioner teams can build on. Negative: any compression system that degrades background regions risks discarding exculpatory or contextual detail; ROI-based evidence handling must therefore be paired with retention policies and the integrity mechanisms of Chapter~6, whose limits are stated plainly.

@@ -1,0 +1,41 @@
+\section{Edge Node Implementation}
+
+The edge implementation centers on two files. \texttt{edge-node/detector.py} provides a pluggable detector registry (\texttt{yolo}, \texttt{mock}) with \texttt{YoloDetector} wrapping the YOLOv8n weights and a class-to-priority map (person HIGH; vehicle classes $\{2,3,5,6,7\}$ MEDIUM; remainder LOW). \texttt{edge-node/capture\_stream.py} implements the \texttt{AdaptiveRateAllocator}, the \texttt{CodecManager} (GOP and resolution ladders), the \texttt{reconstruct} path (ethical black frames when no ROI exists under ethical mode; background blur with kernel (99,99); background down/up-scaling; 0.7$\times$ medium-region recompression; face blurring for HIGH regions under masking), ROI merging (IoU 0.30, smoothing 0.4, TTL refresh), the risk score of Equation~\ref{eq:risk}, the hysteresis state machine, and the preview path (JPEG quality 82, heatmap refresh every 5 frames with 15-frame persistence, motion estimation cadence \texttt{DETECT\_EVERY\_N} = 3). Adaptive frame-rate reduction (halving down to a floor of 5\,fps when NORMAL with no ROI) and the confidence split (0.20 in low light, else 0.30) are implemented as described; neither is credited with a measured performance gain in this thesis.
+
+\section{Compression and Allocation Implementation}
+
+Two allocation paths exist. The heuristic path applies the state-compression table (NORMAL: no override; ALERT: 0.75 scale / quality 45/95; CRITICAL: 1.0 scale / quality 88/100). The optimizer path calls \texttt{evaluation/rate\_allocator.py::RateAllocator} with priority weights 1.0/0.4/0.1, complexity-aware background quality, track-boosted importance ($\times$1.3), per-ROI clamping, and the 50-iteration $\lambda$ bisection described in Chapter~4. FFmpeg invocation uses fast presets for libx265/libx264, p1 for NVENC, preset 8 with CRF 35 for SVT-AV1, and realtime/cpu-used 8 for VP9, with bitrate, 1.5$\times$ maxrate, 2$\times$ bufsize, and GOP-derived keyframe intervals. The Phase~4 encodes used libx265 medium with GOP 60 and keyint minimum 30 through a raw-video pipe (single-encode by construction, no intermediate file).
+
+\section{Event Buffering and Forensic Implementation}
+
+On the NORMAL$\rightarrow$ALERT$\rightarrow$CRITICAL escalation, the edge node opens an \texttt{event\_\textless ms\textgreater} record, flushes the 15-second pre-event deque (frames plus metadata JSON) to disk, notifies the server via POST /event, and accumulates the 10-second post-event window before calling \texttt{forensic\_chain.write\_manifest}. The manifest format stores per-file SHA-256 digests with backward chain links from a \texttt{GENESIS} anchor over the sorted set of \texttt{pre\_*.jpg}, \texttt{pre\_*\_meta.json}, and \texttt{post\_*.jpg} files. Verification (\texttt{verify\_all} in the Phase~3 harness) checks every file and reports missing files, direct hash mismatches, downstream chain breaks, and the first failure; it is intentionally exhaustive rather than early-stopping so that tamper localization can be scored.
+
+\section{Server and Dashboard Implementation}
+
+The server implementation follows the architecture of Chapter~5: UDP ingest, 3-second metric cadence, threshold-triggered bandwidth adaptation, decaying heatmaps, and the endpoint set for events, motion, cameras, recordings, playback, reconstruction, and sample requests. The dashboard implements the four views with shared component and library layers. Both tiers were exercised during development; systematic quantitative evaluation of server/dashboard performance (latency, throughput, concurrent users) was not performed and is recorded as not available in the current evidence rather than estimated.
+
+\section{Algorithm Summary}
+
+\begin{table}[H]
+\centering
+\caption{Key implementation parameters (evaluated values)}
+\label{tab:params}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Parameter} & \textbf{Value} \\
+\hline
+Detector & YOLOv8n, confidence $\approx$ 0.30 (evaluation) \\
+ROI policy & person HIGH / vehicle MEDIUM / other LOW \\
+ROI merge & IoU 0.30, smoothing 0.4, TTL $\approx$ 30 frames \\
+Phase~4 dilation & 8 px, shared box cache, union masks \\
+Risk thresholds & 0.30 ALERT / 0.65 CRITICAL / 0.50 CRITICAL-exit \\
+Event buffer & 15\,s pre-event / 10\,s post-event \\
+GOP / keyint (Phase~4) & 60 / 30, libx265 medium \\
+Bitrate targets (Phase~4) & 300 / 600 / 1200 / 2400 kbps \\
+Codec fairness & same source, resolution, frames, GOP, codec \\
+Hardware & CPU-only (i3-6006U, 4 logical CPUs, no GPU) \\
+\hline
+\end{tabular}
+\end{table}
+
+[FIGURE PLACEHOLDER --- Figure~6.1: YOLO detection with ROI overlay example on a thesis clip frame. What to show: one annotated frame with HIGH/MEDIUM/LOW boxes and the risk/state readout. Purpose: to ground the ROI policy in a concrete visual. Placement: after Section~6.1. Suggested size: 70--80\% of text width. Source: project implementation (generate from \texttt{day\_person.mp4} with the preview path). Status: NEW FIGURE REQUIRED --- CREATE BEFORE FINAL PRINTING.]
