@@ -1,0 +1,13788 @@
+[
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 1,
+    "timestamp": 1790355331.6004584,
+    "state": "normal",
+    "risk": 0.06,
+    "rois": [],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 2,
+    "timestamp": 1790355331.8823717,
+    "state": "normal",
+    "risk": 0.103,
+    "rois": [],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 3,
+    "timestamp": 1790355334.9769194,
+    "state": "normal",
+    "risk": 0.1857,
+    "rois": [
+      [
+        928,
+        185,
+        1917,
+        1076
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 4,
+    "timestamp": 1790355335.3981824,
+    "state": "normal",
+    "risk": 0.2437,
+    "rois": [
+      [
+        928,
+        185,
+        1917,
+        1076
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 5,
+    "timestamp": 1790355335.8386421,
+    "state": "normal",
+    "risk": 0.2845,
+    "rois": [
+      [
+        928,
+        185,
+        1917,
+        1076
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 6,
+    "timestamp": 1790355338.3889098,
+    "state": "alert",
+    "risk": 0.3128,
+    "rois": [
+      [
+        928,
+        185,
+        1917,
+        1076
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 7,
+    "timestamp": 1790355338.8512824,
+    "state": "alert",
+    "risk": 0.3327,
+    "rois": [
+      [
+        928,
+        185,
+        1917,
+        1076
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 8,
+    "timestamp": 1790355339.482886,
+    "state": "alert",
+    "risk": 0.3465,
+    "rois": [
+      [
+        928,
+        185,
+        1917,
+        1076
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 9,
+    "timestamp": 1790355339.9983153,
+    "state": "alert",
+    "risk": 0.3562,
+    "rois": [
+      [
+        928,
+        185,
+        1917,
+        1076
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 10,
+    "timestamp": 1790355341.1029036,
+    "state": "alert",
+    "risk": 0.3628,
+    "rois": [
+      [
+        931,
+        187,
+        1915,
+        1073
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 11,
+    "timestamp": 1790355341.6871848,
+    "state": "alert",
+    "risk": 0.3673,
+    "rois": [
+      [
+        931,
+        187,
+        1915,
+        1073
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 12,
+    "timestamp": 1790355342.2987223,
+    "state": "alert",
+    "risk": 0.3705,
+    "rois": [
+      [
+        931,
+        187,
+        1915,
+        1073
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 13,
+    "timestamp": 1790355342.7669346,
+    "state": "alert",
+    "risk": 0.3727,
+    "rois": [
+      [
+        931,
+        187,
+        1915,
+        1073
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 14,
+    "timestamp": 1790355343.3931396,
+    "state": "alert",
+    "risk": 0.3743,
+    "rois": [
+      [
+        931,
+        187,
+        1915,
+        1073
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 15,
+    "timestamp": 1790355344.0700915,
+    "state": "alert",
+    "risk": 0.3756,
+    "rois": [
+      [
+        931,
+        187,
+        1915,
+        1073
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 16,
+    "timestamp": 1790355344.513308,
+    "state": "alert",
+    "risk": 0.3765,
+    "rois": [
+      [
+        931,
+        187,
+        1915,
+        1073
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 17,
+    "timestamp": 1790355345.0496893,
+    "state": "alert",
+    "risk": 0.3769,
+    "rois": [
+      [
+        931,
+        187,
+        1915,
+        1073
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 18,
+    "timestamp": 1790355345.849944,
+    "state": "alert",
+    "risk": 0.3775,
+    "rois": [
+      [
+        931,
+        187,
+        1915,
+        1073
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 19,
+    "timestamp": 1790355346.4788852,
+    "state": "alert",
+    "risk": 0.3777,
+    "rois": [
+      [
+        931,
+        187,
+        1915,
+        1073
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 20,
+    "timestamp": 1790355347.559111,
+    "state": "alert",
+    "risk": 0.3781,
+    "rois": [
+      [
+        928,
+        186,
+        1915,
+        1073
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 21,
+    "timestamp": 1790355348.1321945,
+    "state": "alert",
+    "risk": 0.3783,
+    "rois": [
+      [
+        928,
+        186,
+        1915,
+        1073
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 22,
+    "timestamp": 1790355348.6270826,
+    "state": "alert",
+    "risk": 0.3784,
+    "rois": [
+      [
+        928,
+        186,
+        1915,
+        1073
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 23,
+    "timestamp": 1790355349.3589087,
+    "state": "alert",
+    "risk": 0.3784,
+    "rois": [
+      [
+        928,
+        186,
+        1915,
+        1073
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 24,
+    "timestamp": 1790355349.8737385,
+    "state": "alert",
+    "risk": 0.3785,
+    "rois": [
+      [
+        928,
+        186,
+        1915,
+        1073
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 25,
+    "timestamp": 1790355350.6007674,
+    "state": "alert",
+    "risk": 0.3784,
+    "rois": [
+      [
+        928,
+        186,
+        1915,
+        1073
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 26,
+    "timestamp": 1790355351.388835,
+    "state": "alert",
+    "risk": 0.3784,
+    "rois": [
+      [
+        928,
+        186,
+        1915,
+        1073
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 27,
+    "timestamp": 1790355352.4482884,
+    "state": "alert",
+    "risk": 0.3784,
+    "rois": [
+      [
+        928,
+        186,
+        1915,
+        1073
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 28,
+    "timestamp": 1790355353.2050593,
+    "state": "alert",
+    "risk": 0.3783,
+    "rois": [
+      [
+        928,
+        186,
+        1915,
+        1073
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 29,
+    "timestamp": 1790355354.0719025,
+    "state": "alert",
+    "risk": 0.3784,
+    "rois": [
+      [
+        928,
+        186,
+        1915,
+        1073
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 30,
+    "timestamp": 1790355355.2821698,
+    "state": "alert",
+    "risk": 0.3781,
+    "rois": [
+      [
+        929,
+        188,
+        1913,
+        1071
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 31,
+    "timestamp": 1790355356.1821103,
+    "state": "alert",
+    "risk": 0.3778,
+    "rois": [
+      [
+        929,
+        188,
+        1913,
+        1071
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 32,
+    "timestamp": 1790355356.698175,
+    "state": "alert",
+    "risk": 0.3777,
+    "rois": [
+      [
+        929,
+        188,
+        1913,
+        1071
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 33,
+    "timestamp": 1790355357.4243262,
+    "state": "alert",
+    "risk": 0.3779,
+    "rois": [
+      [
+        929,
+        188,
+        1913,
+        1071
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 34,
+    "timestamp": 1790355358.2759876,
+    "state": "alert",
+    "risk": 0.3778,
+    "rois": [
+      [
+        929,
+        188,
+        1913,
+        1071
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 35,
+    "timestamp": 1790355359.2228365,
+    "state": "alert",
+    "risk": 0.3779,
+    "rois": [
+      [
+        929,
+        188,
+        1913,
+        1071
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 36,
+    "timestamp": 1790355360.3384736,
+    "state": "alert",
+    "risk": 0.3778,
+    "rois": [
+      [
+        929,
+        188,
+        1913,
+        1071
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 37,
+    "timestamp": 1790355361.2276585,
+    "state": "alert",
+    "risk": 0.382,
+    "rois": [
+      [
+        929,
+        188,
+        1913,
+        1071
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 38,
+    "timestamp": 1790355362.7766845,
+    "state": "alert",
+    "risk": 0.3806,
+    "rois": [
+      [
+        929,
+        188,
+        1913,
+        1071
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 39,
+    "timestamp": 1790355363.4978204,
+    "state": "alert",
+    "risk": 0.3798,
+    "rois": [
+      [
+        929,
+        188,
+        1913,
+        1071
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 40,
+    "timestamp": 1790355364.6382706,
+    "state": "alert",
+    "risk": 0.3792,
+    "rois": [
+      [
+        929,
+        188,
+        1913,
+        1071
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 41,
+    "timestamp": 1790355365.2706964,
+    "state": "alert",
+    "risk": 0.3787,
+    "rois": [
+      [
+        929,
+        188,
+        1913,
+        1071
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 42,
+    "timestamp": 1790355365.9613097,
+    "state": "alert",
+    "risk": 0.3782,
+    "rois": [
+      [
+        929,
+        188,
+        1913,
+        1071
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 43,
+    "timestamp": 1790355366.7591925,
+    "state": "alert",
+    "risk": 0.3779,
+    "rois": [
+      [
+        929,
+        188,
+        1913,
+        1071
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 44,
+    "timestamp": 1790355367.4587724,
+    "state": "alert",
+    "risk": 0.3777,
+    "rois": [
+      [
+        929,
+        188,
+        1913,
+        1071
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 45,
+    "timestamp": 1790355368.1391253,
+    "state": "alert",
+    "risk": 0.3775,
+    "rois": [
+      [
+        929,
+        188,
+        1913,
+        1071
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 46,
+    "timestamp": 1790355368.8820076,
+    "state": "alert",
+    "risk": 0.3776,
+    "rois": [
+      [
+        929,
+        188,
+        1913,
+        1071
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 47,
+    "timestamp": 1790355369.571269,
+    "state": "alert",
+    "risk": 0.3816,
+    "rois": [
+      [
+        929,
+        188,
+        1913,
+        1071
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 48,
+    "timestamp": 1790355370.2099397,
+    "state": "alert",
+    "risk": 0.3815,
+    "rois": [
+      [
+        929,
+        188,
+        1913,
+        1071
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 49,
+    "timestamp": 1790355370.762203,
+    "state": "alert",
+    "risk": 0.3813,
+    "rois": [
+      [
+        929,
+        188,
+        1913,
+        1071
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 50,
+    "timestamp": 1790355372.038576,
+    "state": "alert",
+    "risk": 0.3804,
+    "rois": [
+      [
+        933,
+        203,
+        1915,
+        1073
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 51,
+    "timestamp": 1790355372.7708552,
+    "state": "alert",
+    "risk": 0.3798,
+    "rois": [
+      [
+        933,
+        203,
+        1915,
+        1073
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 52,
+    "timestamp": 1790355373.4228706,
+    "state": "alert",
+    "risk": 0.3791,
+    "rois": [
+      [
+        933,
+        203,
+        1915,
+        1073
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 53,
+    "timestamp": 1790355374.2044992,
+    "state": "alert",
+    "risk": 0.3785,
+    "rois": [
+      [
+        933,
+        203,
+        1915,
+        1073
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 54,
+    "timestamp": 1790355374.747382,
+    "state": "alert",
+    "risk": 0.3785,
+    "rois": [
+      [
+        933,
+        203,
+        1915,
+        1073
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 55,
+    "timestamp": 1790355375.3706238,
+    "state": "alert",
+    "risk": 0.3787,
+    "rois": [
+      [
+        933,
+        203,
+        1915,
+        1073
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 56,
+    "timestamp": 1790355375.9682937,
+    "state": "alert",
+    "risk": 0.3787,
+    "rois": [
+      [
+        933,
+        203,
+        1915,
+        1073
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 57,
+    "timestamp": 1790355376.3566554,
+    "state": "alert",
+    "risk": 0.3785,
+    "rois": [
+      [
+        933,
+        203,
+        1915,
+        1073
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 58,
+    "timestamp": 1790355376.8764977,
+    "state": "alert",
+    "risk": 0.3783,
+    "rois": [
+      [
+        933,
+        203,
+        1915,
+        1073
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 59,
+    "timestamp": 1790355377.3923526,
+    "state": "alert",
+    "risk": 0.3799,
+    "rois": [
+      [
+        933,
+        203,
+        1915,
+        1073
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 60,
+    "timestamp": 1790355378.2290082,
+    "state": "alert",
+    "risk": 0.3775,
+    "rois": [
+      [
+        949,
+        219,
+        1916,
+        1071
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 61,
+    "timestamp": 1790355378.6977901,
+    "state": "alert",
+    "risk": 0.3759,
+    "rois": [
+      [
+        949,
+        219,
+        1916,
+        1071
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 62,
+    "timestamp": 1790355379.193784,
+    "state": "alert",
+    "risk": 0.3747,
+    "rois": [
+      [
+        949,
+        219,
+        1916,
+        1071
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 63,
+    "timestamp": 1790355379.75104,
+    "state": "alert",
+    "risk": 0.3739,
+    "rois": [
+      [
+        949,
+        219,
+        1916,
+        1071
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 64,
+    "timestamp": 1790355380.6555607,
+    "state": "alert",
+    "risk": 0.3734,
+    "rois": [
+      [
+        949,
+        219,
+        1916,
+        1071
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 65,
+    "timestamp": 1790355381.154937,
+    "state": "alert",
+    "risk": 0.373,
+    "rois": [
+      [
+        949,
+        219,
+        1916,
+        1071
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 66,
+    "timestamp": 1790355381.6307735,
+    "state": "alert",
+    "risk": 0.3731,
+    "rois": [
+      [
+        949,
+        219,
+        1916,
+        1071
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 67,
+    "timestamp": 1790355382.0216994,
+    "state": "alert",
+    "risk": 0.3732,
+    "rois": [
+      [
+        949,
+        219,
+        1916,
+        1071
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 68,
+    "timestamp": 1790355382.8624988,
+    "state": "alert",
+    "risk": 0.3732,
+    "rois": [
+      [
+        949,
+        219,
+        1916,
+        1071
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 69,
+    "timestamp": 1790355383.5392394,
+    "state": "alert",
+    "risk": 0.3737,
+    "rois": [
+      [
+        949,
+        219,
+        1916,
+        1071
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 70,
+    "timestamp": 1790355384.636299,
+    "state": "alert",
+    "risk": 0.3953,
+    "rois": [
+      [
+        958,
+        227,
+        1917,
+        1070
+      ],
+      [
+        10,
+        924,
+        291,
+        1078
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 71,
+    "timestamp": 1790355385.3187573,
+    "state": "alert",
+    "risk": 0.4105,
+    "rois": [
+      [
+        958,
+        227,
+        1917,
+        1070
+      ],
+      [
+        10,
+        924,
+        291,
+        1078
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 72,
+    "timestamp": 1790355386.0664668,
+    "state": "alert",
+    "risk": 0.421,
+    "rois": [
+      [
+        958,
+        227,
+        1917,
+        1070
+      ],
+      [
+        10,
+        924,
+        291,
+        1078
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 73,
+    "timestamp": 1790355386.746821,
+    "state": "alert",
+    "risk": 0.4283,
+    "rois": [
+      [
+        958,
+        227,
+        1917,
+        1070
+      ],
+      [
+        10,
+        924,
+        291,
+        1078
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 74,
+    "timestamp": 1790355387.394263,
+    "state": "alert",
+    "risk": 0.4335,
+    "rois": [
+      [
+        958,
+        227,
+        1917,
+        1070
+      ],
+      [
+        10,
+        924,
+        291,
+        1078
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 75,
+    "timestamp": 1790355388.0058641,
+    "state": "alert",
+    "risk": 0.4371,
+    "rois": [
+      [
+        958,
+        227,
+        1917,
+        1070
+      ],
+      [
+        10,
+        924,
+        291,
+        1078
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 76,
+    "timestamp": 1790355388.6391587,
+    "state": "alert",
+    "risk": 0.4397,
+    "rois": [
+      [
+        958,
+        227,
+        1917,
+        1070
+      ],
+      [
+        10,
+        924,
+        291,
+        1078
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 77,
+    "timestamp": 1790355389.3572981,
+    "state": "alert",
+    "risk": 0.4413,
+    "rois": [
+      [
+        958,
+        227,
+        1917,
+        1070
+      ],
+      [
+        10,
+        924,
+        291,
+        1078
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 78,
+    "timestamp": 1790355389.9440134,
+    "state": "alert",
+    "risk": 0.4425,
+    "rois": [
+      [
+        958,
+        227,
+        1917,
+        1070
+      ],
+      [
+        10,
+        924,
+        291,
+        1078
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 79,
+    "timestamp": 1790355390.532498,
+    "state": "alert",
+    "risk": 0.4474,
+    "rois": [
+      [
+        958,
+        227,
+        1917,
+        1070
+      ],
+      [
+        10,
+        924,
+        291,
+        1078
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 80,
+    "timestamp": 1790355391.6422458,
+    "state": "alert",
+    "risk": 0.4471,
+    "rois": [
+      [
+        958,
+        224,
+        1917,
+        1074
+      ],
+      [
+        21,
+        917,
+        294,
+        1078
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 81,
+    "timestamp": 1790355392.3056629,
+    "state": "alert",
+    "risk": 0.4469,
+    "rois": [
+      [
+        958,
+        224,
+        1917,
+        1074
+      ],
+      [
+        21,
+        917,
+        294,
+        1078
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 82,
+    "timestamp": 1790355392.9092064,
+    "state": "alert",
+    "risk": 0.447,
+    "rois": [
+      [
+        958,
+        224,
+        1917,
+        1074
+      ],
+      [
+        21,
+        917,
+        294,
+        1078
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 83,
+    "timestamp": 1790355393.505372,
+    "state": "alert",
+    "risk": 0.447,
+    "rois": [
+      [
+        958,
+        224,
+        1917,
+        1074
+      ],
+      [
+        21,
+        917,
+        294,
+        1078
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 84,
+    "timestamp": 1790355394.1582482,
+    "state": "alert",
+    "risk": 0.4472,
+    "rois": [
+      [
+        958,
+        224,
+        1917,
+        1074
+      ],
+      [
+        21,
+        917,
+        294,
+        1078
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 85,
+    "timestamp": 1790355394.6680682,
+    "state": "alert",
+    "risk": 0.4475,
+    "rois": [
+      [
+        958,
+        224,
+        1917,
+        1074
+      ],
+      [
+        21,
+        917,
+        294,
+        1078
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 86,
+    "timestamp": 1790355395.1886501,
+    "state": "alert",
+    "risk": 0.4478,
+    "rois": [
+      [
+        958,
+        224,
+        1917,
+        1074
+      ],
+      [
+        21,
+        917,
+        294,
+        1078
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 87,
+    "timestamp": 1790355396.0449305,
+    "state": "alert",
+    "risk": 0.4484,
+    "rois": [
+      [
+        958,
+        224,
+        1917,
+        1074
+      ],
+      [
+        21,
+        917,
+        294,
+        1078
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 88,
+    "timestamp": 1790355396.9625616,
+    "state": "alert",
+    "risk": 0.4491,
+    "rois": [
+      [
+        958,
+        224,
+        1917,
+        1074
+      ],
+      [
+        21,
+        917,
+        294,
+        1078
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 89,
+    "timestamp": 1790355397.7519135,
+    "state": "alert",
+    "risk": 0.4662,
+    "rois": [
+      [
+        958,
+        224,
+        1917,
+        1074
+      ],
+      [
+        21,
+        917,
+        294,
+        1078
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 90,
+    "timestamp": 1790355399.335459,
+    "state": "alert",
+    "risk": 0.462,
+    "rois": [
+      [
+        958,
+        224,
+        1917,
+        1074
+      ],
+      [
+        21,
+        917,
+        294,
+        1078
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 91,
+    "timestamp": 1790355399.9509597,
+    "state": "alert",
+    "risk": 0.4589,
+    "rois": [
+      [
+        958,
+        224,
+        1917,
+        1074
+      ],
+      [
+        21,
+        917,
+        294,
+        1078
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 92,
+    "timestamp": 1790355400.4693208,
+    "state": "alert",
+    "risk": 0.4571,
+    "rois": [
+      [
+        958,
+        224,
+        1917,
+        1074
+      ],
+      [
+        21,
+        917,
+        294,
+        1078
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 93,
+    "timestamp": 1790355400.9388924,
+    "state": "alert",
+    "risk": 0.4566,
+    "rois": [
+      [
+        958,
+        224,
+        1917,
+        1074
+      ],
+      [
+        21,
+        917,
+        294,
+        1078
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 94,
+    "timestamp": 1790355401.6541178,
+    "state": "alert",
+    "risk": 0.4569,
+    "rois": [
+      [
+        958,
+        224,
+        1917,
+        1074
+      ],
+      [
+        21,
+        917,
+        294,
+        1078
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 95,
+    "timestamp": 1790355402.4210265,
+    "state": "alert",
+    "risk": 0.4574,
+    "rois": [
+      [
+        958,
+        224,
+        1917,
+        1074
+      ],
+      [
+        21,
+        917,
+        294,
+        1078
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 96,
+    "timestamp": 1790355402.9839294,
+    "state": "alert",
+    "risk": 0.4573,
+    "rois": [
+      [
+        958,
+        224,
+        1917,
+        1074
+      ],
+      [
+        21,
+        917,
+        294,
+        1078
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 97,
+    "timestamp": 1790355403.693495,
+    "state": "alert",
+    "risk": 0.4571,
+    "rois": [
+      [
+        958,
+        224,
+        1917,
+        1074
+      ],
+      [
+        21,
+        917,
+        294,
+        1078
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 98,
+    "timestamp": 1790355404.3130763,
+    "state": "alert",
+    "risk": 0.4569,
+    "rois": [
+      [
+        958,
+        224,
+        1917,
+        1074
+      ],
+      [
+        21,
+        917,
+        294,
+        1078
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 99,
+    "timestamp": 1790355405.0312586,
+    "state": "alert",
+    "risk": 0.4575,
+    "rois": [
+      [
+        958,
+        224,
+        1917,
+        1074
+      ],
+      [
+        21,
+        917,
+        294,
+        1078
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 100,
+    "timestamp": 1790355406.7713819,
+    "state": "alert",
+    "risk": 0.5701,
+    "rois": [
+      [
+        958,
+        224,
+        1917,
+        1074
+      ],
+      [
+        21,
+        917,
+        294,
+        1078
+      ],
+      [
+        790,
+        9,
+        1160,
+        422
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 101,
+    "timestamp": 1790355407.7350552,
+    "state": "alert",
+    "risk": 0.6412,
+    "rois": [
+      [
+        958,
+        224,
+        1917,
+        1074
+      ],
+      [
+        21,
+        917,
+        294,
+        1078
+      ],
+      [
+        790,
+        9,
+        1160,
+        422
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 102,
+    "timestamp": 1790355416.0951977,
+    "state": "critical",
+    "risk": 0.6914,
+    "rois": [
+      [
+        958,
+        224,
+        1917,
+        1074
+      ],
+      [
+        21,
+        917,
+        294,
+        1078
+      ],
+      [
+        790,
+        9,
+        1160,
+        422
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 103,
+    "timestamp": 1790355417.1080878,
+    "state": "critical",
+    "risk": 0.7267,
+    "rois": [
+      [
+        958,
+        224,
+        1917,
+        1074
+      ],
+      [
+        21,
+        917,
+        294,
+        1078
+      ],
+      [
+        790,
+        9,
+        1160,
+        422
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 104,
+    "timestamp": 1790355417.9686067,
+    "state": "critical",
+    "risk": 0.7509,
+    "rois": [
+      [
+        958,
+        224,
+        1917,
+        1074
+      ],
+      [
+        21,
+        917,
+        294,
+        1078
+      ],
+      [
+        790,
+        9,
+        1160,
+        422
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 105,
+    "timestamp": 1790355418.897059,
+    "state": "critical",
+    "risk": 0.7677,
+    "rois": [
+      [
+        958,
+        224,
+        1917,
+        1074
+      ],
+      [
+        21,
+        917,
+        294,
+        1078
+      ],
+      [
+        790,
+        9,
+        1160,
+        422
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 106,
+    "timestamp": 1790355419.6728885,
+    "state": "critical",
+    "risk": 0.7796,
+    "rois": [
+      [
+        958,
+        224,
+        1917,
+        1074
+      ],
+      [
+        21,
+        917,
+        294,
+        1078
+      ],
+      [
+        790,
+        9,
+        1160,
+        422
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 107,
+    "timestamp": 1790355420.629459,
+    "state": "critical",
+    "risk": 0.7882,
+    "rois": [
+      [
+        958,
+        224,
+        1917,
+        1074
+      ],
+      [
+        21,
+        917,
+        294,
+        1078
+      ],
+      [
+        790,
+        9,
+        1160,
+        422
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 108,
+    "timestamp": 1790355421.508054,
+    "state": "critical",
+    "risk": 0.7941,
+    "rois": [
+      [
+        958,
+        224,
+        1917,
+        1074
+      ],
+      [
+        21,
+        917,
+        294,
+        1078
+      ],
+      [
+        790,
+        9,
+        1160,
+        422
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 109,
+    "timestamp": 1790355422.5404642,
+    "state": "critical",
+    "risk": 0.7979,
+    "rois": [
+      [
+        958,
+        224,
+        1917,
+        1074
+      ],
+      [
+        21,
+        917,
+        294,
+        1078
+      ],
+      [
+        790,
+        9,
+        1160,
+        422
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 110,
+    "timestamp": 1790355424.038322,
+    "state": "critical",
+    "risk": 0.8162,
+    "rois": [
+      [
+        958,
+        224,
+        1917,
+        1074
+      ],
+      [
+        21,
+        917,
+        294,
+        1078
+      ],
+      [
+        790,
+        9,
+        1160,
+        422
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 111,
+    "timestamp": 1790355425.0176022,
+    "state": "critical",
+    "risk": 0.8146,
+    "rois": [
+      [
+        958,
+        224,
+        1917,
+        1074
+      ],
+      [
+        21,
+        917,
+        294,
+        1078
+      ],
+      [
+        790,
+        9,
+        1160,
+        422
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 112,
+    "timestamp": 1790355425.9824722,
+    "state": "critical",
+    "risk": 0.8138,
+    "rois": [
+      [
+        958,
+        224,
+        1917,
+        1074
+      ],
+      [
+        21,
+        917,
+        294,
+        1078
+      ],
+      [
+        790,
+        9,
+        1160,
+        422
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 113,
+    "timestamp": 1790355427.145644,
+    "state": "critical",
+    "risk": 0.8131,
+    "rois": [
+      [
+        958,
+        224,
+        1917,
+        1074
+      ],
+      [
+        21,
+        917,
+        294,
+        1078
+      ],
+      [
+        790,
+        9,
+        1160,
+        422
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 114,
+    "timestamp": 1790355427.5370853,
+    "state": "critical",
+    "risk": 0.7389,
+    "rois": [
+      [
+        790,
+        9,
+        1160,
+        422
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 115,
+    "timestamp": 1790355428.020154,
+    "state": "critical",
+    "risk": 0.6877,
+    "rois": [
+      [
+        790,
+        9,
+        1160,
+        422
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 116,
+    "timestamp": 1790355428.6216598,
+    "state": "critical",
+    "risk": 0.6521,
+    "rois": [
+      [
+        790,
+        9,
+        1160,
+        422
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 117,
+    "timestamp": 1790355429.1931758,
+    "state": "critical",
+    "risk": 0.6271,
+    "rois": [
+      [
+        790,
+        9,
+        1160,
+        422
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 118,
+    "timestamp": 1790355429.6214738,
+    "state": "critical",
+    "risk": 0.6096,
+    "rois": [
+      [
+        790,
+        9,
+        1160,
+        422
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 119,
+    "timestamp": 1790355430.0286279,
+    "state": "critical",
+    "risk": 0.5961,
+    "rois": [
+      [
+        790,
+        9,
+        1160,
+        422
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 120,
+    "timestamp": 1790355430.8216805,
+    "state": "critical",
+    "risk": 0.5868,
+    "rois": [
+      [
+        790,
+        9,
+        1160,
+        422
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 121,
+    "timestamp": 1790355431.124492,
+    "state": "critical",
+    "risk": 0.5932,
+    "rois": [
+      [
+        790,
+        9,
+        1160,
+        422
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 122,
+    "timestamp": 1790355431.3249574,
+    "state": "critical",
+    "risk": 0.5864,
+    "rois": [
+      [
+        790,
+        9,
+        1160,
+        422
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 123,
+    "timestamp": 1790355431.4762535,
+    "state": "critical",
+    "risk": 0.5845,
+    "rois": [
+      [
+        790,
+        9,
+        1160,
+        422
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 124,
+    "timestamp": 1790355431.9027836,
+    "state": "critical",
+    "risk": 0.5826,
+    "rois": [
+      [
+        790,
+        9,
+        1160,
+        422
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 125,
+    "timestamp": 1790355432.825514,
+    "state": "critical",
+    "risk": 0.5796,
+    "rois": [
+      [
+        790,
+        9,
+        1160,
+        422
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 126,
+    "timestamp": 1790355433.4592898,
+    "state": "critical",
+    "risk": 0.5753,
+    "rois": [
+      [
+        790,
+        9,
+        1160,
+        422
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 127,
+    "timestamp": 1790355434.7821891,
+    "state": "critical",
+    "risk": 0.5734,
+    "rois": [
+      [
+        790,
+        9,
+        1160,
+        422
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 128,
+    "timestamp": 1790355435.8585963,
+    "state": "critical",
+    "risk": 0.572,
+    "rois": [
+      [
+        790,
+        9,
+        1160,
+        422
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 129,
+    "timestamp": 1790355436.400861,
+    "state": "critical",
+    "risk": 0.5698,
+    "rois": [
+      [
+        790,
+        9,
+        1160,
+        422
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 130,
+    "timestamp": 1790355437.4415169,
+    "state": "critical",
+    "risk": 0.5681,
+    "rois": [
+      [
+        790,
+        9,
+        1160,
+        422
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 131,
+    "timestamp": 1790355437.6839623,
+    "state": "critical",
+    "risk": 0.591,
+    "rois": [
+      [
+        790,
+        9,
+        1160,
+        422
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 132,
+    "timestamp": 1790355437.946565,
+    "state": "critical",
+    "risk": 0.5841,
+    "rois": [
+      [
+        790,
+        9,
+        1160,
+        422
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 133,
+    "timestamp": 1790355438.4705522,
+    "state": "critical",
+    "risk": 0.5794,
+    "rois": [
+      [
+        790,
+        9,
+        1160,
+        422
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 134,
+    "timestamp": 1790355444.186886,
+    "state": "critical",
+    "risk": 0.7056,
+    "rois": [
+      [
+        485,
+        1018,
+        518,
+        1080
+      ],
+      [
+        1446,
+        955,
+        1494,
+        984
+      ],
+      [
+        1521,
+        954,
+        1628,
+        1080
+      ],
+      [
+        940,
+        939,
+        1485,
+        1080
+      ],
+      [
+        1659,
+        923,
+        1725,
+        941
+      ],
+      [
+        967,
+        910,
+        1008,
+        973
+      ],
+      [
+        842,
+        909,
+        953,
+        930
+      ],
+      [
+        384,
+        907,
+        409,
+        951
+      ],
+      [
+        1883,
+        904,
+        1920,
+        924
+      ],
+      [
+        1529,
+        839,
+        1604,
+        880
+      ],
+      [
+        1594,
+        833,
+        1726,
+        928
+      ],
+      [
+        409,
+        792,
+        445,
+        1080
+      ],
+      [
+        402,
+        663,
+        415,
+        749
+      ],
+      [
+        1351,
+        639,
+        1395,
+        679
+      ],
+      [
+        1285,
+        631,
+        1345,
+        693
+      ],
+      [
+        1247,
+        625,
+        1289,
+        677
+      ],
+      [
+        1683,
+        564,
+        1782,
+        651
+      ],
+      [
+        1905,
+        561,
+        1920,
+        637
+      ],
+      [
+        1269,
+        560,
+        1681,
+        949
+      ],
+      [
+        1147,
+        554,
+        1195,
+        615
+      ],
+      [
+        1201,
+        553,
+        1265,
+        617
+      ],
+      [
+        1710,
+        508,
+        1755,
+        547
+      ],
+      [
+        1108,
+        485,
+        1171,
+        543
+      ],
+      [
+        1612,
+        475,
+        1706,
+        610
+      ],
+      [
+        971,
+        431,
+        1039,
+        487
+      ],
+      [
+        1707,
+        353,
+        1769,
+        434
+      ],
+      [
+        1649,
+        161,
+        1920,
+        903
+      ],
+      [
+        760,
+        149,
+        809,
+        238
+      ],
+      [
+        349,
+        129,
+        391,
+        903
+      ],
+      [
+        960,
+        69,
+        1002,
+        107
+      ],
+      [
+        1002,
+        37,
+        1036,
+        82
+      ],
+      [
+        921,
+        20,
+        971,
+        98
+      ],
+      [
+        1871,
+        0,
+        1920,
+        71
+      ],
+      [
+        1487,
+        0,
+        1520,
+        41
+      ],
+      [
+        1365,
+        0,
+        1513,
+        122
+      ],
+      [
+        875,
+        0,
+        976,
+        20
+      ],
+      [
+        825,
+        0,
+        913,
+        131
+      ],
+      [
+        541,
+        0,
+        1140,
+        1080
+      ],
+      [
+        639,
+        0,
+        678,
+        54
+      ],
+      [
+        566,
+        0,
+        763,
+        256
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 135,
+    "timestamp": 1790355449.5225463,
+    "state": "critical",
+    "risk": 0.7939,
+    "rois": [
+      [
+        485,
+        1018,
+        518,
+        1080
+      ],
+      [
+        1446,
+        955,
+        1494,
+        984
+      ],
+      [
+        1521,
+        954,
+        1628,
+        1080
+      ],
+      [
+        940,
+        939,
+        1485,
+        1080
+      ],
+      [
+        1659,
+        923,
+        1725,
+        941
+      ],
+      [
+        967,
+        910,
+        1008,
+        973
+      ],
+      [
+        842,
+        909,
+        953,
+        930
+      ],
+      [
+        384,
+        907,
+        409,
+        951
+      ],
+      [
+        1883,
+        904,
+        1920,
+        924
+      ],
+      [
+        1529,
+        839,
+        1604,
+        880
+      ],
+      [
+        1594,
+        833,
+        1726,
+        928
+      ],
+      [
+        409,
+        792,
+        445,
+        1080
+      ],
+      [
+        402,
+        663,
+        415,
+        749
+      ],
+      [
+        1351,
+        639,
+        1395,
+        679
+      ],
+      [
+        1285,
+        631,
+        1345,
+        693
+      ],
+      [
+        1247,
+        625,
+        1289,
+        677
+      ],
+      [
+        1683,
+        564,
+        1782,
+        651
+      ],
+      [
+        1905,
+        561,
+        1920,
+        637
+      ],
+      [
+        1269,
+        560,
+        1681,
+        949
+      ],
+      [
+        1147,
+        554,
+        1195,
+        615
+      ],
+      [
+        1201,
+        553,
+        1265,
+        617
+      ],
+      [
+        1710,
+        508,
+        1755,
+        547
+      ],
+      [
+        1108,
+        485,
+        1171,
+        543
+      ],
+      [
+        1612,
+        475,
+        1706,
+        610
+      ],
+      [
+        971,
+        431,
+        1039,
+        487
+      ],
+      [
+        1707,
+        353,
+        1769,
+        434
+      ],
+      [
+        1649,
+        161,
+        1920,
+        903
+      ],
+      [
+        760,
+        149,
+        809,
+        238
+      ],
+      [
+        349,
+        129,
+        391,
+        903
+      ],
+      [
+        960,
+        69,
+        1002,
+        107
+      ],
+      [
+        1002,
+        37,
+        1036,
+        82
+      ],
+      [
+        921,
+        20,
+        971,
+        98
+      ],
+      [
+        1871,
+        0,
+        1920,
+        71
+      ],
+      [
+        1487,
+        0,
+        1520,
+        41
+      ],
+      [
+        1365,
+        0,
+        1513,
+        122
+      ],
+      [
+        875,
+        0,
+        976,
+        20
+      ],
+      [
+        825,
+        0,
+        913,
+        131
+      ],
+      [
+        541,
+        0,
+        1140,
+        1080
+      ],
+      [
+        639,
+        0,
+        678,
+        54
+      ],
+      [
+        566,
+        0,
+        763,
+        256
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 136,
+    "timestamp": 1790355455.1772213,
+    "state": "critical",
+    "risk": 0.8557,
+    "rois": [
+      [
+        485,
+        1018,
+        518,
+        1080
+      ],
+      [
+        1446,
+        955,
+        1494,
+        984
+      ],
+      [
+        1521,
+        954,
+        1628,
+        1080
+      ],
+      [
+        940,
+        939,
+        1485,
+        1080
+      ],
+      [
+        1659,
+        923,
+        1725,
+        941
+      ],
+      [
+        967,
+        910,
+        1008,
+        973
+      ],
+      [
+        842,
+        909,
+        953,
+        930
+      ],
+      [
+        384,
+        907,
+        409,
+        951
+      ],
+      [
+        1883,
+        904,
+        1920,
+        924
+      ],
+      [
+        1529,
+        839,
+        1604,
+        880
+      ],
+      [
+        1594,
+        833,
+        1726,
+        928
+      ],
+      [
+        409,
+        792,
+        445,
+        1080
+      ],
+      [
+        402,
+        663,
+        415,
+        749
+      ],
+      [
+        1351,
+        639,
+        1395,
+        679
+      ],
+      [
+        1285,
+        631,
+        1345,
+        693
+      ],
+      [
+        1247,
+        625,
+        1289,
+        677
+      ],
+      [
+        1683,
+        564,
+        1782,
+        651
+      ],
+      [
+        1905,
+        561,
+        1920,
+        637
+      ],
+      [
+        1269,
+        560,
+        1681,
+        949
+      ],
+      [
+        1147,
+        554,
+        1195,
+        615
+      ],
+      [
+        1201,
+        553,
+        1265,
+        617
+      ],
+      [
+        1710,
+        508,
+        1755,
+        547
+      ],
+      [
+        1108,
+        485,
+        1171,
+        543
+      ],
+      [
+        1612,
+        475,
+        1706,
+        610
+      ],
+      [
+        971,
+        431,
+        1039,
+        487
+      ],
+      [
+        1707,
+        353,
+        1769,
+        434
+      ],
+      [
+        1649,
+        161,
+        1920,
+        903
+      ],
+      [
+        760,
+        149,
+        809,
+        238
+      ],
+      [
+        349,
+        129,
+        391,
+        903
+      ],
+      [
+        960,
+        69,
+        1002,
+        107
+      ],
+      [
+        1002,
+        37,
+        1036,
+        82
+      ],
+      [
+        921,
+        20,
+        971,
+        98
+      ],
+      [
+        1871,
+        0,
+        1920,
+        71
+      ],
+      [
+        1487,
+        0,
+        1520,
+        41
+      ],
+      [
+        1365,
+        0,
+        1513,
+        122
+      ],
+      [
+        875,
+        0,
+        976,
+        20
+      ],
+      [
+        825,
+        0,
+        913,
+        131
+      ],
+      [
+        541,
+        0,
+        1140,
+        1080
+      ],
+      [
+        639,
+        0,
+        678,
+        54
+      ],
+      [
+        566,
+        0,
+        763,
+        256
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 137,
+    "timestamp": 1790355460.455065,
+    "state": "critical",
+    "risk": 0.899,
+    "rois": [
+      [
+        485,
+        1018,
+        518,
+        1080
+      ],
+      [
+        1446,
+        955,
+        1494,
+        984
+      ],
+      [
+        1521,
+        954,
+        1628,
+        1080
+      ],
+      [
+        940,
+        939,
+        1485,
+        1080
+      ],
+      [
+        1659,
+        923,
+        1725,
+        941
+      ],
+      [
+        967,
+        910,
+        1008,
+        973
+      ],
+      [
+        842,
+        909,
+        953,
+        930
+      ],
+      [
+        384,
+        907,
+        409,
+        951
+      ],
+      [
+        1883,
+        904,
+        1920,
+        924
+      ],
+      [
+        1529,
+        839,
+        1604,
+        880
+      ],
+      [
+        1594,
+        833,
+        1726,
+        928
+      ],
+      [
+        409,
+        792,
+        445,
+        1080
+      ],
+      [
+        402,
+        663,
+        415,
+        749
+      ],
+      [
+        1351,
+        639,
+        1395,
+        679
+      ],
+      [
+        1285,
+        631,
+        1345,
+        693
+      ],
+      [
+        1247,
+        625,
+        1289,
+        677
+      ],
+      [
+        1683,
+        564,
+        1782,
+        651
+      ],
+      [
+        1905,
+        561,
+        1920,
+        637
+      ],
+      [
+        1269,
+        560,
+        1681,
+        949
+      ],
+      [
+        1147,
+        554,
+        1195,
+        615
+      ],
+      [
+        1201,
+        553,
+        1265,
+        617
+      ],
+      [
+        1710,
+        508,
+        1755,
+        547
+      ],
+      [
+        1108,
+        485,
+        1171,
+        543
+      ],
+      [
+        1612,
+        475,
+        1706,
+        610
+      ],
+      [
+        971,
+        431,
+        1039,
+        487
+      ],
+      [
+        1707,
+        353,
+        1769,
+        434
+      ],
+      [
+        1649,
+        161,
+        1920,
+        903
+      ],
+      [
+        760,
+        149,
+        809,
+        238
+      ],
+      [
+        349,
+        129,
+        391,
+        903
+      ],
+      [
+        960,
+        69,
+        1002,
+        107
+      ],
+      [
+        1002,
+        37,
+        1036,
+        82
+      ],
+      [
+        921,
+        20,
+        971,
+        98
+      ],
+      [
+        1871,
+        0,
+        1920,
+        71
+      ],
+      [
+        1487,
+        0,
+        1520,
+        41
+      ],
+      [
+        1365,
+        0,
+        1513,
+        122
+      ],
+      [
+        875,
+        0,
+        976,
+        20
+      ],
+      [
+        825,
+        0,
+        913,
+        131
+      ],
+      [
+        541,
+        0,
+        1140,
+        1080
+      ],
+      [
+        639,
+        0,
+        678,
+        54
+      ],
+      [
+        566,
+        0,
+        763,
+        256
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 138,
+    "timestamp": 1790355466.9454215,
+    "state": "critical",
+    "risk": 0.9293,
+    "rois": [
+      [
+        485,
+        1018,
+        518,
+        1080
+      ],
+      [
+        1446,
+        955,
+        1494,
+        984
+      ],
+      [
+        1521,
+        954,
+        1628,
+        1080
+      ],
+      [
+        940,
+        939,
+        1485,
+        1080
+      ],
+      [
+        1659,
+        923,
+        1725,
+        941
+      ],
+      [
+        967,
+        910,
+        1008,
+        973
+      ],
+      [
+        842,
+        909,
+        953,
+        930
+      ],
+      [
+        384,
+        907,
+        409,
+        951
+      ],
+      [
+        1883,
+        904,
+        1920,
+        924
+      ],
+      [
+        1529,
+        839,
+        1604,
+        880
+      ],
+      [
+        1594,
+        833,
+        1726,
+        928
+      ],
+      [
+        409,
+        792,
+        445,
+        1080
+      ],
+      [
+        402,
+        663,
+        415,
+        749
+      ],
+      [
+        1351,
+        639,
+        1395,
+        679
+      ],
+      [
+        1285,
+        631,
+        1345,
+        693
+      ],
+      [
+        1247,
+        625,
+        1289,
+        677
+      ],
+      [
+        1683,
+        564,
+        1782,
+        651
+      ],
+      [
+        1905,
+        561,
+        1920,
+        637
+      ],
+      [
+        1269,
+        560,
+        1681,
+        949
+      ],
+      [
+        1147,
+        554,
+        1195,
+        615
+      ],
+      [
+        1201,
+        553,
+        1265,
+        617
+      ],
+      [
+        1710,
+        508,
+        1755,
+        547
+      ],
+      [
+        1108,
+        485,
+        1171,
+        543
+      ],
+      [
+        1612,
+        475,
+        1706,
+        610
+      ],
+      [
+        971,
+        431,
+        1039,
+        487
+      ],
+      [
+        1707,
+        353,
+        1769,
+        434
+      ],
+      [
+        1649,
+        161,
+        1920,
+        903
+      ],
+      [
+        760,
+        149,
+        809,
+        238
+      ],
+      [
+        349,
+        129,
+        391,
+        903
+      ],
+      [
+        960,
+        69,
+        1002,
+        107
+      ],
+      [
+        1002,
+        37,
+        1036,
+        82
+      ],
+      [
+        921,
+        20,
+        971,
+        98
+      ],
+      [
+        1871,
+        0,
+        1920,
+        71
+      ],
+      [
+        1487,
+        0,
+        1520,
+        41
+      ],
+      [
+        1365,
+        0,
+        1513,
+        122
+      ],
+      [
+        875,
+        0,
+        976,
+        20
+      ],
+      [
+        825,
+        0,
+        913,
+        131
+      ],
+      [
+        541,
+        0,
+        1140,
+        1080
+      ],
+      [
+        639,
+        0,
+        678,
+        54
+      ],
+      [
+        566,
+        0,
+        763,
+        256
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 139,
+    "timestamp": 1790355472.9903862,
+    "state": "critical",
+    "risk": 0.9505,
+    "rois": [
+      [
+        485,
+        1018,
+        518,
+        1080
+      ],
+      [
+        1446,
+        955,
+        1494,
+        984
+      ],
+      [
+        1521,
+        954,
+        1628,
+        1080
+      ],
+      [
+        940,
+        939,
+        1485,
+        1080
+      ],
+      [
+        1659,
+        923,
+        1725,
+        941
+      ],
+      [
+        967,
+        910,
+        1008,
+        973
+      ],
+      [
+        842,
+        909,
+        953,
+        930
+      ],
+      [
+        384,
+        907,
+        409,
+        951
+      ],
+      [
+        1883,
+        904,
+        1920,
+        924
+      ],
+      [
+        1529,
+        839,
+        1604,
+        880
+      ],
+      [
+        1594,
+        833,
+        1726,
+        928
+      ],
+      [
+        409,
+        792,
+        445,
+        1080
+      ],
+      [
+        402,
+        663,
+        415,
+        749
+      ],
+      [
+        1351,
+        639,
+        1395,
+        679
+      ],
+      [
+        1285,
+        631,
+        1345,
+        693
+      ],
+      [
+        1247,
+        625,
+        1289,
+        677
+      ],
+      [
+        1683,
+        564,
+        1782,
+        651
+      ],
+      [
+        1905,
+        561,
+        1920,
+        637
+      ],
+      [
+        1269,
+        560,
+        1681,
+        949
+      ],
+      [
+        1147,
+        554,
+        1195,
+        615
+      ],
+      [
+        1201,
+        553,
+        1265,
+        617
+      ],
+      [
+        1710,
+        508,
+        1755,
+        547
+      ],
+      [
+        1108,
+        485,
+        1171,
+        543
+      ],
+      [
+        1612,
+        475,
+        1706,
+        610
+      ],
+      [
+        971,
+        431,
+        1039,
+        487
+      ],
+      [
+        1707,
+        353,
+        1769,
+        434
+      ],
+      [
+        1649,
+        161,
+        1920,
+        903
+      ],
+      [
+        760,
+        149,
+        809,
+        238
+      ],
+      [
+        349,
+        129,
+        391,
+        903
+      ],
+      [
+        960,
+        69,
+        1002,
+        107
+      ],
+      [
+        1002,
+        37,
+        1036,
+        82
+      ],
+      [
+        921,
+        20,
+        971,
+        98
+      ],
+      [
+        1871,
+        0,
+        1920,
+        71
+      ],
+      [
+        1487,
+        0,
+        1520,
+        41
+      ],
+      [
+        1365,
+        0,
+        1513,
+        122
+      ],
+      [
+        875,
+        0,
+        976,
+        20
+      ],
+      [
+        825,
+        0,
+        913,
+        131
+      ],
+      [
+        541,
+        0,
+        1140,
+        1080
+      ],
+      [
+        639,
+        0,
+        678,
+        54
+      ],
+      [
+        566,
+        0,
+        763,
+        256
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 140,
+    "timestamp": 1790355480.088538,
+    "state": "critical",
+    "risk": 0.9654,
+    "rois": [
+      [
+        485,
+        1018,
+        518,
+        1080
+      ],
+      [
+        1446,
+        955,
+        1494,
+        984
+      ],
+      [
+        1449,
+        948,
+        1629,
+        1079
+      ],
+      [
+        940,
+        939,
+        1485,
+        1080
+      ],
+      [
+        1659,
+        923,
+        1725,
+        941
+      ],
+      [
+        967,
+        910,
+        1008,
+        973
+      ],
+      [
+        842,
+        909,
+        953,
+        930
+      ],
+      [
+        384,
+        907,
+        409,
+        951
+      ],
+      [
+        1883,
+        904,
+        1920,
+        924
+      ],
+      [
+        1529,
+        839,
+        1604,
+        880
+      ],
+      [
+        1594,
+        833,
+        1726,
+        928
+      ],
+      [
+        409,
+        792,
+        445,
+        1080
+      ],
+      [
+        402,
+        663,
+        415,
+        749
+      ],
+      [
+        1351,
+        639,
+        1395,
+        679
+      ],
+      [
+        1285,
+        631,
+        1345,
+        693
+      ],
+      [
+        1247,
+        625,
+        1289,
+        677
+      ],
+      [
+        1683,
+        564,
+        1782,
+        651
+      ],
+      [
+        1905,
+        561,
+        1920,
+        637
+      ],
+      [
+        1269,
+        560,
+        1681,
+        949
+      ],
+      [
+        1147,
+        554,
+        1195,
+        615
+      ],
+      [
+        1201,
+        553,
+        1265,
+        617
+      ],
+      [
+        1710,
+        508,
+        1755,
+        547
+      ],
+      [
+        1108,
+        485,
+        1171,
+        543
+      ],
+      [
+        1612,
+        475,
+        1706,
+        610
+      ],
+      [
+        971,
+        431,
+        1039,
+        487
+      ],
+      [
+        1707,
+        353,
+        1769,
+        434
+      ],
+      [
+        1649,
+        161,
+        1920,
+        903
+      ],
+      [
+        760,
+        149,
+        809,
+        238
+      ],
+      [
+        349,
+        129,
+        391,
+        903
+      ],
+      [
+        960,
+        69,
+        1002,
+        107
+      ],
+      [
+        1002,
+        37,
+        1036,
+        82
+      ],
+      [
+        921,
+        20,
+        971,
+        98
+      ],
+      [
+        1871,
+        0,
+        1920,
+        71
+      ],
+      [
+        1487,
+        0,
+        1520,
+        41
+      ],
+      [
+        1365,
+        0,
+        1513,
+        122
+      ],
+      [
+        875,
+        0,
+        976,
+        20
+      ],
+      [
+        825,
+        0,
+        913,
+        131
+      ],
+      [
+        558,
+        82,
+        1137,
+        1062
+      ],
+      [
+        639,
+        0,
+        678,
+        54
+      ],
+      [
+        566,
+        0,
+        763,
+        256
+      ],
+      [
+        735,
+        527,
+        899,
+        828
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 141,
+    "timestamp": 1790355486.3359668,
+    "state": "critical",
+    "risk": 0.9758,
+    "rois": [
+      [
+        485,
+        1018,
+        518,
+        1080
+      ],
+      [
+        1446,
+        955,
+        1494,
+        984
+      ],
+      [
+        1449,
+        948,
+        1629,
+        1079
+      ],
+      [
+        940,
+        939,
+        1485,
+        1080
+      ],
+      [
+        1659,
+        923,
+        1725,
+        941
+      ],
+      [
+        967,
+        910,
+        1008,
+        973
+      ],
+      [
+        842,
+        909,
+        953,
+        930
+      ],
+      [
+        384,
+        907,
+        409,
+        951
+      ],
+      [
+        1883,
+        904,
+        1920,
+        924
+      ],
+      [
+        1529,
+        839,
+        1604,
+        880
+      ],
+      [
+        1594,
+        833,
+        1726,
+        928
+      ],
+      [
+        409,
+        792,
+        445,
+        1080
+      ],
+      [
+        402,
+        663,
+        415,
+        749
+      ],
+      [
+        1351,
+        639,
+        1395,
+        679
+      ],
+      [
+        1285,
+        631,
+        1345,
+        693
+      ],
+      [
+        1247,
+        625,
+        1289,
+        677
+      ],
+      [
+        1683,
+        564,
+        1782,
+        651
+      ],
+      [
+        1905,
+        561,
+        1920,
+        637
+      ],
+      [
+        1269,
+        560,
+        1681,
+        949
+      ],
+      [
+        1147,
+        554,
+        1195,
+        615
+      ],
+      [
+        1201,
+        553,
+        1265,
+        617
+      ],
+      [
+        1710,
+        508,
+        1755,
+        547
+      ],
+      [
+        1108,
+        485,
+        1171,
+        543
+      ],
+      [
+        1612,
+        475,
+        1706,
+        610
+      ],
+      [
+        971,
+        431,
+        1039,
+        487
+      ],
+      [
+        1707,
+        353,
+        1769,
+        434
+      ],
+      [
+        1649,
+        161,
+        1920,
+        903
+      ],
+      [
+        760,
+        149,
+        809,
+        238
+      ],
+      [
+        349,
+        129,
+        391,
+        903
+      ],
+      [
+        960,
+        69,
+        1002,
+        107
+      ],
+      [
+        1002,
+        37,
+        1036,
+        82
+      ],
+      [
+        921,
+        20,
+        971,
+        98
+      ],
+      [
+        1871,
+        0,
+        1920,
+        71
+      ],
+      [
+        1487,
+        0,
+        1520,
+        41
+      ],
+      [
+        1365,
+        0,
+        1513,
+        122
+      ],
+      [
+        875,
+        0,
+        976,
+        20
+      ],
+      [
+        825,
+        0,
+        913,
+        131
+      ],
+      [
+        558,
+        82,
+        1137,
+        1062
+      ],
+      [
+        639,
+        0,
+        678,
+        54
+      ],
+      [
+        566,
+        0,
+        763,
+        256
+      ],
+      [
+        735,
+        527,
+        899,
+        828
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 142,
+    "timestamp": 1790355491.6539285,
+    "state": "critical",
+    "risk": 0.983,
+    "rois": [
+      [
+        485,
+        1018,
+        518,
+        1080
+      ],
+      [
+        1446,
+        955,
+        1494,
+        984
+      ],
+      [
+        1449,
+        948,
+        1629,
+        1079
+      ],
+      [
+        940,
+        939,
+        1485,
+        1080
+      ],
+      [
+        1659,
+        923,
+        1725,
+        941
+      ],
+      [
+        967,
+        910,
+        1008,
+        973
+      ],
+      [
+        842,
+        909,
+        953,
+        930
+      ],
+      [
+        384,
+        907,
+        409,
+        951
+      ],
+      [
+        1883,
+        904,
+        1920,
+        924
+      ],
+      [
+        1529,
+        839,
+        1604,
+        880
+      ],
+      [
+        1594,
+        833,
+        1726,
+        928
+      ],
+      [
+        409,
+        792,
+        445,
+        1080
+      ],
+      [
+        402,
+        663,
+        415,
+        749
+      ],
+      [
+        1351,
+        639,
+        1395,
+        679
+      ],
+      [
+        1285,
+        631,
+        1345,
+        693
+      ],
+      [
+        1247,
+        625,
+        1289,
+        677
+      ],
+      [
+        1683,
+        564,
+        1782,
+        651
+      ],
+      [
+        1905,
+        561,
+        1920,
+        637
+      ],
+      [
+        1269,
+        560,
+        1681,
+        949
+      ],
+      [
+        1147,
+        554,
+        1195,
+        615
+      ],
+      [
+        1201,
+        553,
+        1265,
+        617
+      ],
+      [
+        1710,
+        508,
+        1755,
+        547
+      ],
+      [
+        1108,
+        485,
+        1171,
+        543
+      ],
+      [
+        1612,
+        475,
+        1706,
+        610
+      ],
+      [
+        971,
+        431,
+        1039,
+        487
+      ],
+      [
+        1707,
+        353,
+        1769,
+        434
+      ],
+      [
+        1649,
+        161,
+        1920,
+        903
+      ],
+      [
+        760,
+        149,
+        809,
+        238
+      ],
+      [
+        349,
+        129,
+        391,
+        903
+      ],
+      [
+        960,
+        69,
+        1002,
+        107
+      ],
+      [
+        1002,
+        37,
+        1036,
+        82
+      ],
+      [
+        921,
+        20,
+        971,
+        98
+      ],
+      [
+        1871,
+        0,
+        1920,
+        71
+      ],
+      [
+        1487,
+        0,
+        1520,
+        41
+      ],
+      [
+        1365,
+        0,
+        1513,
+        122
+      ],
+      [
+        875,
+        0,
+        976,
+        20
+      ],
+      [
+        825,
+        0,
+        913,
+        131
+      ],
+      [
+        558,
+        82,
+        1137,
+        1062
+      ],
+      [
+        639,
+        0,
+        678,
+        54
+      ],
+      [
+        566,
+        0,
+        763,
+        256
+      ],
+      [
+        735,
+        527,
+        899,
+        828
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 143,
+    "timestamp": 1790355497.3093803,
+    "state": "critical",
+    "risk": 0.9881,
+    "rois": [
+      [
+        485,
+        1018,
+        518,
+        1080
+      ],
+      [
+        1446,
+        955,
+        1494,
+        984
+      ],
+      [
+        1449,
+        948,
+        1629,
+        1079
+      ],
+      [
+        940,
+        939,
+        1485,
+        1080
+      ],
+      [
+        1659,
+        923,
+        1725,
+        941
+      ],
+      [
+        967,
+        910,
+        1008,
+        973
+      ],
+      [
+        842,
+        909,
+        953,
+        930
+      ],
+      [
+        384,
+        907,
+        409,
+        951
+      ],
+      [
+        1883,
+        904,
+        1920,
+        924
+      ],
+      [
+        1529,
+        839,
+        1604,
+        880
+      ],
+      [
+        1594,
+        833,
+        1726,
+        928
+      ],
+      [
+        409,
+        792,
+        445,
+        1080
+      ],
+      [
+        402,
+        663,
+        415,
+        749
+      ],
+      [
+        1351,
+        639,
+        1395,
+        679
+      ],
+      [
+        1285,
+        631,
+        1345,
+        693
+      ],
+      [
+        1247,
+        625,
+        1289,
+        677
+      ],
+      [
+        1683,
+        564,
+        1782,
+        651
+      ],
+      [
+        1905,
+        561,
+        1920,
+        637
+      ],
+      [
+        1269,
+        560,
+        1681,
+        949
+      ],
+      [
+        1147,
+        554,
+        1195,
+        615
+      ],
+      [
+        1201,
+        553,
+        1265,
+        617
+      ],
+      [
+        1710,
+        508,
+        1755,
+        547
+      ],
+      [
+        1108,
+        485,
+        1171,
+        543
+      ],
+      [
+        1612,
+        475,
+        1706,
+        610
+      ],
+      [
+        971,
+        431,
+        1039,
+        487
+      ],
+      [
+        1707,
+        353,
+        1769,
+        434
+      ],
+      [
+        1649,
+        161,
+        1920,
+        903
+      ],
+      [
+        760,
+        149,
+        809,
+        238
+      ],
+      [
+        349,
+        129,
+        391,
+        903
+      ],
+      [
+        960,
+        69,
+        1002,
+        107
+      ],
+      [
+        1002,
+        37,
+        1036,
+        82
+      ],
+      [
+        921,
+        20,
+        971,
+        98
+      ],
+      [
+        1871,
+        0,
+        1920,
+        71
+      ],
+      [
+        1487,
+        0,
+        1520,
+        41
+      ],
+      [
+        1365,
+        0,
+        1513,
+        122
+      ],
+      [
+        875,
+        0,
+        976,
+        20
+      ],
+      [
+        825,
+        0,
+        913,
+        131
+      ],
+      [
+        558,
+        82,
+        1137,
+        1062
+      ],
+      [
+        639,
+        0,
+        678,
+        54
+      ],
+      [
+        566,
+        0,
+        763,
+        256
+      ],
+      [
+        735,
+        527,
+        899,
+        828
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 144,
+    "timestamp": 1790355502.8993795,
+    "state": "critical",
+    "risk": 0.9917,
+    "rois": [
+      [
+        485,
+        1018,
+        518,
+        1080
+      ],
+      [
+        1446,
+        955,
+        1494,
+        984
+      ],
+      [
+        1449,
+        948,
+        1629,
+        1079
+      ],
+      [
+        940,
+        939,
+        1485,
+        1080
+      ],
+      [
+        1659,
+        923,
+        1725,
+        941
+      ],
+      [
+        967,
+        910,
+        1008,
+        973
+      ],
+      [
+        842,
+        909,
+        953,
+        930
+      ],
+      [
+        384,
+        907,
+        409,
+        951
+      ],
+      [
+        1883,
+        904,
+        1920,
+        924
+      ],
+      [
+        1529,
+        839,
+        1604,
+        880
+      ],
+      [
+        1594,
+        833,
+        1726,
+        928
+      ],
+      [
+        409,
+        792,
+        445,
+        1080
+      ],
+      [
+        402,
+        663,
+        415,
+        749
+      ],
+      [
+        1351,
+        639,
+        1395,
+        679
+      ],
+      [
+        1285,
+        631,
+        1345,
+        693
+      ],
+      [
+        1247,
+        625,
+        1289,
+        677
+      ],
+      [
+        1683,
+        564,
+        1782,
+        651
+      ],
+      [
+        1905,
+        561,
+        1920,
+        637
+      ],
+      [
+        1269,
+        560,
+        1681,
+        949
+      ],
+      [
+        1147,
+        554,
+        1195,
+        615
+      ],
+      [
+        1201,
+        553,
+        1265,
+        617
+      ],
+      [
+        1710,
+        508,
+        1755,
+        547
+      ],
+      [
+        1108,
+        485,
+        1171,
+        543
+      ],
+      [
+        1612,
+        475,
+        1706,
+        610
+      ],
+      [
+        971,
+        431,
+        1039,
+        487
+      ],
+      [
+        1707,
+        353,
+        1769,
+        434
+      ],
+      [
+        1649,
+        161,
+        1920,
+        903
+      ],
+      [
+        760,
+        149,
+        809,
+        238
+      ],
+      [
+        349,
+        129,
+        391,
+        903
+      ],
+      [
+        960,
+        69,
+        1002,
+        107
+      ],
+      [
+        1002,
+        37,
+        1036,
+        82
+      ],
+      [
+        921,
+        20,
+        971,
+        98
+      ],
+      [
+        1871,
+        0,
+        1920,
+        71
+      ],
+      [
+        1487,
+        0,
+        1520,
+        41
+      ],
+      [
+        1365,
+        0,
+        1513,
+        122
+      ],
+      [
+        875,
+        0,
+        976,
+        20
+      ],
+      [
+        825,
+        0,
+        913,
+        131
+      ],
+      [
+        558,
+        82,
+        1137,
+        1062
+      ],
+      [
+        639,
+        0,
+        678,
+        54
+      ],
+      [
+        566,
+        0,
+        763,
+        256
+      ],
+      [
+        735,
+        527,
+        899,
+        828
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 145,
+    "timestamp": 1790355507.3939853,
+    "state": "critical",
+    "risk": 0.9942,
+    "rois": [
+      [
+        485,
+        1018,
+        518,
+        1080
+      ],
+      [
+        1446,
+        955,
+        1494,
+        984
+      ],
+      [
+        1449,
+        948,
+        1629,
+        1079
+      ],
+      [
+        940,
+        939,
+        1485,
+        1080
+      ],
+      [
+        1659,
+        923,
+        1725,
+        941
+      ],
+      [
+        967,
+        910,
+        1008,
+        973
+      ],
+      [
+        842,
+        909,
+        953,
+        930
+      ],
+      [
+        384,
+        907,
+        409,
+        951
+      ],
+      [
+        1883,
+        904,
+        1920,
+        924
+      ],
+      [
+        1529,
+        839,
+        1604,
+        880
+      ],
+      [
+        1594,
+        833,
+        1726,
+        928
+      ],
+      [
+        409,
+        792,
+        445,
+        1080
+      ],
+      [
+        402,
+        663,
+        415,
+        749
+      ],
+      [
+        1351,
+        639,
+        1395,
+        679
+      ],
+      [
+        1285,
+        631,
+        1345,
+        693
+      ],
+      [
+        1247,
+        625,
+        1289,
+        677
+      ],
+      [
+        1683,
+        564,
+        1782,
+        651
+      ],
+      [
+        1905,
+        561,
+        1920,
+        637
+      ],
+      [
+        1269,
+        560,
+        1681,
+        949
+      ],
+      [
+        1147,
+        554,
+        1195,
+        615
+      ],
+      [
+        1201,
+        553,
+        1265,
+        617
+      ],
+      [
+        1710,
+        508,
+        1755,
+        547
+      ],
+      [
+        1108,
+        485,
+        1171,
+        543
+      ],
+      [
+        1612,
+        475,
+        1706,
+        610
+      ],
+      [
+        971,
+        431,
+        1039,
+        487
+      ],
+      [
+        1707,
+        353,
+        1769,
+        434
+      ],
+      [
+        1649,
+        161,
+        1920,
+        903
+      ],
+      [
+        760,
+        149,
+        809,
+        238
+      ],
+      [
+        349,
+        129,
+        391,
+        903
+      ],
+      [
+        960,
+        69,
+        1002,
+        107
+      ],
+      [
+        1002,
+        37,
+        1036,
+        82
+      ],
+      [
+        921,
+        20,
+        971,
+        98
+      ],
+      [
+        1871,
+        0,
+        1920,
+        71
+      ],
+      [
+        1487,
+        0,
+        1520,
+        41
+      ],
+      [
+        1365,
+        0,
+        1513,
+        122
+      ],
+      [
+        875,
+        0,
+        976,
+        20
+      ],
+      [
+        825,
+        0,
+        913,
+        131
+      ],
+      [
+        558,
+        82,
+        1137,
+        1062
+      ],
+      [
+        639,
+        0,
+        678,
+        54
+      ],
+      [
+        566,
+        0,
+        763,
+        256
+      ],
+      [
+        735,
+        527,
+        899,
+        828
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 146,
+    "timestamp": 1790355512.948518,
+    "state": "critical",
+    "risk": 0.9959,
+    "rois": [
+      [
+        485,
+        1018,
+        518,
+        1080
+      ],
+      [
+        1446,
+        955,
+        1494,
+        984
+      ],
+      [
+        1449,
+        948,
+        1629,
+        1079
+      ],
+      [
+        940,
+        939,
+        1485,
+        1080
+      ],
+      [
+        1659,
+        923,
+        1725,
+        941
+      ],
+      [
+        967,
+        910,
+        1008,
+        973
+      ],
+      [
+        842,
+        909,
+        953,
+        930
+      ],
+      [
+        384,
+        907,
+        409,
+        951
+      ],
+      [
+        1883,
+        904,
+        1920,
+        924
+      ],
+      [
+        1529,
+        839,
+        1604,
+        880
+      ],
+      [
+        1594,
+        833,
+        1726,
+        928
+      ],
+      [
+        409,
+        792,
+        445,
+        1080
+      ],
+      [
+        402,
+        663,
+        415,
+        749
+      ],
+      [
+        1351,
+        639,
+        1395,
+        679
+      ],
+      [
+        1285,
+        631,
+        1345,
+        693
+      ],
+      [
+        1247,
+        625,
+        1289,
+        677
+      ],
+      [
+        1683,
+        564,
+        1782,
+        651
+      ],
+      [
+        1905,
+        561,
+        1920,
+        637
+      ],
+      [
+        1269,
+        560,
+        1681,
+        949
+      ],
+      [
+        1147,
+        554,
+        1195,
+        615
+      ],
+      [
+        1201,
+        553,
+        1265,
+        617
+      ],
+      [
+        1710,
+        508,
+        1755,
+        547
+      ],
+      [
+        1108,
+        485,
+        1171,
+        543
+      ],
+      [
+        1612,
+        475,
+        1706,
+        610
+      ],
+      [
+        971,
+        431,
+        1039,
+        487
+      ],
+      [
+        1707,
+        353,
+        1769,
+        434
+      ],
+      [
+        1649,
+        161,
+        1920,
+        903
+      ],
+      [
+        760,
+        149,
+        809,
+        238
+      ],
+      [
+        349,
+        129,
+        391,
+        903
+      ],
+      [
+        960,
+        69,
+        1002,
+        107
+      ],
+      [
+        1002,
+        37,
+        1036,
+        82
+      ],
+      [
+        921,
+        20,
+        971,
+        98
+      ],
+      [
+        1871,
+        0,
+        1920,
+        71
+      ],
+      [
+        1487,
+        0,
+        1520,
+        41
+      ],
+      [
+        1365,
+        0,
+        1513,
+        122
+      ],
+      [
+        875,
+        0,
+        976,
+        20
+      ],
+      [
+        825,
+        0,
+        913,
+        131
+      ],
+      [
+        558,
+        82,
+        1137,
+        1062
+      ],
+      [
+        639,
+        0,
+        678,
+        54
+      ],
+      [
+        566,
+        0,
+        763,
+        256
+      ],
+      [
+        735,
+        527,
+        899,
+        828
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 147,
+    "timestamp": 1790355517.1599774,
+    "state": "critical",
+    "risk": 0.9971,
+    "rois": [
+      [
+        485,
+        1018,
+        518,
+        1080
+      ],
+      [
+        1446,
+        955,
+        1494,
+        984
+      ],
+      [
+        1449,
+        948,
+        1629,
+        1079
+      ],
+      [
+        940,
+        939,
+        1485,
+        1080
+      ],
+      [
+        1659,
+        923,
+        1725,
+        941
+      ],
+      [
+        967,
+        910,
+        1008,
+        973
+      ],
+      [
+        842,
+        909,
+        953,
+        930
+      ],
+      [
+        384,
+        907,
+        409,
+        951
+      ],
+      [
+        1883,
+        904,
+        1920,
+        924
+      ],
+      [
+        1529,
+        839,
+        1604,
+        880
+      ],
+      [
+        1594,
+        833,
+        1726,
+        928
+      ],
+      [
+        409,
+        792,
+        445,
+        1080
+      ],
+      [
+        402,
+        663,
+        415,
+        749
+      ],
+      [
+        1351,
+        639,
+        1395,
+        679
+      ],
+      [
+        1285,
+        631,
+        1345,
+        693
+      ],
+      [
+        1247,
+        625,
+        1289,
+        677
+      ],
+      [
+        1683,
+        564,
+        1782,
+        651
+      ],
+      [
+        1905,
+        561,
+        1920,
+        637
+      ],
+      [
+        1269,
+        560,
+        1681,
+        949
+      ],
+      [
+        1147,
+        554,
+        1195,
+        615
+      ],
+      [
+        1201,
+        553,
+        1265,
+        617
+      ],
+      [
+        1710,
+        508,
+        1755,
+        547
+      ],
+      [
+        1108,
+        485,
+        1171,
+        543
+      ],
+      [
+        1612,
+        475,
+        1706,
+        610
+      ],
+      [
+        971,
+        431,
+        1039,
+        487
+      ],
+      [
+        1707,
+        353,
+        1769,
+        434
+      ],
+      [
+        1649,
+        161,
+        1920,
+        903
+      ],
+      [
+        760,
+        149,
+        809,
+        238
+      ],
+      [
+        349,
+        129,
+        391,
+        903
+      ],
+      [
+        960,
+        69,
+        1002,
+        107
+      ],
+      [
+        1002,
+        37,
+        1036,
+        82
+      ],
+      [
+        921,
+        20,
+        971,
+        98
+      ],
+      [
+        1871,
+        0,
+        1920,
+        71
+      ],
+      [
+        1487,
+        0,
+        1520,
+        41
+      ],
+      [
+        1365,
+        0,
+        1513,
+        122
+      ],
+      [
+        875,
+        0,
+        976,
+        20
+      ],
+      [
+        825,
+        0,
+        913,
+        131
+      ],
+      [
+        558,
+        82,
+        1137,
+        1062
+      ],
+      [
+        639,
+        0,
+        678,
+        54
+      ],
+      [
+        566,
+        0,
+        763,
+        256
+      ],
+      [
+        735,
+        527,
+        899,
+        828
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 148,
+    "timestamp": 1790355522.3873174,
+    "state": "critical",
+    "risk": 0.998,
+    "rois": [
+      [
+        485,
+        1018,
+        518,
+        1080
+      ],
+      [
+        1446,
+        955,
+        1494,
+        984
+      ],
+      [
+        1449,
+        948,
+        1629,
+        1079
+      ],
+      [
+        940,
+        939,
+        1485,
+        1080
+      ],
+      [
+        1659,
+        923,
+        1725,
+        941
+      ],
+      [
+        967,
+        910,
+        1008,
+        973
+      ],
+      [
+        842,
+        909,
+        953,
+        930
+      ],
+      [
+        384,
+        907,
+        409,
+        951
+      ],
+      [
+        1883,
+        904,
+        1920,
+        924
+      ],
+      [
+        1529,
+        839,
+        1604,
+        880
+      ],
+      [
+        1594,
+        833,
+        1726,
+        928
+      ],
+      [
+        409,
+        792,
+        445,
+        1080
+      ],
+      [
+        402,
+        663,
+        415,
+        749
+      ],
+      [
+        1351,
+        639,
+        1395,
+        679
+      ],
+      [
+        1285,
+        631,
+        1345,
+        693
+      ],
+      [
+        1247,
+        625,
+        1289,
+        677
+      ],
+      [
+        1683,
+        564,
+        1782,
+        651
+      ],
+      [
+        1905,
+        561,
+        1920,
+        637
+      ],
+      [
+        1269,
+        560,
+        1681,
+        949
+      ],
+      [
+        1147,
+        554,
+        1195,
+        615
+      ],
+      [
+        1201,
+        553,
+        1265,
+        617
+      ],
+      [
+        1710,
+        508,
+        1755,
+        547
+      ],
+      [
+        1108,
+        485,
+        1171,
+        543
+      ],
+      [
+        1612,
+        475,
+        1706,
+        610
+      ],
+      [
+        971,
+        431,
+        1039,
+        487
+      ],
+      [
+        1707,
+        353,
+        1769,
+        434
+      ],
+      [
+        1649,
+        161,
+        1920,
+        903
+      ],
+      [
+        760,
+        149,
+        809,
+        238
+      ],
+      [
+        349,
+        129,
+        391,
+        903
+      ],
+      [
+        960,
+        69,
+        1002,
+        107
+      ],
+      [
+        1002,
+        37,
+        1036,
+        82
+      ],
+      [
+        921,
+        20,
+        971,
+        98
+      ],
+      [
+        1871,
+        0,
+        1920,
+        71
+      ],
+      [
+        1487,
+        0,
+        1520,
+        41
+      ],
+      [
+        1365,
+        0,
+        1513,
+        122
+      ],
+      [
+        875,
+        0,
+        976,
+        20
+      ],
+      [
+        825,
+        0,
+        913,
+        131
+      ],
+      [
+        558,
+        82,
+        1137,
+        1062
+      ],
+      [
+        639,
+        0,
+        678,
+        54
+      ],
+      [
+        566,
+        0,
+        763,
+        256
+      ],
+      [
+        735,
+        527,
+        899,
+        828
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 149,
+    "timestamp": 1790355527.5703106,
+    "state": "critical",
+    "risk": 0.9986,
+    "rois": [
+      [
+        485,
+        1018,
+        518,
+        1080
+      ],
+      [
+        1446,
+        955,
+        1494,
+        984
+      ],
+      [
+        1449,
+        948,
+        1629,
+        1079
+      ],
+      [
+        940,
+        939,
+        1485,
+        1080
+      ],
+      [
+        1659,
+        923,
+        1725,
+        941
+      ],
+      [
+        967,
+        910,
+        1008,
+        973
+      ],
+      [
+        842,
+        909,
+        953,
+        930
+      ],
+      [
+        384,
+        907,
+        409,
+        951
+      ],
+      [
+        1883,
+        904,
+        1920,
+        924
+      ],
+      [
+        1529,
+        839,
+        1604,
+        880
+      ],
+      [
+        1594,
+        833,
+        1726,
+        928
+      ],
+      [
+        409,
+        792,
+        445,
+        1080
+      ],
+      [
+        402,
+        663,
+        415,
+        749
+      ],
+      [
+        1351,
+        639,
+        1395,
+        679
+      ],
+      [
+        1285,
+        631,
+        1345,
+        693
+      ],
+      [
+        1247,
+        625,
+        1289,
+        677
+      ],
+      [
+        1683,
+        564,
+        1782,
+        651
+      ],
+      [
+        1905,
+        561,
+        1920,
+        637
+      ],
+      [
+        1269,
+        560,
+        1681,
+        949
+      ],
+      [
+        1147,
+        554,
+        1195,
+        615
+      ],
+      [
+        1201,
+        553,
+        1265,
+        617
+      ],
+      [
+        1710,
+        508,
+        1755,
+        547
+      ],
+      [
+        1108,
+        485,
+        1171,
+        543
+      ],
+      [
+        1612,
+        475,
+        1706,
+        610
+      ],
+      [
+        971,
+        431,
+        1039,
+        487
+      ],
+      [
+        1707,
+        353,
+        1769,
+        434
+      ],
+      [
+        1649,
+        161,
+        1920,
+        903
+      ],
+      [
+        760,
+        149,
+        809,
+        238
+      ],
+      [
+        349,
+        129,
+        391,
+        903
+      ],
+      [
+        960,
+        69,
+        1002,
+        107
+      ],
+      [
+        1002,
+        37,
+        1036,
+        82
+      ],
+      [
+        921,
+        20,
+        971,
+        98
+      ],
+      [
+        1871,
+        0,
+        1920,
+        71
+      ],
+      [
+        1487,
+        0,
+        1520,
+        41
+      ],
+      [
+        1365,
+        0,
+        1513,
+        122
+      ],
+      [
+        875,
+        0,
+        976,
+        20
+      ],
+      [
+        825,
+        0,
+        913,
+        131
+      ],
+      [
+        558,
+        82,
+        1137,
+        1062
+      ],
+      [
+        639,
+        0,
+        678,
+        54
+      ],
+      [
+        566,
+        0,
+        763,
+        256
+      ],
+      [
+        735,
+        527,
+        899,
+        828
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 150,
+    "timestamp": 1790355534.5408528,
+    "state": "critical",
+    "risk": 0.999,
+    "rois": [
+      [
+        485,
+        1018,
+        518,
+        1080
+      ],
+      [
+        1446,
+        955,
+        1494,
+        984
+      ],
+      [
+        1449,
+        948,
+        1629,
+        1079
+      ],
+      [
+        940,
+        939,
+        1485,
+        1080
+      ],
+      [
+        1659,
+        923,
+        1725,
+        941
+      ],
+      [
+        967,
+        910,
+        1008,
+        973
+      ],
+      [
+        842,
+        909,
+        953,
+        930
+      ],
+      [
+        384,
+        907,
+        409,
+        951
+      ],
+      [
+        1883,
+        904,
+        1920,
+        924
+      ],
+      [
+        1529,
+        839,
+        1604,
+        880
+      ],
+      [
+        1594,
+        833,
+        1726,
+        928
+      ],
+      [
+        409,
+        792,
+        445,
+        1080
+      ],
+      [
+        402,
+        663,
+        415,
+        749
+      ],
+      [
+        1351,
+        639,
+        1395,
+        679
+      ],
+      [
+        1285,
+        631,
+        1345,
+        693
+      ],
+      [
+        1247,
+        625,
+        1289,
+        677
+      ],
+      [
+        1683,
+        564,
+        1782,
+        651
+      ],
+      [
+        1905,
+        561,
+        1920,
+        637
+      ],
+      [
+        1269,
+        560,
+        1681,
+        949
+      ],
+      [
+        1147,
+        554,
+        1195,
+        615
+      ],
+      [
+        1201,
+        553,
+        1265,
+        617
+      ],
+      [
+        1710,
+        508,
+        1755,
+        547
+      ],
+      [
+        1108,
+        485,
+        1171,
+        543
+      ],
+      [
+        1612,
+        475,
+        1706,
+        610
+      ],
+      [
+        971,
+        431,
+        1039,
+        487
+      ],
+      [
+        1707,
+        353,
+        1769,
+        434
+      ],
+      [
+        1649,
+        161,
+        1920,
+        903
+      ],
+      [
+        760,
+        149,
+        809,
+        238
+      ],
+      [
+        349,
+        129,
+        391,
+        903
+      ],
+      [
+        960,
+        69,
+        1002,
+        107
+      ],
+      [
+        1002,
+        37,
+        1036,
+        82
+      ],
+      [
+        921,
+        20,
+        971,
+        98
+      ],
+      [
+        1871,
+        0,
+        1920,
+        71
+      ],
+      [
+        1487,
+        0,
+        1520,
+        41
+      ],
+      [
+        1365,
+        0,
+        1513,
+        122
+      ],
+      [
+        875,
+        0,
+        976,
+        20
+      ],
+      [
+        825,
+        0,
+        913,
+        131
+      ],
+      [
+        560,
+        136,
+        1133,
+        1054
+      ],
+      [
+        639,
+        0,
+        678,
+        54
+      ],
+      [
+        566,
+        0,
+        763,
+        256
+      ],
+      [
+        735,
+        527,
+        899,
+        828
+      ],
+      [
+        648,
+        2,
+        1013,
+        256
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 151,
+    "timestamp": 1790355540.394816,
+    "state": "critical",
+    "risk": 0.9993,
+    "rois": [
+      [
+        485,
+        1018,
+        518,
+        1080
+      ],
+      [
+        1446,
+        955,
+        1494,
+        984
+      ],
+      [
+        1449,
+        948,
+        1629,
+        1079
+      ],
+      [
+        940,
+        939,
+        1485,
+        1080
+      ],
+      [
+        1659,
+        923,
+        1725,
+        941
+      ],
+      [
+        967,
+        910,
+        1008,
+        973
+      ],
+      [
+        842,
+        909,
+        953,
+        930
+      ],
+      [
+        384,
+        907,
+        409,
+        951
+      ],
+      [
+        1883,
+        904,
+        1920,
+        924
+      ],
+      [
+        1529,
+        839,
+        1604,
+        880
+      ],
+      [
+        1594,
+        833,
+        1726,
+        928
+      ],
+      [
+        409,
+        792,
+        445,
+        1080
+      ],
+      [
+        402,
+        663,
+        415,
+        749
+      ],
+      [
+        1351,
+        639,
+        1395,
+        679
+      ],
+      [
+        1285,
+        631,
+        1345,
+        693
+      ],
+      [
+        1247,
+        625,
+        1289,
+        677
+      ],
+      [
+        1683,
+        564,
+        1782,
+        651
+      ],
+      [
+        1905,
+        561,
+        1920,
+        637
+      ],
+      [
+        1269,
+        560,
+        1681,
+        949
+      ],
+      [
+        1147,
+        554,
+        1195,
+        615
+      ],
+      [
+        1201,
+        553,
+        1265,
+        617
+      ],
+      [
+        1710,
+        508,
+        1755,
+        547
+      ],
+      [
+        1108,
+        485,
+        1171,
+        543
+      ],
+      [
+        1612,
+        475,
+        1706,
+        610
+      ],
+      [
+        971,
+        431,
+        1039,
+        487
+      ],
+      [
+        1707,
+        353,
+        1769,
+        434
+      ],
+      [
+        1649,
+        161,
+        1920,
+        903
+      ],
+      [
+        760,
+        149,
+        809,
+        238
+      ],
+      [
+        349,
+        129,
+        391,
+        903
+      ],
+      [
+        960,
+        69,
+        1002,
+        107
+      ],
+      [
+        1002,
+        37,
+        1036,
+        82
+      ],
+      [
+        921,
+        20,
+        971,
+        98
+      ],
+      [
+        1871,
+        0,
+        1920,
+        71
+      ],
+      [
+        1487,
+        0,
+        1520,
+        41
+      ],
+      [
+        1365,
+        0,
+        1513,
+        122
+      ],
+      [
+        875,
+        0,
+        976,
+        20
+      ],
+      [
+        825,
+        0,
+        913,
+        131
+      ],
+      [
+        560,
+        136,
+        1133,
+        1054
+      ],
+      [
+        639,
+        0,
+        678,
+        54
+      ],
+      [
+        566,
+        0,
+        763,
+        256
+      ],
+      [
+        735,
+        527,
+        899,
+        828
+      ],
+      [
+        648,
+        2,
+        1013,
+        256
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 152,
+    "timestamp": 1790355546.5610545,
+    "state": "critical",
+    "risk": 0.9995,
+    "rois": [
+      [
+        485,
+        1018,
+        518,
+        1080
+      ],
+      [
+        1446,
+        955,
+        1494,
+        984
+      ],
+      [
+        1449,
+        948,
+        1629,
+        1079
+      ],
+      [
+        940,
+        939,
+        1485,
+        1080
+      ],
+      [
+        1659,
+        923,
+        1725,
+        941
+      ],
+      [
+        967,
+        910,
+        1008,
+        973
+      ],
+      [
+        842,
+        909,
+        953,
+        930
+      ],
+      [
+        384,
+        907,
+        409,
+        951
+      ],
+      [
+        1883,
+        904,
+        1920,
+        924
+      ],
+      [
+        1529,
+        839,
+        1604,
+        880
+      ],
+      [
+        1594,
+        833,
+        1726,
+        928
+      ],
+      [
+        409,
+        792,
+        445,
+        1080
+      ],
+      [
+        402,
+        663,
+        415,
+        749
+      ],
+      [
+        1351,
+        639,
+        1395,
+        679
+      ],
+      [
+        1285,
+        631,
+        1345,
+        693
+      ],
+      [
+        1247,
+        625,
+        1289,
+        677
+      ],
+      [
+        1683,
+        564,
+        1782,
+        651
+      ],
+      [
+        1905,
+        561,
+        1920,
+        637
+      ],
+      [
+        1269,
+        560,
+        1681,
+        949
+      ],
+      [
+        1147,
+        554,
+        1195,
+        615
+      ],
+      [
+        1201,
+        553,
+        1265,
+        617
+      ],
+      [
+        1710,
+        508,
+        1755,
+        547
+      ],
+      [
+        1108,
+        485,
+        1171,
+        543
+      ],
+      [
+        1612,
+        475,
+        1706,
+        610
+      ],
+      [
+        971,
+        431,
+        1039,
+        487
+      ],
+      [
+        1707,
+        353,
+        1769,
+        434
+      ],
+      [
+        1649,
+        161,
+        1920,
+        903
+      ],
+      [
+        760,
+        149,
+        809,
+        238
+      ],
+      [
+        349,
+        129,
+        391,
+        903
+      ],
+      [
+        960,
+        69,
+        1002,
+        107
+      ],
+      [
+        1002,
+        37,
+        1036,
+        82
+      ],
+      [
+        921,
+        20,
+        971,
+        98
+      ],
+      [
+        1871,
+        0,
+        1920,
+        71
+      ],
+      [
+        1487,
+        0,
+        1520,
+        41
+      ],
+      [
+        1365,
+        0,
+        1513,
+        122
+      ],
+      [
+        875,
+        0,
+        976,
+        20
+      ],
+      [
+        825,
+        0,
+        913,
+        131
+      ],
+      [
+        560,
+        136,
+        1133,
+        1054
+      ],
+      [
+        639,
+        0,
+        678,
+        54
+      ],
+      [
+        566,
+        0,
+        763,
+        256
+      ],
+      [
+        735,
+        527,
+        899,
+        828
+      ],
+      [
+        648,
+        2,
+        1013,
+        256
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 153,
+    "timestamp": 1790355553.3608582,
+    "state": "critical",
+    "risk": 0.9997,
+    "rois": [
+      [
+        485,
+        1018,
+        518,
+        1080
+      ],
+      [
+        1446,
+        955,
+        1494,
+        984
+      ],
+      [
+        1449,
+        948,
+        1629,
+        1079
+      ],
+      [
+        940,
+        939,
+        1485,
+        1080
+      ],
+      [
+        1659,
+        923,
+        1725,
+        941
+      ],
+      [
+        967,
+        910,
+        1008,
+        973
+      ],
+      [
+        842,
+        909,
+        953,
+        930
+      ],
+      [
+        384,
+        907,
+        409,
+        951
+      ],
+      [
+        1883,
+        904,
+        1920,
+        924
+      ],
+      [
+        1529,
+        839,
+        1604,
+        880
+      ],
+      [
+        1594,
+        833,
+        1726,
+        928
+      ],
+      [
+        409,
+        792,
+        445,
+        1080
+      ],
+      [
+        402,
+        663,
+        415,
+        749
+      ],
+      [
+        1351,
+        639,
+        1395,
+        679
+      ],
+      [
+        1285,
+        631,
+        1345,
+        693
+      ],
+      [
+        1247,
+        625,
+        1289,
+        677
+      ],
+      [
+        1683,
+        564,
+        1782,
+        651
+      ],
+      [
+        1905,
+        561,
+        1920,
+        637
+      ],
+      [
+        1269,
+        560,
+        1681,
+        949
+      ],
+      [
+        1147,
+        554,
+        1195,
+        615
+      ],
+      [
+        1201,
+        553,
+        1265,
+        617
+      ],
+      [
+        1710,
+        508,
+        1755,
+        547
+      ],
+      [
+        1108,
+        485,
+        1171,
+        543
+      ],
+      [
+        1612,
+        475,
+        1706,
+        610
+      ],
+      [
+        971,
+        431,
+        1039,
+        487
+      ],
+      [
+        1707,
+        353,
+        1769,
+        434
+      ],
+      [
+        1649,
+        161,
+        1920,
+        903
+      ],
+      [
+        760,
+        149,
+        809,
+        238
+      ],
+      [
+        349,
+        129,
+        391,
+        903
+      ],
+      [
+        960,
+        69,
+        1002,
+        107
+      ],
+      [
+        1002,
+        37,
+        1036,
+        82
+      ],
+      [
+        921,
+        20,
+        971,
+        98
+      ],
+      [
+        1871,
+        0,
+        1920,
+        71
+      ],
+      [
+        1487,
+        0,
+        1520,
+        41
+      ],
+      [
+        1365,
+        0,
+        1513,
+        122
+      ],
+      [
+        875,
+        0,
+        976,
+        20
+      ],
+      [
+        825,
+        0,
+        913,
+        131
+      ],
+      [
+        560,
+        136,
+        1133,
+        1054
+      ],
+      [
+        639,
+        0,
+        678,
+        54
+      ],
+      [
+        566,
+        0,
+        763,
+        256
+      ],
+      [
+        735,
+        527,
+        899,
+        828
+      ],
+      [
+        648,
+        2,
+        1013,
+        256
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 154,
+    "timestamp": 1790355559.689516,
+    "state": "critical",
+    "risk": 0.9998,
+    "rois": [
+      [
+        485,
+        1018,
+        518,
+        1080
+      ],
+      [
+        1446,
+        955,
+        1494,
+        984
+      ],
+      [
+        1449,
+        948,
+        1629,
+        1079
+      ],
+      [
+        940,
+        939,
+        1485,
+        1080
+      ],
+      [
+        1659,
+        923,
+        1725,
+        941
+      ],
+      [
+        967,
+        910,
+        1008,
+        973
+      ],
+      [
+        842,
+        909,
+        953,
+        930
+      ],
+      [
+        384,
+        907,
+        409,
+        951
+      ],
+      [
+        1883,
+        904,
+        1920,
+        924
+      ],
+      [
+        1529,
+        839,
+        1604,
+        880
+      ],
+      [
+        1594,
+        833,
+        1726,
+        928
+      ],
+      [
+        409,
+        792,
+        445,
+        1080
+      ],
+      [
+        402,
+        663,
+        415,
+        749
+      ],
+      [
+        1351,
+        639,
+        1395,
+        679
+      ],
+      [
+        1285,
+        631,
+        1345,
+        693
+      ],
+      [
+        1247,
+        625,
+        1289,
+        677
+      ],
+      [
+        1683,
+        564,
+        1782,
+        651
+      ],
+      [
+        1905,
+        561,
+        1920,
+        637
+      ],
+      [
+        1269,
+        560,
+        1681,
+        949
+      ],
+      [
+        1147,
+        554,
+        1195,
+        615
+      ],
+      [
+        1201,
+        553,
+        1265,
+        617
+      ],
+      [
+        1710,
+        508,
+        1755,
+        547
+      ],
+      [
+        1108,
+        485,
+        1171,
+        543
+      ],
+      [
+        1612,
+        475,
+        1706,
+        610
+      ],
+      [
+        971,
+        431,
+        1039,
+        487
+      ],
+      [
+        1707,
+        353,
+        1769,
+        434
+      ],
+      [
+        1649,
+        161,
+        1920,
+        903
+      ],
+      [
+        760,
+        149,
+        809,
+        238
+      ],
+      [
+        349,
+        129,
+        391,
+        903
+      ],
+      [
+        960,
+        69,
+        1002,
+        107
+      ],
+      [
+        1002,
+        37,
+        1036,
+        82
+      ],
+      [
+        921,
+        20,
+        971,
+        98
+      ],
+      [
+        1871,
+        0,
+        1920,
+        71
+      ],
+      [
+        1487,
+        0,
+        1520,
+        41
+      ],
+      [
+        1365,
+        0,
+        1513,
+        122
+      ],
+      [
+        875,
+        0,
+        976,
+        20
+      ],
+      [
+        825,
+        0,
+        913,
+        131
+      ],
+      [
+        560,
+        136,
+        1133,
+        1054
+      ],
+      [
+        639,
+        0,
+        678,
+        54
+      ],
+      [
+        566,
+        0,
+        763,
+        256
+      ],
+      [
+        735,
+        527,
+        899,
+        828
+      ],
+      [
+        648,
+        2,
+        1013,
+        256
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 155,
+    "timestamp": 1790355566.0248659,
+    "state": "critical",
+    "risk": 0.9998,
+    "rois": [
+      [
+        485,
+        1018,
+        518,
+        1080
+      ],
+      [
+        1446,
+        955,
+        1494,
+        984
+      ],
+      [
+        1449,
+        948,
+        1629,
+        1079
+      ],
+      [
+        940,
+        939,
+        1485,
+        1080
+      ],
+      [
+        1659,
+        923,
+        1725,
+        941
+      ],
+      [
+        967,
+        910,
+        1008,
+        973
+      ],
+      [
+        842,
+        909,
+        953,
+        930
+      ],
+      [
+        384,
+        907,
+        409,
+        951
+      ],
+      [
+        1883,
+        904,
+        1920,
+        924
+      ],
+      [
+        1529,
+        839,
+        1604,
+        880
+      ],
+      [
+        1594,
+        833,
+        1726,
+        928
+      ],
+      [
+        409,
+        792,
+        445,
+        1080
+      ],
+      [
+        402,
+        663,
+        415,
+        749
+      ],
+      [
+        1351,
+        639,
+        1395,
+        679
+      ],
+      [
+        1285,
+        631,
+        1345,
+        693
+      ],
+      [
+        1247,
+        625,
+        1289,
+        677
+      ],
+      [
+        1683,
+        564,
+        1782,
+        651
+      ],
+      [
+        1905,
+        561,
+        1920,
+        637
+      ],
+      [
+        1269,
+        560,
+        1681,
+        949
+      ],
+      [
+        1147,
+        554,
+        1195,
+        615
+      ],
+      [
+        1201,
+        553,
+        1265,
+        617
+      ],
+      [
+        1710,
+        508,
+        1755,
+        547
+      ],
+      [
+        1108,
+        485,
+        1171,
+        543
+      ],
+      [
+        1612,
+        475,
+        1706,
+        610
+      ],
+      [
+        971,
+        431,
+        1039,
+        487
+      ],
+      [
+        1707,
+        353,
+        1769,
+        434
+      ],
+      [
+        1649,
+        161,
+        1920,
+        903
+      ],
+      [
+        760,
+        149,
+        809,
+        238
+      ],
+      [
+        349,
+        129,
+        391,
+        903
+      ],
+      [
+        960,
+        69,
+        1002,
+        107
+      ],
+      [
+        1002,
+        37,
+        1036,
+        82
+      ],
+      [
+        921,
+        20,
+        971,
+        98
+      ],
+      [
+        1871,
+        0,
+        1920,
+        71
+      ],
+      [
+        1487,
+        0,
+        1520,
+        41
+      ],
+      [
+        1365,
+        0,
+        1513,
+        122
+      ],
+      [
+        875,
+        0,
+        976,
+        20
+      ],
+      [
+        825,
+        0,
+        913,
+        131
+      ],
+      [
+        560,
+        136,
+        1133,
+        1054
+      ],
+      [
+        639,
+        0,
+        678,
+        54
+      ],
+      [
+        566,
+        0,
+        763,
+        256
+      ],
+      [
+        735,
+        527,
+        899,
+        828
+      ],
+      [
+        648,
+        2,
+        1013,
+        256
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 156,
+    "timestamp": 1790355571.8952453,
+    "state": "critical",
+    "risk": 0.9999,
+    "rois": [
+      [
+        485,
+        1018,
+        518,
+        1080
+      ],
+      [
+        1446,
+        955,
+        1494,
+        984
+      ],
+      [
+        1449,
+        948,
+        1629,
+        1079
+      ],
+      [
+        940,
+        939,
+        1485,
+        1080
+      ],
+      [
+        1659,
+        923,
+        1725,
+        941
+      ],
+      [
+        967,
+        910,
+        1008,
+        973
+      ],
+      [
+        842,
+        909,
+        953,
+        930
+      ],
+      [
+        384,
+        907,
+        409,
+        951
+      ],
+      [
+        1883,
+        904,
+        1920,
+        924
+      ],
+      [
+        1529,
+        839,
+        1604,
+        880
+      ],
+      [
+        1594,
+        833,
+        1726,
+        928
+      ],
+      [
+        409,
+        792,
+        445,
+        1080
+      ],
+      [
+        402,
+        663,
+        415,
+        749
+      ],
+      [
+        1351,
+        639,
+        1395,
+        679
+      ],
+      [
+        1285,
+        631,
+        1345,
+        693
+      ],
+      [
+        1247,
+        625,
+        1289,
+        677
+      ],
+      [
+        1683,
+        564,
+        1782,
+        651
+      ],
+      [
+        1905,
+        561,
+        1920,
+        637
+      ],
+      [
+        1269,
+        560,
+        1681,
+        949
+      ],
+      [
+        1147,
+        554,
+        1195,
+        615
+      ],
+      [
+        1201,
+        553,
+        1265,
+        617
+      ],
+      [
+        1710,
+        508,
+        1755,
+        547
+      ],
+      [
+        1108,
+        485,
+        1171,
+        543
+      ],
+      [
+        1612,
+        475,
+        1706,
+        610
+      ],
+      [
+        971,
+        431,
+        1039,
+        487
+      ],
+      [
+        1707,
+        353,
+        1769,
+        434
+      ],
+      [
+        1649,
+        161,
+        1920,
+        903
+      ],
+      [
+        760,
+        149,
+        809,
+        238
+      ],
+      [
+        349,
+        129,
+        391,
+        903
+      ],
+      [
+        960,
+        69,
+        1002,
+        107
+      ],
+      [
+        1002,
+        37,
+        1036,
+        82
+      ],
+      [
+        921,
+        20,
+        971,
+        98
+      ],
+      [
+        1871,
+        0,
+        1920,
+        71
+      ],
+      [
+        1487,
+        0,
+        1520,
+        41
+      ],
+      [
+        1365,
+        0,
+        1513,
+        122
+      ],
+      [
+        875,
+        0,
+        976,
+        20
+      ],
+      [
+        825,
+        0,
+        913,
+        131
+      ],
+      [
+        560,
+        136,
+        1133,
+        1054
+      ],
+      [
+        639,
+        0,
+        678,
+        54
+      ],
+      [
+        566,
+        0,
+        763,
+        256
+      ],
+      [
+        735,
+        527,
+        899,
+        828
+      ],
+      [
+        648,
+        2,
+        1013,
+        256
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 157,
+    "timestamp": 1790355577.4597728,
+    "state": "critical",
+    "risk": 0.9999,
+    "rois": [
+      [
+        485,
+        1018,
+        518,
+        1080
+      ],
+      [
+        1446,
+        955,
+        1494,
+        984
+      ],
+      [
+        1449,
+        948,
+        1629,
+        1079
+      ],
+      [
+        940,
+        939,
+        1485,
+        1080
+      ],
+      [
+        1659,
+        923,
+        1725,
+        941
+      ],
+      [
+        967,
+        910,
+        1008,
+        973
+      ],
+      [
+        842,
+        909,
+        953,
+        930
+      ],
+      [
+        384,
+        907,
+        409,
+        951
+      ],
+      [
+        1883,
+        904,
+        1920,
+        924
+      ],
+      [
+        1529,
+        839,
+        1604,
+        880
+      ],
+      [
+        1594,
+        833,
+        1726,
+        928
+      ],
+      [
+        409,
+        792,
+        445,
+        1080
+      ],
+      [
+        402,
+        663,
+        415,
+        749
+      ],
+      [
+        1351,
+        639,
+        1395,
+        679
+      ],
+      [
+        1285,
+        631,
+        1345,
+        693
+      ],
+      [
+        1247,
+        625,
+        1289,
+        677
+      ],
+      [
+        1683,
+        564,
+        1782,
+        651
+      ],
+      [
+        1905,
+        561,
+        1920,
+        637
+      ],
+      [
+        1269,
+        560,
+        1681,
+        949
+      ],
+      [
+        1147,
+        554,
+        1195,
+        615
+      ],
+      [
+        1201,
+        553,
+        1265,
+        617
+      ],
+      [
+        1710,
+        508,
+        1755,
+        547
+      ],
+      [
+        1108,
+        485,
+        1171,
+        543
+      ],
+      [
+        1612,
+        475,
+        1706,
+        610
+      ],
+      [
+        971,
+        431,
+        1039,
+        487
+      ],
+      [
+        1707,
+        353,
+        1769,
+        434
+      ],
+      [
+        1649,
+        161,
+        1920,
+        903
+      ],
+      [
+        760,
+        149,
+        809,
+        238
+      ],
+      [
+        349,
+        129,
+        391,
+        903
+      ],
+      [
+        960,
+        69,
+        1002,
+        107
+      ],
+      [
+        1002,
+        37,
+        1036,
+        82
+      ],
+      [
+        921,
+        20,
+        971,
+        98
+      ],
+      [
+        1871,
+        0,
+        1920,
+        71
+      ],
+      [
+        1487,
+        0,
+        1520,
+        41
+      ],
+      [
+        1365,
+        0,
+        1513,
+        122
+      ],
+      [
+        875,
+        0,
+        976,
+        20
+      ],
+      [
+        825,
+        0,
+        913,
+        131
+      ],
+      [
+        560,
+        136,
+        1133,
+        1054
+      ],
+      [
+        639,
+        0,
+        678,
+        54
+      ],
+      [
+        566,
+        0,
+        763,
+        256
+      ],
+      [
+        735,
+        527,
+        899,
+        828
+      ],
+      [
+        648,
+        2,
+        1013,
+        256
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 158,
+    "timestamp": 1790355583.0010846,
+    "state": "critical",
+    "risk": 0.9999,
+    "rois": [
+      [
+        485,
+        1018,
+        518,
+        1080
+      ],
+      [
+        1446,
+        955,
+        1494,
+        984
+      ],
+      [
+        1449,
+        948,
+        1629,
+        1079
+      ],
+      [
+        940,
+        939,
+        1485,
+        1080
+      ],
+      [
+        1659,
+        923,
+        1725,
+        941
+      ],
+      [
+        967,
+        910,
+        1008,
+        973
+      ],
+      [
+        842,
+        909,
+        953,
+        930
+      ],
+      [
+        384,
+        907,
+        409,
+        951
+      ],
+      [
+        1883,
+        904,
+        1920,
+        924
+      ],
+      [
+        1529,
+        839,
+        1604,
+        880
+      ],
+      [
+        1594,
+        833,
+        1726,
+        928
+      ],
+      [
+        409,
+        792,
+        445,
+        1080
+      ],
+      [
+        402,
+        663,
+        415,
+        749
+      ],
+      [
+        1351,
+        639,
+        1395,
+        679
+      ],
+      [
+        1285,
+        631,
+        1345,
+        693
+      ],
+      [
+        1247,
+        625,
+        1289,
+        677
+      ],
+      [
+        1683,
+        564,
+        1782,
+        651
+      ],
+      [
+        1905,
+        561,
+        1920,
+        637
+      ],
+      [
+        1269,
+        560,
+        1681,
+        949
+      ],
+      [
+        1147,
+        554,
+        1195,
+        615
+      ],
+      [
+        1201,
+        553,
+        1265,
+        617
+      ],
+      [
+        1710,
+        508,
+        1755,
+        547
+      ],
+      [
+        1108,
+        485,
+        1171,
+        543
+      ],
+      [
+        1612,
+        475,
+        1706,
+        610
+      ],
+      [
+        971,
+        431,
+        1039,
+        487
+      ],
+      [
+        1707,
+        353,
+        1769,
+        434
+      ],
+      [
+        1649,
+        161,
+        1920,
+        903
+      ],
+      [
+        760,
+        149,
+        809,
+        238
+      ],
+      [
+        349,
+        129,
+        391,
+        903
+      ],
+      [
+        960,
+        69,
+        1002,
+        107
+      ],
+      [
+        1002,
+        37,
+        1036,
+        82
+      ],
+      [
+        921,
+        20,
+        971,
+        98
+      ],
+      [
+        1871,
+        0,
+        1920,
+        71
+      ],
+      [
+        1487,
+        0,
+        1520,
+        41
+      ],
+      [
+        1365,
+        0,
+        1513,
+        122
+      ],
+      [
+        875,
+        0,
+        976,
+        20
+      ],
+      [
+        825,
+        0,
+        913,
+        131
+      ],
+      [
+        560,
+        136,
+        1133,
+        1054
+      ],
+      [
+        639,
+        0,
+        678,
+        54
+      ],
+      [
+        566,
+        0,
+        763,
+        256
+      ],
+      [
+        735,
+        527,
+        899,
+        828
+      ],
+      [
+        648,
+        2,
+        1013,
+        256
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 159,
+    "timestamp": 1790355589.5220368,
+    "state": "critical",
+    "risk": 1,
+    "rois": [
+      [
+        485,
+        1018,
+        518,
+        1080
+      ],
+      [
+        1446,
+        955,
+        1494,
+        984
+      ],
+      [
+        1449,
+        948,
+        1629,
+        1079
+      ],
+      [
+        940,
+        939,
+        1485,
+        1080
+      ],
+      [
+        1659,
+        923,
+        1725,
+        941
+      ],
+      [
+        967,
+        910,
+        1008,
+        973
+      ],
+      [
+        842,
+        909,
+        953,
+        930
+      ],
+      [
+        384,
+        907,
+        409,
+        951
+      ],
+      [
+        1883,
+        904,
+        1920,
+        924
+      ],
+      [
+        1529,
+        839,
+        1604,
+        880
+      ],
+      [
+        1594,
+        833,
+        1726,
+        928
+      ],
+      [
+        409,
+        792,
+        445,
+        1080
+      ],
+      [
+        402,
+        663,
+        415,
+        749
+      ],
+      [
+        1351,
+        639,
+        1395,
+        679
+      ],
+      [
+        1285,
+        631,
+        1345,
+        693
+      ],
+      [
+        1247,
+        625,
+        1289,
+        677
+      ],
+      [
+        1683,
+        564,
+        1782,
+        651
+      ],
+      [
+        1905,
+        561,
+        1920,
+        637
+      ],
+      [
+        1269,
+        560,
+        1681,
+        949
+      ],
+      [
+        1147,
+        554,
+        1195,
+        615
+      ],
+      [
+        1201,
+        553,
+        1265,
+        617
+      ],
+      [
+        1710,
+        508,
+        1755,
+        547
+      ],
+      [
+        1108,
+        485,
+        1171,
+        543
+      ],
+      [
+        1612,
+        475,
+        1706,
+        610
+      ],
+      [
+        971,
+        431,
+        1039,
+        487
+      ],
+      [
+        1707,
+        353,
+        1769,
+        434
+      ],
+      [
+        1649,
+        161,
+        1920,
+        903
+      ],
+      [
+        760,
+        149,
+        809,
+        238
+      ],
+      [
+        349,
+        129,
+        391,
+        903
+      ],
+      [
+        960,
+        69,
+        1002,
+        107
+      ],
+      [
+        1002,
+        37,
+        1036,
+        82
+      ],
+      [
+        921,
+        20,
+        971,
+        98
+      ],
+      [
+        1871,
+        0,
+        1920,
+        71
+      ],
+      [
+        1487,
+        0,
+        1520,
+        41
+      ],
+      [
+        1365,
+        0,
+        1513,
+        122
+      ],
+      [
+        875,
+        0,
+        976,
+        20
+      ],
+      [
+        825,
+        0,
+        913,
+        131
+      ],
+      [
+        560,
+        136,
+        1133,
+        1054
+      ],
+      [
+        639,
+        0,
+        678,
+        54
+      ],
+      [
+        566,
+        0,
+        763,
+        256
+      ],
+      [
+        735,
+        527,
+        899,
+        828
+      ],
+      [
+        648,
+        2,
+        1013,
+        256
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 160,
+    "timestamp": 1790355597.9756436,
+    "state": "critical",
+    "risk": 1,
+    "rois": [
+      [
+        485,
+        1018,
+        518,
+        1080
+      ],
+      [
+        1446,
+        955,
+        1494,
+        984
+      ],
+      [
+        1397,
+        942,
+        1625,
+        1078
+      ],
+      [
+        940,
+        939,
+        1485,
+        1080
+      ],
+      [
+        1659,
+        923,
+        1725,
+        941
+      ],
+      [
+        967,
+        910,
+        1008,
+        973
+      ],
+      [
+        842,
+        909,
+        953,
+        930
+      ],
+      [
+        384,
+        907,
+        409,
+        951
+      ],
+      [
+        1883,
+        904,
+        1920,
+        924
+      ],
+      [
+        1529,
+        839,
+        1604,
+        880
+      ],
+      [
+        1594,
+        833,
+        1726,
+        928
+      ],
+      [
+        409,
+        792,
+        445,
+        1080
+      ],
+      [
+        402,
+        663,
+        415,
+        749
+      ],
+      [
+        1351,
+        639,
+        1395,
+        679
+      ],
+      [
+        1285,
+        631,
+        1345,
+        693
+      ],
+      [
+        1247,
+        625,
+        1289,
+        677
+      ],
+      [
+        1683,
+        564,
+        1782,
+        651
+      ],
+      [
+        1905,
+        561,
+        1920,
+        637
+      ],
+      [
+        1269,
+        560,
+        1681,
+        949
+      ],
+      [
+        1147,
+        554,
+        1195,
+        615
+      ],
+      [
+        1201,
+        553,
+        1265,
+        617
+      ],
+      [
+        1710,
+        508,
+        1755,
+        547
+      ],
+      [
+        1108,
+        485,
+        1171,
+        543
+      ],
+      [
+        1612,
+        475,
+        1706,
+        610
+      ],
+      [
+        971,
+        431,
+        1039,
+        487
+      ],
+      [
+        1707,
+        353,
+        1769,
+        434
+      ],
+      [
+        1649,
+        161,
+        1920,
+        903
+      ],
+      [
+        760,
+        149,
+        809,
+        238
+      ],
+      [
+        349,
+        129,
+        391,
+        903
+      ],
+      [
+        960,
+        69,
+        1002,
+        107
+      ],
+      [
+        1002,
+        37,
+        1036,
+        82
+      ],
+      [
+        921,
+        20,
+        971,
+        98
+      ],
+      [
+        1871,
+        0,
+        1920,
+        71
+      ],
+      [
+        1487,
+        0,
+        1520,
+        41
+      ],
+      [
+        1365,
+        0,
+        1513,
+        122
+      ],
+      [
+        875,
+        0,
+        976,
+        20
+      ],
+      [
+        825,
+        0,
+        913,
+        131
+      ],
+      [
+        558,
+        166,
+        1128,
+        1046
+      ],
+      [
+        639,
+        0,
+        678,
+        54
+      ],
+      [
+        566,
+        0,
+        763,
+        256
+      ],
+      [
+        735,
+        527,
+        899,
+        828
+      ],
+      [
+        648,
+        2,
+        1013,
+        256
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 161,
+    "timestamp": 1790355606.7920854,
+    "state": "critical",
+    "risk": 1,
+    "rois": [
+      [
+        485,
+        1018,
+        518,
+        1080
+      ],
+      [
+        1446,
+        955,
+        1494,
+        984
+      ],
+      [
+        1397,
+        942,
+        1625,
+        1078
+      ],
+      [
+        940,
+        939,
+        1485,
+        1080
+      ],
+      [
+        1659,
+        923,
+        1725,
+        941
+      ],
+      [
+        967,
+        910,
+        1008,
+        973
+      ],
+      [
+        842,
+        909,
+        953,
+        930
+      ],
+      [
+        384,
+        907,
+        409,
+        951
+      ],
+      [
+        1883,
+        904,
+        1920,
+        924
+      ],
+      [
+        1529,
+        839,
+        1604,
+        880
+      ],
+      [
+        1594,
+        833,
+        1726,
+        928
+      ],
+      [
+        409,
+        792,
+        445,
+        1080
+      ],
+      [
+        402,
+        663,
+        415,
+        749
+      ],
+      [
+        1351,
+        639,
+        1395,
+        679
+      ],
+      [
+        1285,
+        631,
+        1345,
+        693
+      ],
+      [
+        1247,
+        625,
+        1289,
+        677
+      ],
+      [
+        1683,
+        564,
+        1782,
+        651
+      ],
+      [
+        1905,
+        561,
+        1920,
+        637
+      ],
+      [
+        1269,
+        560,
+        1681,
+        949
+      ],
+      [
+        1147,
+        554,
+        1195,
+        615
+      ],
+      [
+        1201,
+        553,
+        1265,
+        617
+      ],
+      [
+        1710,
+        508,
+        1755,
+        547
+      ],
+      [
+        1108,
+        485,
+        1171,
+        543
+      ],
+      [
+        1612,
+        475,
+        1706,
+        610
+      ],
+      [
+        971,
+        431,
+        1039,
+        487
+      ],
+      [
+        1707,
+        353,
+        1769,
+        434
+      ],
+      [
+        1649,
+        161,
+        1920,
+        903
+      ],
+      [
+        760,
+        149,
+        809,
+        238
+      ],
+      [
+        349,
+        129,
+        391,
+        903
+      ],
+      [
+        960,
+        69,
+        1002,
+        107
+      ],
+      [
+        1002,
+        37,
+        1036,
+        82
+      ],
+      [
+        921,
+        20,
+        971,
+        98
+      ],
+      [
+        1871,
+        0,
+        1920,
+        71
+      ],
+      [
+        1487,
+        0,
+        1520,
+        41
+      ],
+      [
+        1365,
+        0,
+        1513,
+        122
+      ],
+      [
+        875,
+        0,
+        976,
+        20
+      ],
+      [
+        825,
+        0,
+        913,
+        131
+      ],
+      [
+        558,
+        166,
+        1128,
+        1046
+      ],
+      [
+        639,
+        0,
+        678,
+        54
+      ],
+      [
+        566,
+        0,
+        763,
+        256
+      ],
+      [
+        735,
+        527,
+        899,
+        828
+      ],
+      [
+        648,
+        2,
+        1013,
+        256
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 162,
+    "timestamp": 1790355613.7639544,
+    "state": "critical",
+    "risk": 1,
+    "rois": [
+      [
+        485,
+        1018,
+        518,
+        1080
+      ],
+      [
+        1446,
+        955,
+        1494,
+        984
+      ],
+      [
+        1397,
+        942,
+        1625,
+        1078
+      ],
+      [
+        940,
+        939,
+        1485,
+        1080
+      ],
+      [
+        1659,
+        923,
+        1725,
+        941
+      ],
+      [
+        967,
+        910,
+        1008,
+        973
+      ],
+      [
+        842,
+        909,
+        953,
+        930
+      ],
+      [
+        384,
+        907,
+        409,
+        951
+      ],
+      [
+        1883,
+        904,
+        1920,
+        924
+      ],
+      [
+        1529,
+        839,
+        1604,
+        880
+      ],
+      [
+        1594,
+        833,
+        1726,
+        928
+      ],
+      [
+        409,
+        792,
+        445,
+        1080
+      ],
+      [
+        402,
+        663,
+        415,
+        749
+      ],
+      [
+        1351,
+        639,
+        1395,
+        679
+      ],
+      [
+        1285,
+        631,
+        1345,
+        693
+      ],
+      [
+        1247,
+        625,
+        1289,
+        677
+      ],
+      [
+        1683,
+        564,
+        1782,
+        651
+      ],
+      [
+        1905,
+        561,
+        1920,
+        637
+      ],
+      [
+        1269,
+        560,
+        1681,
+        949
+      ],
+      [
+        1147,
+        554,
+        1195,
+        615
+      ],
+      [
+        1201,
+        553,
+        1265,
+        617
+      ],
+      [
+        1710,
+        508,
+        1755,
+        547
+      ],
+      [
+        1108,
+        485,
+        1171,
+        543
+      ],
+      [
+        1612,
+        475,
+        1706,
+        610
+      ],
+      [
+        971,
+        431,
+        1039,
+        487
+      ],
+      [
+        1707,
+        353,
+        1769,
+        434
+      ],
+      [
+        1649,
+        161,
+        1920,
+        903
+      ],
+      [
+        760,
+        149,
+        809,
+        238
+      ],
+      [
+        349,
+        129,
+        391,
+        903
+      ],
+      [
+        960,
+        69,
+        1002,
+        107
+      ],
+      [
+        1002,
+        37,
+        1036,
+        82
+      ],
+      [
+        921,
+        20,
+        971,
+        98
+      ],
+      [
+        1871,
+        0,
+        1920,
+        71
+      ],
+      [
+        1487,
+        0,
+        1520,
+        41
+      ],
+      [
+        1365,
+        0,
+        1513,
+        122
+      ],
+      [
+        875,
+        0,
+        976,
+        20
+      ],
+      [
+        825,
+        0,
+        913,
+        131
+      ],
+      [
+        558,
+        166,
+        1128,
+        1046
+      ],
+      [
+        639,
+        0,
+        678,
+        54
+      ],
+      [
+        566,
+        0,
+        763,
+        256
+      ],
+      [
+        735,
+        527,
+        899,
+        828
+      ],
+      [
+        648,
+        2,
+        1013,
+        256
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 163,
+    "timestamp": 1790355620.1042607,
+    "state": "critical",
+    "risk": 1,
+    "rois": [
+      [
+        485,
+        1018,
+        518,
+        1080
+      ],
+      [
+        1446,
+        955,
+        1494,
+        984
+      ],
+      [
+        1397,
+        942,
+        1625,
+        1078
+      ],
+      [
+        940,
+        939,
+        1485,
+        1080
+      ],
+      [
+        1659,
+        923,
+        1725,
+        941
+      ],
+      [
+        967,
+        910,
+        1008,
+        973
+      ],
+      [
+        842,
+        909,
+        953,
+        930
+      ],
+      [
+        384,
+        907,
+        409,
+        951
+      ],
+      [
+        1883,
+        904,
+        1920,
+        924
+      ],
+      [
+        1529,
+        839,
+        1604,
+        880
+      ],
+      [
+        1594,
+        833,
+        1726,
+        928
+      ],
+      [
+        409,
+        792,
+        445,
+        1080
+      ],
+      [
+        402,
+        663,
+        415,
+        749
+      ],
+      [
+        1351,
+        639,
+        1395,
+        679
+      ],
+      [
+        1285,
+        631,
+        1345,
+        693
+      ],
+      [
+        1247,
+        625,
+        1289,
+        677
+      ],
+      [
+        1683,
+        564,
+        1782,
+        651
+      ],
+      [
+        1905,
+        561,
+        1920,
+        637
+      ],
+      [
+        1269,
+        560,
+        1681,
+        949
+      ],
+      [
+        1147,
+        554,
+        1195,
+        615
+      ],
+      [
+        1201,
+        553,
+        1265,
+        617
+      ],
+      [
+        1710,
+        508,
+        1755,
+        547
+      ],
+      [
+        1108,
+        485,
+        1171,
+        543
+      ],
+      [
+        1612,
+        475,
+        1706,
+        610
+      ],
+      [
+        971,
+        431,
+        1039,
+        487
+      ],
+      [
+        1707,
+        353,
+        1769,
+        434
+      ],
+      [
+        1649,
+        161,
+        1920,
+        903
+      ],
+      [
+        760,
+        149,
+        809,
+        238
+      ],
+      [
+        349,
+        129,
+        391,
+        903
+      ],
+      [
+        960,
+        69,
+        1002,
+        107
+      ],
+      [
+        1002,
+        37,
+        1036,
+        82
+      ],
+      [
+        921,
+        20,
+        971,
+        98
+      ],
+      [
+        1871,
+        0,
+        1920,
+        71
+      ],
+      [
+        1487,
+        0,
+        1520,
+        41
+      ],
+      [
+        1365,
+        0,
+        1513,
+        122
+      ],
+      [
+        875,
+        0,
+        976,
+        20
+      ],
+      [
+        825,
+        0,
+        913,
+        131
+      ],
+      [
+        558,
+        166,
+        1128,
+        1046
+      ],
+      [
+        639,
+        0,
+        678,
+        54
+      ],
+      [
+        566,
+        0,
+        763,
+        256
+      ],
+      [
+        735,
+        527,
+        899,
+        828
+      ],
+      [
+        648,
+        2,
+        1013,
+        256
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 164,
+    "timestamp": 1790355627.0289538,
+    "state": "critical",
+    "risk": 1,
+    "rois": [
+      [
+        485,
+        1018,
+        518,
+        1080
+      ],
+      [
+        1446,
+        955,
+        1494,
+        984
+      ],
+      [
+        1397,
+        942,
+        1625,
+        1078
+      ],
+      [
+        940,
+        939,
+        1485,
+        1080
+      ],
+      [
+        1659,
+        923,
+        1725,
+        941
+      ],
+      [
+        967,
+        910,
+        1008,
+        973
+      ],
+      [
+        842,
+        909,
+        953,
+        930
+      ],
+      [
+        384,
+        907,
+        409,
+        951
+      ],
+      [
+        1883,
+        904,
+        1920,
+        924
+      ],
+      [
+        1529,
+        839,
+        1604,
+        880
+      ],
+      [
+        1594,
+        833,
+        1726,
+        928
+      ],
+      [
+        409,
+        792,
+        445,
+        1080
+      ],
+      [
+        402,
+        663,
+        415,
+        749
+      ],
+      [
+        1351,
+        639,
+        1395,
+        679
+      ],
+      [
+        1285,
+        631,
+        1345,
+        693
+      ],
+      [
+        1247,
+        625,
+        1289,
+        677
+      ],
+      [
+        1683,
+        564,
+        1782,
+        651
+      ],
+      [
+        1905,
+        561,
+        1920,
+        637
+      ],
+      [
+        1269,
+        560,
+        1681,
+        949
+      ],
+      [
+        1147,
+        554,
+        1195,
+        615
+      ],
+      [
+        1201,
+        553,
+        1265,
+        617
+      ],
+      [
+        1710,
+        508,
+        1755,
+        547
+      ],
+      [
+        1108,
+        485,
+        1171,
+        543
+      ],
+      [
+        1612,
+        475,
+        1706,
+        610
+      ],
+      [
+        971,
+        431,
+        1039,
+        487
+      ],
+      [
+        1707,
+        353,
+        1769,
+        434
+      ],
+      [
+        1649,
+        161,
+        1920,
+        903
+      ],
+      [
+        760,
+        149,
+        809,
+        238
+      ],
+      [
+        349,
+        129,
+        391,
+        903
+      ],
+      [
+        960,
+        69,
+        1002,
+        107
+      ],
+      [
+        1002,
+        37,
+        1036,
+        82
+      ],
+      [
+        921,
+        20,
+        971,
+        98
+      ],
+      [
+        1871,
+        0,
+        1920,
+        71
+      ],
+      [
+        1487,
+        0,
+        1520,
+        41
+      ],
+      [
+        1365,
+        0,
+        1513,
+        122
+      ],
+      [
+        875,
+        0,
+        976,
+        20
+      ],
+      [
+        825,
+        0,
+        913,
+        131
+      ],
+      [
+        558,
+        166,
+        1128,
+        1046
+      ],
+      [
+        639,
+        0,
+        678,
+        54
+      ],
+      [
+        566,
+        0,
+        763,
+        256
+      ],
+      [
+        735,
+        527,
+        899,
+        828
+      ],
+      [
+        648,
+        2,
+        1013,
+        256
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 165,
+    "timestamp": 1790355633.6245642,
+    "state": "critical",
+    "risk": 1,
+    "rois": [
+      [
+        485,
+        1018,
+        518,
+        1080
+      ],
+      [
+        1446,
+        955,
+        1494,
+        984
+      ],
+      [
+        1397,
+        942,
+        1625,
+        1078
+      ],
+      [
+        940,
+        939,
+        1485,
+        1080
+      ],
+      [
+        1659,
+        923,
+        1725,
+        941
+      ],
+      [
+        967,
+        910,
+        1008,
+        973
+      ],
+      [
+        842,
+        909,
+        953,
+        930
+      ],
+      [
+        384,
+        907,
+        409,
+        951
+      ],
+      [
+        1883,
+        904,
+        1920,
+        924
+      ],
+      [
+        1529,
+        839,
+        1604,
+        880
+      ],
+      [
+        1594,
+        833,
+        1726,
+        928
+      ],
+      [
+        409,
+        792,
+        445,
+        1080
+      ],
+      [
+        402,
+        663,
+        415,
+        749
+      ],
+      [
+        1351,
+        639,
+        1395,
+        679
+      ],
+      [
+        1285,
+        631,
+        1345,
+        693
+      ],
+      [
+        1247,
+        625,
+        1289,
+        677
+      ],
+      [
+        1683,
+        564,
+        1782,
+        651
+      ],
+      [
+        1905,
+        561,
+        1920,
+        637
+      ],
+      [
+        1269,
+        560,
+        1681,
+        949
+      ],
+      [
+        1147,
+        554,
+        1195,
+        615
+      ],
+      [
+        1201,
+        553,
+        1265,
+        617
+      ],
+      [
+        1710,
+        508,
+        1755,
+        547
+      ],
+      [
+        1108,
+        485,
+        1171,
+        543
+      ],
+      [
+        1612,
+        475,
+        1706,
+        610
+      ],
+      [
+        971,
+        431,
+        1039,
+        487
+      ],
+      [
+        1707,
+        353,
+        1769,
+        434
+      ],
+      [
+        1649,
+        161,
+        1920,
+        903
+      ],
+      [
+        760,
+        149,
+        809,
+        238
+      ],
+      [
+        349,
+        129,
+        391,
+        903
+      ],
+      [
+        960,
+        69,
+        1002,
+        107
+      ],
+      [
+        1002,
+        37,
+        1036,
+        82
+      ],
+      [
+        921,
+        20,
+        971,
+        98
+      ],
+      [
+        1871,
+        0,
+        1920,
+        71
+      ],
+      [
+        1487,
+        0,
+        1520,
+        41
+      ],
+      [
+        1365,
+        0,
+        1513,
+        122
+      ],
+      [
+        875,
+        0,
+        976,
+        20
+      ],
+      [
+        825,
+        0,
+        913,
+        131
+      ],
+      [
+        558,
+        166,
+        1128,
+        1046
+      ],
+      [
+        639,
+        0,
+        678,
+        54
+      ],
+      [
+        566,
+        0,
+        763,
+        256
+      ],
+      [
+        735,
+        527,
+        899,
+        828
+      ],
+      [
+        648,
+        2,
+        1013,
+        256
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 166,
+    "timestamp": 1790355640.1549299,
+    "state": "critical",
+    "risk": 1,
+    "rois": [
+      [
+        485,
+        1018,
+        518,
+        1080
+      ],
+      [
+        1446,
+        955,
+        1494,
+        984
+      ],
+      [
+        1397,
+        942,
+        1625,
+        1078
+      ],
+      [
+        940,
+        939,
+        1485,
+        1080
+      ],
+      [
+        1659,
+        923,
+        1725,
+        941
+      ],
+      [
+        967,
+        910,
+        1008,
+        973
+      ],
+      [
+        842,
+        909,
+        953,
+        930
+      ],
+      [
+        384,
+        907,
+        409,
+        951
+      ],
+      [
+        1883,
+        904,
+        1920,
+        924
+      ],
+      [
+        1529,
+        839,
+        1604,
+        880
+      ],
+      [
+        1594,
+        833,
+        1726,
+        928
+      ],
+      [
+        409,
+        792,
+        445,
+        1080
+      ],
+      [
+        402,
+        663,
+        415,
+        749
+      ],
+      [
+        1351,
+        639,
+        1395,
+        679
+      ],
+      [
+        1285,
+        631,
+        1345,
+        693
+      ],
+      [
+        1247,
+        625,
+        1289,
+        677
+      ],
+      [
+        1683,
+        564,
+        1782,
+        651
+      ],
+      [
+        1905,
+        561,
+        1920,
+        637
+      ],
+      [
+        1269,
+        560,
+        1681,
+        949
+      ],
+      [
+        1147,
+        554,
+        1195,
+        615
+      ],
+      [
+        1201,
+        553,
+        1265,
+        617
+      ],
+      [
+        1710,
+        508,
+        1755,
+        547
+      ],
+      [
+        1108,
+        485,
+        1171,
+        543
+      ],
+      [
+        1612,
+        475,
+        1706,
+        610
+      ],
+      [
+        971,
+        431,
+        1039,
+        487
+      ],
+      [
+        1707,
+        353,
+        1769,
+        434
+      ],
+      [
+        1649,
+        161,
+        1920,
+        903
+      ],
+      [
+        760,
+        149,
+        809,
+        238
+      ],
+      [
+        349,
+        129,
+        391,
+        903
+      ],
+      [
+        960,
+        69,
+        1002,
+        107
+      ],
+      [
+        1002,
+        37,
+        1036,
+        82
+      ],
+      [
+        921,
+        20,
+        971,
+        98
+      ],
+      [
+        1871,
+        0,
+        1920,
+        71
+      ],
+      [
+        1487,
+        0,
+        1520,
+        41
+      ],
+      [
+        1365,
+        0,
+        1513,
+        122
+      ],
+      [
+        875,
+        0,
+        976,
+        20
+      ],
+      [
+        825,
+        0,
+        913,
+        131
+      ],
+      [
+        558,
+        166,
+        1128,
+        1046
+      ],
+      [
+        639,
+        0,
+        678,
+        54
+      ],
+      [
+        566,
+        0,
+        763,
+        256
+      ],
+      [
+        735,
+        527,
+        899,
+        828
+      ],
+      [
+        648,
+        2,
+        1013,
+        256
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 167,
+    "timestamp": 1790355647.5541632,
+    "state": "critical",
+    "risk": 1,
+    "rois": [
+      [
+        485,
+        1018,
+        518,
+        1080
+      ],
+      [
+        1446,
+        955,
+        1494,
+        984
+      ],
+      [
+        1397,
+        942,
+        1625,
+        1078
+      ],
+      [
+        940,
+        939,
+        1485,
+        1080
+      ],
+      [
+        1659,
+        923,
+        1725,
+        941
+      ],
+      [
+        967,
+        910,
+        1008,
+        973
+      ],
+      [
+        842,
+        909,
+        953,
+        930
+      ],
+      [
+        384,
+        907,
+        409,
+        951
+      ],
+      [
+        1883,
+        904,
+        1920,
+        924
+      ],
+      [
+        1529,
+        839,
+        1604,
+        880
+      ],
+      [
+        1594,
+        833,
+        1726,
+        928
+      ],
+      [
+        409,
+        792,
+        445,
+        1080
+      ],
+      [
+        402,
+        663,
+        415,
+        749
+      ],
+      [
+        1351,
+        639,
+        1395,
+        679
+      ],
+      [
+        1285,
+        631,
+        1345,
+        693
+      ],
+      [
+        1247,
+        625,
+        1289,
+        677
+      ],
+      [
+        1683,
+        564,
+        1782,
+        651
+      ],
+      [
+        1905,
+        561,
+        1920,
+        637
+      ],
+      [
+        1269,
+        560,
+        1681,
+        949
+      ],
+      [
+        1147,
+        554,
+        1195,
+        615
+      ],
+      [
+        1201,
+        553,
+        1265,
+        617
+      ],
+      [
+        1710,
+        508,
+        1755,
+        547
+      ],
+      [
+        1108,
+        485,
+        1171,
+        543
+      ],
+      [
+        1612,
+        475,
+        1706,
+        610
+      ],
+      [
+        971,
+        431,
+        1039,
+        487
+      ],
+      [
+        1707,
+        353,
+        1769,
+        434
+      ],
+      [
+        1649,
+        161,
+        1920,
+        903
+      ],
+      [
+        760,
+        149,
+        809,
+        238
+      ],
+      [
+        349,
+        129,
+        391,
+        903
+      ],
+      [
+        960,
+        69,
+        1002,
+        107
+      ],
+      [
+        1002,
+        37,
+        1036,
+        82
+      ],
+      [
+        921,
+        20,
+        971,
+        98
+      ],
+      [
+        1871,
+        0,
+        1920,
+        71
+      ],
+      [
+        1487,
+        0,
+        1520,
+        41
+      ],
+      [
+        1365,
+        0,
+        1513,
+        122
+      ],
+      [
+        875,
+        0,
+        976,
+        20
+      ],
+      [
+        825,
+        0,
+        913,
+        131
+      ],
+      [
+        558,
+        166,
+        1128,
+        1046
+      ],
+      [
+        639,
+        0,
+        678,
+        54
+      ],
+      [
+        566,
+        0,
+        763,
+        256
+      ],
+      [
+        735,
+        527,
+        899,
+        828
+      ],
+      [
+        648,
+        2,
+        1013,
+        256
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 168,
+    "timestamp": 1790355648.1623003,
+    "state": "critical",
+    "risk": 0.8668,
+    "rois": [
+      [
+        1397,
+        942,
+        1625,
+        1078
+      ],
+      [
+        558,
+        166,
+        1128,
+        1046
+      ],
+      [
+        735,
+        527,
+        899,
+        828
+      ],
+      [
+        648,
+        2,
+        1013,
+        256
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 169,
+    "timestamp": 1790355648.8975604,
+    "state": "critical",
+    "risk": 0.777,
+    "rois": [
+      [
+        1397,
+        942,
+        1625,
+        1078
+      ],
+      [
+        558,
+        166,
+        1128,
+        1046
+      ],
+      [
+        735,
+        527,
+        899,
+        828
+      ],
+      [
+        648,
+        2,
+        1013,
+        256
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 170,
+    "timestamp": 1790355650.531837,
+    "state": "critical",
+    "risk": 0.7128,
+    "rois": [
+      [
+        1369,
+        915,
+        1645,
+        1078
+      ],
+      [
+        544,
+        168,
+        1127,
+        1044
+      ],
+      [
+        735,
+        527,
+        899,
+        828
+      ],
+      [
+        648,
+        2,
+        1013,
+        256
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 171,
+    "timestamp": 1790355651.4479504,
+    "state": "critical",
+    "risk": 0.6666,
+    "rois": [
+      [
+        1369,
+        915,
+        1645,
+        1078
+      ],
+      [
+        544,
+        168,
+        1127,
+        1044
+      ],
+      [
+        735,
+        527,
+        899,
+        828
+      ],
+      [
+        648,
+        2,
+        1013,
+        256
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 172,
+    "timestamp": 1790355652.075166,
+    "state": "critical",
+    "risk": 0.6372,
+    "rois": [
+      [
+        1369,
+        915,
+        1645,
+        1078
+      ],
+      [
+        544,
+        168,
+        1127,
+        1044
+      ],
+      [
+        735,
+        527,
+        899,
+        828
+      ],
+      [
+        648,
+        2,
+        1013,
+        256
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 173,
+    "timestamp": 1790355653.2829087,
+    "state": "critical",
+    "risk": 0.6137,
+    "rois": [
+      [
+        1369,
+        915,
+        1645,
+        1078
+      ],
+      [
+        544,
+        168,
+        1127,
+        1044
+      ],
+      [
+        735,
+        527,
+        899,
+        828
+      ],
+      [
+        648,
+        2,
+        1013,
+        256
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 174,
+    "timestamp": 1790355654.3411791,
+    "state": "critical",
+    "risk": 0.586,
+    "rois": [
+      [
+        1369,
+        915,
+        1645,
+        1078
+      ],
+      [
+        544,
+        168,
+        1127,
+        1044
+      ],
+      [
+        648,
+        2,
+        1013,
+        256
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 175,
+    "timestamp": 1790355654.9561417,
+    "state": "critical",
+    "risk": 0.558,
+    "rois": [
+      [
+        1369,
+        915,
+        1645,
+        1078
+      ],
+      [
+        544,
+        168,
+        1127,
+        1044
+      ],
+      [
+        648,
+        2,
+        1013,
+        256
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 176,
+    "timestamp": 1790355655.501455,
+    "state": "critical",
+    "risk": 0.5412,
+    "rois": [
+      [
+        1369,
+        915,
+        1645,
+        1078
+      ],
+      [
+        544,
+        168,
+        1127,
+        1044
+      ],
+      [
+        648,
+        2,
+        1013,
+        256
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 177,
+    "timestamp": 1790355655.820728,
+    "state": "critical",
+    "risk": 0.5268,
+    "rois": [
+      [
+        1369,
+        915,
+        1645,
+        1078
+      ],
+      [
+        544,
+        168,
+        1127,
+        1044
+      ],
+      [
+        648,
+        2,
+        1013,
+        256
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 178,
+    "timestamp": 1790355656.182512,
+    "state": "critical",
+    "risk": 0.5209,
+    "rois": [
+      [
+        1369,
+        915,
+        1645,
+        1078
+      ],
+      [
+        544,
+        168,
+        1127,
+        1044
+      ],
+      [
+        648,
+        2,
+        1013,
+        256
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 179,
+    "timestamp": 1790355656.8211708,
+    "state": "critical",
+    "risk": 0.5124,
+    "rois": [
+      [
+        1369,
+        915,
+        1645,
+        1078
+      ],
+      [
+        544,
+        168,
+        1127,
+        1044
+      ],
+      [
+        648,
+        2,
+        1013,
+        256
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 180,
+    "timestamp": 1790355658.084022,
+    "state": "critical",
+    "risk": 0.5087,
+    "rois": [
+      [
+        1369,
+        915,
+        1645,
+        1078
+      ],
+      [
+        515,
+        140,
+        1090,
+        1023
+      ],
+      [
+        648,
+        2,
+        1013,
+        256
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 181,
+    "timestamp": 1790355658.8897085,
+    "state": "critical",
+    "risk": 0.506,
+    "rois": [
+      [
+        1369,
+        915,
+        1645,
+        1078
+      ],
+      [
+        515,
+        140,
+        1090,
+        1023
+      ],
+      [
+        648,
+        2,
+        1013,
+        256
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 182,
+    "timestamp": 1790355659.398175,
+    "state": "critical",
+    "risk": 0.5016,
+    "rois": [
+      [
+        1369,
+        915,
+        1645,
+        1078
+      ],
+      [
+        515,
+        140,
+        1090,
+        1023
+      ],
+      [
+        648,
+        2,
+        1013,
+        256
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 183,
+    "timestamp": 1790355659.7671902,
+    "state": "critical",
+    "risk": 0.5025,
+    "rois": [
+      [
+        1369,
+        915,
+        1645,
+        1078
+      ],
+      [
+        515,
+        140,
+        1090,
+        1023
+      ],
+      [
+        648,
+        2,
+        1013,
+        256
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 184,
+    "timestamp": 1790355662.9322488,
+    "state": "alert",
+    "risk": 0.475,
+    "rois": [
+      [
+        1369,
+        915,
+        1645,
+        1078
+      ],
+      [
+        515,
+        140,
+        1090,
+        1023
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 185,
+    "timestamp": 1790355663.3898711,
+    "state": "alert",
+    "risk": 0.4557,
+    "rois": [
+      [
+        1369,
+        915,
+        1645,
+        1078
+      ],
+      [
+        515,
+        140,
+        1090,
+        1023
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 186,
+    "timestamp": 1790355663.8817744,
+    "state": "alert",
+    "risk": 0.4439,
+    "rois": [
+      [
+        1369,
+        915,
+        1645,
+        1078
+      ],
+      [
+        515,
+        140,
+        1090,
+        1023
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 187,
+    "timestamp": 1790355664.5703192,
+    "state": "alert",
+    "risk": 0.4378,
+    "rois": [
+      [
+        1369,
+        915,
+        1645,
+        1078
+      ],
+      [
+        515,
+        140,
+        1090,
+        1023
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 188,
+    "timestamp": 1790355665.1942,
+    "state": "alert",
+    "risk": 0.4297,
+    "rois": [
+      [
+        1369,
+        915,
+        1645,
+        1078
+      ],
+      [
+        515,
+        140,
+        1090,
+        1023
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 189,
+    "timestamp": 1790355665.5963688,
+    "state": "alert",
+    "risk": 0.4282,
+    "rois": [
+      [
+        1369,
+        915,
+        1645,
+        1078
+      ],
+      [
+        515,
+        140,
+        1090,
+        1023
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 190,
+    "timestamp": 1790355666.4133663,
+    "state": "alert",
+    "risk": 0.4228,
+    "rois": [
+      [
+        1369,
+        915,
+        1645,
+        1078
+      ],
+      [
+        515,
+        140,
+        1090,
+        1023
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 191,
+    "timestamp": 1790355667.4267395,
+    "state": "alert",
+    "risk": 0.4252,
+    "rois": [
+      [
+        1369,
+        915,
+        1645,
+        1078
+      ],
+      [
+        515,
+        140,
+        1090,
+        1023
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 192,
+    "timestamp": 1790355667.9473302,
+    "state": "alert",
+    "risk": 0.424,
+    "rois": [
+      [
+        1369,
+        915,
+        1645,
+        1078
+      ],
+      [
+        515,
+        140,
+        1090,
+        1023
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 193,
+    "timestamp": 1790355668.4028492,
+    "state": "alert",
+    "risk": 0.4235,
+    "rois": [
+      [
+        1369,
+        915,
+        1645,
+        1078
+      ],
+      [
+        515,
+        140,
+        1090,
+        1023
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 194,
+    "timestamp": 1790355669.0445187,
+    "state": "alert",
+    "risk": 0.4196,
+    "rois": [
+      [
+        1369,
+        915,
+        1645,
+        1078
+      ],
+      [
+        515,
+        140,
+        1090,
+        1023
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 195,
+    "timestamp": 1790355670.1516767,
+    "state": "alert",
+    "risk": 0.4192,
+    "rois": [
+      [
+        1369,
+        915,
+        1645,
+        1078
+      ],
+      [
+        515,
+        140,
+        1090,
+        1023
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 196,
+    "timestamp": 1790355670.9063988,
+    "state": "alert",
+    "risk": 0.4195,
+    "rois": [
+      [
+        1369,
+        915,
+        1645,
+        1078
+      ],
+      [
+        515,
+        140,
+        1090,
+        1023
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 197,
+    "timestamp": 1790355671.798998,
+    "state": "alert",
+    "risk": 0.4167,
+    "rois": [
+      [
+        1369,
+        915,
+        1645,
+        1078
+      ],
+      [
+        515,
+        140,
+        1090,
+        1023
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 198,
+    "timestamp": 1790355672.784235,
+    "state": "alert",
+    "risk": 0.4183,
+    "rois": [
+      [
+        1369,
+        915,
+        1645,
+        1078
+      ],
+      [
+        515,
+        140,
+        1090,
+        1023
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 199,
+    "timestamp": 1790355673.8232584,
+    "state": "alert",
+    "risk": 0.4161,
+    "rois": [
+      [
+        1369,
+        915,
+        1645,
+        1078
+      ],
+      [
+        515,
+        140,
+        1090,
+        1023
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 200,
+    "timestamp": 1790355675.3691494,
+    "state": "alert",
+    "risk": 0.4392,
+    "rois": [
+      [
+        1369,
+        915,
+        1645,
+        1078
+      ],
+      [
+        515,
+        140,
+        1090,
+        1023
+      ],
+      [
+        583,
+        268,
+        797,
+        762
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 201,
+    "timestamp": 1790355676.2583172,
+    "state": "alert",
+    "risk": 0.4555,
+    "rois": [
+      [
+        1369,
+        915,
+        1645,
+        1078
+      ],
+      [
+        515,
+        140,
+        1090,
+        1023
+      ],
+      [
+        583,
+        268,
+        797,
+        762
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 202,
+    "timestamp": 1790355677.4878767,
+    "state": "alert",
+    "risk": 0.4667,
+    "rois": [
+      [
+        1369,
+        915,
+        1645,
+        1078
+      ],
+      [
+        515,
+        140,
+        1090,
+        1023
+      ],
+      [
+        583,
+        268,
+        797,
+        762
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 203,
+    "timestamp": 1790355678.7773309,
+    "state": "alert",
+    "risk": 0.4745,
+    "rois": [
+      [
+        1369,
+        915,
+        1645,
+        1078
+      ],
+      [
+        515,
+        140,
+        1090,
+        1023
+      ],
+      [
+        583,
+        268,
+        797,
+        762
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 204,
+    "timestamp": 1790355680.48401,
+    "state": "alert",
+    "risk": 0.4801,
+    "rois": [
+      [
+        1369,
+        915,
+        1645,
+        1078
+      ],
+      [
+        515,
+        140,
+        1090,
+        1023
+      ],
+      [
+        583,
+        269,
+        796,
+        769
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 205,
+    "timestamp": 1790355681.2297847,
+    "state": "alert",
+    "risk": 0.4636,
+    "rois": [
+      [
+        515,
+        140,
+        1090,
+        1023
+      ],
+      [
+        583,
+        269,
+        796,
+        769
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 206,
+    "timestamp": 1790355682.1964734,
+    "state": "alert",
+    "risk": 0.4498,
+    "rois": [
+      [
+        515,
+        140,
+        1090,
+        1023
+      ],
+      [
+        583,
+        269,
+        796,
+        769
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 207,
+    "timestamp": 1790355683.641664,
+    "state": "alert",
+    "risk": 0.4617,
+    "rois": [
+      [
+        515,
+        140,
+        1090,
+        1023
+      ],
+      [
+        580,
+        264,
+        798,
+        766
+      ],
+      [
+        1664,
+        458,
+        1737,
+        649
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 208,
+    "timestamp": 1790355684.2405894,
+    "state": "alert",
+    "risk": 0.4703,
+    "rois": [
+      [
+        515,
+        140,
+        1090,
+        1023
+      ],
+      [
+        580,
+        264,
+        798,
+        766
+      ],
+      [
+        1664,
+        458,
+        1737,
+        649
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 209,
+    "timestamp": 1790355684.781738,
+    "state": "alert",
+    "risk": 0.4766,
+    "rois": [
+      [
+        515,
+        140,
+        1090,
+        1023
+      ],
+      [
+        580,
+        264,
+        798,
+        766
+      ],
+      [
+        1664,
+        458,
+        1737,
+        649
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 210,
+    "timestamp": 1790355686.1381907,
+    "state": "alert",
+    "risk": 0.4806,
+    "rois": [
+      [
+        515,
+        140,
+        1090,
+        1023
+      ],
+      [
+        580,
+        264,
+        798,
+        766
+      ],
+      [
+        1664,
+        458,
+        1737,
+        649
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 211,
+    "timestamp": 1790355686.900829,
+    "state": "alert",
+    "risk": 0.4832,
+    "rois": [
+      [
+        515,
+        140,
+        1090,
+        1023
+      ],
+      [
+        580,
+        264,
+        798,
+        766
+      ],
+      [
+        1664,
+        458,
+        1737,
+        649
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 212,
+    "timestamp": 1790355687.791092,
+    "state": "alert",
+    "risk": 0.4852,
+    "rois": [
+      [
+        515,
+        140,
+        1090,
+        1023
+      ],
+      [
+        580,
+        264,
+        798,
+        766
+      ],
+      [
+        1664,
+        458,
+        1737,
+        649
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 213,
+    "timestamp": 1790355689.077353,
+    "state": "alert",
+    "risk": 0.4818,
+    "rois": [
+      [
+        611,
+        96,
+        1064,
+        913
+      ],
+      [
+        579,
+        262,
+        798,
+        766
+      ],
+      [
+        1664,
+        458,
+        1737,
+        649
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 214,
+    "timestamp": 1790355690.1312785,
+    "state": "alert",
+    "risk": 0.4985,
+    "rois": [
+      [
+        611,
+        96,
+        1064,
+        913
+      ],
+      [
+        579,
+        262,
+        798,
+        766
+      ],
+      [
+        1664,
+        458,
+        1737,
+        649
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 215,
+    "timestamp": 1790355691.0779128,
+    "state": "alert",
+    "risk": 0.4939,
+    "rois": [
+      [
+        611,
+        96,
+        1064,
+        913
+      ],
+      [
+        579,
+        262,
+        798,
+        766
+      ],
+      [
+        1664,
+        458,
+        1737,
+        649
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 216,
+    "timestamp": 1790355692.3885422,
+    "state": "alert",
+    "risk": 0.4908,
+    "rois": [
+      [
+        611,
+        96,
+        1064,
+        913
+      ],
+      [
+        579,
+        262,
+        798,
+        766
+      ],
+      [
+        1664,
+        458,
+        1737,
+        649
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 217,
+    "timestamp": 1790355692.982744,
+    "state": "alert",
+    "risk": 0.489,
+    "rois": [
+      [
+        611,
+        96,
+        1064,
+        913
+      ],
+      [
+        579,
+        262,
+        798,
+        766
+      ],
+      [
+        1664,
+        458,
+        1737,
+        649
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 218,
+    "timestamp": 1790355694.1057098,
+    "state": "alert",
+    "risk": 0.4879,
+    "rois": [
+      [
+        611,
+        96,
+        1064,
+        913
+      ],
+      [
+        579,
+        262,
+        798,
+        766
+      ],
+      [
+        1664,
+        458,
+        1737,
+        649
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 219,
+    "timestamp": 1790355695.2613916,
+    "state": "alert",
+    "risk": 0.4873,
+    "rois": [
+      [
+        611,
+        96,
+        1064,
+        913
+      ],
+      [
+        579,
+        262,
+        798,
+        766
+      ],
+      [
+        1664,
+        458,
+        1737,
+        649
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 220,
+    "timestamp": 1790355695.9319136,
+    "state": "alert",
+    "risk": 0.4868,
+    "rois": [
+      [
+        611,
+        96,
+        1064,
+        913
+      ],
+      [
+        579,
+        262,
+        798,
+        766
+      ],
+      [
+        1664,
+        458,
+        1737,
+        649
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 221,
+    "timestamp": 1790355696.7227936,
+    "state": "alert",
+    "risk": 0.4863,
+    "rois": [
+      [
+        611,
+        96,
+        1064,
+        913
+      ],
+      [
+        579,
+        262,
+        798,
+        766
+      ],
+      [
+        1664,
+        458,
+        1737,
+        649
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 222,
+    "timestamp": 1790355697.9293249,
+    "state": "alert",
+    "risk": 0.4858,
+    "rois": [
+      [
+        611,
+        96,
+        1064,
+        913
+      ],
+      [
+        579,
+        262,
+        798,
+        766
+      ],
+      [
+        1664,
+        458,
+        1737,
+        649
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 223,
+    "timestamp": 1790355698.655829,
+    "state": "alert",
+    "risk": 0.4854,
+    "rois": [
+      [
+        611,
+        96,
+        1064,
+        913
+      ],
+      [
+        579,
+        262,
+        798,
+        766
+      ],
+      [
+        1664,
+        458,
+        1737,
+        649
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 224,
+    "timestamp": 1790355699.174553,
+    "state": "alert",
+    "risk": 0.4903,
+    "rois": [
+      [
+        611,
+        96,
+        1064,
+        913
+      ],
+      [
+        579,
+        262,
+        798,
+        766
+      ],
+      [
+        1664,
+        458,
+        1737,
+        649
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 225,
+    "timestamp": 1790355700.2719586,
+    "state": "alert",
+    "risk": 0.4853,
+    "rois": [
+      [
+        611,
+        96,
+        1064,
+        913
+      ],
+      [
+        579,
+        262,
+        798,
+        766
+      ],
+      [
+        1664,
+        458,
+        1737,
+        649
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 226,
+    "timestamp": 1790355700.7953966,
+    "state": "alert",
+    "risk": 0.4818,
+    "rois": [
+      [
+        611,
+        96,
+        1064,
+        913
+      ],
+      [
+        579,
+        262,
+        798,
+        766
+      ],
+      [
+        1664,
+        458,
+        1737,
+        649
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 227,
+    "timestamp": 1790355701.7466295,
+    "state": "alert",
+    "risk": 0.4794,
+    "rois": [
+      [
+        611,
+        96,
+        1064,
+        913
+      ],
+      [
+        579,
+        262,
+        798,
+        766
+      ],
+      [
+        1664,
+        458,
+        1737,
+        649
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "Web_Cam",
+    "frame_id": 228,
+    "timestamp": 1790355703.1492286,
+    "state": "alert",
+    "risk": 0.4777,
+    "rois": [
+      [
+        611,
+        96,
+        1064,
+        913
+      ],
+      [
+        579,
+        262,
+        798,
+        766
+      ],
+      [
+        1664,
+        458,
+        1737,
+        649
+      ]
+    ],
+    "orig_w": 1920,
+    "orig_h": 1080,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  }
+]
