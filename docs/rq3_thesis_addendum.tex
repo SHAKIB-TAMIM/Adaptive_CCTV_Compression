@@ -1,0 +1,267 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=0.85in]{geometry}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{enumitem}
+\usepackage{caption}
+\usepackage{float}
+\setlist{nosep}
+\hypersetup{colorlinks=true,linkcolor=blue,urlcolor=blue}
+\graphicspath{{experiments/phase4_sota_v5_common_ladder_20261024/}}
+
+\title{RQ3 Thesis Addendum\\\large Verified Phase-4 Evaluation Update}
+\author{Adaptive CCTV Compression System Using Dynamic Region Of Interest (ROI) Control}
+\date{25 October 2026}
+
+\begin{document}
+\maketitle
+
+\emergencystretch=2em
+
+\noindent\textbf{Status and scope.}
+This document is a clearly labelled replacement/addendum for the RQ3-specific
+methodology, results, discussion, and conclusion in the thesis. The original
+79-page \path{Final_Thesis_Paper_1.pdf} is preserved. The available
+editable manuscripts were not an exact source for that latest PDF, so this
+addendum does not claim to be a rebuilt or edited copy of it. It supersedes
+earlier RQ3 figures and BD-rate claims that used a different or invalid
+encoding/measurement protocol.
+
+\section{Methodology and implementation}
+
+The primary comparison used \texttt{motion\_only.mp4} (1280$\times$720,
+30~fps, 235 frames); \texttt{day\_empty.mp4} (1920$\times$1080,
+30000/1001~fps, 777 frames) was the no-ROI control. Primary nominal
+bitrate requests were 300, 600, 1200, 1800, 2400, and 3600~kbps for each
+method. The control used 300 and 1200~kbps. The four methods were Uniform,
+ROI-QP, foreground/background split, and Proposed.
+
+All outputs used libx265, Main profile, medium preset, GOP 60 with a
+30-frame minimum key interval, video-only output, \texttt{yuv420p}, and
+BT.709 limited-range color metadata. The previous raw-BGR path could make
+some ROI methods use \texttt{gbrp}/HEVC Range Extensions while Uniform used
+\texttt{yuv420p}/Main; the corrected pipeline uses planar I420 and explicitly
+locks the output format and metadata. ROI restoration indexes the separate
+Y, U, and V planes, mapping ROI bounds to the covering half-resolution
+chroma cells. It avoids an intermediate RGB conversion, but background
+resizing and HEVC encoding remain lossy; this is not a lossless pipeline.
+All outputs were checked with \texttt{ffprobe} for codec/profile, dimensions,
+pixel format, color metadata, frame rate, and decoded frame count.
+
+The source detector ran once per source clip to cache ROI boxes. Masks used
+the union of the boxes with 8-pixel dilation; the same cached source masks
+were used for all methods and metrics. In v4, the compositor restored only
+the detector boxes even though ROI PSNR included the 8-pixel guard ring.
+V5 restores source Y samples across the same clipped dilated union used by
+the metric; U/V restoration uses the covering 2-by-2 chroma cells required
+by 4:2:0. The metric separately reports strict box-core and guard-ring
+quality. ROI PSNR and SSIM are computed over the dilated union, not from
+the number of frames in which any box appeared. The measured rate is
+video-only MP4 file size (including container overhead) divided by source
+duration. The x265 values are ABR requests with VBV constraints, not strict
+CBR, so comparisons use measured \texttt{actual\_kbps}.
+
+\paragraph{What the method names mean in this evaluation.}
+ROI-QP is a historical label: it downsamples the background to 0.25 scale,
+restores source ROI samples, then encodes the frame uniformly with x265; it
+does not use per-region encoder QP. The foreground/background method uses a
+frame-0 background frozen at 0.5 scale, an intentionally static-background
+baseline that is unsuitable for the moving-camera primary clip. Proposed
+uses a risk-state heuristic with thresholds 0.30 and 0.65, without
+hysteresis, selecting fixed background scales 0.35, 0.60, or 1.00. With no
+ROI it applies no degradation. This RQ3 evaluation does \emph{not} call
+\texttt{evaluation/rate\_allocator.py} and does not evaluate a Lagrangian
+rate-allocation algorithm. The live camera path separately uses
+\texttt{RateAllocator}; that fact must not be used to describe the Proposed
+path measured here. Encoded-output detector consistency was skipped
+(\texttt{--skip-det}); no recall or detector-consistency result is claimed.
+
+\section{Results}
+
+The corrected v5 run repeated the complete 32-output v4 ladder: four methods
+at six common nominal targets on the primary clip and four methods at two
+targets on the control. It completed with zero encode, protocol-validation,
+or metric failures; encoded-output detector consistency was skipped. All
+32 files independently passed \texttt{ffprobe} checks for HEVC Main,
+\texttt{yuv420p}, BT.709 limited range, expected dimensions/frame rates and
+decoded frame counts, and video-only streams. The full run took 11793.7
+seconds on a four-logical-CPU, CPU-only machine. The exact v5 script snapshot
+has SHA-256
+\texttt{94e4d184234e0787094b5e28a131d4642880d907eebc66d23f19e0e381492c2d}.
+Both ROI caches were reused byte-for-byte from v4. Results, provenance,
+independent validation, and paired v4/v5 comparisons are in
+\path{experiments/phase4_sota_v5_common_ladder_20261024/}:
+\begin{itemize}
+\item \path{runs.csv}
+\item \path{provenance.json}
+\item \path{failures.csv}
+\item \path{independent_ffprobe_validation.json}
+\item \path{v4_v5_paired_comparison.csv}
+\end{itemize}
+The run command was:
+\begin{verbatim}
+python3 evaluation/phase4_sota.py \
+  --output experiments/phase4_sota_v5_common_ladder_20261024 \
+  --targets 300,600,1200,1800,2400,3600 \
+  --clips primary,control \
+  --methods uniform,roi_qp,fg_bg,proposed --skip-det
+\end{verbatim}
+The v4 experiment remains preserved separately at:
+\path{experiments/phase4_sota_v4_final_20261024/}
+
+\begin{table}[H]
+\centering
+\small
+\caption{Primary clip: measured bitrate (kbps) / ROI-PSNR (dB) at each nominal target.}
+\label{tab:rq3-ladder}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lrrrrrr}
+\toprule
+Method & 300 & 600 & 1200 & 1800 & 2400 & 3600\\
+\midrule
+Uniform & 358.8 / 31.505 & 703.1 / 34.730 & 1383.8 / 38.133 & 2044.4 / 40.162 & 2695.4 / 41.612 & 3979.9 / 43.657\\
+ROI-QP & 363.6 / 31.928 & 731.9 / 35.335 & 1401.9 / 38.655 & 2093.3 / 40.778 & 2755.3 / 42.192 & 4054.6 / 44.120\\
+FG/BG split & 385.8 / 33.306 & 771.1 / 37.239 & 1517.8 / 41.331 & 2239.9 / 43.688 & 2956.2 / 45.336 & 4443.3 / 48.004\\
+Proposed & 363.3 / 31.898 & 728.7 / 35.346 & 1422.2 / 38.773 & 2094.1 / 40.807 & 2747.6 / 42.202 & 4048.2 / 44.138\\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+\begin{table}[H]
+\centering
+\scriptsize
+\caption{Primary clip at the 600-kbps nominal target. Actual rates differ; this is not an exactly rate-matched comparison.}
+\label{tab:rq3-600}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lrrrrrr}
+\toprule
+Method & Actual kbps & PSNR & ROI-PSNR & Core & Guard & BG-PSNR\\
+\midrule
+Uniform & 703.1 & 39.4314 & 34.7298 & 34.4470 & 38.6164 & 41.2327\\
+ROI-QP & 731.9 & 36.9928 & 35.3354 & 35.0696 & 38.8675 & 37.7530\\
+FG/BG split & 771.1 & 13.5684 & 37.2393 & 37.1278 & 38.3051 & 12.7729\\
+Proposed & 728.7 & 37.9851 & 35.3462 & 35.0748 & 38.9889 & 39.0514\\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.82\textwidth]{rd_psnr.png}
+\caption{Global PSNR against measured bitrate on the primary clip.}
+\label{fig:rq3-psnr}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.82\textwidth]{rd_roi.png}
+\caption{ROI-PSNR against measured bitrate on the primary clip.}
+\label{fig:rq3-roi}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.82\textwidth]{rd_bg.png}
+\caption{Background PSNR against measured bitrate on the primary clip.}
+\label{fig:rq3-bg}
+\end{figure}
+
+\section{Discussion and validity limits}
+
+Across all six primary nominal targets, Proposed's combined ROI-PSNR exceeded
+Uniform by 0.393, 0.616, 0.641, 0.645, 0.590, and 0.481~dB. The box-core
+gains were 0.400--0.666~dB and guard-ring gains were 0.140--0.373~dB. Actual
+Proposed rates were 1.25--3.64\% higher than Uniform at the same nominal
+target, so these points are close-rate rather than exact-rate pairs. The
+six-point ROI-PSNR rate-distortion curves satisfy the existing BD-rate gates:
+11.759~dB shared quality range, 5 anchor and 5 Proposed points inside it,
+and fit RMSE 0.0009/0.0025. The independently reproduced Proposed BD-rate is
+\textbf{-8.62\%}, meaning an estimated 8.62\% fewer bits than Uniform at
+equivalent ROI-PSNR over the shared interval under this interpolation
+protocol. The independent \texttt{validate\_bd.py} cross-check passed.
+ROI-QP also passes with -8.14\%; this label still does not indicate encoder
+per-region QP control. FG/BG has fewer than four points from its curve in the
+shared interval and remains ineligible.
+
+The v4-to-v5 paired comparison isolates what the correction changed.
+Proposed's strict core PSNR changed by only -0.046 to +0.053~dB across the
+ladder, while guard-ring PSNR rose by 2.597--10.646~dB and combined ROI-PSNR
+rose by 0.204--2.909~dB. At 600~kbps, for example, the guard improved by
+4.562~dB while core changed +0.036~dB; at 2400~kbps, guard improved by
+9.129~dB while core changed +0.037~dB. The code comparison shows the
+reconstruction-scale policy and codec settings did not change. This supports
+the mask mismatch as the cause of v4's suppressed dilated ROI score. Small
+changes in other re-encoded streams remain possible; not every unchanged
+method's v4/v5 MP4 is byte-identical.
+
+This ROI gain has a substantial spatial-quality cost. Against Uniform at
+the same nominal targets, Proposed used slightly more actual bitrate while
+global PSNR was lower by 0.768--5.441~dB and background PSNR by
+1.268--6.615~dB; the losses grow at higher rates. At 600~kbps, ROI-PSNR
+improved +0.616~dB but global/background PSNR fell by 1.446/2.181~dB. At
+3600~kbps, ROI-PSNR improved +0.481~dB while global/background PSNR fell
+by 5.441/6.615~dB. The method therefore reallocates effective quality
+toward the defined ROI at a clear cost outside it; it does not improve
+whole-frame fidelity.
+
+BD-rate for global PSNR is withheld: only 2 Uniform points lie within the
+shared global-quality interval for Proposed, below the requirement of 4.
+The control's cached ROI is empty. At its 300/1200~kbps targets, Uniform and
+Proposed remain nearly identical (305.2/305.3 and 1223.5/1223.3~kbps;
+global PSNR 28.9017/28.9007 and 33.9927/33.9929~dB). This is consistent
+with Proposed bypassing background degradation when no ROI is detected.
+
+The source ROI cache contained boxes in 234/235 primary frames, but mean
+union-box coverage was 14.56\% (median 11.54\%, 95th percentile 35.67\%,
+maximum 65.22\%); mean coverage after 8-pixel dilation was 15.89\%. Box
+presence in a frame therefore does not mean that most of the frame is ROI:
+the mean undilated area outside the union was about 85.44\%. The control had
+zero detections and zero ROI coverage in all 777 frames.
+
+On the control, Uniform and Proposed were nearly identical: at the
+300-kbps target their measured rates were 305.3~kbps each and PSNR was
+28.8972 versus 28.9010~dB; at 1200~kbps they were 1223.4 and 1223.7~kbps
+with PSNR 33.9881 and 33.9933~dB. This is consistent with Proposed
+disabling background degradation when no ROI is present. In contrast, the
+frozen-background split remained at only about 17.9--18.0~dB global PSNR
+on the control and about 13.5~dB on the moving-camera primary clip; its
+assumption is not appropriate for these inputs.
+
+Earlier BD-rate claims, including the previously reported +67.72\% Proposed
+and +73.39\% ROI-QP values and the older cross-codec savings claims, are
+superseded and must not be reused. The corrected I420
+plane layout, common HEVC Main/\texttt{yuv420p}/BT.709 protocol, video-only
+outputs, and actual-rate measurement define a different valid comparison.
+This evaluation remains limited to one primary moving-camera clip, one
+no-ROI control, one codec/preset, one set of ROI constructions, and
+CPU-only execution. It does not establish performance on other scenes,
+codecs, or independently labelled detection data.
+
+\section{Updated RQ3 conclusion}
+
+For this moving-camera clip, the v5 mask correction produces a consistent
+ROI-PSNR advantage over Uniform across all six tested rates, also supported
+by a valid -8.62\% ROI BD-rate. It does so by protecting the full declared
+ROI-plus-guard region before a globally rate-controlled x265 encode. That
+gain is not free: global and background PSNR fall materially, especially at
+higher rates. The corrected Proposed heuristic is therefore better for the
+measured dilated-ROI objective on this sequence, but not for whole-frame
+quality. One primary clip and one no-ROI control do not establish general
+superiority, and the evaluation still does not test encoder ROI-QP or the
+separate Lagrangian \texttt{RateAllocator}.
+
+\paragraph{Viva explanation.}
+The encoding correction made every method use the same I420/HEVC Main/
+BT.709 protocol. A second mask bug meant v4 measured an 8-pixel guard ring
+that the ROI compositor had blurred; v5 now restores exactly that clipped
+dilated region and reports core and ring separately. Across six rates on the
+primary clip, Proposed gains about 0.39--0.65~dB ROI-PSNR and has a valid
+-8.62\% ROI BD-rate, but loses 0.77--5.44~dB global PSNR and
+1.27--6.62~dB background PSNR against Uniform at nominally comparable rates.
+This is a sequence-specific ROI-versus-background trade-off, not a
+whole-frame quality gain or proof of the separate Lagrangian allocator.
+
+\end{document}

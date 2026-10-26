@@ -1,0 +1,9560 @@
+[
+  {
+    "camera_id": "camera_0",
+    "frame_id": 1,
+    "timestamp": 1792953117.110364,
+    "state": "normal",
+    "risk": 0.06,
+    "rois": [],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 30,
+    "res_w": 640,
+    "res_h": 480
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 2,
+    "timestamp": 1792953117.1250644,
+    "state": "normal",
+    "risk": 0.1026,
+    "rois": [],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 30,
+    "res_w": 640,
+    "res_h": 480
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 3,
+    "timestamp": 1792953121.5487962,
+    "state": "normal",
+    "risk": 0.2645,
+    "rois": [
+      [
+        98,
+        167,
+        492,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 30,
+    "res_w": 640,
+    "res_h": 480
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 4,
+    "timestamp": 1792953122.17112,
+    "state": "alert",
+    "risk": 0.3778,
+    "rois": [
+      [
+        98,
+        167,
+        492,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 5,
+    "timestamp": 1792953122.209787,
+    "state": "alert",
+    "risk": 0.4572,
+    "rois": [
+      [
+        98,
+        167,
+        492,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 6,
+    "timestamp": 1792953122.4375598,
+    "state": "alert",
+    "risk": 0.5131,
+    "rois": [
+      [
+        97,
+        167,
+        492,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 7,
+    "timestamp": 1792953122.4718523,
+    "state": "alert",
+    "risk": 0.552,
+    "rois": [
+      [
+        97,
+        167,
+        492,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 8,
+    "timestamp": 1792953122.5341146,
+    "state": "alert",
+    "risk": 0.5796,
+    "rois": [
+      [
+        97,
+        167,
+        492,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 30,
+    "res_w": 854,
+    "res_h": 480
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 9,
+    "timestamp": 1792953123.6884353,
+    "state": "critical",
+    "risk": 0.6533,
+    "rois": [
+      [
+        98,
+        167,
+        492,
+        479
+      ],
+      [
+        21,
+        364,
+        120,
+        480
+      ],
+      [
+        549,
+        17,
+        639,
+        471
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 10,
+    "timestamp": 1792953123.7703843,
+    "state": "critical",
+    "risk": 0.7048,
+    "rois": [
+      [
+        98,
+        167,
+        492,
+        479
+      ],
+      [
+        21,
+        364,
+        120,
+        480
+      ],
+      [
+        549,
+        17,
+        639,
+        471
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 11,
+    "timestamp": 1792953123.8438835,
+    "state": "critical",
+    "risk": 0.741,
+    "rois": [
+      [
+        98,
+        167,
+        492,
+        479
+      ],
+      [
+        21,
+        364,
+        120,
+        480
+      ],
+      [
+        549,
+        17,
+        639,
+        471
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 12,
+    "timestamp": 1792953124.0421996,
+    "state": "critical",
+    "risk": 0.7661,
+    "rois": [
+      [
+        99,
+        168,
+        493,
+        479
+      ],
+      [
+        20,
+        363,
+        120,
+        479
+      ],
+      [
+        549,
+        17,
+        639,
+        471
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 13,
+    "timestamp": 1792953124.104975,
+    "state": "critical",
+    "risk": 0.7837,
+    "rois": [
+      [
+        99,
+        168,
+        493,
+        479
+      ],
+      [
+        20,
+        363,
+        120,
+        479
+      ],
+      [
+        549,
+        17,
+        639,
+        471
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 14,
+    "timestamp": 1792953124.1696763,
+    "state": "critical",
+    "risk": 0.796,
+    "rois": [
+      [
+        99,
+        168,
+        493,
+        479
+      ],
+      [
+        20,
+        363,
+        120,
+        479
+      ],
+      [
+        549,
+        17,
+        639,
+        471
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 15,
+    "timestamp": 1792953124.4221015,
+    "state": "critical",
+    "risk": 0.8047,
+    "rois": [
+      [
+        99,
+        166,
+        492,
+        479
+      ],
+      [
+        19,
+        363,
+        119,
+        479
+      ],
+      [
+        549,
+        17,
+        639,
+        471
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 16,
+    "timestamp": 1792953124.4975004,
+    "state": "critical",
+    "risk": 0.8108,
+    "rois": [
+      [
+        99,
+        166,
+        492,
+        479
+      ],
+      [
+        19,
+        363,
+        119,
+        479
+      ],
+      [
+        549,
+        17,
+        639,
+        471
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 17,
+    "timestamp": 1792953124.5614195,
+    "state": "critical",
+    "risk": 0.8152,
+    "rois": [
+      [
+        99,
+        166,
+        492,
+        479
+      ],
+      [
+        19,
+        363,
+        119,
+        479
+      ],
+      [
+        549,
+        17,
+        639,
+        471
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 18,
+    "timestamp": 1792953124.6258662,
+    "state": "critical",
+    "risk": 0.8181,
+    "rois": [
+      [
+        99,
+        166,
+        492,
+        479
+      ],
+      [
+        19,
+        363,
+        119,
+        479
+      ],
+      [
+        549,
+        17,
+        639,
+        471
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 19,
+    "timestamp": 1792953124.6986275,
+    "state": "critical",
+    "risk": 0.8201,
+    "rois": [
+      [
+        99,
+        166,
+        492,
+        479
+      ],
+      [
+        19,
+        363,
+        119,
+        479
+      ],
+      [
+        549,
+        17,
+        639,
+        471
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 20,
+    "timestamp": 1792953124.9119651,
+    "state": "critical",
+    "risk": 0.8216,
+    "rois": [
+      [
+        100,
+        167,
+        492,
+        479
+      ],
+      [
+        19,
+        363,
+        119,
+        479
+      ],
+      [
+        549,
+        17,
+        639,
+        471
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 21,
+    "timestamp": 1792953124.9921927,
+    "state": "critical",
+    "risk": 0.8225,
+    "rois": [
+      [
+        100,
+        167,
+        492,
+        479
+      ],
+      [
+        19,
+        363,
+        119,
+        479
+      ],
+      [
+        549,
+        17,
+        639,
+        471
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 22,
+    "timestamp": 1792953125.064817,
+    "state": "critical",
+    "risk": 0.8231,
+    "rois": [
+      [
+        100,
+        167,
+        492,
+        479
+      ],
+      [
+        19,
+        363,
+        119,
+        479
+      ],
+      [
+        549,
+        17,
+        639,
+        471
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 23,
+    "timestamp": 1792953125.1349766,
+    "state": "critical",
+    "risk": 0.8235,
+    "rois": [
+      [
+        100,
+        167,
+        492,
+        479
+      ],
+      [
+        19,
+        363,
+        119,
+        479
+      ],
+      [
+        549,
+        17,
+        639,
+        471
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 24,
+    "timestamp": 1792953125.2088332,
+    "state": "critical",
+    "risk": 0.8238,
+    "rois": [
+      [
+        100,
+        167,
+        492,
+        479
+      ],
+      [
+        19,
+        363,
+        119,
+        479
+      ],
+      [
+        549,
+        17,
+        639,
+        471
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 25,
+    "timestamp": 1792953125.2990487,
+    "state": "critical",
+    "risk": 0.8241,
+    "rois": [
+      [
+        100,
+        167,
+        492,
+        479
+      ],
+      [
+        19,
+        363,
+        119,
+        479
+      ],
+      [
+        549,
+        17,
+        639,
+        471
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 26,
+    "timestamp": 1792953125.4083102,
+    "state": "critical",
+    "risk": 0.8242,
+    "rois": [
+      [
+        100,
+        167,
+        492,
+        479
+      ],
+      [
+        19,
+        363,
+        119,
+        479
+      ],
+      [
+        549,
+        17,
+        639,
+        471
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 27,
+    "timestamp": 1792953125.5062804,
+    "state": "critical",
+    "risk": 0.8242,
+    "rois": [
+      [
+        100,
+        167,
+        492,
+        479
+      ],
+      [
+        19,
+        363,
+        119,
+        479
+      ],
+      [
+        549,
+        17,
+        639,
+        471
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 28,
+    "timestamp": 1792953125.6149085,
+    "state": "critical",
+    "risk": 0.8243,
+    "rois": [
+      [
+        100,
+        167,
+        492,
+        479
+      ],
+      [
+        19,
+        363,
+        119,
+        479
+      ],
+      [
+        549,
+        17,
+        639,
+        471
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 29,
+    "timestamp": 1792953125.6995885,
+    "state": "critical",
+    "risk": 0.8243,
+    "rois": [
+      [
+        100,
+        167,
+        492,
+        479
+      ],
+      [
+        19,
+        363,
+        119,
+        479
+      ],
+      [
+        549,
+        17,
+        639,
+        471
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 30,
+    "timestamp": 1792953126.080581,
+    "state": "critical",
+    "risk": 0.8245,
+    "rois": [
+      [
+        100,
+        167,
+        494,
+        479
+      ],
+      [
+        19,
+        363,
+        119,
+        479
+      ],
+      [
+        549,
+        17,
+        639,
+        471
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 31,
+    "timestamp": 1792953126.2023818,
+    "state": "critical",
+    "risk": 0.8247,
+    "rois": [
+      [
+        100,
+        167,
+        494,
+        479
+      ],
+      [
+        19,
+        363,
+        119,
+        479
+      ],
+      [
+        549,
+        17,
+        639,
+        471
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 32,
+    "timestamp": 1792953126.3428967,
+    "state": "critical",
+    "risk": 0.8249,
+    "rois": [
+      [
+        100,
+        167,
+        494,
+        479
+      ],
+      [
+        19,
+        363,
+        119,
+        479
+      ],
+      [
+        549,
+        17,
+        639,
+        471
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 33,
+    "timestamp": 1792953126.4548464,
+    "state": "critical",
+    "risk": 0.8251,
+    "rois": [
+      [
+        100,
+        167,
+        494,
+        479
+      ],
+      [
+        19,
+        363,
+        119,
+        479
+      ],
+      [
+        549,
+        17,
+        639,
+        471
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 34,
+    "timestamp": 1792953126.5852442,
+    "state": "critical",
+    "risk": 0.8254,
+    "rois": [
+      [
+        100,
+        167,
+        494,
+        479
+      ],
+      [
+        19,
+        363,
+        119,
+        479
+      ],
+      [
+        549,
+        17,
+        639,
+        471
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 35,
+    "timestamp": 1792953127.654826,
+    "state": "critical",
+    "risk": 0.826,
+    "rois": [
+      [
+        100,
+        167,
+        494,
+        479
+      ],
+      [
+        19,
+        363,
+        119,
+        479
+      ],
+      [
+        549,
+        17,
+        639,
+        471
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 36,
+    "timestamp": 1792953127.8888686,
+    "state": "critical",
+    "risk": 0.8259,
+    "rois": [
+      [
+        100,
+        167,
+        494,
+        479
+      ],
+      [
+        19,
+        363,
+        119,
+        479
+      ],
+      [
+        549,
+        17,
+        639,
+        471
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 37,
+    "timestamp": 1792953127.989997,
+    "state": "critical",
+    "risk": 0.8258,
+    "rois": [
+      [
+        100,
+        167,
+        494,
+        479
+      ],
+      [
+        19,
+        363,
+        119,
+        479
+      ],
+      [
+        549,
+        17,
+        639,
+        471
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 38,
+    "timestamp": 1792953128.1621475,
+    "state": "critical",
+    "risk": 0.8257,
+    "rois": [
+      [
+        100,
+        167,
+        494,
+        479
+      ],
+      [
+        19,
+        363,
+        119,
+        479
+      ],
+      [
+        549,
+        17,
+        639,
+        471
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 39,
+    "timestamp": 1792953128.333962,
+    "state": "critical",
+    "risk": 0.8256,
+    "rois": [
+      [
+        100,
+        167,
+        494,
+        479
+      ],
+      [
+        19,
+        363,
+        119,
+        479
+      ],
+      [
+        549,
+        17,
+        639,
+        471
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 40,
+    "timestamp": 1792953129.2273185,
+    "state": "critical",
+    "risk": 0.8264,
+    "rois": [
+      [
+        98,
+        165,
+        494,
+        479
+      ],
+      [
+        19,
+        363,
+        118,
+        479
+      ],
+      [
+        549,
+        17,
+        639,
+        471
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 41,
+    "timestamp": 1792953129.634245,
+    "state": "critical",
+    "risk": 0.8265,
+    "rois": [
+      [
+        98,
+        165,
+        494,
+        479
+      ],
+      [
+        19,
+        363,
+        118,
+        479
+      ],
+      [
+        549,
+        17,
+        639,
+        471
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 42,
+    "timestamp": 1792953129.810205,
+    "state": "critical",
+    "risk": 0.8265,
+    "rois": [
+      [
+        98,
+        165,
+        494,
+        479
+      ],
+      [
+        19,
+        363,
+        118,
+        479
+      ],
+      [
+        549,
+        17,
+        639,
+        471
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 43,
+    "timestamp": 1792953129.9932601,
+    "state": "critical",
+    "risk": 0.8266,
+    "rois": [
+      [
+        98,
+        165,
+        494,
+        479
+      ],
+      [
+        19,
+        363,
+        118,
+        479
+      ],
+      [
+        549,
+        17,
+        639,
+        471
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 44,
+    "timestamp": 1792953130.1790254,
+    "state": "critical",
+    "risk": 0.8266,
+    "rois": [
+      [
+        98,
+        165,
+        494,
+        479
+      ],
+      [
+        19,
+        363,
+        118,
+        479
+      ],
+      [
+        549,
+        17,
+        639,
+        471
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 45,
+    "timestamp": 1792953130.244696,
+    "state": "critical",
+    "risk": 0.7956,
+    "rois": [
+      [
+        98,
+        165,
+        494,
+        479
+      ],
+      [
+        19,
+        363,
+        118,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 46,
+    "timestamp": 1792953130.5058873,
+    "state": "critical",
+    "risk": 0.7739,
+    "rois": [
+      [
+        98,
+        165,
+        494,
+        479
+      ],
+      [
+        19,
+        363,
+        118,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 47,
+    "timestamp": 1792953130.582851,
+    "state": "critical",
+    "risk": 0.7587,
+    "rois": [
+      [
+        98,
+        165,
+        494,
+        479
+      ],
+      [
+        19,
+        363,
+        118,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 48,
+    "timestamp": 1792953130.8517728,
+    "state": "critical",
+    "risk": 0.748,
+    "rois": [
+      [
+        98,
+        165,
+        494,
+        479
+      ],
+      [
+        19,
+        363,
+        118,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 49,
+    "timestamp": 1792953130.996447,
+    "state": "critical",
+    "risk": 0.7405,
+    "rois": [
+      [
+        98,
+        165,
+        494,
+        479
+      ],
+      [
+        19,
+        363,
+        118,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 50,
+    "timestamp": 1792953131.90365,
+    "state": "critical",
+    "risk": 0.7352,
+    "rois": [
+      [
+        98,
+        167,
+        493,
+        479
+      ],
+      [
+        18,
+        362,
+        119,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 51,
+    "timestamp": 1792953132.303005,
+    "state": "critical",
+    "risk": 0.7322,
+    "rois": [
+      [
+        98,
+        167,
+        493,
+        479
+      ],
+      [
+        18,
+        362,
+        119,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 52,
+    "timestamp": 1792953132.4787455,
+    "state": "critical",
+    "risk": 0.7294,
+    "rois": [
+      [
+        98,
+        167,
+        493,
+        479
+      ],
+      [
+        18,
+        362,
+        119,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 53,
+    "timestamp": 1792953132.6670694,
+    "state": "critical",
+    "risk": 0.7282,
+    "rois": [
+      [
+        98,
+        167,
+        493,
+        479
+      ],
+      [
+        18,
+        362,
+        119,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 54,
+    "timestamp": 1792953132.7638469,
+    "state": "critical",
+    "risk": 0.7272,
+    "rois": [
+      [
+        98,
+        167,
+        493,
+        479
+      ],
+      [
+        18,
+        362,
+        119,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 55,
+    "timestamp": 1792953133.0366127,
+    "state": "critical",
+    "risk": 0.7273,
+    "rois": [
+      [
+        98,
+        167,
+        493,
+        479
+      ],
+      [
+        18,
+        362,
+        119,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 56,
+    "timestamp": 1792953133.2901826,
+    "state": "critical",
+    "risk": 0.7266,
+    "rois": [
+      [
+        98,
+        167,
+        493,
+        479
+      ],
+      [
+        18,
+        362,
+        119,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 57,
+    "timestamp": 1792953133.399143,
+    "state": "critical",
+    "risk": 0.7256,
+    "rois": [
+      [
+        98,
+        167,
+        493,
+        479
+      ],
+      [
+        18,
+        362,
+        119,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 58,
+    "timestamp": 1792953133.6237175,
+    "state": "critical",
+    "risk": 0.725,
+    "rois": [
+      [
+        98,
+        167,
+        493,
+        479
+      ],
+      [
+        18,
+        362,
+        119,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 59,
+    "timestamp": 1792953133.7865937,
+    "state": "critical",
+    "risk": 0.7244,
+    "rois": [
+      [
+        98,
+        167,
+        493,
+        479
+      ],
+      [
+        18,
+        362,
+        119,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 60,
+    "timestamp": 1792953134.8908024,
+    "state": "critical",
+    "risk": 0.7242,
+    "rois": [
+      [
+        90,
+        165,
+        484,
+        479
+      ],
+      [
+        18,
+        362,
+        118,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 61,
+    "timestamp": 1792953135.0878816,
+    "state": "critical",
+    "risk": 0.7238,
+    "rois": [
+      [
+        90,
+        165,
+        484,
+        479
+      ],
+      [
+        18,
+        362,
+        118,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 62,
+    "timestamp": 1792953135.2550666,
+    "state": "critical",
+    "risk": 0.7236,
+    "rois": [
+      [
+        90,
+        165,
+        484,
+        479
+      ],
+      [
+        18,
+        362,
+        118,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 63,
+    "timestamp": 1792953135.5315075,
+    "state": "critical",
+    "risk": 0.7235,
+    "rois": [
+      [
+        90,
+        165,
+        484,
+        479
+      ],
+      [
+        18,
+        362,
+        118,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 64,
+    "timestamp": 1792953135.7639308,
+    "state": "critical",
+    "risk": 0.7233,
+    "rois": [
+      [
+        90,
+        165,
+        484,
+        479
+      ],
+      [
+        18,
+        362,
+        118,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 65,
+    "timestamp": 1792953136.181395,
+    "state": "critical",
+    "risk": 0.7236,
+    "rois": [
+      [
+        90,
+        165,
+        484,
+        479
+      ],
+      [
+        18,
+        362,
+        118,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 66,
+    "timestamp": 1792953136.2812564,
+    "state": "critical",
+    "risk": 0.7234,
+    "rois": [
+      [
+        90,
+        165,
+        484,
+        479
+      ],
+      [
+        18,
+        362,
+        118,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 67,
+    "timestamp": 1792953136.5722294,
+    "state": "critical",
+    "risk": 0.7233,
+    "rois": [
+      [
+        90,
+        165,
+        484,
+        479
+      ],
+      [
+        18,
+        362,
+        118,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 68,
+    "timestamp": 1792953136.8330622,
+    "state": "critical",
+    "risk": 0.7231,
+    "rois": [
+      [
+        90,
+        165,
+        484,
+        479
+      ],
+      [
+        18,
+        362,
+        118,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 69,
+    "timestamp": 1792953136.9681401,
+    "state": "critical",
+    "risk": 0.723,
+    "rois": [
+      [
+        90,
+        165,
+        484,
+        479
+      ],
+      [
+        18,
+        362,
+        118,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 70,
+    "timestamp": 1792953139.075401,
+    "state": "critical",
+    "risk": 0.7231,
+    "rois": [
+      [
+        86,
+        164,
+        481,
+        479
+      ],
+      [
+        18,
+        362,
+        117,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 71,
+    "timestamp": 1792953139.429991,
+    "state": "critical",
+    "risk": 0.7231,
+    "rois": [
+      [
+        86,
+        164,
+        481,
+        479
+      ],
+      [
+        18,
+        362,
+        117,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 72,
+    "timestamp": 1792953139.7156034,
+    "state": "critical",
+    "risk": 0.7232,
+    "rois": [
+      [
+        86,
+        164,
+        481,
+        479
+      ],
+      [
+        18,
+        362,
+        117,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 73,
+    "timestamp": 1792953140.0205204,
+    "state": "critical",
+    "risk": 0.7234,
+    "rois": [
+      [
+        86,
+        164,
+        481,
+        479
+      ],
+      [
+        18,
+        362,
+        117,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 74,
+    "timestamp": 1792953140.5133982,
+    "state": "critical",
+    "risk": 0.7234,
+    "rois": [
+      [
+        86,
+        164,
+        481,
+        479
+      ],
+      [
+        18,
+        362,
+        117,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 75,
+    "timestamp": 1792953140.6914852,
+    "state": "critical",
+    "risk": 0.7238,
+    "rois": [
+      [
+        86,
+        164,
+        481,
+        479
+      ],
+      [
+        18,
+        362,
+        117,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 76,
+    "timestamp": 1792953141.0737755,
+    "state": "critical",
+    "risk": 0.7237,
+    "rois": [
+      [
+        86,
+        164,
+        481,
+        479
+      ],
+      [
+        18,
+        362,
+        117,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 77,
+    "timestamp": 1792953141.5472121,
+    "state": "critical",
+    "risk": 0.724,
+    "rois": [
+      [
+        86,
+        164,
+        481,
+        479
+      ],
+      [
+        18,
+        362,
+        117,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 78,
+    "timestamp": 1792953141.6861916,
+    "state": "critical",
+    "risk": 0.7241,
+    "rois": [
+      [
+        86,
+        164,
+        481,
+        479
+      ],
+      [
+        18,
+        362,
+        117,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 79,
+    "timestamp": 1792953142.4748003,
+    "state": "critical",
+    "risk": 0.7253,
+    "rois": [
+      [
+        86,
+        164,
+        481,
+        479
+      ],
+      [
+        18,
+        362,
+        117,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 80,
+    "timestamp": 1792953144.4789853,
+    "state": "critical",
+    "risk": 0.7258,
+    "rois": [
+      [
+        85,
+        164,
+        480,
+        479
+      ],
+      [
+        18,
+        362,
+        117,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 81,
+    "timestamp": 1792953146.0622163,
+    "state": "critical",
+    "risk": 0.7259,
+    "rois": [
+      [
+        85,
+        164,
+        480,
+        479
+      ],
+      [
+        18,
+        362,
+        117,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 82,
+    "timestamp": 1792953146.539287,
+    "state": "critical",
+    "risk": 0.7255,
+    "rois": [
+      [
+        85,
+        164,
+        480,
+        479
+      ],
+      [
+        18,
+        362,
+        117,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 83,
+    "timestamp": 1792953147.0321429,
+    "state": "critical",
+    "risk": 0.725,
+    "rois": [
+      [
+        85,
+        164,
+        480,
+        479
+      ],
+      [
+        18,
+        362,
+        117,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 84,
+    "timestamp": 1792953147.272885,
+    "state": "critical",
+    "risk": 0.7251,
+    "rois": [
+      [
+        85,
+        164,
+        480,
+        479
+      ],
+      [
+        18,
+        362,
+        117,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 85,
+    "timestamp": 1792953147.6680627,
+    "state": "critical",
+    "risk": 0.725,
+    "rois": [
+      [
+        85,
+        164,
+        480,
+        479
+      ],
+      [
+        18,
+        362,
+        117,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 86,
+    "timestamp": 1792953147.758416,
+    "state": "critical",
+    "risk": 0.7246,
+    "rois": [
+      [
+        85,
+        164,
+        480,
+        479
+      ],
+      [
+        18,
+        362,
+        117,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 87,
+    "timestamp": 1792953148.1301792,
+    "state": "critical",
+    "risk": 0.7243,
+    "rois": [
+      [
+        85,
+        164,
+        480,
+        479
+      ],
+      [
+        18,
+        362,
+        117,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 88,
+    "timestamp": 1792953148.583164,
+    "state": "critical",
+    "risk": 0.7243,
+    "rois": [
+      [
+        85,
+        164,
+        480,
+        479
+      ],
+      [
+        18,
+        362,
+        117,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 89,
+    "timestamp": 1792953148.7002838,
+    "state": "critical",
+    "risk": 0.724,
+    "rois": [
+      [
+        85,
+        164,
+        480,
+        479
+      ],
+      [
+        18,
+        362,
+        117,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 90,
+    "timestamp": 1792953149.8402236,
+    "state": "critical",
+    "risk": 0.7232,
+    "rois": [
+      [
+        89,
+        167,
+        479,
+        479
+      ],
+      [
+        19,
+        362,
+        118,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 91,
+    "timestamp": 1792953150.4565194,
+    "state": "critical",
+    "risk": 0.7225,
+    "rois": [
+      [
+        89,
+        167,
+        479,
+        479
+      ],
+      [
+        19,
+        362,
+        118,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 92,
+    "timestamp": 1792953150.6794922,
+    "state": "critical",
+    "risk": 0.7223,
+    "rois": [
+      [
+        89,
+        167,
+        479,
+        479
+      ],
+      [
+        19,
+        362,
+        118,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 93,
+    "timestamp": 1792953150.842911,
+    "state": "critical",
+    "risk": 0.722,
+    "rois": [
+      [
+        89,
+        167,
+        479,
+        479
+      ],
+      [
+        19,
+        362,
+        118,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 94,
+    "timestamp": 1792953150.9745786,
+    "state": "critical",
+    "risk": 0.7216,
+    "rois": [
+      [
+        89,
+        167,
+        479,
+        479
+      ],
+      [
+        19,
+        362,
+        118,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 95,
+    "timestamp": 1792953151.5540788,
+    "state": "critical",
+    "risk": 0.7216,
+    "rois": [
+      [
+        89,
+        167,
+        479,
+        479
+      ],
+      [
+        19,
+        362,
+        118,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 96,
+    "timestamp": 1792953151.7193558,
+    "state": "critical",
+    "risk": 0.7217,
+    "rois": [
+      [
+        89,
+        167,
+        479,
+        479
+      ],
+      [
+        19,
+        362,
+        118,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 97,
+    "timestamp": 1792953151.9972982,
+    "state": "critical",
+    "risk": 0.7217,
+    "rois": [
+      [
+        89,
+        167,
+        479,
+        479
+      ],
+      [
+        19,
+        362,
+        118,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 98,
+    "timestamp": 1792953152.6443918,
+    "state": "critical",
+    "risk": 0.7214,
+    "rois": [
+      [
+        89,
+        167,
+        479,
+        479
+      ],
+      [
+        19,
+        362,
+        118,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 99,
+    "timestamp": 1792953152.9080822,
+    "state": "critical",
+    "risk": 0.7214,
+    "rois": [
+      [
+        89,
+        167,
+        479,
+        479
+      ],
+      [
+        19,
+        362,
+        118,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 100,
+    "timestamp": 1792953154.984793,
+    "state": "critical",
+    "risk": 0.7212,
+    "rois": [
+      [
+        93,
+        169,
+        478,
+        479
+      ],
+      [
+        19,
+        363,
+        119,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 101,
+    "timestamp": 1792953155.8532035,
+    "state": "critical",
+    "risk": 0.7208,
+    "rois": [
+      [
+        93,
+        169,
+        478,
+        479
+      ],
+      [
+        19,
+        363,
+        119,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 102,
+    "timestamp": 1792953156.066719,
+    "state": "critical",
+    "risk": 0.7204,
+    "rois": [
+      [
+        93,
+        169,
+        478,
+        479
+      ],
+      [
+        19,
+        363,
+        119,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 103,
+    "timestamp": 1792953156.5769053,
+    "state": "critical",
+    "risk": 0.7202,
+    "rois": [
+      [
+        93,
+        169,
+        478,
+        479
+      ],
+      [
+        19,
+        363,
+        119,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 104,
+    "timestamp": 1792953157.0121968,
+    "state": "critical",
+    "risk": 0.7199,
+    "rois": [
+      [
+        93,
+        169,
+        478,
+        479
+      ],
+      [
+        19,
+        363,
+        119,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 105,
+    "timestamp": 1792953157.6819882,
+    "state": "critical",
+    "risk": 0.7197,
+    "rois": [
+      [
+        93,
+        169,
+        478,
+        479
+      ],
+      [
+        19,
+        363,
+        119,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 106,
+    "timestamp": 1792953158.0844343,
+    "state": "critical",
+    "risk": 0.7198,
+    "rois": [
+      [
+        93,
+        169,
+        478,
+        479
+      ],
+      [
+        19,
+        363,
+        119,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 107,
+    "timestamp": 1792953158.5025616,
+    "state": "critical",
+    "risk": 0.7197,
+    "rois": [
+      [
+        93,
+        169,
+        478,
+        479
+      ],
+      [
+        19,
+        363,
+        119,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 108,
+    "timestamp": 1792953159.0494084,
+    "state": "critical",
+    "risk": 0.7195,
+    "rois": [
+      [
+        93,
+        169,
+        478,
+        479
+      ],
+      [
+        19,
+        363,
+        119,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 109,
+    "timestamp": 1792953159.370805,
+    "state": "critical",
+    "risk": 0.7194,
+    "rois": [
+      [
+        93,
+        169,
+        478,
+        479
+      ],
+      [
+        19,
+        363,
+        119,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 110,
+    "timestamp": 1792953161.1014311,
+    "state": "critical",
+    "risk": 0.7195,
+    "rois": [
+      [
+        94,
+        168,
+        478,
+        479
+      ],
+      [
+        19,
+        363,
+        120,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 111,
+    "timestamp": 1792953161.7309508,
+    "state": "critical",
+    "risk": 0.7196,
+    "rois": [
+      [
+        94,
+        168,
+        478,
+        479
+      ],
+      [
+        19,
+        363,
+        120,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 112,
+    "timestamp": 1792953162.0439332,
+    "state": "critical",
+    "risk": 0.7197,
+    "rois": [
+      [
+        94,
+        168,
+        478,
+        479
+      ],
+      [
+        19,
+        363,
+        120,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 113,
+    "timestamp": 1792953162.2173486,
+    "state": "critical",
+    "risk": 0.7196,
+    "rois": [
+      [
+        94,
+        168,
+        478,
+        479
+      ],
+      [
+        19,
+        363,
+        120,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 114,
+    "timestamp": 1792953162.71134,
+    "state": "critical",
+    "risk": 0.7195,
+    "rois": [
+      [
+        94,
+        168,
+        478,
+        479
+      ],
+      [
+        19,
+        363,
+        120,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 115,
+    "timestamp": 1792953163.1421132,
+    "state": "critical",
+    "risk": 0.7197,
+    "rois": [
+      [
+        94,
+        168,
+        478,
+        479
+      ],
+      [
+        19,
+        363,
+        120,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 116,
+    "timestamp": 1792953163.4295132,
+    "state": "critical",
+    "risk": 0.7197,
+    "rois": [
+      [
+        94,
+        168,
+        478,
+        479
+      ],
+      [
+        19,
+        363,
+        120,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 117,
+    "timestamp": 1792953163.7464619,
+    "state": "critical",
+    "risk": 0.7196,
+    "rois": [
+      [
+        94,
+        168,
+        478,
+        479
+      ],
+      [
+        19,
+        363,
+        120,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 118,
+    "timestamp": 1792953164.062947,
+    "state": "critical",
+    "risk": 0.7195,
+    "rois": [
+      [
+        94,
+        168,
+        478,
+        479
+      ],
+      [
+        19,
+        363,
+        120,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 119,
+    "timestamp": 1792953164.6233587,
+    "state": "critical",
+    "risk": 0.7196,
+    "rois": [
+      [
+        94,
+        168,
+        478,
+        479
+      ],
+      [
+        19,
+        363,
+        120,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 120,
+    "timestamp": 1792953166.048638,
+    "state": "critical",
+    "risk": 0.7192,
+    "rois": [
+      [
+        95,
+        170,
+        477,
+        479
+      ],
+      [
+        19,
+        363,
+        120,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 121,
+    "timestamp": 1792953167.1126866,
+    "state": "critical",
+    "risk": 0.7189,
+    "rois": [
+      [
+        95,
+        170,
+        477,
+        479
+      ],
+      [
+        19,
+        363,
+        120,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 122,
+    "timestamp": 1792953167.4761572,
+    "state": "critical",
+    "risk": 0.7186,
+    "rois": [
+      [
+        95,
+        170,
+        477,
+        479
+      ],
+      [
+        19,
+        363,
+        120,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 123,
+    "timestamp": 1792953167.7295535,
+    "state": "critical",
+    "risk": 0.7184,
+    "rois": [
+      [
+        95,
+        170,
+        477,
+        479
+      ],
+      [
+        19,
+        363,
+        120,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 124,
+    "timestamp": 1792953168.407757,
+    "state": "critical",
+    "risk": 0.7185,
+    "rois": [
+      [
+        95,
+        170,
+        477,
+        479
+      ],
+      [
+        19,
+        363,
+        120,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 125,
+    "timestamp": 1792953168.7878885,
+    "state": "critical",
+    "risk": 0.7186,
+    "rois": [
+      [
+        95,
+        170,
+        477,
+        479
+      ],
+      [
+        19,
+        363,
+        120,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 126,
+    "timestamp": 1792953168.8824222,
+    "state": "critical",
+    "risk": 0.7185,
+    "rois": [
+      [
+        95,
+        170,
+        477,
+        479
+      ],
+      [
+        19,
+        363,
+        120,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 127,
+    "timestamp": 1792953169.1230574,
+    "state": "critical",
+    "risk": 0.7184,
+    "rois": [
+      [
+        95,
+        170,
+        477,
+        479
+      ],
+      [
+        19,
+        363,
+        120,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 128,
+    "timestamp": 1792953169.5793731,
+    "state": "critical",
+    "risk": 0.7183,
+    "rois": [
+      [
+        95,
+        170,
+        477,
+        479
+      ],
+      [
+        19,
+        363,
+        120,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 129,
+    "timestamp": 1792953169.7657049,
+    "state": "critical",
+    "risk": 0.7184,
+    "rois": [
+      [
+        95,
+        170,
+        477,
+        479
+      ],
+      [
+        19,
+        363,
+        120,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 130,
+    "timestamp": 1792953170.530419,
+    "state": "critical",
+    "risk": 0.7184,
+    "rois": [
+      [
+        96,
+        170,
+        477,
+        479
+      ],
+      [
+        19,
+        363,
+        120,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 131,
+    "timestamp": 1792953171.8069751,
+    "state": "critical",
+    "risk": 0.7182,
+    "rois": [
+      [
+        96,
+        170,
+        477,
+        479
+      ],
+      [
+        19,
+        363,
+        120,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 132,
+    "timestamp": 1792953171.941317,
+    "state": "critical",
+    "risk": 0.7181,
+    "rois": [
+      [
+        96,
+        170,
+        477,
+        479
+      ],
+      [
+        19,
+        363,
+        120,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 133,
+    "timestamp": 1792953172.3336418,
+    "state": "critical",
+    "risk": 0.7181,
+    "rois": [
+      [
+        96,
+        170,
+        477,
+        479
+      ],
+      [
+        19,
+        363,
+        120,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 134,
+    "timestamp": 1792953173.0989788,
+    "state": "critical",
+    "risk": 0.7179,
+    "rois": [
+      [
+        96,
+        170,
+        477,
+        479
+      ],
+      [
+        19,
+        363,
+        120,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 135,
+    "timestamp": 1792953173.3327112,
+    "state": "critical",
+    "risk": 0.7201,
+    "rois": [
+      [
+        96,
+        170,
+        477,
+        479
+      ],
+      [
+        19,
+        363,
+        120,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 136,
+    "timestamp": 1792953173.8721023,
+    "state": "critical",
+    "risk": 0.722,
+    "rois": [
+      [
+        96,
+        170,
+        477,
+        479
+      ],
+      [
+        19,
+        363,
+        120,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 137,
+    "timestamp": 1792953174.5361657,
+    "state": "critical",
+    "risk": 0.721,
+    "rois": [
+      [
+        96,
+        170,
+        477,
+        479
+      ],
+      [
+        19,
+        363,
+        120,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 138,
+    "timestamp": 1792953175.090704,
+    "state": "critical",
+    "risk": 0.721,
+    "rois": [
+      [
+        96,
+        170,
+        477,
+        479
+      ],
+      [
+        19,
+        363,
+        120,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 139,
+    "timestamp": 1792953175.7194014,
+    "state": "critical",
+    "risk": 0.7206,
+    "rois": [
+      [
+        96,
+        170,
+        477,
+        479
+      ],
+      [
+        19,
+        363,
+        120,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 140,
+    "timestamp": 1792953176.9495575,
+    "state": "critical",
+    "risk": 0.72,
+    "rois": [
+      [
+        100,
+        172,
+        483,
+        479
+      ],
+      [
+        19,
+        363,
+        119,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 141,
+    "timestamp": 1792953177.9687986,
+    "state": "critical",
+    "risk": 0.7224,
+    "rois": [
+      [
+        100,
+        172,
+        483,
+        479
+      ],
+      [
+        19,
+        363,
+        119,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 142,
+    "timestamp": 1792953178.1303668,
+    "state": "critical",
+    "risk": 0.7215,
+    "rois": [
+      [
+        100,
+        172,
+        483,
+        479
+      ],
+      [
+        19,
+        363,
+        119,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 143,
+    "timestamp": 1792953178.6660254,
+    "state": "critical",
+    "risk": 0.7224,
+    "rois": [
+      [
+        100,
+        172,
+        483,
+        479
+      ],
+      [
+        19,
+        363,
+        119,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 144,
+    "timestamp": 1792953178.9250655,
+    "state": "critical",
+    "risk": 0.7233,
+    "rois": [
+      [
+        100,
+        172,
+        483,
+        479
+      ],
+      [
+        19,
+        363,
+        119,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 145,
+    "timestamp": 1792953179.4773624,
+    "state": "critical",
+    "risk": 0.722,
+    "rois": [
+      [
+        100,
+        172,
+        483,
+        479
+      ],
+      [
+        19,
+        363,
+        119,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 146,
+    "timestamp": 1792953179.7063715,
+    "state": "critical",
+    "risk": 0.7208,
+    "rois": [
+      [
+        100,
+        172,
+        483,
+        479
+      ],
+      [
+        19,
+        363,
+        119,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 147,
+    "timestamp": 1792953180.0311542,
+    "state": "critical",
+    "risk": 0.7198,
+    "rois": [
+      [
+        100,
+        172,
+        483,
+        479
+      ],
+      [
+        19,
+        363,
+        119,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 148,
+    "timestamp": 1792953180.2986453,
+    "state": "critical",
+    "risk": 0.7196,
+    "rois": [
+      [
+        100,
+        172,
+        483,
+        479
+      ],
+      [
+        19,
+        363,
+        119,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 149,
+    "timestamp": 1792953180.5176055,
+    "state": "critical",
+    "risk": 0.7191,
+    "rois": [
+      [
+        100,
+        172,
+        483,
+        479
+      ],
+      [
+        19,
+        363,
+        119,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 150,
+    "timestamp": 1792953181.1833537,
+    "state": "critical",
+    "risk": 0.7207,
+    "rois": [
+      [
+        99,
+        170,
+        503,
+        479
+      ],
+      [
+        19,
+        363,
+        119,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 151,
+    "timestamp": 1792953182.175,
+    "state": "critical",
+    "risk": 0.7217,
+    "rois": [
+      [
+        99,
+        170,
+        503,
+        479
+      ],
+      [
+        19,
+        363,
+        119,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 152,
+    "timestamp": 1792953182.382197,
+    "state": "critical",
+    "risk": 0.7223,
+    "rois": [
+      [
+        99,
+        170,
+        503,
+        479
+      ],
+      [
+        19,
+        363,
+        119,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 153,
+    "timestamp": 1792953182.829873,
+    "state": "critical",
+    "risk": 0.7231,
+    "rois": [
+      [
+        99,
+        170,
+        503,
+        479
+      ],
+      [
+        19,
+        363,
+        119,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 154,
+    "timestamp": 1792953183.1290689,
+    "state": "critical",
+    "risk": 0.7234,
+    "rois": [
+      [
+        99,
+        170,
+        503,
+        479
+      ],
+      [
+        19,
+        363,
+        119,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 155,
+    "timestamp": 1792953183.517987,
+    "state": "critical",
+    "risk": 0.7235,
+    "rois": [
+      [
+        99,
+        170,
+        503,
+        479
+      ],
+      [
+        19,
+        363,
+        119,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 156,
+    "timestamp": 1792953183.6577601,
+    "state": "critical",
+    "risk": 0.7242,
+    "rois": [
+      [
+        99,
+        170,
+        503,
+        479
+      ],
+      [
+        19,
+        363,
+        119,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 157,
+    "timestamp": 1792953183.950642,
+    "state": "critical",
+    "risk": 0.7242,
+    "rois": [
+      [
+        99,
+        170,
+        503,
+        479
+      ],
+      [
+        19,
+        363,
+        119,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 158,
+    "timestamp": 1792953184.2695231,
+    "state": "critical",
+    "risk": 0.7244,
+    "rois": [
+      [
+        99,
+        170,
+        503,
+        479
+      ],
+      [
+        19,
+        363,
+        119,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 159,
+    "timestamp": 1792953184.6801715,
+    "state": "critical",
+    "risk": 0.7243,
+    "rois": [
+      [
+        99,
+        170,
+        503,
+        479
+      ],
+      [
+        19,
+        363,
+        119,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 160,
+    "timestamp": 1792953185.6428328,
+    "state": "critical",
+    "risk": 0.7257,
+    "rois": [
+      [
+        98,
+        167,
+        514,
+        479
+      ],
+      [
+        19,
+        363,
+        119,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 161,
+    "timestamp": 1792953186.3085647,
+    "state": "critical",
+    "risk": 0.7262,
+    "rois": [
+      [
+        98,
+        167,
+        514,
+        479
+      ],
+      [
+        19,
+        363,
+        119,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 162,
+    "timestamp": 1792953186.5553741,
+    "state": "critical",
+    "risk": 0.7268,
+    "rois": [
+      [
+        98,
+        167,
+        514,
+        479
+      ],
+      [
+        19,
+        363,
+        119,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 163,
+    "timestamp": 1792953187.067214,
+    "state": "critical",
+    "risk": 0.7273,
+    "rois": [
+      [
+        98,
+        167,
+        514,
+        479
+      ],
+      [
+        19,
+        363,
+        119,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 164,
+    "timestamp": 1792953187.2609184,
+    "state": "critical",
+    "risk": 0.728,
+    "rois": [
+      [
+        98,
+        167,
+        514,
+        479
+      ],
+      [
+        19,
+        363,
+        119,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 165,
+    "timestamp": 1792953187.7512772,
+    "state": "critical",
+    "risk": 0.7297,
+    "rois": [
+      [
+        98,
+        167,
+        514,
+        479
+      ],
+      [
+        19,
+        363,
+        119,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 166,
+    "timestamp": 1792953187.9438384,
+    "state": "critical",
+    "risk": 0.7308,
+    "rois": [
+      [
+        98,
+        167,
+        514,
+        479
+      ],
+      [
+        19,
+        363,
+        119,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 167,
+    "timestamp": 1792953188.1275275,
+    "state": "critical",
+    "risk": 0.7303,
+    "rois": [
+      [
+        98,
+        167,
+        514,
+        479
+      ],
+      [
+        19,
+        363,
+        119,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 168,
+    "timestamp": 1792953188.397199,
+    "state": "critical",
+    "risk": 0.7296,
+    "rois": [
+      [
+        98,
+        167,
+        514,
+        479
+      ],
+      [
+        19,
+        363,
+        119,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 169,
+    "timestamp": 1792953188.6994672,
+    "state": "critical",
+    "risk": 0.7292,
+    "rois": [
+      [
+        98,
+        167,
+        514,
+        479
+      ],
+      [
+        19,
+        363,
+        119,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 170,
+    "timestamp": 1792953190.1670985,
+    "state": "critical",
+    "risk": 0.7299,
+    "rois": [
+      [
+        96,
+        167,
+        522,
+        479
+      ],
+      [
+        19,
+        363,
+        120,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 171,
+    "timestamp": 1792953190.3519351,
+    "state": "critical",
+    "risk": 0.7301,
+    "rois": [
+      [
+        96,
+        167,
+        522,
+        479
+      ],
+      [
+        19,
+        363,
+        120,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 172,
+    "timestamp": 1792953190.6485553,
+    "state": "critical",
+    "risk": 0.7307,
+    "rois": [
+      [
+        96,
+        167,
+        522,
+        479
+      ],
+      [
+        19,
+        363,
+        120,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 173,
+    "timestamp": 1792953191.0273619,
+    "state": "critical",
+    "risk": 0.7313,
+    "rois": [
+      [
+        96,
+        167,
+        522,
+        479
+      ],
+      [
+        19,
+        363,
+        120,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 174,
+    "timestamp": 1792953191.170224,
+    "state": "critical",
+    "risk": 0.7314,
+    "rois": [
+      [
+        96,
+        167,
+        522,
+        479
+      ],
+      [
+        19,
+        363,
+        120,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 175,
+    "timestamp": 1792953191.653163,
+    "state": "critical",
+    "risk": 0.7325,
+    "rois": [
+      [
+        96,
+        167,
+        522,
+        479
+      ],
+      [
+        19,
+        363,
+        120,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 176,
+    "timestamp": 1792953191.8569217,
+    "state": "critical",
+    "risk": 0.7323,
+    "rois": [
+      [
+        96,
+        167,
+        522,
+        479
+      ],
+      [
+        19,
+        363,
+        120,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 177,
+    "timestamp": 1792953192.049087,
+    "state": "critical",
+    "risk": 0.7329,
+    "rois": [
+      [
+        96,
+        167,
+        522,
+        479
+      ],
+      [
+        19,
+        363,
+        120,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 178,
+    "timestamp": 1792953192.3325243,
+    "state": "critical",
+    "risk": 0.7329,
+    "rois": [
+      [
+        96,
+        167,
+        522,
+        479
+      ],
+      [
+        19,
+        363,
+        120,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 179,
+    "timestamp": 1792953192.692826,
+    "state": "critical",
+    "risk": 0.7325,
+    "rois": [
+      [
+        96,
+        167,
+        522,
+        479
+      ],
+      [
+        19,
+        363,
+        120,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 180,
+    "timestamp": 1792953193.5509536,
+    "state": "critical",
+    "risk": 0.733,
+    "rois": [
+      [
+        93,
+        165,
+        522,
+        479
+      ],
+      [
+        19,
+        363,
+        120,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 181,
+    "timestamp": 1792953194.4481182,
+    "state": "critical",
+    "risk": 0.7328,
+    "rois": [
+      [
+        93,
+        165,
+        522,
+        479
+      ],
+      [
+        19,
+        363,
+        120,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 182,
+    "timestamp": 1792953194.7005413,
+    "state": "critical",
+    "risk": 0.7329,
+    "rois": [
+      [
+        93,
+        165,
+        522,
+        479
+      ],
+      [
+        19,
+        363,
+        120,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 183,
+    "timestamp": 1792953195.0772665,
+    "state": "critical",
+    "risk": 0.7331,
+    "rois": [
+      [
+        93,
+        165,
+        522,
+        479
+      ],
+      [
+        19,
+        363,
+        120,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 184,
+    "timestamp": 1792953195.6535943,
+    "state": "critical",
+    "risk": 0.7336,
+    "rois": [
+      [
+        93,
+        165,
+        522,
+        479
+      ],
+      [
+        19,
+        363,
+        120,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 185,
+    "timestamp": 1792953195.7741406,
+    "state": "critical",
+    "risk": 0.7338,
+    "rois": [
+      [
+        93,
+        165,
+        522,
+        479
+      ],
+      [
+        19,
+        363,
+        120,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 186,
+    "timestamp": 1792953196.1908844,
+    "state": "critical",
+    "risk": 0.7337,
+    "rois": [
+      [
+        93,
+        165,
+        522,
+        479
+      ],
+      [
+        19,
+        363,
+        120,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 187,
+    "timestamp": 1792953196.6326473,
+    "state": "critical",
+    "risk": 0.7336,
+    "rois": [
+      [
+        93,
+        165,
+        522,
+        479
+      ],
+      [
+        19,
+        363,
+        120,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 188,
+    "timestamp": 1792953196.9618068,
+    "state": "critical",
+    "risk": 0.7339,
+    "rois": [
+      [
+        93,
+        165,
+        522,
+        479
+      ],
+      [
+        19,
+        363,
+        120,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 189,
+    "timestamp": 1792953197.3583143,
+    "state": "critical",
+    "risk": 0.734,
+    "rois": [
+      [
+        93,
+        165,
+        522,
+        479
+      ],
+      [
+        19,
+        363,
+        120,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 190,
+    "timestamp": 1792953199.0979881,
+    "state": "critical",
+    "risk": 0.7342,
+    "rois": [
+      [
+        93,
+        165,
+        531,
+        479
+      ],
+      [
+        18,
+        363,
+        120,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 191,
+    "timestamp": 1792953199.618185,
+    "state": "critical",
+    "risk": 0.7353,
+    "rois": [
+      [
+        93,
+        165,
+        531,
+        479
+      ],
+      [
+        18,
+        363,
+        120,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 192,
+    "timestamp": 1792953199.7685888,
+    "state": "critical",
+    "risk": 0.7357,
+    "rois": [
+      [
+        93,
+        165,
+        531,
+        479
+      ],
+      [
+        18,
+        363,
+        120,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 193,
+    "timestamp": 1792953200.0993438,
+    "state": "critical",
+    "risk": 0.7369,
+    "rois": [
+      [
+        93,
+        165,
+        531,
+        479
+      ],
+      [
+        18,
+        363,
+        120,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 194,
+    "timestamp": 1792953200.3115942,
+    "state": "critical",
+    "risk": 0.7381,
+    "rois": [
+      [
+        93,
+        165,
+        531,
+        479
+      ],
+      [
+        18,
+        363,
+        120,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 195,
+    "timestamp": 1792953200.8534846,
+    "state": "critical",
+    "risk": 0.7392,
+    "rois": [
+      [
+        93,
+        165,
+        531,
+        479
+      ],
+      [
+        18,
+        363,
+        120,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 196,
+    "timestamp": 1792953201.0942295,
+    "state": "critical",
+    "risk": 0.7388,
+    "rois": [
+      [
+        93,
+        165,
+        531,
+        479
+      ],
+      [
+        18,
+        363,
+        120,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 197,
+    "timestamp": 1792953201.1903439,
+    "state": "critical",
+    "risk": 0.7393,
+    "rois": [
+      [
+        93,
+        165,
+        531,
+        479
+      ],
+      [
+        18,
+        363,
+        120,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 198,
+    "timestamp": 1792953201.5844834,
+    "state": "critical",
+    "risk": 0.743,
+    "rois": [
+      [
+        93,
+        165,
+        531,
+        479
+      ],
+      [
+        18,
+        363,
+        120,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 199,
+    "timestamp": 1792953201.7515597,
+    "state": "critical",
+    "risk": 0.7415,
+    "rois": [
+      [
+        93,
+        165,
+        531,
+        479
+      ],
+      [
+        18,
+        363,
+        120,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 200,
+    "timestamp": 1792953203.246066,
+    "state": "critical",
+    "risk": 0.7396,
+    "rois": [
+      [
+        89,
+        171,
+        524,
+        479
+      ],
+      [
+        18,
+        363,
+        120,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 201,
+    "timestamp": 1792953203.4554095,
+    "state": "critical",
+    "risk": 0.7384,
+    "rois": [
+      [
+        89,
+        171,
+        524,
+        479
+      ],
+      [
+        18,
+        363,
+        120,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 202,
+    "timestamp": 1792953203.8145869,
+    "state": "critical",
+    "risk": 0.7364,
+    "rois": [
+      [
+        89,
+        171,
+        524,
+        479
+      ],
+      [
+        18,
+        363,
+        120,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 203,
+    "timestamp": 1792953204.0207577,
+    "state": "critical",
+    "risk": 0.7388,
+    "rois": [
+      [
+        89,
+        171,
+        524,
+        479
+      ],
+      [
+        18,
+        363,
+        120,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 204,
+    "timestamp": 1792953204.4043682,
+    "state": "critical",
+    "risk": 0.7386,
+    "rois": [
+      [
+        89,
+        171,
+        524,
+        479
+      ],
+      [
+        18,
+        363,
+        120,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 205,
+    "timestamp": 1792953204.7501245,
+    "state": "critical",
+    "risk": 0.739,
+    "rois": [
+      [
+        89,
+        171,
+        524,
+        479
+      ],
+      [
+        18,
+        363,
+        120,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 206,
+    "timestamp": 1792953204.8841922,
+    "state": "critical",
+    "risk": 0.7371,
+    "rois": [
+      [
+        89,
+        171,
+        524,
+        479
+      ],
+      [
+        18,
+        363,
+        120,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 207,
+    "timestamp": 1792953205.0771847,
+    "state": "critical",
+    "risk": 0.7357,
+    "rois": [
+      [
+        89,
+        171,
+        524,
+        479
+      ],
+      [
+        18,
+        363,
+        120,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 208,
+    "timestamp": 1792953205.6563556,
+    "state": "critical",
+    "risk": 0.7345,
+    "rois": [
+      [
+        89,
+        171,
+        524,
+        479
+      ],
+      [
+        18,
+        363,
+        120,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 209,
+    "timestamp": 1792953205.7779648,
+    "state": "critical",
+    "risk": 0.7337,
+    "rois": [
+      [
+        89,
+        171,
+        524,
+        479
+      ],
+      [
+        18,
+        363,
+        120,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 210,
+    "timestamp": 1792953206.6556852,
+    "state": "critical",
+    "risk": 0.7358,
+    "rois": [
+      [
+        87,
+        166,
+        552,
+        479
+      ],
+      [
+        18,
+        363,
+        119,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 211,
+    "timestamp": 1792953207.5724401,
+    "state": "critical",
+    "risk": 0.7372,
+    "rois": [
+      [
+        87,
+        166,
+        552,
+        479
+      ],
+      [
+        18,
+        363,
+        119,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 212,
+    "timestamp": 1792953207.7585907,
+    "state": "critical",
+    "risk": 0.7382,
+    "rois": [
+      [
+        87,
+        166,
+        552,
+        479
+      ],
+      [
+        18,
+        363,
+        119,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 213,
+    "timestamp": 1792953208.1381829,
+    "state": "critical",
+    "risk": 0.7392,
+    "rois": [
+      [
+        87,
+        166,
+        552,
+        479
+      ],
+      [
+        18,
+        363,
+        119,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 214,
+    "timestamp": 1792953208.3715193,
+    "state": "critical",
+    "risk": 0.7397,
+    "rois": [
+      [
+        87,
+        166,
+        552,
+        479
+      ],
+      [
+        18,
+        363,
+        119,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 215,
+    "timestamp": 1792953208.956611,
+    "state": "critical",
+    "risk": 0.7403,
+    "rois": [
+      [
+        87,
+        166,
+        552,
+        479
+      ],
+      [
+        18,
+        363,
+        119,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 216,
+    "timestamp": 1792953209.0891628,
+    "state": "critical",
+    "risk": 0.7406,
+    "rois": [
+      [
+        87,
+        166,
+        552,
+        479
+      ],
+      [
+        18,
+        363,
+        119,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 217,
+    "timestamp": 1792953209.3445036,
+    "state": "critical",
+    "risk": 0.7406,
+    "rois": [
+      [
+        87,
+        166,
+        552,
+        479
+      ],
+      [
+        18,
+        363,
+        119,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 218,
+    "timestamp": 1792953209.594794,
+    "state": "critical",
+    "risk": 0.7407,
+    "rois": [
+      [
+        87,
+        166,
+        552,
+        479
+      ],
+      [
+        18,
+        363,
+        119,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 219,
+    "timestamp": 1792953209.957194,
+    "state": "critical",
+    "risk": 0.741,
+    "rois": [
+      [
+        87,
+        166,
+        552,
+        479
+      ],
+      [
+        18,
+        363,
+        119,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 220,
+    "timestamp": 1792953210.769433,
+    "state": "critical",
+    "risk": 0.7433,
+    "rois": [
+      [
+        86,
+        165,
+        573,
+        479
+      ],
+      [
+        18,
+        363,
+        119,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 221,
+    "timestamp": 1792953211.8425405,
+    "state": "critical",
+    "risk": 0.7444,
+    "rois": [
+      [
+        86,
+        165,
+        573,
+        479
+      ],
+      [
+        18,
+        363,
+        119,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 222,
+    "timestamp": 1792953211.99722,
+    "state": "critical",
+    "risk": 0.7458,
+    "rois": [
+      [
+        86,
+        165,
+        573,
+        479
+      ],
+      [
+        18,
+        363,
+        119,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 223,
+    "timestamp": 1792953212.385698,
+    "state": "critical",
+    "risk": 0.7465,
+    "rois": [
+      [
+        86,
+        165,
+        573,
+        479
+      ],
+      [
+        18,
+        363,
+        119,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 224,
+    "timestamp": 1792953212.5708876,
+    "state": "critical",
+    "risk": 0.7475,
+    "rois": [
+      [
+        86,
+        165,
+        573,
+        479
+      ],
+      [
+        18,
+        363,
+        119,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 225,
+    "timestamp": 1792953213.1242933,
+    "state": "critical",
+    "risk": 0.7479,
+    "rois": [
+      [
+        86,
+        165,
+        573,
+        479
+      ],
+      [
+        18,
+        363,
+        119,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 226,
+    "timestamp": 1792953213.2915745,
+    "state": "critical",
+    "risk": 0.7486,
+    "rois": [
+      [
+        86,
+        165,
+        573,
+        479
+      ],
+      [
+        18,
+        363,
+        119,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 227,
+    "timestamp": 1792953213.5160096,
+    "state": "critical",
+    "risk": 0.7481,
+    "rois": [
+      [
+        86,
+        165,
+        573,
+        479
+      ],
+      [
+        18,
+        363,
+        119,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 228,
+    "timestamp": 1792953213.9911346,
+    "state": "critical",
+    "risk": 0.748,
+    "rois": [
+      [
+        86,
+        165,
+        573,
+        479
+      ],
+      [
+        18,
+        363,
+        119,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 229,
+    "timestamp": 1792953214.1174889,
+    "state": "critical",
+    "risk": 0.7476,
+    "rois": [
+      [
+        86,
+        165,
+        573,
+        479
+      ],
+      [
+        18,
+        363,
+        119,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 230,
+    "timestamp": 1792953215.5795636,
+    "state": "critical",
+    "risk": 0.7498,
+    "rois": [
+      [
+        85,
+        163,
+        598,
+        479
+      ],
+      [
+        18,
+        363,
+        119,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 231,
+    "timestamp": 1792953216.1049669,
+    "state": "critical",
+    "risk": 0.7511,
+    "rois": [
+      [
+        85,
+        163,
+        598,
+        479
+      ],
+      [
+        18,
+        363,
+        119,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 232,
+    "timestamp": 1792953216.2621853,
+    "state": "critical",
+    "risk": 0.7519,
+    "rois": [
+      [
+        85,
+        163,
+        598,
+        479
+      ],
+      [
+        18,
+        363,
+        119,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 233,
+    "timestamp": 1792953216.66427,
+    "state": "critical",
+    "risk": 0.7529,
+    "rois": [
+      [
+        85,
+        163,
+        598,
+        479
+      ],
+      [
+        18,
+        363,
+        119,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 234,
+    "timestamp": 1792953216.8118412,
+    "state": "critical",
+    "risk": 0.7532,
+    "rois": [
+      [
+        85,
+        163,
+        598,
+        479
+      ],
+      [
+        18,
+        363,
+        119,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 235,
+    "timestamp": 1792953217.3406281,
+    "state": "critical",
+    "risk": 0.7537,
+    "rois": [
+      [
+        85,
+        163,
+        598,
+        479
+      ],
+      [
+        18,
+        363,
+        119,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 236,
+    "timestamp": 1792953217.5098588,
+    "state": "critical",
+    "risk": 0.7539,
+    "rois": [
+      [
+        85,
+        163,
+        598,
+        479
+      ],
+      [
+        18,
+        363,
+        119,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 237,
+    "timestamp": 1792953217.7320552,
+    "state": "critical",
+    "risk": 0.7538,
+    "rois": [
+      [
+        85,
+        163,
+        598,
+        479
+      ],
+      [
+        18,
+        363,
+        119,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 238,
+    "timestamp": 1792953218.255699,
+    "state": "critical",
+    "risk": 0.754,
+    "rois": [
+      [
+        85,
+        163,
+        598,
+        479
+      ],
+      [
+        18,
+        363,
+        119,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 239,
+    "timestamp": 1792953218.3848026,
+    "state": "critical",
+    "risk": 0.7539,
+    "rois": [
+      [
+        85,
+        163,
+        598,
+        479
+      ],
+      [
+        18,
+        363,
+        119,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 240,
+    "timestamp": 1792953219.7037122,
+    "state": "critical",
+    "risk": 0.756,
+    "rois": [
+      [
+        82,
+        163,
+        614,
+        479
+      ],
+      [
+        18,
+        363,
+        119,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 241,
+    "timestamp": 1792953219.9981742,
+    "state": "critical",
+    "risk": 0.7569,
+    "rois": [
+      [
+        82,
+        163,
+        614,
+        479
+      ],
+      [
+        18,
+        363,
+        119,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 242,
+    "timestamp": 1792953220.1860447,
+    "state": "critical",
+    "risk": 0.7577,
+    "rois": [
+      [
+        82,
+        163,
+        614,
+        479
+      ],
+      [
+        18,
+        363,
+        119,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 243,
+    "timestamp": 1792953220.55241,
+    "state": "critical",
+    "risk": 0.758,
+    "rois": [
+      [
+        82,
+        163,
+        614,
+        479
+      ],
+      [
+        18,
+        363,
+        119,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 244,
+    "timestamp": 1792953220.8804777,
+    "state": "critical",
+    "risk": 0.7583,
+    "rois": [
+      [
+        82,
+        163,
+        614,
+        479
+      ],
+      [
+        18,
+        363,
+        119,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 245,
+    "timestamp": 1792953221.3880358,
+    "state": "critical",
+    "risk": 0.7589,
+    "rois": [
+      [
+        82,
+        163,
+        614,
+        479
+      ],
+      [
+        18,
+        363,
+        119,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 246,
+    "timestamp": 1792953221.5364623,
+    "state": "critical",
+    "risk": 0.7592,
+    "rois": [
+      [
+        82,
+        163,
+        614,
+        479
+      ],
+      [
+        18,
+        363,
+        119,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 247,
+    "timestamp": 1792953221.7154799,
+    "state": "critical",
+    "risk": 0.759,
+    "rois": [
+      [
+        82,
+        163,
+        614,
+        479
+      ],
+      [
+        18,
+        363,
+        119,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 248,
+    "timestamp": 1792953222.1363158,
+    "state": "critical",
+    "risk": 0.759,
+    "rois": [
+      [
+        82,
+        163,
+        614,
+        479
+      ],
+      [
+        18,
+        363,
+        119,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 249,
+    "timestamp": 1792953222.2973516,
+    "state": "critical",
+    "risk": 0.7592,
+    "rois": [
+      [
+        82,
+        163,
+        614,
+        479
+      ],
+      [
+        18,
+        363,
+        119,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 250,
+    "timestamp": 1792953223.0778415,
+    "state": "critical",
+    "risk": 0.7604,
+    "rois": [
+      [
+        82,
+        161,
+        623,
+        479
+      ],
+      [
+        18,
+        363,
+        118,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 251,
+    "timestamp": 1792953224.077069,
+    "state": "critical",
+    "risk": 0.7611,
+    "rois": [
+      [
+        82,
+        161,
+        623,
+        479
+      ],
+      [
+        18,
+        363,
+        118,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 252,
+    "timestamp": 1792953224.2591226,
+    "state": "critical",
+    "risk": 0.7617,
+    "rois": [
+      [
+        82,
+        161,
+        623,
+        479
+      ],
+      [
+        18,
+        363,
+        118,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 253,
+    "timestamp": 1792953224.600554,
+    "state": "critical",
+    "risk": 0.7625,
+    "rois": [
+      [
+        82,
+        161,
+        623,
+        479
+      ],
+      [
+        18,
+        363,
+        118,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 254,
+    "timestamp": 1792953224.7943914,
+    "state": "critical",
+    "risk": 0.7624,
+    "rois": [
+      [
+        82,
+        161,
+        623,
+        479
+      ],
+      [
+        18,
+        363,
+        118,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 255,
+    "timestamp": 1792953225.3287134,
+    "state": "critical",
+    "risk": 0.7624,
+    "rois": [
+      [
+        82,
+        161,
+        623,
+        479
+      ],
+      [
+        18,
+        363,
+        118,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 256,
+    "timestamp": 1792953225.5726442,
+    "state": "critical",
+    "risk": 0.7626,
+    "rois": [
+      [
+        82,
+        161,
+        623,
+        479
+      ],
+      [
+        18,
+        363,
+        118,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 257,
+    "timestamp": 1792953225.8431647,
+    "state": "critical",
+    "risk": 0.7624,
+    "rois": [
+      [
+        82,
+        161,
+        623,
+        479
+      ],
+      [
+        18,
+        363,
+        118,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 258,
+    "timestamp": 1792953226.024967,
+    "state": "critical",
+    "risk": 0.7625,
+    "rois": [
+      [
+        82,
+        161,
+        623,
+        479
+      ],
+      [
+        18,
+        363,
+        118,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 259,
+    "timestamp": 1792953226.3656461,
+    "state": "critical",
+    "risk": 0.7624,
+    "rois": [
+      [
+        82,
+        161,
+        623,
+        479
+      ],
+      [
+        18,
+        363,
+        118,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 260,
+    "timestamp": 1792953227.95549,
+    "state": "critical",
+    "risk": 0.7628,
+    "rois": [
+      [
+        76,
+        164,
+        628,
+        479
+      ],
+      [
+        19,
+        363,
+        118,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 261,
+    "timestamp": 1792953228.0904586,
+    "state": "critical",
+    "risk": 0.763,
+    "rois": [
+      [
+        76,
+        164,
+        628,
+        479
+      ],
+      [
+        19,
+        363,
+        118,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 262,
+    "timestamp": 1792953228.3471594,
+    "state": "critical",
+    "risk": 0.7633,
+    "rois": [
+      [
+        76,
+        164,
+        628,
+        479
+      ],
+      [
+        19,
+        363,
+        118,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 263,
+    "timestamp": 1792953228.7641478,
+    "state": "critical",
+    "risk": 0.7635,
+    "rois": [
+      [
+        76,
+        164,
+        628,
+        479
+      ],
+      [
+        19,
+        363,
+        118,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 264,
+    "timestamp": 1792953228.9585757,
+    "state": "critical",
+    "risk": 0.7635,
+    "rois": [
+      [
+        76,
+        164,
+        628,
+        479
+      ],
+      [
+        19,
+        363,
+        118,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 265,
+    "timestamp": 1792953229.489371,
+    "state": "critical",
+    "risk": 0.7641,
+    "rois": [
+      [
+        76,
+        164,
+        628,
+        479
+      ],
+      [
+        19,
+        363,
+        118,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 266,
+    "timestamp": 1792953229.7407727,
+    "state": "critical",
+    "risk": 0.7641,
+    "rois": [
+      [
+        76,
+        164,
+        628,
+        479
+      ],
+      [
+        19,
+        363,
+        118,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 267,
+    "timestamp": 1792953229.9034588,
+    "state": "critical",
+    "risk": 0.7643,
+    "rois": [
+      [
+        76,
+        164,
+        628,
+        479
+      ],
+      [
+        19,
+        363,
+        118,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 268,
+    "timestamp": 1792953230.2722476,
+    "state": "critical",
+    "risk": 0.7643,
+    "rois": [
+      [
+        76,
+        164,
+        628,
+        479
+      ],
+      [
+        19,
+        363,
+        118,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 269,
+    "timestamp": 1792953230.6943936,
+    "state": "critical",
+    "risk": 0.7639,
+    "rois": [
+      [
+        76,
+        164,
+        628,
+        479
+      ],
+      [
+        19,
+        363,
+        118,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 270,
+    "timestamp": 1792953231.6670806,
+    "state": "critical",
+    "risk": 0.764,
+    "rois": [
+      [
+        76,
+        165,
+        625,
+        479
+      ],
+      [
+        19,
+        363,
+        118,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 271,
+    "timestamp": 1792953232.6440227,
+    "state": "critical",
+    "risk": 0.7638,
+    "rois": [
+      [
+        76,
+        165,
+        625,
+        479
+      ],
+      [
+        19,
+        363,
+        118,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 272,
+    "timestamp": 1792953232.8450136,
+    "state": "critical",
+    "risk": 0.7637,
+    "rois": [
+      [
+        76,
+        165,
+        625,
+        479
+      ],
+      [
+        19,
+        363,
+        118,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 273,
+    "timestamp": 1792953233.124989,
+    "state": "critical",
+    "risk": 0.7636,
+    "rois": [
+      [
+        76,
+        165,
+        625,
+        479
+      ],
+      [
+        19,
+        363,
+        118,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 274,
+    "timestamp": 1792953233.3895762,
+    "state": "critical",
+    "risk": 0.7635,
+    "rois": [
+      [
+        76,
+        165,
+        625,
+        479
+      ],
+      [
+        19,
+        363,
+        118,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 275,
+    "timestamp": 1792953233.9159305,
+    "state": "critical",
+    "risk": 0.7636,
+    "rois": [
+      [
+        76,
+        165,
+        625,
+        479
+      ],
+      [
+        19,
+        363,
+        118,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 276,
+    "timestamp": 1792953234.0631166,
+    "state": "critical",
+    "risk": 0.7645,
+    "rois": [
+      [
+        76,
+        165,
+        625,
+        479
+      ],
+      [
+        19,
+        363,
+        118,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 277,
+    "timestamp": 1792953234.312303,
+    "state": "critical",
+    "risk": 0.7641,
+    "rois": [
+      [
+        76,
+        165,
+        625,
+        479
+      ],
+      [
+        19,
+        363,
+        118,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 278,
+    "timestamp": 1792953234.7434707,
+    "state": "critical",
+    "risk": 0.7637,
+    "rois": [
+      [
+        76,
+        165,
+        625,
+        479
+      ],
+      [
+        19,
+        363,
+        118,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 279,
+    "timestamp": 1792953234.9396913,
+    "state": "critical",
+    "risk": 0.7639,
+    "rois": [
+      [
+        76,
+        165,
+        625,
+        479
+      ],
+      [
+        19,
+        363,
+        118,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 280,
+    "timestamp": 1792953236.1069663,
+    "state": "critical",
+    "risk": 0.7625,
+    "rois": [
+      [
+        84,
+        168,
+        608,
+        479
+      ],
+      [
+        19,
+        363,
+        118,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 281,
+    "timestamp": 1792953236.8233457,
+    "state": "critical",
+    "risk": 0.7603,
+    "rois": [
+      [
+        84,
+        168,
+        608,
+        479
+      ],
+      [
+        19,
+        363,
+        118,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 282,
+    "timestamp": 1792953237.0328708,
+    "state": "critical",
+    "risk": 0.7594,
+    "rois": [
+      [
+        84,
+        168,
+        608,
+        479
+      ],
+      [
+        19,
+        363,
+        118,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 283,
+    "timestamp": 1792953237.4631803,
+    "state": "critical",
+    "risk": 0.759,
+    "rois": [
+      [
+        84,
+        168,
+        608,
+        479
+      ],
+      [
+        19,
+        363,
+        118,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 284,
+    "timestamp": 1792953237.599528,
+    "state": "critical",
+    "risk": 0.7578,
+    "rois": [
+      [
+        84,
+        168,
+        608,
+        479
+      ],
+      [
+        19,
+        363,
+        118,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 285,
+    "timestamp": 1792953238.172019,
+    "state": "critical",
+    "risk": 0.7573,
+    "rois": [
+      [
+        84,
+        168,
+        608,
+        479
+      ],
+      [
+        19,
+        363,
+        118,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 286,
+    "timestamp": 1792953238.3543031,
+    "state": "critical",
+    "risk": 0.7571,
+    "rois": [
+      [
+        84,
+        168,
+        608,
+        479
+      ],
+      [
+        19,
+        363,
+        118,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 287,
+    "timestamp": 1792953238.7201946,
+    "state": "critical",
+    "risk": 0.7566,
+    "rois": [
+      [
+        84,
+        168,
+        608,
+        479
+      ],
+      [
+        19,
+        363,
+        118,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 288,
+    "timestamp": 1792953239.121973,
+    "state": "critical",
+    "risk": 0.7564,
+    "rois": [
+      [
+        84,
+        168,
+        608,
+        479
+      ],
+      [
+        19,
+        363,
+        118,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 289,
+    "timestamp": 1792953239.2645447,
+    "state": "critical",
+    "risk": 0.7558,
+    "rois": [
+      [
+        84,
+        168,
+        608,
+        479
+      ],
+      [
+        19,
+        363,
+        118,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 290,
+    "timestamp": 1792953240.709725,
+    "state": "critical",
+    "risk": 0.7529,
+    "rois": [
+      [
+        95,
+        174,
+        588,
+        479
+      ],
+      [
+        19,
+        363,
+        118,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 291,
+    "timestamp": 1792953240.8757992,
+    "state": "critical",
+    "risk": 0.7503,
+    "rois": [
+      [
+        95,
+        174,
+        588,
+        479
+      ],
+      [
+        19,
+        363,
+        118,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 292,
+    "timestamp": 1792953241.2368093,
+    "state": "critical",
+    "risk": 0.7486,
+    "rois": [
+      [
+        95,
+        174,
+        588,
+        479
+      ],
+      [
+        19,
+        363,
+        118,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 293,
+    "timestamp": 1792953241.837776,
+    "state": "critical",
+    "risk": 0.7475,
+    "rois": [
+      [
+        95,
+        174,
+        588,
+        479
+      ],
+      [
+        19,
+        363,
+        118,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 294,
+    "timestamp": 1792953241.9794788,
+    "state": "critical",
+    "risk": 0.7466,
+    "rois": [
+      [
+        95,
+        174,
+        588,
+        479
+      ],
+      [
+        19,
+        363,
+        118,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 295,
+    "timestamp": 1792953242.4814641,
+    "state": "critical",
+    "risk": 0.7463,
+    "rois": [
+      [
+        95,
+        174,
+        588,
+        479
+      ],
+      [
+        19,
+        363,
+        118,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 296,
+    "timestamp": 1792953242.7456124,
+    "state": "critical",
+    "risk": 0.7458,
+    "rois": [
+      [
+        95,
+        174,
+        588,
+        479
+      ],
+      [
+        19,
+        363,
+        118,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 297,
+    "timestamp": 1792953242.8417454,
+    "state": "critical",
+    "risk": 0.7458,
+    "rois": [
+      [
+        95,
+        174,
+        588,
+        479
+      ],
+      [
+        19,
+        363,
+        118,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 298,
+    "timestamp": 1792953243.0736487,
+    "state": "critical",
+    "risk": 0.7455,
+    "rois": [
+      [
+        95,
+        174,
+        588,
+        479
+      ],
+      [
+        19,
+        363,
+        118,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 299,
+    "timestamp": 1792953243.2896543,
+    "state": "critical",
+    "risk": 0.7452,
+    "rois": [
+      [
+        95,
+        174,
+        588,
+        479
+      ],
+      [
+        19,
+        363,
+        118,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 300,
+    "timestamp": 1792953244.7239497,
+    "state": "critical",
+    "risk": 0.7423,
+    "rois": [
+      [
+        105,
+        180,
+        572,
+        479
+      ],
+      [
+        19,
+        363,
+        118,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 301,
+    "timestamp": 1792953245.2633927,
+    "state": "critical",
+    "risk": 0.7406,
+    "rois": [
+      [
+        105,
+        180,
+        572,
+        479
+      ],
+      [
+        19,
+        363,
+        118,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 302,
+    "timestamp": 1792953245.4213822,
+    "state": "critical",
+    "risk": 0.739,
+    "rois": [
+      [
+        105,
+        180,
+        572,
+        479
+      ],
+      [
+        19,
+        363,
+        118,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 303,
+    "timestamp": 1792953245.8163137,
+    "state": "critical",
+    "risk": 0.7382,
+    "rois": [
+      [
+        105,
+        180,
+        572,
+        479
+      ],
+      [
+        19,
+        363,
+        118,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 304,
+    "timestamp": 1792953246.302642,
+    "state": "critical",
+    "risk": 0.7138,
+    "rois": [
+      [
+        105,
+        180,
+        572,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 305,
+    "timestamp": 1792953246.650649,
+    "state": "critical",
+    "risk": 0.6969,
+    "rois": [
+      [
+        105,
+        180,
+        572,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 306,
+    "timestamp": 1792953246.7442508,
+    "state": "critical",
+    "risk": 0.6853,
+    "rois": [
+      [
+        105,
+        180,
+        572,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 307,
+    "timestamp": 1792953246.9683332,
+    "state": "critical",
+    "risk": 0.6768,
+    "rois": [
+      [
+        105,
+        180,
+        572,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 308,
+    "timestamp": 1792953247.4372835,
+    "state": "critical",
+    "risk": 0.6709,
+    "rois": [
+      [
+        105,
+        180,
+        572,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 309,
+    "timestamp": 1792953247.6111414,
+    "state": "critical",
+    "risk": 0.6671,
+    "rois": [
+      [
+        105,
+        180,
+        572,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 310,
+    "timestamp": 1792953248.5677643,
+    "state": "critical",
+    "risk": 0.6627,
+    "rois": [
+      [
+        111,
+        184,
+        561,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 311,
+    "timestamp": 1792953249.3550627,
+    "state": "critical",
+    "risk": 0.6591,
+    "rois": [
+      [
+        111,
+        184,
+        561,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 312,
+    "timestamp": 1792953249.602226,
+    "state": "critical",
+    "risk": 0.6567,
+    "rois": [
+      [
+        111,
+        184,
+        561,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 313,
+    "timestamp": 1792953249.9340756,
+    "state": "critical",
+    "risk": 0.6551,
+    "rois": [
+      [
+        111,
+        184,
+        561,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 314,
+    "timestamp": 1792953250.25027,
+    "state": "critical",
+    "risk": 0.6538,
+    "rois": [
+      [
+        111,
+        184,
+        561,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 315,
+    "timestamp": 1792953250.8297262,
+    "state": "critical",
+    "risk": 0.6531,
+    "rois": [
+      [
+        111,
+        184,
+        561,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 316,
+    "timestamp": 1792953250.924221,
+    "state": "critical",
+    "risk": 0.6527,
+    "rois": [
+      [
+        111,
+        184,
+        561,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 317,
+    "timestamp": 1792953251.219192,
+    "state": "critical",
+    "risk": 0.6524,
+    "rois": [
+      [
+        111,
+        184,
+        561,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 318,
+    "timestamp": 1792953251.544704,
+    "state": "critical",
+    "risk": 0.652,
+    "rois": [
+      [
+        111,
+        184,
+        561,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 319,
+    "timestamp": 1792953251.6863692,
+    "state": "critical",
+    "risk": 0.6516,
+    "rois": [
+      [
+        111,
+        184,
+        561,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 320,
+    "timestamp": 1792953252.7839541,
+    "state": "critical",
+    "risk": 0.6506,
+    "rois": [
+      [
+        115,
+        186,
+        556,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 321,
+    "timestamp": 1792953253.7439725,
+    "state": "critical",
+    "risk": 0.6497,
+    "rois": [
+      [
+        115,
+        186,
+        556,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 322,
+    "timestamp": 1792953253.9223585,
+    "state": "critical",
+    "risk": 0.6493,
+    "rois": [
+      [
+        115,
+        186,
+        556,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 323,
+    "timestamp": 1792953254.3130107,
+    "state": "critical",
+    "risk": 0.649,
+    "rois": [
+      [
+        115,
+        186,
+        556,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 324,
+    "timestamp": 1792953254.5296373,
+    "state": "critical",
+    "risk": 0.6486,
+    "rois": [
+      [
+        115,
+        186,
+        556,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 325,
+    "timestamp": 1792953254.9544995,
+    "state": "critical",
+    "risk": 0.6488,
+    "rois": [
+      [
+        115,
+        186,
+        556,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 326,
+    "timestamp": 1792953255.1183271,
+    "state": "critical",
+    "risk": 0.6491,
+    "rois": [
+      [
+        115,
+        186,
+        556,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 327,
+    "timestamp": 1792953255.4413993,
+    "state": "critical",
+    "risk": 0.649,
+    "rois": [
+      [
+        115,
+        186,
+        556,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 328,
+    "timestamp": 1792953255.7281628,
+    "state": "critical",
+    "risk": 0.6489,
+    "rois": [
+      [
+        115,
+        186,
+        556,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 329,
+    "timestamp": 1792953256.0094311,
+    "state": "critical",
+    "risk": 0.6487,
+    "rois": [
+      [
+        115,
+        186,
+        556,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 330,
+    "timestamp": 1792953256.8881493,
+    "state": "critical",
+    "risk": 0.648,
+    "rois": [
+      [
+        121,
+        187,
+        553,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 331,
+    "timestamp": 1792953258.0595083,
+    "state": "critical",
+    "risk": 0.6472,
+    "rois": [
+      [
+        121,
+        187,
+        553,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 332,
+    "timestamp": 1792953258.2720912,
+    "state": "critical",
+    "risk": 0.6469,
+    "rois": [
+      [
+        121,
+        187,
+        553,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 333,
+    "timestamp": 1792953258.8257227,
+    "state": "critical",
+    "risk": 0.6471,
+    "rois": [
+      [
+        121,
+        187,
+        553,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 334,
+    "timestamp": 1792953258.945909,
+    "state": "critical",
+    "risk": 0.6468,
+    "rois": [
+      [
+        121,
+        187,
+        553,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 335,
+    "timestamp": 1792953259.6447985,
+    "state": "critical",
+    "risk": 0.6487,
+    "rois": [
+      [
+        121,
+        187,
+        553,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 336,
+    "timestamp": 1792953259.784069,
+    "state": "critical",
+    "risk": 0.65,
+    "rois": [
+      [
+        121,
+        187,
+        553,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 337,
+    "timestamp": 1792953259.9552732,
+    "state": "critical",
+    "risk": 0.6489,
+    "rois": [
+      [
+        121,
+        187,
+        553,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 338,
+    "timestamp": 1792953260.2310832,
+    "state": "critical",
+    "risk": 0.6483,
+    "rois": [
+      [
+        121,
+        187,
+        553,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 339,
+    "timestamp": 1792953260.6662114,
+    "state": "critical",
+    "risk": 0.6477,
+    "rois": [
+      [
+        121,
+        187,
+        553,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 340,
+    "timestamp": 1792953261.4410725,
+    "state": "critical",
+    "risk": 0.6742,
+    "rois": [
+      [
+        110,
+        178,
+        566,
+        479
+      ],
+      [
+        20,
+        362,
+        118,
+        480
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 341,
+    "timestamp": 1792953262.3600879,
+    "state": "critical",
+    "risk": 0.6923,
+    "rois": [
+      [
+        110,
+        178,
+        566,
+        479
+      ],
+      [
+        20,
+        362,
+        118,
+        480
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 342,
+    "timestamp": 1792953262.5261683,
+    "state": "critical",
+    "risk": 0.7048,
+    "rois": [
+      [
+        110,
+        178,
+        566,
+        479
+      ],
+      [
+        20,
+        362,
+        118,
+        480
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 343,
+    "timestamp": 1792953263.0349584,
+    "state": "critical",
+    "risk": 0.7136,
+    "rois": [
+      [
+        110,
+        178,
+        566,
+        479
+      ],
+      [
+        20,
+        362,
+        118,
+        480
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 344,
+    "timestamp": 1792953263.2307107,
+    "state": "critical",
+    "risk": 0.7199,
+    "rois": [
+      [
+        110,
+        178,
+        566,
+        479
+      ],
+      [
+        20,
+        362,
+        118,
+        480
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 345,
+    "timestamp": 1792953263.645715,
+    "state": "critical",
+    "risk": 0.7242,
+    "rois": [
+      [
+        110,
+        178,
+        566,
+        479
+      ],
+      [
+        20,
+        362,
+        118,
+        480
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 346,
+    "timestamp": 1792953263.8492794,
+    "state": "critical",
+    "risk": 0.7275,
+    "rois": [
+      [
+        110,
+        178,
+        566,
+        479
+      ],
+      [
+        20,
+        362,
+        118,
+        480
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 347,
+    "timestamp": 1792953264.034833,
+    "state": "critical",
+    "risk": 0.7294,
+    "rois": [
+      [
+        110,
+        178,
+        566,
+        479
+      ],
+      [
+        20,
+        362,
+        118,
+        480
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 348,
+    "timestamp": 1792953264.4236388,
+    "state": "critical",
+    "risk": 0.7312,
+    "rois": [
+      [
+        110,
+        178,
+        566,
+        479
+      ],
+      [
+        20,
+        362,
+        118,
+        480
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 349,
+    "timestamp": 1792953264.714072,
+    "state": "critical",
+    "risk": 0.7323,
+    "rois": [
+      [
+        110,
+        178,
+        566,
+        479
+      ],
+      [
+        20,
+        362,
+        118,
+        480
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 350,
+    "timestamp": 1792953266.0672793,
+    "state": "critical",
+    "risk": 0.7354,
+    "rois": [
+      [
+        106,
+        172,
+        577,
+        479
+      ],
+      [
+        20,
+        362,
+        118,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 351,
+    "timestamp": 1792953266.4895422,
+    "state": "critical",
+    "risk": 0.7369,
+    "rois": [
+      [
+        106,
+        172,
+        577,
+        479
+      ],
+      [
+        20,
+        362,
+        118,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 352,
+    "timestamp": 1792953266.825175,
+    "state": "critical",
+    "risk": 0.7381,
+    "rois": [
+      [
+        106,
+        172,
+        577,
+        479
+      ],
+      [
+        20,
+        362,
+        118,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 353,
+    "timestamp": 1792953267.0631917,
+    "state": "critical",
+    "risk": 0.7394,
+    "rois": [
+      [
+        106,
+        172,
+        577,
+        479
+      ],
+      [
+        20,
+        362,
+        118,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 354,
+    "timestamp": 1792953267.4073231,
+    "state": "critical",
+    "risk": 0.7397,
+    "rois": [
+      [
+        106,
+        172,
+        577,
+        479
+      ],
+      [
+        20,
+        362,
+        118,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 355,
+    "timestamp": 1792953267.5582802,
+    "state": "critical",
+    "risk": 0.7421,
+    "rois": [
+      [
+        106,
+        172,
+        577,
+        479
+      ],
+      [
+        20,
+        362,
+        118,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 356,
+    "timestamp": 1792953267.8903077,
+    "state": "critical",
+    "risk": 0.7415,
+    "rois": [
+      [
+        106,
+        172,
+        577,
+        479
+      ],
+      [
+        20,
+        362,
+        118,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 357,
+    "timestamp": 1792953268.1302319,
+    "state": "critical",
+    "risk": 0.741,
+    "rois": [
+      [
+        106,
+        172,
+        577,
+        479
+      ],
+      [
+        20,
+        362,
+        118,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 358,
+    "timestamp": 1792953268.5121145,
+    "state": "critical",
+    "risk": 0.7405,
+    "rois": [
+      [
+        106,
+        172,
+        577,
+        479
+      ],
+      [
+        20,
+        362,
+        118,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 359,
+    "timestamp": 1792953268.8156526,
+    "state": "critical",
+    "risk": 0.7402,
+    "rois": [
+      [
+        106,
+        172,
+        577,
+        479
+      ],
+      [
+        20,
+        362,
+        118,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 360,
+    "timestamp": 1792953269.8851888,
+    "state": "critical",
+    "risk": 0.7437,
+    "rois": [
+      [
+        92,
+        164,
+        601,
+        479
+      ],
+      [
+        19,
+        362,
+        117,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 361,
+    "timestamp": 1792953270.5392263,
+    "state": "critical",
+    "risk": 0.7464,
+    "rois": [
+      [
+        92,
+        164,
+        601,
+        479
+      ],
+      [
+        19,
+        362,
+        117,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 362,
+    "timestamp": 1792953270.7066448,
+    "state": "critical",
+    "risk": 0.7486,
+    "rois": [
+      [
+        92,
+        164,
+        601,
+        479
+      ],
+      [
+        19,
+        362,
+        117,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 363,
+    "timestamp": 1792953271.0901484,
+    "state": "critical",
+    "risk": 0.7502,
+    "rois": [
+      [
+        92,
+        164,
+        601,
+        479
+      ],
+      [
+        19,
+        362,
+        117,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 364,
+    "timestamp": 1792953271.349597,
+    "state": "critical",
+    "risk": 0.7509,
+    "rois": [
+      [
+        92,
+        164,
+        601,
+        479
+      ],
+      [
+        19,
+        362,
+        117,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 365,
+    "timestamp": 1792953271.9671862,
+    "state": "critical",
+    "risk": 0.7519,
+    "rois": [
+      [
+        92,
+        164,
+        601,
+        479
+      ],
+      [
+        19,
+        362,
+        117,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 366,
+    "timestamp": 1792953272.2813995,
+    "state": "critical",
+    "risk": 0.752,
+    "rois": [
+      [
+        92,
+        164,
+        601,
+        479
+      ],
+      [
+        19,
+        362,
+        117,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 367,
+    "timestamp": 1792953272.5753284,
+    "state": "critical",
+    "risk": 0.7521,
+    "rois": [
+      [
+        92,
+        164,
+        601,
+        479
+      ],
+      [
+        19,
+        362,
+        117,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 368,
+    "timestamp": 1792953272.8550415,
+    "state": "critical",
+    "risk": 0.7523,
+    "rois": [
+      [
+        92,
+        164,
+        601,
+        479
+      ],
+      [
+        19,
+        362,
+        117,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 369,
+    "timestamp": 1792953273.103128,
+    "state": "critical",
+    "risk": 0.7523,
+    "rois": [
+      [
+        92,
+        164,
+        601,
+        479
+      ],
+      [
+        19,
+        362,
+        117,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  },
+  {
+    "camera_id": "camera_0",
+    "frame_id": 370,
+    "timestamp": 1792953273.768725,
+    "state": "critical",
+    "risk": 0.755,
+    "rois": [
+      [
+        80,
+        160,
+        615,
+        479
+      ],
+      [
+        19,
+        362,
+        117,
+        479
+      ]
+    ],
+    "orig_w": 640,
+    "orig_h": 480,
+    "gop_size": 10,
+    "res_w": 1920,
+    "res_h": 1080
+  }
+]
